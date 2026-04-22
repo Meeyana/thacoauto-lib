@@ -1,0 +1,218 @@
+{
+  "main": {
+    "id": "882e996a0c55b3c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5ea6095c3935115",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2e6ed1f263c7afac",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9a35a1be9b04dc73",
+    "type": "split",
+    "children": [
+      {
+        "id": "022772eb2ec7ee37",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ec4bd743569768f9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f35dd58fc229092b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "2cdeccb655b309c0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dfc1824f901a8b9f",
+    "type": "split",
+    "children": [
+      {
+        "id": "2386164520bb3a52",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e5b08b401270ab7e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "9ae0eb385eda3ff7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "d4302635ec5cc992",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "10dbc8df2c0893d2",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "c93d2cd9aef77faa",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "graph:Open graph view": false,
+      "switcher:Open quick switcher": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "2e6ed1f263c7afac",
+  "lastOpenFiles": [
+    "2026-04-22.md",
+    "Untitled.canvas",
+    "index.md",
+    "n8nsetup.md",
+    "CLAUDE.md",
+    "wiki/faq/index.md",
+    "wiki/faq/kia-new-carnival-qa.md",
+    "wiki/faq/kia-sorento-hevphev-qa.md",
+    "wiki/faq/kia-new-sorento-qa.md",
+    "wiki/faq/kia-sportage-qa.md",
+    "wiki/faq/kia-k5-qa.md",
+    "raw/models/kia/Q&A/Q&A 200,260tr New Carnival-compressed.pdf",
+    "raw/models/kia/Q&A/Câu hỏi Q&A - Kia Sorento HEV_PHEV-compressed.pdf",
+    "raw/models/kia/Q&A/Câu hỏi Q&A - Kia Sorento-compressed.pdf",
+    "raw/models/kia/Q&A/Câu hỏi Q&A - Kia Sportage-compressed.pdf",
+    "raw/models/kia/Q&A/Câu hỏi Q&A - Kia K5-compressed.pdf",
+    "raw/models/kia/Q&A",
+    "raw/models/kia/New folder",
+    "wiki/dealers/index.md",
+    "tools/watch_all.py",
+    "wiki/dealers/showroom-ben-luc.md",
+    "wiki/models/index.md",
+    "wiki/brands/kia.md",
+    "wiki/dealers/showroom-thao-dien.md",
+    "wiki/dealers/showroom-an-suong.md",
+    "wiki/dealers/showroom-an-lac.md",
+    "wiki/dealers/showroom-thu-dau-mot.md",
+    "wiki/dealers/showroom-tan-uyen.md",
+    "wiki/dealers/showroom-di-an.md",
+    "wiki/dealers/showroom-binh-duong.md",
+    "wiki/dealers/showroom-vung-tau.md",
+    "wiki/dealers/showroom-phu-my.md",
+    "wiki/dealers/showroom-ba-ria.md",
+    "wiki/dealers/showroom-tay-ninh.md",
+    "tools/sync_dealers.py",
+    "raw/hochiminh-listshowroom.json"
+  ]
+}

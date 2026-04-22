@@ -1,0 +1,3292 @@
+{
+  "error": false,
+  "data": [
+    {
+      "province_id": 1,
+      "province_name": "Showroom Sala",
+      "group_slug": "showroom-sala",
+      "count": 6,
+      "items": [
+        {
+          "id": 238,
+          "title": "BMW Sala",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0907808880",
+          "phone_dv_pt": "0938889811",
+          "phone_cskh": null,
+          "address": "12 Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/BMW Sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4992769824835!2d106.72119877408734!3d10.773020209258462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317525f621d61ec3%3A0x51f1c7be69a4b568!2sBMW%20Sala!5e0!3m2!1sen!2s!4v1761293321111!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": "https://maps.app.goo.gl/DhDyud8NQ9BJxM4n7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/BMW Sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 239,
+          "title": "MINI Sala",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/thaco-showroom-10-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MINI"
+          ],
+          "phone": "0938869310",
+          "phone_dv_pt": "0938889811",
+          "phone_cskh": null,
+          "address": "12 Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/MINI Sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5040635997184!2d106.72086857408742!3d10.772652459265272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317525f2e7e83dd3%3A0xb9aa51c2b7d315a9!2sMINI%20Sala!5e0!3m2!1sen!2s!4v1761293189674!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": "https://maps.app.goo.gl/SW9KWno1Sah4Xkm1A",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/MINI Sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MINI"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 240,
+          "title": "BMW Motorrad Sala",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-22-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW Motorrad"
+          ],
+          "phone": "0901188088",
+          "phone_dv_pt": "0938806525",
+          "phone_cskh": null,
+          "address": "12 Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/BMW Motorrad Sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4997761518757!2d106.72138387408745!3d10.772981859259211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317525133f96d2ab%3A0x21848ca79b96628f!2sBMW%20Motorrad%20Sala!5e0!3m2!1sen!2s!4v1761293034618!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": "https://maps.app.goo.gl/gd4EayM1qxXG1udw6",
+            "booking": "https://bmw-motorcycles.vn/lien-he/",
+            "website": "https://thacoautotphcm.vn/showrooms/BMW Motorrad Sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "BMW Motorrad"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "moto"
+        },
+        {
+          "id": 882,
+          "title": "Kia Sala",
+          "image": "https://thacoautotphcm.vn/storage/kiasala-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0901886297",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.518192777948!2d106.71970227408745!3d10.771566859285306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f00085e5df7%3A0xdefa3a4a218d8288!2sShowroom%20Kia%20Sala!5e0!3m2!1sen!2s!4v1761292556161!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/ovi8QJRNWYi9emPF8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 935,
+          "title": "Mazda Sala",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-sala-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0901886297",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5110619877632!2d106.71959897408749!3d10.772114759275173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f000a6280cf%3A0x2d38e037ba6ff9a6!2sMAZDA%20SALA%20HCM!5e0!3m2!1sen!2s!4v1761292684501!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": "https://maps.app.goo.gl/L9K8jRQktRLD5pE36",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 954,
+          "title": "Peugeot Sala",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/dsc06159-1-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0901886297",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-sala",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5127851755965!2d106.71895177408739!3d10.771982359277636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f0022196d65%3A0x3f6d0fb9ea68cd6!2sPEUGEOT%20SALA%20HCM!5e0!3m2!1sen!2s!4v1761292949823!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": "https://maps.app.goo.gl/TrdBZxdqHEvg86Ev7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-sala"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 5,
+      "province_name": "Showroom Phú Mỹ Hưng",
+      "group_slug": "showroom-phu-my-hung",
+      "count": 5,
+      "items": [
+        {
+          "id": 232,
+          "title": "Kia Phú Mỹ Hưng",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-pmh-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938807101",
+          "phone_dv_pt": "0938805471",
+          "phone_cskh": null,
+          "address": "314 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/KIA Phú Mỹ Hưng",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15679.645870211481!2d106.71096493320572!3d10.741306512361222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f80dcc16f3d%3A0xcaf552b2737678b8!2zS0lBIFBow7ogTeG7uSBIxrBuZw!5e0!3m2!1sen!2s!4v1761293648222!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/7h4xnfWECuj8cGKh6",
+            "booking": "https://kiaphumyhung.vn/sua-chua-chung",
+            "website": "https://thacoautotphcm.vn/showrooms/KIA Phú Mỹ Hưng"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 233,
+          "title": "Mazda Phú Mỹ Hưng",
+          "image": "https://thacoautotphcm.vn/storage/00-cong-ty-tinh-thanh/thaco-auto-phu-my-hung/img-7202-2-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0933805990",
+          "phone_dv_pt": "0938809946",
+          "phone_cskh": null,
+          "address": "314 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/Mazda Phú Mỹ Hưng",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1959.9557391760825!2d106.72065410561194!3d10.741305680257723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f80f00f5591%3A0x31f9be029780af88!2zTWF6ZGEgUGjDuiBN4bu5IEjGsG5n!5e0!3m2!1sen!2s!4v1761293572166!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/ubL6MHvUAadoXf6GA",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/Mazda Phú Mỹ Hưng"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 236,
+          "title": "BMW Phú Mỹ Hưng",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/bmw-pmh-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0938901800",
+          "phone_dv_pt": "0938901400",
+          "phone_cskh": null,
+          "address": "314 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/BMW Phú Mỹ Hưng",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.910406604935!2d106.71847207408702!3d10.74138825984096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f2a4cc6c589%3A0x2c1e75e03385fe4a!2zQk1XIFBIw5ogTeG7uCBIxq9ORw!5e0!3m2!1sen!2s!4v1761293477254!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/UoaY3Np9J4NsBWd56",
+            "booking": "https://www.bmw-phumyhung.vn/dich-vu/dich-vu-sua-chua-nhanh-chinh-hang-bmw/",
+            "website": "https://thacoautotphcm.vn/showrooms/BMW Phú Mỹ Hưng"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 885,
+          "title": "Peugeot Phú Mỹ Hưng",
+          "image": "https://thacoautotphcm.vn/storage/peugeot-hcm-1/peu-edit-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0938806771",
+          "phone_dv_pt": "0938900504",
+          "phone_cskh": null,
+          "address": "330 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/peugeot-phu-my-hung",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.927636980903!2d106.71863147408705!3d10.740060559865396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fd181766397%3A0x6acc218a9cfb6e39!2sThaco%20Auto%20Peugeot%20-%20TP.%20HCM%20(Peugeot%20Ph%C3%BA%20M%E1%BB%B9%20H%C6%B0ng)!5e0!3m2!1sen!2s!4v1761556387981!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/yryqdXgtycvF9cTt5",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-phu-my-hung"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 937,
+          "title": "Tải - Bus Phú Mỹ Hưng",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-pmh-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA Frontier",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "Sơ mi rơ móc",
+            "Sinotruk"
+          ],
+          "phone": "0938806247",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "314 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-phu-my-hung",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9104014135723!2d106.71847227408708!3d10.741388659840993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fdddf3bf35d%3A0x7e1cedd8de2beeaa!2zVEhBQ08gQVVUTyBQaMO6IE3hu7kgSMawbmc!5e0!3m2!1sen!2s!4v1761293410956!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/rrCNujqYgwTXzuzM6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my-hung"
+          },
+          "brands_by_category": [
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "KIA Frontier",
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "Sơ mi rơ móc",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 6,
+      "province_name": "Showroom Phú Nhuận",
+      "group_slug": "showroom-phu-nhuan",
+      "count": 6,
+      "items": [
+        {
+          "id": 12,
+          "title": "Kia Tân Sơn Nhất",
+          "image": "https://thacoautotphcm.vn/storage/1-30-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938807607",
+          "phone_dv_pt": "0938805059",
+          "phone_cskh": "(028)36200940",
+          "address": "Số 7 Hoàng Minh Giám, Phường Đức Nhuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kiatansonnhat",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.025578185507!2d106.67223817408791!3d10.80935275858744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529f36604bb99%3A0xdafa1df3145bff9b!2zS2lhIERlYWxlcnNoaXAgLSBUw6JuIFPGoW4gTmjhuqV0!5e0!3m2!1sen!2s!4v1761293737497!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/nGgJR2spTBeDrAYi6",
+            "booking": "https://kiatansonnhat.vn/gioi-thieu-chung",
+            "website": "https://thacoautotphcm.vn/showrooms/kiatansonnhat"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 13,
+          "title": "Mazda Tân Sơn Nhất",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tsn-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0909893293",
+          "phone_dv_pt": "0909503103",
+          "phone_cskh": "(028)36200940",
+          "address": "Số 7 Hoàng Minh Giám, Phường Đức Nhuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-tan-son-nhat",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.027355579272!2d106.67218277408793!3d10.809216658589996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529eb28d2ab31%3A0xabf9f0bd4e91d8b3!2zTWF6ZGEgVMOibiBTxqFuIE5o4bqldA!5e0!3m2!1sen!2s!4v1761293810988!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/cXtnp7dNN3tjzmxJ9",
+            "booking": "https://mazdatansonnhat.vn/contact-us",
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-son-nhat"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 14,
+          "title": "BMW Nguyễn Văn Trỗi",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-4-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0938 889 572",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "80 Nguyễn Văn Trỗi, Phường Phú Nhuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/bmw-nguyen-van-troi",
+            "map": "\u003Ciframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1938775228377!2d106.67228917480519!3d10.796458089353496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752937dc38ecd7%3A0x1f786930831a4195!2zQk1XIE5ndXnhu4VuIFbEg24gVHLhu5dp!5e0!3m2!1sen!2s!4v1761878898539!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
+            "booking": "https://bmwnguyenvantroi.vn/thong-tin-lien-he/",
+            "website": "https://thacoautotphcm.vn/showrooms/bmw-nguyen-van-troi"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 15,
+          "title": "MINI Nguyễn Văn Trỗi",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-21-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MINI"
+          ],
+          "phone": "0909 273 330",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "80 Nguyễn Văn Trỗi, Phường Phú Nhuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mini-nguyen-van-troi",
+            "map": null,
+            "mapUrl": null,
+            "booking": "http://miniphunhuan.vn/lien-he",
+            "website": "https://miniphunhuan.vn"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MINI"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 16,
+          "title": "BMW Motorrad Nguyễn Văn Trỗi",
+          "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-30-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW Motorrad"
+          ],
+          "phone": "0938 099 971",
+          "phone_dv_pt": "Đang cập nhật",
+          "phone_cskh": null,
+          "address": "78A Nguyễn Văn Trỗi, Phường Phú Nhuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/bmw-motorrad-nguyen-van-troi",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1938775228377!2d106.67228917480519!3d10.796458089353496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752937dc38ecd7%3A0x1f786930831a4195!2zQk1XIE5ndXnhu4VuIFbEg24gVHLhu5dp!5e0!3m2!1sen!2s!4v1761878898539!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
+            "booking": "https://bmw-motorcycles.vn/lien-he/",
+            "website": "https://thacoautotphcm.vn/"
+          },
+          "brands_by_category": [
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "BMW Motorrad"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "moto"
+        },
+        {
+          "id": 376,
+          "title": "Peugeot Phan Đăng Lưu",
+          "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-1-8-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0938808192",
+          "phone_dv_pt": "0938807817",
+          "phone_cskh": "(028)37425566",
+          "address": "Số 157 Phan Đăng Lưu, Phường Cầu Kiệu, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-phu-nhuan",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.131458405124!2d106.68008997408784!3d10.8012422587374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294928d89649%3A0x9c30fcc03e149d9f!2zUEVVR0VPVCBQSMOaIE5IVeG6rE4!5e0!3m2!1sen!2s!4v1761294909947!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/QAgyGE82kuT4WVLp6",
+            "booking": "https://www.peugeotphunhuan.vn/thong-tin-dich-vu",
+            "website": "https://www.peugeotphunhuan.vn/"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 11,
+      "province_name": "Showroom Trường Chinh",
+      "group_slug": "showroom-truong-chinh",
+      "count": 4,
+      "items": [
+        {
+          "id": 242,
+          "title": "Mazda Trường Chinh",
+          "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938807207",
+          "phone_dv_pt": "0938809058",
+          "phone_cskh": null,
+          "address": "827A-829 đường Trường Chinh, phường Tây Thạnh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/Mazda Trường Chinh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.961602106967!2d106.62972117408792!3d10.814250458496844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529d91c163693%3A0xd57e29bd3b547102!2zTWF6ZGEgVHLGsOG7nW5nIENoaW5o!5e0!3m2!1sen!2s!4v1761295589107!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/vMsPRoHcQMfgudCp9",
+            "booking": "https://mazdatruongchinh.vn/contact-us",
+            "website": "https://thacoautotphcm.vn/showrooms/Mazda Trường Chinh"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 904,
+          "title": "Kia Trường Chinh",
+          "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0933806366",
+          "phone_dv_pt": "0931149339",
+          "phone_cskh": null,
+          "address": "827A-829 đường Trường Chinh, phường Tây Thạnh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-truong-chinh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.9842896758864!2d106.62738437408795!3d10.812513858528973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175299d5ca84ad7%3A0xa8f977b68ca1be4e!2zS0lBIFRyxrDhu51uZyBDaGluaA!5e0!3m2!1sen!2s!4v1761295442859!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/VtHZm7K2hdWou9Rk9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-truong-chinh"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 905,
+          "title": "Peugeot Trường Chinh",
+          "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0901838039",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "829 Trường Chinh, Phường Tây Thạnh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-truong-chinh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.9632320059955!2d106.62972102408803!3d10.814125708499143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752921d8c29fef%3A0x268c54c5fbb42d12!2sThaco%20Auto%20Peugeot%20-%20TP.%20HCM%20(Peugeot%20Tr%C6%B0%E1%BB%9Dng%20Chinh)!5e0!3m2!1sen!2s!4v1761295366067!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/FQ5PgpmdeULmxdsu9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-truong-chinh"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 961,
+          "title": "BMW Trường Chinh",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/ngoai-that/do-man/sr-tc-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0938 807 212",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "827A-829 Trường Chinh, Phường Tây Thạnh, Ho Chi Minh City, Vietnam",
+          "actions": {
+            "detail": "showrooms/bmw-truong-chinh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.967540206768!2d106.62976907451765!3d10.813795958504372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752975fa8a2815%3A0x720b5d46bef4b597!2zQk1XIFRSxq_hu5xORyBDSElOSA!5e0!3m2!1sen!2s!4v1761873728850!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/RYJzNhi83Cz9219B9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/danh-sach-xe/xe-du-lich?brand_id=4"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 8,
+      "province_name": "Showroom Bình Tân",
+      "group_slug": "showroom-binh-tan",
+      "count": 3,
+      "items": [
+        {
+          "id": 7,
+          "title": "Kia Bình Tân",
+          "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0800-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938807102",
+          "phone_dv_pt": "0938805334",
+          "phone_cskh": null,
+          "address": "73 Võ Văn Kiệt, Khu phố 3, Phường An Lạc, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-binh-tan",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.1895756331232!2d106.60540207408675!3d10.71985666023656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752d8dca52b527%3A0x4e3ba485a99c1926!2sKIA%20Binh%20Tan!5e0!3m2!1sen!2s!4v1761558823781!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/8FbThrxqHYfrtr9m6",
+            "booking": "https://kiabinhtan.vn/gioi-thieu-chung",
+            "website": "https://thacoautotphcm.vn/showrooms/kia-binh-tan"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 897,
+          "title": "Peugeot Bình Tân",
+          "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0805-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0938901528",
+          "phone_dv_pt": "0938901728",
+          "phone_cskh": null,
+          "address": "75 Võ Văn Kiệt, Khu phố 3, Phường An Lạc, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-binh-tan",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.195200875447!2d106.60400267408679!3d10.719422360244554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1a8847ffd3%3A0x87d812027d5fe927!2sThaco%20Auto%20Peugeot%20-%20TP.%20HCM%20(Peugeot%20B%C3%ACnh%20T%C3%A2n)!5e0!3m2!1sen!2s!4v1761558473149!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/c9WDrE152yenE4fT8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-tan"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 898,
+          "title": "BMW Bình Tân",
+          "image": "https://thacoautotphcm.vn/storage/binh-tan/bit-4-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0901887378",
+          "phone_dv_pt": "0938907462",
+          "phone_cskh": null,
+          "address": "309A Kinh Dương Vương, Phường An Lạc, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/bmw-binh-tan",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8814630907277!2d106.61914507408717!3d10.7436181598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752d33a8b31f91%3A0x70e6b9c320c48d3a!2sBMW%20Binh%20Tan!5e0!3m2!1sen!2s!4v1761558327350!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/g4wPR7W6ZeoED2NE6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-tan"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 7,
+      "province_name": "Showroom Bình Triệu",
+      "group_slug": "showroom-binh-trieu",
+      "count": 3,
+      "items": [
+        {
+          "id": 245,
+          "title": "Mazda Bình Triệu",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-bt-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938805800",
+          "phone_dv_pt": "0933805882",
+          "phone_cskh": null,
+          "address": "127 Quốc lộ 13, Khu phố 1, phường Hiệp Bình, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-binh-trieu",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7227281639234!2d106.7110496740882!3d10.832518158158509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ce4f2ec7bf%3A0xaabc75174223440c!2zS0lBIELDjE5IIFRSSeG7hlU!5e0!3m2!1sen!2s!4v1761614555867!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/mCUy7aUtQJs7peGx7",
+            "booking": "https://mazdabinhtrieu.com.vn/",
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-trieu"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 891,
+          "title": "Kia Bình Triệu",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-binh-trieu-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938807040",
+          "phone_dv_pt": "0938806011",
+          "phone_cskh": null,
+          "address": "153 Quốc lộ 13, Khu phố 1, Phường Hiệp Bình, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-binh-trieu-1",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7227281639234!2d106.7110496740882!3d10.832518158158509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ce4f2ec7bf%3A0xaabc75174223440c!2zS0lBIELDjE5IIFRSSeG7hlU!5e0!3m2!1sen!2s!4v1761614555867!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/ZT9nRKsMaq1kEuDZ7",
+            "booking": null,
+            "website": null
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 893,
+          "title": "Tải - Bus Bình Triệu",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/showroom-tai-bus-binh-trieu-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc"
+          ],
+          "phone": "0938809515",
+          "phone_dv_pt": "0938908447",
+          "phone_cskh": null,
+          "address": "570 Quốc lộ 13, Phường Hiệp Bình, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-binh-trieu",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125418.27616791871!2d106.59253972948238!3d10.786698195421918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175280a72df2d49%3A0x29752dfd7c72256e!2zVEhBQ08gVHJ1Y2sgJiBCdXMgQsOsbmggVHJp4buHdQ!5e0!3m2!1sen!2s!4v1761614165083!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/6w7yaBsY5JuCix1V8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-trieu"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 14,
+      "province_name": "Showroom Gò Vấp",
+      "group_slug": "showroom-go-vap",
+      "count": 2,
+      "items": [
+        {
+          "id": 9,
+          "title": "Kia Gò Vấp",
+          "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/56c81173101fd041890e-1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938809860",
+          "phone_dv_pt": "0938807758",
+          "phone_cskh": "02838952874",
+          "address": "189 Nguyễn Oanh, Phường Gò Vấp, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-go-vap",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.6918377283937!2d106.67284677408824!3d10.834878258114777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529aaaf2bf9bb%3A0xd8ae81886a2c01b0!2sKia%20Go%20Vap!5e0!3m2!1sen!2s!4v1761616382419!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/chYhAXzUytrzKpwEA",
+            "booking": "https://kiagovap.vn/lien-he",
+            "website": "https://thacoautotphcm.vn/showrooms/kia-go-vap"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 56,
+          "title": "Mazda Gò Vấp",
+          "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/z4431323361801-79f86727d263745b307b58478f7da3c1-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938805860",
+          "phone_dv_pt": "0938807785",
+          "phone_cskh": "02838952874",
+          "address": "189 Nguyễn Oanh, Phường Gò Vấp, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-go-vap",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.6972529681907!2d106.67300787408827!3d10.834464558122443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529aaa813b7e3%3A0xe2fe3bfcd2a20ce5!2zTUFaREEgR8OSIFbhuqRQ!5e0!3m2!1sen!2s!4v1761616506202!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/c5QrttdJatz8nzTz6",
+            "booking": "https://mazdagovap.vn/contact-us",
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-go-vap"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 13,
+      "province_name": "Showroom Phan Huy Ích",
+      "group_slug": "showroom-phan-huy-ich",
+      "count": 3,
+      "items": [
+        {
+          "id": 713,
+          "title": "Peugeot Phan Huy Ích",
+          "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-2-8-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0933 806 026",
+          "phone_dv_pt": "0901 838 039",
+          "phone_cskh": "0283 742 5566",
+          "address": "385 Phan Huy Ích, Phường An Hội Tây, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-phan-huy-ich",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.619508926727!2d106.63497327408837!3d10.840402358012382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529804e773141%3A0x86602733c6277c47!2sShowroom%20Peugeot%20Phan%20Huy%20%C3%8Dch!5e0!3m2!1sen!2s!4v1761617157575!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/evHoVP9gTi8K6sXV9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-phan-huy-ich"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 753,
+          "title": "Kia Phan Huy Ích",
+          "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/kiaphanhuyich-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938808695",
+          "phone_dv_pt": "0901806552",
+          "phone_cskh": "02838952874",
+          "address": "385 Phan Huy Ích, Phường An Hội Tây, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-phan-huy-ich",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.589397962655!2d106.63518567408832!3d10.842701257969685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a439840b31d2b%3A0xb7f13e60bfba8b80!2sKia%20Phan%20Huy%20%C3%8Dch!5e0!3m2!1sen!2s!4v1761616880621!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/2YCe2f8CNcyibF4k6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-phan-huy-ich"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 754,
+          "title": "Mazda Phan Huy Ích",
+          "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/mazdaphanhuyich-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938806725",
+          "phone_dv_pt": "0901806552",
+          "phone_cskh": "02838952874",
+          "address": "385 Phan Huy Ích, Phường An Hội Tây, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-phan-huy-ich",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.588770501949!2d106.63519787408838!3d10.842749157968845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a2b4cdd3f71e1%3A0x8575df0257329ec5!2sMazda%20Phan%20Huy%20%C3%8Dch!5e0!3m2!1sen!2s!4v1761617020026!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/SFn5WFv3wwJbNDMz9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-phan-huy-ich"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 9,
+      "province_name": "Showroom Bến Lức",
+      "group_slug": "showroom-ben-luc",
+      "count": 3,
+      "items": [
+        {
+          "id": 900,
+          "title": "Mazda Bến Lức",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-ben-luc-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0909511319",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "131 QL1, Ấp Chánh, xã Mỹ Yên, tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/kia-mazda-ben-luc",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31370.193824131446!2d106.50441157668638!3d10.63579134463666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab7a86093b297%3A0x999f4d01edfc0c06!2zS2lhIC0gTWF6ZGEgQuG6v24gTOG7qWM!5e0!3m2!1sen!2s!4v1761619648615!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/fVAPrKwEHU9kHARG7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-mazda-ben-luc"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 901,
+          "title": "Tải - Bus Bến Lức",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/z7449630565089-9bf8ccde4e0e0f4ccd7450ff91581e40-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Thaco Truck",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "KIA Frontier"
+          ],
+          "phone": "0938907983",
+          "phone_dv_pt": "0938907983",
+          "phone_cskh": null,
+          "address": "131 QL1, Ấp Chánh, xã Mỹ Yên, tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/tai-bus-ben-luc-2",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31370.202359464216!2d106.50441159751418!3d10.635708330601485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310acddfb3d8a50f%3A0xa8f9c84fdf0801ec!2sTHACO%20T%E1%BA%A3i%20%26%20Bus%20Long%20An!5e0!3m2!1sen!2s!4v1761619408738!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/vXUrZPouVtc83KKE7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-ben-luc-2"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Thaco Truck",
+                "Mitsubishi Fuso",
+                "KIA Frontier"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        },
+        {
+          "id": 941,
+          "title": "Kia Bến Lức",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-ben-luc-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0909511319",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "131 QL1, Ấp Chánh, xã Mỹ Yên, tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/kia-ben-luc-1",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.2758960137226!2d106.52243637408569!3d10.635661561776372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab7a86093b297%3A0x999f4d01edfc0c06!2zS2lhIC0gTWF6ZGEgQuG6v24gTOG7qWM!5e0!3m2!1sen!2s!4v1761617290038!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/fVAPrKwEHU9kHARG7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-ben-luc-1"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 10,
+      "province_name": "Showroom Tân An",
+      "group_slug": "showroom-tan-an",
+      "count": 3,
+      "items": [
+        {
+          "id": 902,
+          "title": "Mazda Tân An",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-an-1-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0909809396",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "161-163 Hùng Vương nối dài, Phường Long An, tỉnh Tây Ninh.",
+          "actions": {
+            "detail": "showrooms/mazda-tan-an",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9305.536513122646!2d106.400666!3d10.546149!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ac977fc5d592b%3A0x55d1bed22ac040da!2sMAZDA%20LONG%20AN!5e1!3m2!1svi!2s!4v1754969873653!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 903,
+          "title": "Tải - Bus Tân An",
+          "image": "https://thacoautotphcm.vn/storage/z6898492036825-1e7aafacb83258ba616cf891250c6332-1-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Thaco Truck",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "KIA Frontier",
+            "Sinotruk"
+          ],
+          "phone": "0938907983",
+          "phone_dv_pt": "0938807784",
+          "phone_cskh": null,
+          "address": "Lô CC3, Khu đô thị trung tâm hành chính tỉnh, Phường Long An, Tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/tai-bus-tan-an",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379572.231275581!2d104.29033189999997!3d10.550049999999986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ac97bbe519d39%3A0x5d9dd0fa3f1cfe5b!2sC%C3%94NG%20TY%20TNHH%20THACO%20AUTO%20LONG%20AN!5e1!3m2!1sen!2s!4v1755224208409!5m2!1sen!2s",
+            "mapUrl": null,
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Thaco Truck",
+                "Mitsubishi Fuso",
+                "KIA Frontier",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        },
+        {
+          "id": 942,
+          "title": "Kia Tân An",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-an-1-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0909809396",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "161-163 Hùng Vương nối dài, Phường Long An, tỉnh Tây Ninh.",
+          "actions": {
+            "detail": "showrooms/kia-tan-an",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.4211643077197!2d106.39790462451455!3d10.546178313399587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ac9b443903601%3A0x68a467f0dc2e401f!2sKIA%20Mazda%20Long%20An%20-%20T%C3%A2n%20An!5e0!3m2!1sen!2s!4v1761294522743!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-tan-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "0"
+        }
+      ]
+    },
+    {
+      "province_id": 15,
+      "province_name": "Showroom Gò Dầu",
+      "group_slug": "showroom-go-dau",
+      "count": 3,
+      "items": [
+        {
+          "id": 911,
+          "title": "Tải - Bus Gò Dầu",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/z4886246274348-6a153005f73852385c8bcd36e2464949-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Thaco Truck",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Sơ mi rơ móc",
+            "Mitsubishi Fuso",
+            "KIA Frontier",
+            "Sinotruk"
+          ],
+          "phone": "0938807782",
+          "phone_dv_pt": "0938807784",
+          "phone_cskh": null,
+          "address": "Vòng xoay Gò Dầu, Đường Hùng Vương, Phường Gò Dầu , tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/tai-bus-go-dau",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15661.622986424138!2d106.25637633302995!3d11.083107389930106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b3b03e39aaa27%3A0x5e2f3cc93957fcf7!2zVEhBQ08gVHJ1Y2sgJiBCdXMgR8OyIEThuqd1!5e0!3m2!1sen!2s!4v1761623056113!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/f5Grpggq1EZ86aqK6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-go-dau"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Thaco Truck",
+                "Sơ mi rơ móc",
+                "Mitsubishi Fuso",
+                "KIA Frontier",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 52,
+            "name": "Tây Ninh"
+          },
+          "type_showroom": "0"
+        },
+        {
+          "id": 946,
+          "title": "Kia Gò Dầu",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/kia-godau-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938805581",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "Vòng xoay Gò Dầu, Đường Hùng Vương, Phường Gò Dầu , tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/kia-go-dau",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.407631860632!2d106.2645640740916!3d11.082966553466662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b3b4e4e208347%3A0xf20d83ea8a12ae22!2sKIA%20Tayninh!5e0!3m2!1sen!2s!4v1761622238256!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/N58PszA2shbyngNv7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-go-dau"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 52,
+            "name": "Tây Ninh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 947,
+          "title": "Mazda Gò Dầu",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/mazda-go-dau-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938805582",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "Vòng xoay Gò Dầu, Đường Hùng Vương, Phường Gò Dầu , tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/mazda-go-dau",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.4060964738355!2d106.26410117409156!3d11.083081253464478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b3b48b5cb3d35%3A0x10bbbbba46f972c7!2zTUFaREEgR8OSIEThuqZV!5e0!3m2!1sen!2s!4v1761622717375!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/G8rFi1BwveiQfi9h9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-go-dauf"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 52,
+            "name": "Tây Ninh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 16,
+      "province_name": "Showroom Tây Ninh",
+      "group_slug": "showroom-tay-ninh",
+      "count": 3,
+      "items": [
+        {
+          "id": 153,
+          "title": "Mazda Tây Ninh",
+          "image": "https://thacoautotphcm.vn/storage/tay-ninh/z4885233648836-f4f56646fb6fb95f2be224cbf2c8020a-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938805582",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "82 Trần Phú, Phường Bình Minh, tỉnh Tây Ninh.",
+          "actions": {
+            "detail": "showrooms/Mazda Tây Ninh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2063.8647294476227!2d106.10761448529439!3d11.346307371818025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b6bd5657e6369%3A0x5534bfdd30f738e4!2zODIgVHLhuqduIFBow7osIEtodSBwaOG7kSBOaW5oIFRydW5nLCBQLCBUw6J5IE5pbmgsIDgwMDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1761623999267!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/9kiRhmTpJQPd62zE9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/Mazda Tây Ninh"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 914,
+          "title": "Tải - Bus Tây Ninh",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/ban-giao-xe-bus-thaco-auto-tay-ninh-min-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc"
+          ],
+          "phone": "0938 807 782",
+          "phone_dv_pt": "0938996422",
+          "phone_cskh": null,
+          "address": "82 Trần Phú, Phường Bình Minh, tỉnh Tây Ninh",
+          "actions": {
+            "detail": "showrooms/tai-bus-tay-ninh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.8411632870543!2d106.10639807409518!3d11.346309848425586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b6bd5657e6369%3A0x5534bfdd30f738e4!2zODIgVHLhuqduIFBow7osIEtodSBwaOG7kSBOaW5oIFRydW5nLCBQLCBUw6J5IE5pbmgsIDgwMDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1761632768910!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+            "mapUrl": null,
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/tai-bus-tay-ninh"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        },
+        {
+          "id": 948,
+          "title": "Kia Tây Ninh",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tay-ninh-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938805581",
+          "phone_dv_pt": "0938807422",
+          "phone_cskh": null,
+          "address": "82 Trần Phú, Phường Bình Minh, tỉnh Tây Ninh.",
+          "actions": {
+            "detail": "showrooms/kia-tay-ninh",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2063.8647294476227!2d106.10761448529439!3d11.346307371818025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b6bd5657e6369%3A0x5534bfdd30f738e4!2zODIgVHLhuqduIFBow7osIEtodSBwaOG7kSBOaW5oIFRydW5nLCBQLCBUw6J5IE5pbmgsIDgwMDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1761624128763!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/3B8Nh8efbGvMCGye8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-tay-ninh"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 18,
+      "province_name": "Showroom Bà Rịa",
+      "group_slug": "showroom-ba-ria",
+      "count": 3,
+      "items": [
+        {
+          "id": 927,
+          "title": "Kia Bà Rịa",
+          "image": "https://thacoautotphcm.vn/storage/kia-ba-ria-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "QL51, phường Bà Rịa, thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-ba-ria",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.149925719313!2d107.17239939999999!3d10.488845099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317573152711daef%3A0x52b3055040d400e4!2zS0lBIELDoCBS4buLYQ!5e0!3m2!1svi!2s!4v1761706392389!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/J5gK1B4rvgWnm2ASA",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-ba-ria"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 928,
+          "title": "Mazda Bà Rịa",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/z5777787307468-e5445b7ec650e49be0c5b95e6ba4f0ff-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "QL51, Phường Bà Rịa, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-peugeot-ba-ria",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15692.615303425446!2d107.1621324913477!3d10.488537434295218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31756fc88ba65a65%3A0x84d67ad108b79ed5!2zTWF6ZGEgQsOgIFLhu4th!5e0!3m2!1svi!2s!4v1761706300659!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/cNuuwNsPasnXcFpq7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-peugeot-ba-ria"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 949,
+          "title": "Peugeot Bà Rịa",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/peugeot-ba-ria-2-565x375.webp",
+          "tags": [
+            "Dịch vụ",
+            "Showroom",
+            "Phụ tùng"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "QL51, Phường Bà Rịa, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-ba-ria",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.15507662489!2d107.16998977408369!3d10.4884387644416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31757300704a73ab%3A0x3f9c7886ec869a83!2zUGV1Z2VvdCBCw6AgUuG7i2EgVsWpbmcgVMOgdQ!5e0!3m2!1svi!2s!4v1761706482519!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/W1BLn5bdYGAn5jGc7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-ba-ria"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "0"
+        }
+      ]
+    },
+    {
+      "province_id": 19,
+      "province_name": "Showroom Phú Mỹ",
+      "group_slug": "showroom-phu-my",
+      "count": 3,
+      "items": [
+        {
+          "id": 670,
+          "title": "Kia Phú Mỹ",
+          "image": "https://thacoautotphcm.vn/storage/vung-tau/kia-phu-my/z5722641734943-3e090ee7e623b5c6454370e5fbc8deae-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "QL51, phường Tân Phước, Thành Phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-phu-my",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250950.77689869166!2d106.72867852725076!3d10.648881354341745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317513001bb18e13%3A0x6ee4dd9e51e88c08!2zS0lBIFBIw5ogTeG7uA!5e0!3m2!1svi!2s!4v1761706681323!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/tKUcD6Tg86hPPVTJ7",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-phu-my"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 671,
+          "title": "Mazda Phú Mỹ",
+          "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-phu-my/z5722644514445-ab95b2142bbbf8eef3b1545bfa6abe30-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "QL51, Phường Tân Phước, Thành Phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-phu-my",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.299959856964!2d107.06321817408475!3d10.555683863228552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751390f0ca47f1%3A0x3c4bbd5c6a81e365!2zTWF6ZGEgUGjDuiBN4bu5!5e0!3m2!1svi!2s!4v1761706862887!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/CFL3uhVub7McRuuQ6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-phu-my"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 55,
+            "name": "Bà Rịa - Vũng Tàu"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 932,
+          "title": "Tải - Bus Phú Mỹ",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-phu-my-1-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Thaco Truck",
+            "Mitsubishi Fuso",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc",
+            "Sinotruk"
+          ],
+          "phone": "0938805400",
+          "phone_dv_pt": "0933 805 164",
+          "phone_cskh": null,
+          "address": "QL51, Phường Tân Phước, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-phu-my",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.3013707287996!2d107.06330437408462!3d10.55557326323056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751259e0c70ff9%3A0x8d719957538da72c!2zVEhBQ08gQVVUTyBU4bqjaSAmIEJ1cyBWxaluZyBUw6B1!5e0!3m2!1svi!2s!4v1761707590004!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/73zETPRBQXYz8Zmo6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Thaco Truck",
+                "Mitsubishi Fuso",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 20,
+      "province_name": "Showroom Vũng Tàu",
+      "group_slug": "showroom-vung-tau",
+      "count": 4,
+      "items": [
+        {
+          "id": 119,
+          "title": "Kia Vũng Tàu",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-vung-tau-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938 807 109",
+          "phone_dv_pt": "0938 905 949",
+          "phone_cskh": "0938 508 145",
+          "address": "426 Đường 2 tháng 9, Phường Tam Thắng, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/KIA Vũng Tàu",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.794597157683!2d107.08781147590304!3d10.358302266765074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31756ff17ce8cd53%3A0x6d6a20de6894a835!2zS2lhIFbFqW5nIFTDoHU!5e0!3m2!1svi!2s!4v1701165528918!5m2!1svi!2s",
+            "mapUrl": "https://maps.app.goo.gl/y3kWbcuj8Koi1URQ7",
+            "booking": "https://kiavungtau.vn/lien-he",
+            "website": "https://kiavungtau.com.vn"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 120,
+          "title": "Mazda Vũng Tàu",
+          "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-vung-tau/mazda-vung-tau-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938 806 757",
+          "phone_dv_pt": "0938 905 949",
+          "phone_cskh": "0938 508 145",
+          "address": "426 Đường 2 tháng 9, Phường Tam Thắng, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/Mazda Vũng Tàu",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.795956897106!2d107.08765037590301!3d10.358193666767065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31756f71b8e11be7%3A0xb3848452b1ba9869!2zTWF6ZGEgVsWpbmcgVMOgdQ!5e0!3m2!1svi!2s!4v1701329869034!5m2!1svi!2s",
+            "mapUrl": null,
+            "booking": "https://mazdavungtau.vn/contact-us",
+            "website": "https://mazdavungtau.vn"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 931,
+          "title": "BMW Vũng Tàu",
+          "image": "https://thacoautotphcm.vn/storage/new-cx-3/bmw-ba-ria-vung-tau-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0938905949",
+          "phone_cskh": "0938508145",
+          "address": "Số 426 đường 2/9, Phường Tam Thắng, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/bmw-vung-tau",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4650.474934817276!2d107.090206!3d10.358156!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175736f8c271c3b%3A0x557f4b3a9495cf1c!2zQk1XIFbFqW5nIFTDoHU!5e1!3m2!1sen!2s!4v1754968568282!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/bmw-vung-tau"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 991,
+          "title": "PEUGEOT Vũng Tàu",
+          "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/peu-vung-tau-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0901837738",
+          "phone_dv_pt": "0901893439",
+          "phone_cskh": null,
+          "address": "Số 426 đường 2/9, Phường Tam Thắng, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/peugeot-vung-tau-1",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4650.474934817276!2d107.090206!3d10.358156!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175736f8c271c3b%3A0x557f4b3a9495cf1c!2zQk1XIFbFqW5nIFTDoHU!5e1!3m2!1sen!2s!4v1754968568282!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
+            "booking": "https://thacoautotphcm.vn/",
+            "website": "https://thacoautotphcm.vn/"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 21,
+      "province_name": "Showroom Bình Dương",
+      "group_slug": "showroom-binh-duong",
+      "count": 7,
+      "items": [
+        {
+          "id": 41,
+          "title": "Kia Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/bmw-7-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938807407",
+          "phone_dv_pt": "0938906639",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/kia-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.83395878488196!2d106.70981516805342!3d10.937416100000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d76893282e65%3A0x951272fa2cf02908!2sKia%20Binh%20Duong!5e0!3m2!1sen!2s!4v1761637654689!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/LLjV2kZZ7sZpRRc48",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 42,
+          "title": "Mazda Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/bmw-5-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0938100400",
+          "phone_dv_pt": "0938807962",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/mazda-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.337593629776!2d106.70738987408961!3d10.93785105619742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d78edfdf8205%3A0xe374495295222c3d!2zTWF6ZGEgQsOsbmggRMawxqFuZw!5e0!3m2!1sen!2s!4v1761638667070!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/tWDNcT5Eebw55MHr9",
+            "booking": "https://mazdabinhduong.vn/tin-tuc/offers/b16-offers/dat-hen-dich-vu",
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 44,
+          "title": "Peugeot Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/bmw-10-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "PEUGEOT",
+            "PEUGEOT MOTOCYCLES"
+          ],
+          "phone": "0938806772",
+          "phone_dv_pt": "0938984502",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/peugeot-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.3270863391213!2d106.70726097408964!3d10.938646256182517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d7ace6cdfa49%3A0x558da95b69b18375!2zUGV1Z2VvdCBCw6xuaCBExrDGoW5n!5e0!3m2!1sen!2s!4v1761641178100!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/ztPpLRp6sCcuPxb37",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "PEUGEOT"
+              ]
+            },
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "PEUGEOT MOTOCYCLES"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 362,
+          "title": "BMW Motorrad Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/z7164241754283-d8a9b237f40bc0f7b5f58f85b200995b-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW Motorrad"
+          ],
+          "phone": "0901887269",
+          "phone_dv_pt": "0901808469",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/bmw-motorrad-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.3466329692014!2d106.70720522408962!3d10.937166906210177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b910877dcb5%3A0x348ef1c3bdf4a295!2zQk1XIE1vdG9ycmFkIELDrG5oIETGsMahbmc!5e0!3m2!1sen!2s!4v1761641354788!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/HiVSwMTnqzcWGm6R9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/bmw-motorrad-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 36,
+              "name": "Mô tô và Xe máy",
+              "brands": [
+                "BMW Motorrad"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "moto"
+        },
+        {
+          "id": 917,
+          "title": "MINI Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mini-binh-duong-2-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MINI"
+          ],
+          "phone": "0901887159",
+          "phone_dv_pt": "0901808469",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mini-binh-duong-1",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.33202427832!2d106.7073642740896!3d10.938272556189482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d728e18e9413%3A0xbf495222b7012157!2zU2hvd3Jvb20gTUlOSSBCw6xuaCBExrDGoW5n!5e0!3m2!1sen!2s!4v1761642100941!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/H987ju4pBbQ2amBY8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mini-binh-duong-1"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MINI"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 919,
+          "title": "Tải - Bus Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-bd-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc"
+          ],
+          "phone": "0938805177",
+          "phone_dv_pt": "0938907298",
+          "phone_cskh": null,
+          "address": "Số 3A, Đại lộ Bình Dương, Phường Lái Thiêu, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.603680061072!2d106.71056467408931!3d10.91769435657407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d782c02a34bb%3A0xb4d6607c49254ce5!2zM0EgxJDhuqFpIGzhu5kgQsOsbmggRMawxqFuZywgQmluaCBIb8OgLCBUaHXhuq1uIEFuLCBCw6xuaCBExrDGoW5nIDc1MDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1761794895742!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Cz97s8CsAVagvLP57",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        },
+        {
+          "id": 953,
+          "title": "BMW Bình Dương",
+          "image": "https://thacoautotphcm.vn/storage/bmw-13-2-565x375.webp",
+          "tags": [
+            "Phụ tùng",
+            "Dịch vụ",
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "BMW"
+          ],
+          "phone": "0901889798",
+          "phone_dv_pt": "0901808469",
+          "phone_cskh": null,
+          "address": "56/9 Đại lộ Bình Dương, Tổ 15, khu phố Bình Giao, Phường Thuận Giao, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/bmw-binh-duong",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3917.3501778155573!2d106.7074914!3d10.9368986!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d741900c30a3%3A0xf0425e8caf5100cb!2zQk1XIELDrG5oIETGsMahbmc!5e0!3m2!1sen!2s!4v1761293392239!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/jwhLJMd2jxawtAmC6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-duong"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "BMW"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    },
+    {
+      "province_id": 4,
+      "province_name": "Showroom Dĩ An",
+      "group_slug": "showroom-di-an",
+      "count": 3,
+      "items": [
+        {
+          "id": 247,
+          "title": "Tải Bus Dĩ An",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-da-1-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Mitsubishi Fuso",
+            "KIA Frontier",
+            "Thaco Truck"
+          ],
+          "phone": "0901803238",
+          "phone_dv_pt": "0938 801 261",
+          "phone_cskh": null,
+          "address": "Số 40C, Xa Lộ Hà Nội, Khu Phố Hiệp Thắng, Phường Đông Hòa, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/Tải Bus Dĩ An",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d74279.16452836657!2d106.7823038!3d10.8859413!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8b35987006f%3A0x26b299089fbcafd0!2sThaco%20D%C4%A9%20An!5e1!3m2!1sen!2s!4v1754902465940!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/yWz2GmVGJ4XeE3GQA",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-di-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "KIA Frontier",
+                "Thaco Truck"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        },
+        {
+          "id": 886,
+          "title": "Mazda Dĩ An",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/screenshot-1761643334-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0901803238",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "Số 40C, Xa Lộ Hà Nội, Khu Phố Hiệp Thắng, Phường Đông Hòa, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-di-an",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.0217960956697!2d106.81474777408897!3d10.885946557166031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8b35987006f%3A0x26b299089fbcafd0!2sThaco%20D%C4%A9%20An!5e0!3m2!1sen!2s!4v1761644090216!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Q3DjoabLRndKmNaSA",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-di-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 936,
+          "title": "Kia Dĩ An",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/screenshot-1761643334-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0901803238",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "Số 40C, Xa Lộ Hà Nội, Khu Phố Hiệp Thắng, Phường Đông Hòa, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-di-an",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62688.34984372037!2d106.7452249216797!3d10.88594130000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8b35987006f%3A0x26b299089fbcafd0!2sThaco%20D%C4%A9%20An!5e0!3m2!1sen!2s!4v1761643585787!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Q3DjoabLRndKmNaSA",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-di-an"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "0"
+        }
+      ]
+    },
+    {
+      "province_id": 22,
+      "province_name": "Showroom Tân Uyên",
+      "group_slug": "showroom-tan-uyen",
+      "count": 3,
+      "items": [
+        {
+          "id": 334,
+          "title": "Kia Tân Uyên",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-uyen-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0938887165",
+          "phone_dv_pt": "0938807962",
+          "phone_cskh": null,
+          "address": "60 Nguyễn Văn Linh, Khu phố Tân Long, Phường Tân Hiệp, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/kia-tan-uyen",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.9583098331877!2d106.71867447409099!3d11.041752654245572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1b963c9fa93%3A0xbc8768d4e3d8298c!2zS0lBIFTDgk4gVVnDik4!5e0!3m2!1sen!2s!4v1761644616414!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/FiXQXbbxVZ63DoKz6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-tan-uyen"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 335,
+          "title": "Mazda Tân Uyên",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-uyen-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0933806012",
+          "phone_dv_pt": "0938807962",
+          "phone_cskh": null,
+          "address": "60 Nguyễn Văn Linh, khu phố Tân Long, phường Tân Hiệp, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/mazda-tan-uyen",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.9564208535203!2d106.71888797480895!3d11.041894289123485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d14c6e94c39d%3A0x81564efb9c8a7d15!2zTWF6ZGEgVMOibiBVecOqbg!5e0!3m2!1sen!2s!4v1761884694824!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/1STdEHU4FTh6BiAY9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-uyen"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 960,
+          "title": "Tải - Bus Tân Uyên",
+          "image": null,
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc",
+            "Sinotruk"
+          ],
+          "phone": "0938807962",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "60 Nguyễn Văn Linh, Khu phố Tân Long, Phường Tân Hiệp, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/tai-bus-tan-uyen",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.9583098331796!2d106.71867447452036!3d11.04175265424471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1b963c9fa93%3A0xbc8768d4e3d8298c!2zS0lBIFTDgk4gVVnDik4!5e0!3m2!1sen!2s!4v1761810369021!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/je5F5BztGHPGPzJk8",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-uyen"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "0"
+        }
+      ]
+    },
+    {
+      "province_id": 25,
+      "province_name": "Showroom Thủ Dầu Một",
+      "group_slug": "showroom-thu-dau-mot",
+      "count": 3,
+      "items": [
+        {
+          "id": 259,
+          "title": "Kia Thủ Dầu Một",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0901806379",
+          "phone_dv_pt": "0938907262",
+          "phone_cskh": null,
+          "address": "1220 Đại lộ Bình Dương, Phường Chánh Hiệp, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/kia-thu-dau-mot",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1730335152474!2d106.64595927409083!3d11.025641054549393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1ce19577cab%3A0x6d88975a3f24c4ef!2zS0lBIFRo4bunIEThuqd1IE3hu5l0!5e0!3m2!1sen!2s!4v1761645294842!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-thu-dau-mot"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 260,
+          "title": "Mazda Thủ Dầu Một",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0901806500",
+          "phone_dv_pt": "0901806200",
+          "phone_cskh": null,
+          "address": "1220 Đại lộ Bình Dương, Khu phố 4, Phường Chánh Hiệp, Thành phố Hồ Chí Minh.",
+          "actions": {
+            "detail": "showrooms/mazda-thu-dau-mot",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.176382869648!2d106.6463115740908!3d11.025389554554161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1107e75d673%3A0x185f760ca973be31!2zTWF6ZGEgVGjhu6cgROG6p3UgTeG7mXQ!5e0!3m2!1sen!2s!4v1761645845682!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/v2dkb4Ec6KSJGRDn9",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-thu-dau-mot"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 957,
+          "title": "Tải - Bus Thủ Dầu Một",
+          "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-thu-dau-mot-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Iveco Daily",
+            "Mercedes-Benz Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "Xe chuyên dụng",
+            "KIA Frontier",
+            "Sơ mi rơ móc",
+            "Sinotruk"
+          ],
+          "phone": "0933805663",
+          "phone_dv_pt": "0938907298",
+          "phone_cskh": null,
+          "address": "1220 Đại lộ Bình Dương, Tổ 34, Khu phố 4, Phường Chánh Hiệp, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-thu-dau-mot",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1730335152565!2d106.6459592740908!3d11.025641054549391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1ce19577cab%3A0x6d88975a3f24c4ef!2zS0lBIFRo4bunIEThuqd1IE3hu5l0!5e0!3m2!1sen!2s!4v1761646078152!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-thu-dau-mot"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Iveco Daily",
+                "Mercedes-Benz Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "Xe chuyên dụng",
+                "KIA Frontier",
+                "Sơ mi rơ móc",
+                "Sinotruk"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 17,
+      "province_name": "Showroom An Lạc",
+      "group_slug": "showroom-an-lac",
+      "count": 1,
+      "items": [
+        {
+          "id": 899,
+          "title": "Tải - Bus An Lạc",
+          "image": "https://thacoautotphcm.vn/storage/binh-tan/2025-02-27-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Mitsubishi Fuso",
+            "Thaco Truck",
+            "KIA Frontier",
+            "Sinotruk",
+            "Mercedes-Benz Bus",
+            "Iveco Daily",
+            "Sơ mi rơ móc"
+          ],
+          "phone": "0938809629",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "36C11, Quốc lộ 1A, Xã Tân Nhựt, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-an-lac",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125420.73355293628!2d106.57693826421517!3d10.780804161858825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752d83a0193091%3A0xe2a3fef93898de98!2sTHACO%20Truck%20%26%20Bus%20An%20L%E1%BA%A1c!5e0!3m2!1sen!2s!4v1761885115531!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/Q4i4E6wDwjnNz1e26",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-lac"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus",
+                "Mercedes-Benz Bus",
+                "Iveco Daily"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Mitsubishi Fuso",
+                "Thaco Truck",
+                "KIA Frontier",
+                "Sinotruk",
+                "Sơ mi rơ móc"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 12,
+      "province_name": "Showroom An Sương",
+      "group_slug": "showroom-an-suong",
+      "count": 1,
+      "items": [
+        {
+          "id": 906,
+          "title": "Tải - Bus An Sương",
+          "image": "https://thacoautotphcm.vn/storage/z6736970035451-7a73d491d678e5eb182cdb0e6a408116-565x375.webp",
+          "tags": [
+            "Showroom"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "Thaco Bus",
+            "Thaco Truck"
+          ],
+          "phone": "0938805105",
+          "phone_dv_pt": "0933805334",
+          "phone_cskh": null,
+          "address": "2921, Quốc lộ 1A, Phường Đông Hưng Thuận, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/tai-bus-an-suong",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d18573.055580556284!2d106.5965219!3d10.8334427!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752de854e950ad%3A0x245ca9648b3e129e!2sShowroom%20Thaco%20An%20S%C6%B0%C6%A1ng!5e1!3m2!1sen!2s!4v1754975977650!5m2!1sen!2s",
+            "mapUrl": "https://maps.app.goo.gl/BvQ9SgHLniexr2t7A",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-suong"
+          },
+          "brands_by_category": [
+            {
+              "id": 39,
+              "name": "Xe Bus",
+              "brands": [
+                "Thaco Bus"
+              ]
+            },
+            {
+              "id": 43,
+              "name": "Xe Tải và Tải chuyên dụng",
+              "brands": [
+                "Thaco Truck"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "tai"
+        }
+      ]
+    },
+    {
+      "province_id": 26,
+      "province_name": "Showroom Thảo Điền",
+      "group_slug": "showroom-thao-dien",
+      "count": 2,
+      "items": [
+        {
+          "id": 894,
+          "title": "Mazda Thảo Điền",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-thao-dien-565x375.webp",
+          "tags": [
+            "Showroom",
+            "Phụ tùng",
+            "Dịch vụ"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "MAZDA"
+          ],
+          "phone": "0911 72 88 66",
+          "phone_dv_pt": "0938 10 10 65",
+          "phone_cskh": null,
+          "address": "Số 03 Quốc Hương, Phường An Khánh, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/mazda-thao-dien",
+            "map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9287.537479586552!2d106.732286!3d10.800841!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527004be51b91%3A0xa4850ca359c4cf7!2zS0lBIFRI4bqiTyDEkEnhu4BO!5e1!3m2!1sen!2s!4v1754968178019!5m2!1sen!2s",
+            "mapUrl": null,
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/mazda-thao-dien"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "MAZDA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        },
+        {
+          "id": 959,
+          "title": "Kia Thảo Điền",
+          "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/kia-thao-dien-565x375.webp",
+          "tags": [
+            "Dịch vụ",
+            "Showroom",
+            "Phụ tùng"
+          ],
+          "business": "Kinh doanh xe",
+          "brands": [
+            "KIA"
+          ],
+          "phone": "0911 728 866",
+          "phone_dv_pt": null,
+          "phone_cskh": null,
+          "address": "03 Quốc Hương, Thảo Điền, Thủ Đức, Thành phố Hồ Chí Minh",
+          "actions": {
+            "detail": "showrooms/kia-thao-dien",
+            "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1360818984444!2d106.72965757451756!3d10.800887958743118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317067dddd881419%3A0x36a854dc98d7eda5!2zS2lhIFRo4bqjbyDEkGnhu4Fu!5e0!3m2!1sen!2s!4v1761745678955!5m2!1sen!2s",
+            "mapUrl": "https://share.google/uwBC27GQHe4lQYIYd",
+            "booking": null,
+            "website": "https://thacoautotphcm.vn/showrooms/kia-thao-dien"
+          },
+          "brands_by_category": [
+            {
+              "id": 23,
+              "name": "Xe du lịch",
+              "brands": [
+                "KIA"
+              ]
+            }
+          ],
+          "province": {
+            "id": 2,
+            "name": "Tp. Hồ Chí Minh"
+          },
+          "type_showroom": "oto"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "per_page": 22,
+    "total": 22,
+    "last_page": 1
+  },
+  "message": "Showrooms grouped by Business Location Groups"
+}

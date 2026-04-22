@@ -1,0 +1,175 @@
+{
+  "car_info": {
+    "name": "KIA SORENTO HEV/PHEV",
+    "car_type": "D-SUV",
+    "seat": "7",
+    "fuel": "Hybrid",
+    "image": "https://thacoautotphcm.vn/storage/kia/360/sorento-hybrid/3f92c6fc-a4f3-4fbe-84cc-3cd32e03ef42.webp",
+    "lowest_price": 1149000000,
+    "exterior_colors": [
+      "Đen - ABP",
+      "Trắng - GWP",
+      "Xanh - M4B",
+      "Xanh rêu - JUG"
+    ],
+    "interior_colors": [
+      "Đen"
+    ],
+    "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-sorento-hev-phev-v1201222-s.pdf",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá 5 triệu đồng",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng 01 năm Bảo hiểm vật chất xe",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Phim cách nhiệt Llumar.",
+      "Túi cứu hộ (dây câu bình, đèn pin, găng tay, tam giác phản quang).",
+      "Thảm lót sàn, Tấm lót khoang hành lý, Dù che mưa thương hiệu, Phiếu nhiên liệu giao xe.",
+      "Bệ bước chân"
+    ],
+    "faqs": [
+      {
+        "chu_de": "KIA SORENTO HEV/PHEV",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Xe Kia Sorento PHEV (phiên bản cắm sạc) có thời gian sạc đầy pin trong bao lâu?",
+            "cau_tra_loi": "Thời gian sạc đầy đối với bộ sạc tiêu chuẩn theo công bố của nhà sản xuất là khoảng 9 tiếng và có thể được sạc từ nguồn điện dân dụng 220V."
+          },
+          {
+            "cau_hoi": "",
+            "cau_tra_loi": ""
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "4810 x 1900 x 1700 mm",
+        "Chiều dài cơ sở": "2815 mm",
+        "Bán kính quay vòng tối thiểu": "5780 mm",
+        "Khoảng sáng gầm xe": "176 mm",
+        "Khối lượng không tải": "1950 kg",
+        "Khối lượng toàn tải": "2580 kg",
+        "Thể tích khoang hành lý": "357 L",
+        "Dung tích thùng nhiên liệu": "67 L",
+        "Số chỗ ngồi": "7",
+        "Nguồn gốc": "SX-LR trong nước"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "SmartStream 1.6 Turbo Hybrid",
+        "Dung tích xi lanh": "1598 cc",
+        "Công suất cực đại": "227 Hp hp @ rpm",
+        "Mômen xoắn cực đại": "350 Nm Nm @ rpm",
+        "Hộp số": "6AT",
+        "Hệ thống dẫn động": "Cầu trước FWD",
+        "Hệ thống treo trước ": "McPherson",
+        "Hệ thống treo sau": "Liên kết đa điểm",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Đĩa",
+        "Thông số lốp xe": "235/55 R19",
+        "Tiêu thụ nhiên liệu đô thị": "5.9 L/100 km L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "5.9 L/100km L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "5.8 L/100km L/100km",
+        "Chế độ lái ": "Eco/Sport/Smart"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "LED Projector",
+        "Đèn trước tự động chiếu xa/chiếu gần": "●",
+        "Đèn ban ngày LED": "●",
+        "Đèn sương mù": "LED",
+        "Cụm đèn sau": "LED",
+        "Gương chiếu hậu chỉnh điện, gập điện": "●",
+        "Gạt mưa tự động": "●",
+        "Cửa sổ trời": "●"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "●",
+        "Chất liệu ghế": "Da",
+        "Ghế người lái chỉnh điện": "●",
+        "Ghế hành khách phía trước chỉnh cơ": "●",
+        "Kính cửa sổ chỉnh điện": "●",
+        "Màn hình đồng hồ đa thông tin": "12.3''",
+        "Màn hình giải trí trung tâm": "10.25''",
+        "Kết nối Apple Carplay/Android Auto": "●",
+        "Hệ thống điều hòa tự động": "●",
+        "Số vùng khí hậu điều hòa": "2",
+        "Cửa gió cho hàng ghế sau": "●",
+        "Chìa khóa thông minh": "●",
+        "Khởi động nút bấm": "●",
+        "Khởi động từ xa": "●",
+        "Hệ thống âm thanh": "6 loa",
+        "Lẫy chuyển số": "●",
+        "Sạc không dây Qi": "●",
+        "Phanh đỗ điện tử": "●",
+        "Giữ phanh tự động Autohold": "●",
+        "Đèn trang trí nội thất": "●",
+        "Rèm che nắng": "●",
+        "Móc khóa ghế trẻ em ISOFIX": "-"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "6",
+        "Hệ thống chống bó cứng phanh ABS": "●",
+        "Hệ thống phân phối lực phanh EBD": "●",
+        "Hệ thống cân bằng điện tử": "●",
+        "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "●",
+        "Mã hóa chống sao chép chìa khóa": "●",
+        "Hệ thống cảnh báo chống trộm": "●",
+        "Cảm biến hỗ trợ đỗ xe": "Trước & Sau",
+        "Hệ thống cảnh báo điểm mù ": "● ( hỗ trợ tránh va chạm)",
+        "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "● ( hỗ trợ tránh va chạm)",
+        "Hệ thống cảnh báo lệch làn đường ": "●",
+        "Hệ thống hỗ trợ giữ làn đường ": "●",
+        "Hệ thống hỗ trợ phanh chủ động": "●",
+        "Hệ thống điều khiển hành trình thích ứng": "●",
+        "Hệ thống cảnh báo áp suất lốp": "●",
+        "Camera lùi": "Camera 360"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "Sorento Hybrid Premium",
+      "price": 1149000000,
+      "features": "Đặc điểm nổi bậtNgoại thấtMâm 19”Đèn trước Led projectorCửa sổ trời PanoramaNội thấtGhế lái chỉnh điện Rèm cửa sauMàn hình đa thông tin 12.3” Màn hình giải trí trung tâm AVN 10.25”gương chống chói tự độngChuyển số điện tử dạng nút xoay Lẫy chuyển số vô lăng   Vận hànhĐộng cơ xăng 1.6 Turbo:Công suất cực đại: 178 HpMomen xoắn cực đại: 265 NmMotor điện:Công suất cực đại: 178 HpMomen xoắn cực đại: 264 NmKết hợp Động cơ xăng 1.6 Turbo + Motor điện:Công suất cực đại: 227 HpMomen xoắn cực đại: 350 Nm Dung lượng Pin cao áp 1.49 (kWh), Hộp số 6ATDẫn động FWDTùy chọn 3 chế độ lái (Eco/Sport/Smart)An toàn6 túi khíCamera 360Điều khiển hành trình thích ứngPhanh tay điện tử + Auto holdHiển thị điểm mù trên cụm đồng hồ táp-lô BVMHệ thống hỗ trợ giữ làn LKA (Lane Keeping Assist)Hệ thống hỗ trợ di chuyển theo làn và tạo làn đường ảo LFAHệ thống hỗ trợ tránh va chạm phía trước FCAHệ thống cảnh báo điểm mù và hỗ trợ tránh va chạm điểm mù BCAHệ thống điều khiển hành trình thông minh SCC",
+      "spec_different": null
+    },
+    {
+      "version_name": "Sorento Plug-in Hybrid Premium",
+      "price": 1399000000,
+      "features": "Đặc điểm nổi bậtCác nâng cấp so với phiên bản 1.6 Turbo Hybrid Premium:- Hệ thống truyền động: Công suất motor điện 90 (Hp), dung lượng Pin cao áp 13.8 (kWh), dẫn động AWD.- Tùy chọn 3 chế độ địa hình (Snow/Mud/Sand).",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Khối lượng không tải": "2090 kg",
+          "Khối lượng toàn tải": "2650 kg"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Loại động cơ": "SmartStream 1.6 Turbo Plug-in Hybrid",
+          "Công suất cực đại": "261 Hp hp @ rpm",
+          "Hệ thống dẫn động": "Hai cầu AWD",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "L/100km",
+          "Chế độ địa hình": "Snow/Mud/Sand"
+        }
+      }
+    }
+  ]
+}

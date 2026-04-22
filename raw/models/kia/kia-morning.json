@@ -1,0 +1,119 @@
+{
+  "car_info": {
+    "name": "KIA MORNING",
+    "car_type": "Hatchback",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/newmorning-trang-1.webp",
+    "lowest_price": 349000000,
+    "exterior_colors": [
+      "Trắng UD",
+      "Xám KLG",
+      "Xanh mạ L2E",
+      "Cam A7A",
+      "Đỏ CR5",
+      "Xanh dương",
+      "Vàng",
+      "Đen"
+    ],
+    "interior_colors": [
+      "Đen"
+    ],
+    "brochure": "https://thacoautotphcm.vn/storage/brochure-morning.pdf",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá 16 triệu đồng",
+        "price_gift": "16000000"
+      }
+    ],
+    "warranty_policy": [
+      "Dù che mưa thương hiệu, Phiếu nhiên liệu giao xe"
+    ],
+    "faqs": [
+      {
+        "chu_de": "KIA MORNING MT",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Ưu đãi đặc biệt cho khách hàng tải, bus dành cho những đối tượng khách hàng nào? ",
+            "cau_tra_loi": "Đối tượng khách hàng được áp dụng ưu đãi:\n- Khách hàng đã và đang sở hữu xe Tải, Bus thuộc các thương hiệu do Thaco Phân phối hoặc vợ chồng, bố mẹ, anh chị em ruột có nhu cầu mua xe.\n- Khách hàng là các tài xế đang chạy xe Tải, Bus do Thaco phân phối.\n"
+          },
+          {
+            "cau_hoi": "Phiếu bảo dưỡng miễn phí có được quy đổi thành tiền mặt và bao gồm những gì?",
+            "cau_tra_loi": "Phiếu bảo dưỡng miễn phí 3 cấp: 5.000, 10.000 và 20.000 km sẽ không được quy đổi thành tiền mặt, đã bao gồm công sửa chữa và vật tư."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "3595 x 1595 x 1495 mm",
+        "Chiều dài cơ sở": "2400 mm",
+        "Bán kính quay vòng tối thiểu": "4700 mm",
+        "Khoảng sáng gầm xe": "151 mm",
+        "Khối lượng không tải": "960 kg",
+        "Khối lượng toàn tải": "1370 kg",
+        "Thể tích khoang hành lý": "255L L",
+        "Dung tích thùng nhiên liệu": "35L L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "SX-LR trong nước"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "Xăng, Kappa 1.25L",
+        "Dung tích xi lanh": "1248 cc",
+        "Công suất cực đại": "83 Hp hp @ rpm",
+        "Mômen xoắn cực đại": "122 Nm Nm @ rpm",
+        "Hộp số": "5MT",
+        "Hệ thống dẫn động": "Cầu trước (FWD)",
+        "Hệ thống treo trước ": "Mc Pherson",
+        "Hệ thống treo sau": "Thanh xoắn",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Tang trống",
+        "Thông số lốp xe": "185/55 R15",
+        "Tiêu thụ nhiên liệu đô thị": "7.49 L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "4.39 L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "5.54 L/100km"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "Halogen",
+        "Đèn sương mù": "Halogen Projector",
+        "Cụm đèn sau": "Halogen",
+        "Gương chiếu hậu chỉnh điện, gập điện": "Chỉnh điện"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "Urethane",
+        "Chất liệu ghế": "Da",
+        "Ghế người lái chỉnh cơ": "●",
+        "Kính cửa sổ chỉnh điện": "●",
+        "Màn hình giải trí trung tâm": "Audio",
+        "Hệ thống điều hòa tự động": "Chỉnh cơ",
+        "Hệ thống âm thanh": "4 loa"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "2",
+        "Hệ thống chống bó cứng phanh ABS": "●",
+        "Hệ thống phân phối lực phanh EBD": "●"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "Kia Morning MT",
+      "price": 325000000,
+      "features": "Đặc điểm nổi bậtNgoại thấtMâm 15”Cụm đèn trước & sau HalogenĐèn sương mù HalogenGương chiếu hậu chỉnh điệnNội thấtHệ thống giải trí Audio + 4 loaMàn hình đa thông tin 2.6”Điều hòa cơGhế bọc da + ghế người lái chỉnh cơChìa khóa remoteVận hànhĐộng cơ xăng 1.25LHộp số sàn 5 cấp (5MT)Dẫn động cầu trước (FWD)An toàn2 túi khíHệ thống phanh: ABS, EBD",
+      "spec_different": null
+    }
+  ]
+}

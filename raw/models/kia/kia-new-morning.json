@@ -1,0 +1,178 @@
+{
+  "car_info": {
+    "name": "KIA NEW MORNING",
+    "car_type": "Hatchback",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/new-morning/kia.webp",
+    "lowest_price": 439000000,
+    "exterior_colors": [
+      "Xanh lục CGE",
+      "Vàng B4Y",
+      "Đỏ CR5",
+      "Xanh M4B",
+      "Trắng GWP",
+      "Xám KLG"
+    ],
+    "interior_colors": [
+      "Đen"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá 3 triệu đồng",
+        "price_gift": "3000000"
+      }
+    ],
+    "warranty_policy": [
+      "Dù che mưa thương hiệu, Phiếu nhiên liệu giao xe."
+    ],
+    "faqs": [
+      {
+        "chu_de": "KIA NEW MORNING",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Kia New Morning có bao nhiêu phiên bản?",
+            "cau_tra_loi": "Kia New Morning có 2 phiên bản là: 1.25L AT và 1.25L GT-Line."
+          },
+          {
+            "cau_hoi": "Kia New Morning phiên bản 1.25L GT-Line có gì khác so với phiên bản 1.25L AT?",
+            "cau_tra_loi": "Kia New Morning phiên bản 1.25L GT-Line được trang bị các tiện nghi vượt trội hơn phiên bản 1.25L AT, bao gồm: \n- Cụm đèn trước, sau dang LED và Đèn pha tự động.\n- Baga mui và viền chân kính mạ Chrome.\n- Vô lăng bọc da và áo ghế da.\n- Điều hòa tự động\n- Khởi động bằng nút bấm\n- Cảm biến đỗ xe sau \n- Cảnh báo áp suất lốp."
+          },
+          {
+            "cau_hoi": "Kia New Morning có bao nhiêu tùy chọn màu nội thất?",
+            "cau_tra_loi": "Kia New Morning có 2 tùy chọn màu nội thất bao gồm: màu đen viền xám (1.25L AT) và màu đen viền đỏ (1.25L GT-Line)."
+          },
+          {
+            "cau_hoi": "Kia New Morning có thay đổi gì phần vận hành, cụ thể là động cơ - hộp số so với mẫu hiện hữu không?",
+            "cau_tra_loi": "Kia New Morning vẫn sử dụng động cơ xăng 1.25L cho khả năng vận hành đáp ứng nhu cầu di chuyển hàng ngày trong đô thị, giúp tiết kiệm cho khách hàng với mức tiêu hao nhiên liệu thấp, chi phí bảo dưỡng động cơ – hộp số thấp."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "3,595 x 1,595 x 1,495 mm",
+        "Chiều dài cơ sở": "2400 mm",
+        "Bán kính quay vòng tối thiểu": "4,7 mm",
+        "Khoảng sáng gầm xe": "151 mm",
+        "Khối lượng không tải": "kg",
+        "Khối lượng toàn tải": "kg",
+        "Thể tích khoang hành lý": "255 L",
+        "Dung tích thùng nhiên liệu": "35 L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "SX-LR trong nước"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "Xăng, Kappa 1.25L",
+        "Dung tích xi lanh": "1248 cc",
+        "Công suất cực đại": "83 / 6000 hp @ rpm",
+        "Mômen xoắn cực đại": "122 / 4,000 Nm @ rpm",
+        "Hộp số": "4AT",
+        "Hệ thống dẫn động": "Cầu trước (FWD)",
+        "Hệ thống treo trước ": "McPherson",
+        "Hệ thống treo sau": "Thanh xoắn",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Tang trống",
+        "Thông số lốp xe": "Mâm đúc hợp kim, 185/55 R15",
+        "Tiêu thụ nhiên liệu đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "Halogen",
+        "Đèn ban ngày LED": "Halogen",
+        "Cụm đèn sau": "Halogen",
+        "Gương chiếu hậu chỉnh điện, gập điện": "Có sấy và tích hợp báo rẽ"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "Urethane",
+        "Chất liệu ghế": "Da simili",
+        "Ghế người lái chỉnh cơ": "●",
+        "Ghế hành khách phía trước chỉnh cơ": "●",
+        "Màn hình đồng hồ đa thông tin": "LCD",
+        "Màn hình giải trí trung tâm": "Android 8\"",
+        "Kết nối Apple Carplay/Android Auto": "Không dây",
+        "Hệ thống điều hòa tự động": "Chỉnh cơ",
+        "Hệ thống âm thanh": "4 loa",
+        "Móc khóa ghế trẻ em ISOFIX": "●"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "2",
+        "Hệ thống chống bó cứng phanh ABS": "●",
+        "Hệ thống phân phối lực phanh EBD": "●",
+        "Hệ thống hỗ trợ phanh khẩn cấp BA": "●",
+        "Hệ thống cảnh báo chống trộm": "●"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "Kia New Morning AT",
+      "price": 439000000,
+      "features": "Đặc điểm nổi bậtNgoại thấtCụm đèn trước & sau HalogenMâm hợp kim 15”Gương chiếu hậu chỉnh điện, gập điện, có sấy, tích hợp đèn báo rẽNội thấtGhế SimiliMàn hình đa thông tin đơn sắc (Monochrome LCD) (mới)Màn hình giải trí Android 8” cảm ứng (mới)Kết nối Apple CarPlay & Android Auto không dây (mới)Hệ thống âm thanh 4 loaVận hànhĐộng cơ 1.25L – hộp số 4ATHệ thống treo trước McPhersonHệ thống treo sau Thanh xoắnHệ thống phanh đĩa phía trướcHệ thống phanh tang trống phía sauAn toàn2 túi khíCamera lùiHệ thống hỗ trợ chống bó cứng phanh ABSHệ thống phân bổ lực phanh điện tử EBDMóc ghế an toàn cho trẻ em ISOFIX ",
+      "spec_different": null
+    },
+    {
+      "version_name": "Kia New Morning GT-Line",
+      "price": 469000000,
+      "features": "Đặc điểm nổi bậtNgoại thấtBao gồm các tính năng của phiên bản AT và bổ sung thêm các trang bị sau:Cụm đèn trước & sau LEDĐèn ban ngày LEDĐèn pha tự độngBaga muiViền chân kính mạ ChromeNội thấtBao gồm các tính năng của phiên bản AT và bổ sung thêm các trang bị sau:Ghế da, vô lăng bọc daMàn hình đa thông tin 4.2’’ TFT LCD (mới)Màn hình giải trí AVN 8” cảm ứngHệ thống âm thanh 6 loaHệ thống điều hòa tự độngTấm che nắng ghế lái có đèn và gương trang điểmVận hànhTương tự như phiên bản ATAn toànBao gồm các tính năng của phiên bản AT và bổ sung thêm các trang bị sau:Cảm biến hỗ trợ đỗ xe phía sauHệ thống cảnh báo áp suất lốp TPMS",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "3595 x 1595 x 1495 mm",
+          "Bán kính quay vòng tối thiểu": "4700 mm",
+          "Khối lượng không tải": "960 kg",
+          "Khối lượng toàn tải": "1370 kg",
+          "Thể tích khoang hành lý": "255L L",
+          "Dung tích thùng nhiên liệu": "35L L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Mômen xoắn cực đại": "122 / 4000 Nm @ rpm",
+          "Hệ thống treo trước ": "Mc Pherson",
+          "Thông số lốp xe": "185/55 R15",
+          "Tiêu thụ nhiên liệu đô thị": "7.74 L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "4.68 L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "5.82 L/100km"
+        },
+        "NGOẠI THẤT": {
+          "Cụm đèn trước": "LED",
+          "Đèn trước tự động bật/tắt": "●",
+          "Đèn ban ngày LED": "●",
+          "Cụm đèn sau": "LED",
+          "Trang bị khác": "Baga mui, Viền chân kính mạ Chrome"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "●",
+          "Chất liệu ghế": "Da",
+          "Kính cửa sổ chỉnh điện": "●",
+          "Màn hình đồng hồ đa thông tin": "LCD 4.2''",
+          "Màn hình giải trí trung tâm": "AVN 8’’",
+          "Hệ thống điều hòa tự động": "●",
+          "Số vùng khí hậu điều hòa": "1",
+          "Chìa khóa thông minh": "●",
+          "Khởi động nút bấm": "●",
+          "Hệ thống âm thanh": "6 loa"
+        },
+        "AN TOÀN": {
+          "Mã hóa chống sao chép chìa khóa": "●",
+          "Cảm biến hỗ trợ đỗ xe": "Sau",
+          "Hệ thống cảnh báo áp suất lốp": "●",
+          "Camera lùi": "●"
+        }
+      }
+    }
+  ]
+}
