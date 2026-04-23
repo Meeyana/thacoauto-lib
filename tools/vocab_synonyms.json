@@ -1,0 +1,38 @@
+{
+  "_comment": "Master synonym map — sửa file này khi muốn thêm cách nói khác của khách. Chạy sync_models.py để merge vào wiki/models/vocab.json.",
+  "_updated": "2026-04-23",
+
+  "brand": {
+    "kia": ["kia", "KIA", "ki a"],
+    "mazda": ["mazda", "MAZDA"],
+    "peugeot": ["peugeot", "pơ-giô", "po-go"],
+    "bmw": ["bmw", "BMW", "bê em vê"],
+    "mini": ["mini", "MINI", "mini cooper"]
+  },
+
+  "car_type": {
+    "sedan": ["sedan", "Sedan", "D-Sedan", "xe sedan", "xe 4 cửa", "xe lịch lãm"],
+    "hatchback": ["hatchback", "Hatchback", "xe nhỏ", "xe đô thị nhỏ", "xe gọn"],
+    "suv": ["suv", "SUV", "B-SUV", "C-SUV", "D-SUV", "xe gầm cao", "xe 7 chỗ gầm cao", "crossover", "cuv"],
+    "mpv": ["mpv", "MPV", "xe gia đình", "xe 7 chỗ rộng", "minivan", "van"],
+    "pickup": ["pickup", "bán tải", "xe bán tải", "ban tai"],
+    "truck": ["truck", "xe tải", "tải", "xe chở hàng"],
+    "bus": ["bus", "xe khách", "xe buýt", "xe bus"]
+  },
+
+  "fuel": {
+    "xăng": ["xăng", "xang", "petrol", "gasoline", "máy xăng", "may xang"],
+    "dầu": ["dầu", "dau", "diesel", "máy dầu", "may dau", "dầu diesel"],
+    "hybrid": ["hybrid", "hev", "lai", "lai điện", "lai dien", "xe lai"],
+    "phev": ["phev", "plug-in hybrid", "lai cắm sạc", "lai sạc điện"],
+    "ev": ["ev", "điện", "dien", "thuần điện", "xe điện", "xe dien", "battery", "bev"]
+  },
+
+  "use_case": {
+    "gia_dinh": ["gia đình", "gia dinh", "đi chơi cuối tuần", "chở con", "đưa đón con", "cho gia đình"],
+    "do_thi": ["đô thị", "do thi", "đi phố", "trong thành phố", "chạy phố", "nội thành", "đi làm hàng ngày"],
+    "di_tinh": ["đi tỉnh", "di tinh", "đường dài", "liên tỉnh", "đi xa", "đèo núi", "đi du lịch"],
+    "kinh_doanh": ["kinh doanh", "chở hàng", "dịch vụ", "taxi", "grab", "be", "chạy dịch vụ"],
+    "lai_thu": ["lái thử", "lai thu", "trải nghiệm", "test drive", "đi thử"]
+  }
+}

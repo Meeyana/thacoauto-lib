@@ -266,6 +266,64 @@ def write_catalog(generated):
     )
 
 
+def write_vocab(generated):
+    """Sinh wiki/models/vocab.json: canonical values từ catalog + synonym map manual.
+
+    Đây là 'single source of truth' cho enum constraint của chatbot:
+    - canonical: rút trực tiếp từ catalog (luôn khớp với data thực tế)
+    - synonyms: lấy từ tools/vocab_synonyms.json (sửa tay)
+    - model_slugs: list slug hợp lệ để n8n validate model_slug AI extract
+    """
+    catalog = [g[4] for g in generated]
+    today = date.today().isoformat()
+
+    # Canonical từ data
+    brands_raw = sorted({m["brand"] for m in catalog if m.get("brand")})
+    car_types_raw = sorted({m["car_type"] for m in catalog if m.get("car_type")})
+    fuels_raw = sorted({m["fuel"] for m in catalog if m.get("fuel")})
+    seats_raw = sorted({int(m["seat"]) for m in catalog if m.get("seat") and str(m["seat"]).isdigit()})
+    model_slugs = sorted({m["slug"] for m in catalog})
+
+    # Load synonym map manual
+    syn_file = ROOT / "tools" / "vocab_synonyms.json"
+    synonyms = {}
+    if syn_file.exists():
+        try:
+            synonyms = json.loads(syn_file.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"  ! Lỗi đọc vocab_synonyms.json: {e}")
+
+    payload = {
+        "updated": today,
+        "_note": "Canonical values rút từ catalog.json. Synonyms từ tools/vocab_synonyms.json. Dùng cho normalize entity AI extract trong n8n.",
+        "brand": {
+            "canonical": brands_raw,
+            "synonyms": synonyms.get("brand", {}),
+        },
+        "car_type": {
+            "canonical": car_types_raw,
+            "categories": ["sedan", "hatchback", "suv", "mpv", "pickup", "truck", "bus"],
+            "synonyms": synonyms.get("car_type", {}),
+        },
+        "fuel": {
+            "canonical": fuels_raw,
+            "synonyms": synonyms.get("fuel", {}),
+        },
+        "seat": {
+            "canonical": seats_raw,
+        },
+        "use_case": {
+            "canonical": list((synonyms.get("use_case") or {}).keys()),
+            "synonyms": synonyms.get("use_case", {}),
+        },
+        "model_slugs": model_slugs,
+    }
+    (WIKI_DIR / "vocab.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
 def render_models_subindex(generated):
     """Tạo wiki/models/index.md tổng hợp tất cả model + bảng filter đầy đủ."""
     today = date.today().isoformat()
@@ -327,6 +385,7 @@ def render_models_subindex(generated):
 def update_index(generated):
     render_models_subindex(generated)
     write_catalog(generated)
+    write_vocab(generated)
     if not INDEX_FILE.exists():
         return
     content = INDEX_FILE.read_text(encoding="utf-8")

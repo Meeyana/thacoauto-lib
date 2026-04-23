@@ -178,6 +178,7 @@
   },
   "active": "2e6ed1f263c7afac",
   "lastOpenFiles": [
+    "wiki/brands/bmw.md",
     "n8n-workflow.json",
     "2026-04-22.md",
     "Untitled.canvas",
@@ -213,7 +214,6 @@
     "wiki/dealers/showroom-phu-my.md",
     "wiki/dealers/showroom-ba-ria.md",
     "wiki/dealers/showroom-tay-ninh.md",
-    "tools/sync_dealers.py",
-    "raw/hochiminh-listshowroom.json"
+    "tools/sync_dealers.py"
   ]
 }

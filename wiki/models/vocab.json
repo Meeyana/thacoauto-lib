@@ -1,0 +1,251 @@
+{
+  "updated": "2026-04-23",
+  "_note": "Canonical values rút từ catalog.json. Synonyms từ tools/vocab_synonyms.json. Dùng cho normalize entity AI extract trong n8n.",
+  "brand": {
+    "canonical": [
+      "kia",
+      "mazda",
+      "peugeot"
+    ],
+    "synonyms": {
+      "kia": [
+        "kia",
+        "KIA",
+        "ki a"
+      ],
+      "mazda": [
+        "mazda",
+        "MAZDA"
+      ],
+      "peugeot": [
+        "peugeot",
+        "pơ-giô",
+        "po-go"
+      ],
+      "bmw": [
+        "bmw",
+        "BMW",
+        "bê em vê"
+      ],
+      "mini": [
+        "mini",
+        "MINI",
+        "mini cooper"
+      ]
+    }
+  },
+  "car_type": {
+    "canonical": [
+      "B-SUV",
+      "C-SUV",
+      "D-SUV",
+      "D-Sedan",
+      "E-SUV",
+      "Hatchback",
+      "Roadster",
+      "SUV Coupe",
+      "Sedan"
+    ],
+    "categories": [
+      "sedan",
+      "hatchback",
+      "suv",
+      "mpv",
+      "pickup",
+      "truck",
+      "bus"
+    ],
+    "synonyms": {
+      "sedan": [
+        "sedan",
+        "Sedan",
+        "D-Sedan",
+        "xe sedan",
+        "xe 4 cửa",
+        "xe lịch lãm"
+      ],
+      "hatchback": [
+        "hatchback",
+        "Hatchback",
+        "xe nhỏ",
+        "xe đô thị nhỏ",
+        "xe gọn"
+      ],
+      "suv": [
+        "suv",
+        "SUV",
+        "B-SUV",
+        "C-SUV",
+        "D-SUV",
+        "xe gầm cao",
+        "xe 7 chỗ gầm cao",
+        "crossover",
+        "cuv"
+      ],
+      "mpv": [
+        "mpv",
+        "MPV",
+        "xe gia đình",
+        "xe 7 chỗ rộng",
+        "minivan",
+        "van"
+      ],
+      "pickup": [
+        "pickup",
+        "bán tải",
+        "xe bán tải",
+        "ban tai"
+      ],
+      "truck": [
+        "truck",
+        "xe tải",
+        "tải",
+        "xe chở hàng"
+      ],
+      "bus": [
+        "bus",
+        "xe khách",
+        "xe buýt",
+        "xe bus"
+      ]
+    }
+  },
+  "fuel": {
+    "canonical": [
+      "Dầu",
+      "Hybrid",
+      "Xăng"
+    ],
+    "synonyms": {
+      "xăng": [
+        "xăng",
+        "xang",
+        "petrol",
+        "gasoline",
+        "máy xăng",
+        "may xang"
+      ],
+      "dầu": [
+        "dầu",
+        "dau",
+        "diesel",
+        "máy dầu",
+        "may dau",
+        "dầu diesel"
+      ],
+      "hybrid": [
+        "hybrid",
+        "hev",
+        "lai",
+        "lai điện",
+        "lai dien",
+        "xe lai"
+      ],
+      "phev": [
+        "phev",
+        "plug-in hybrid",
+        "lai cắm sạc",
+        "lai sạc điện"
+      ],
+      "ev": [
+        "ev",
+        "điện",
+        "dien",
+        "thuần điện",
+        "xe điện",
+        "xe dien",
+        "battery",
+        "bev"
+      ]
+    }
+  },
+  "seat": {
+    "canonical": [
+      2,
+      5,
+      7,
+      8
+    ]
+  },
+  "use_case": {
+    "canonical": [
+      "gia_dinh",
+      "do_thi",
+      "di_tinh",
+      "kinh_doanh",
+      "lai_thu"
+    ],
+    "synonyms": {
+      "gia_dinh": [
+        "gia đình",
+        "gia dinh",
+        "đi chơi cuối tuần",
+        "chở con",
+        "đưa đón con",
+        "cho gia đình"
+      ],
+      "do_thi": [
+        "đô thị",
+        "do thi",
+        "đi phố",
+        "trong thành phố",
+        "chạy phố",
+        "nội thành",
+        "đi làm hàng ngày"
+      ],
+      "di_tinh": [
+        "đi tỉnh",
+        "di tinh",
+        "đường dài",
+        "liên tỉnh",
+        "đi xa",
+        "đèo núi",
+        "đi du lịch"
+      ],
+      "kinh_doanh": [
+        "kinh doanh",
+        "chở hàng",
+        "dịch vụ",
+        "taxi",
+        "grab",
+        "be",
+        "chạy dịch vụ"
+      ],
+      "lai_thu": [
+        "lái thử",
+        "lai thu",
+        "trải nghiệm",
+        "test drive",
+        "đi thử"
+      ]
+    }
+  },
+  "model_slugs": [
+    "kia-carens",
+    "kia-k3",
+    "kia-k5",
+    "kia-morning",
+    "kia-new-carnival",
+    "kia-new-morning",
+    "kia-new-seltos",
+    "kia-new-sonet",
+    "kia-new-sorento",
+    "kia-soluto",
+    "kia-sorento-hevphev",
+    "kia-sportage",
+    "mazda-cx-30",
+    "mazda-cx-5",
+    "mazda-cx-90",
+    "mazda-mx-5",
+    "mazda2",
+    "mazda2-sport",
+    "mazda3",
+    "mazda3-sport",
+    "new-mazda-cx-3",
+    "new-mazda-cx-8",
+    "new-peugeot-2008",
+    "new-peugeot-3008",
+    "new-peugeot-5008",
+    "peugeot-408"
+  ]
+}
