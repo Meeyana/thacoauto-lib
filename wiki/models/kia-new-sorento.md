@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/kia-new-sorento/e-brochure-v6-1509-c
 image: https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-sorento/new-sorento-02.webp
 generated: true
 generated_from: raw/models/kia/kia-new-sorento.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-new-sorento.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-new-carnival
 image: https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-carnival/new-carnival.webp
 generated: true
 generated_from: raw/models/kia/kia-new-carnival.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-new-carnival.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/brochure/kia/e-brochure-kia-new-sone
 image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-01.webp
 generated: true
 generated_from: raw/models/kia/kia-new-sonet.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-new-sonet.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

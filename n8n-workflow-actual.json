@@ -1,0 +1,504 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+            "typeVersion": 1.4,
+            "position": [
+                -1072,
+                1232
+            ],
+            "id": "c09442be-19d6-4ae3-a7f4-773ba59ac84e",
+            "name": "When chat message received",
+            "webhookId": "5aefa0dc-4e5e-4a68-807d-c6c5e65fe663"
+        },
+        {
+            "parameters": {
+                "jsCode": "// 1. Lấy text từ AI Agent (hỗ trợ nhiều định dạng output của n8n)\nconst input = items[0].json;\nlet rawText = input.output || \n              input.text || \n              input.response || \n              (input.content && input.content.parts ? input.content.parts[0].text : \"\") ||\n              (input.message && input.message.content ? input.message.content : \"\");\n\ntry {\n  // 2. Dùng Regex bóc tách đúng cụm JSON { ... }\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON trong phản hồi của AI\");\n\n  const parsed = JSON.parse(jsonMatch[0]);\n\n  // 3. Ép cấu trúc đầu ra chuẩn nhưng giữ nguyên dữ liệu từ AI\n  // Nếu AI không trả về field đó, sẽ để là null thay vì giá trị mặc định sai lệch\n  return [{\n    json: {\n      category: parsed.category || null,\n      brand: parsed.brand || null,\n      model_slug: parsed.model_slug || null,\n      status: typeof parsed.status === \"boolean\" ? parsed.status : false\n    }\n  }];\n\n} catch (e) {\n  // 4. Trường hợp lỗi format hoàn toàn, trả về object rỗng đúng cấu trúc\n  return [{\n    json: {\n      category: \"ERROR_FORMAT\",\n      brand: null,\n      model_slug: null,\n      status: false,\n      raw_debug: rawText.substring(0, 100) // Để bạn dễ kiểm tra AI đang trả ra cái gì\n    }\n  }];\n}"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -368,
+                1168
+            ],
+            "id": "029864df-dc0a-45be-9408-1f7953cfa1f4",
+            "name": "xu_ly_category"
+        },
+        {
+            "parameters": {
+                "rules": {
+                    "values": [
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "GREETING",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "id": "0d214a91-7e47-47d8-a0b7-d1a82f71ee0e"
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "GREETING"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "68b4f189-a5e9-4417-9071-03c7dcf0620b",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "SAFETY_GUARD",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "SAFETY_GUARD"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "bb55e482-6876-43a6-a2d9-e0bac68b2caf",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "SALES_LEAD",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "SALES_LEAD"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "e632be9e-0092-4725-a1f3-f44942df9baf",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "SERVICE_APPOINTMENT",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "SERVICE_APPOINTMENT"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "179a2a24-4a52-4ccf-9f4a-e30c131054b2",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "NETWORK_LOCATION",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "NETWORK_LOCATION"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "d3d10251-c690-49d0-8c42-dba0cca37e46",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "CRITICAL_COMPLAINT",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "CRITICAL_COMPLAINT"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "24675187-d55a-4435-91a9-efdda350f4d4",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "POLICY_LEGAL",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "POLICY_LEGAL"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "e5ad9690-e822-4dc8-b1e9-b199e49ca03b",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "OUT_OF_SCOPE",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "OUT_OF_SCOPE"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 2
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "15d201b4-b839-4077-84f4-c84e3947cd87",
+                                        "leftValue": "={{ $json.category }}",
+                                        "rightValue": "AMBIGUOUS",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "AMBIGUOUS"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "53ecca6e-cb1d-4896-93be-07baa837393a",
+            "name": "Route by Intent1",
+            "type": "n8n-nodes-base.switch",
+            "typeVersion": 3.2,
+            "position": [
+                -128,
+                1104
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "// 1. Lấy dữ liệu output từ node Router phía trước\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\n// Chuẩn hóa dữ liệu (Viết thường, bỏ dấu cách thừa để khớp với tên file trên Github)\nconst brand = (d.brand || \"\").toLowerCase().trim();\nconst model_slug = (d.model_slug || \"\").toLowerCase().trim();\n\nlet files = [];\nlet need_more_info = false; // Cờ báo hiệu thiếu thông tin\n\n// ==========================================\n// 2. LOGIC PHÂN LUỒNG DỰA TRÊN THÔNG TIN\n// ==========================================\n\n// Case 1: Không có thông tin gì hết (Trống cả brand và model)\nif (!brand && !model_slug) {\n    need_more_info = true;\n} \n// Case 2: Chỉ có Brand (vd: \"Tư vấn xe Kia\")\nelse if (brand && !model_slug) {\n    files.push(`wiki/brands/${brand}.md`);\n} \n// Case 3: Đã có Model cụ thể (vd: \"Carens\")\nelse if (model_slug) {\n    let final_slug = model_slug;\n    \n    // Auto-fix: Nếu slug chưa có tên brand (carens), mà brand có (kia) -> ghép lại thành \"kia-carens\"\n    if (brand && !model_slug.startsWith(brand)) {\n        final_slug = `${brand}-${model_slug}`;\n    }\n    \n    files.push(`wiki/models/${final_slug}.md`);\n}\n\n// ==========================================\n// 3. THỰC HIỆN TRUY VẤN FILE TỪ GITHUB\n// ==========================================\nlet bundle = '';\n\n// Nếu không bị thiếu thông tin thì mới đi kéo file\nif (!need_more_info && files.length > 0) {\n    for (const f of files) {\n        try {\n            // Hàm httpRequest của n8n để gọi GET data từ link\n            const data = await this.helpers.httpRequest({ \n                method: 'GET', \n                url: base + f, \n                returnFullResponse: false \n            });\n            bundle += `\\n\\n=== TÀI LIỆU DỮ LIỆU: ${f} ===\\n${typeof data === 'string' ? data : JSON.stringify(data)}`;\n        } catch (e) { \n            // Nếu link Github bị lỗi 404 (Không có file)\n            bundle += `\\n\\n=== TÀI LIỆU: ${f} ===\\n[HỆ THỐNG BÁO LỖI: Hiện chưa có tài liệu cho dòng xe này trên hệ thống. Vui lòng báo khách chờ hoặc hỏi thông tin khác]`; \n        }\n    }\n} else {\n    bundle = \"[HỆ THỐNG BÁO LỖI: Thiếu thông tin thương hiệu hoặc dòng xe. Yêu cầu AI hỏi lại khách hàng xem họ quan tâm xe nào.]\";\n}\n\n// ==========================================\n// 4. TRẢ KẾT QUẢ CHO NODE AI TIẾP THEO\n// ==========================================\nreturn [{ \n    json: { \n        ...d,                 // Giữ nguyên category, brand, model_slug cũ\n        need_more_info: need_more_info, \n        files_used: files, \n        context_bundle: bundle // ĐÂY CHÍNH LÀ NỘI DUNG FILE MARKDOWN\n    } \n}];"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                208,
+                1248
+            ],
+            "id": "b6a0fb2a-f58f-4b53-91cf-db02b391512c",
+            "name": "Code in JavaScript"
+        },
+        {
+            "parameters": {
+                "modelId": {
+                    "__rl": true,
+                    "value": "models/gemini-2.5-flash",
+                    "mode": "list",
+                    "cachedResultName": "models/gemini-2.5-flash"
+                },
+                "messages": {
+                    "values": [
+                        {
+                            "content": "=Hãy dựa trên Persona và dữ liệu trên để phản hồi khách hàng:\n\n### [CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Thương hiệu: {{ $json.brand || \"Chung\" }}\n- Dòng xe: {{ $json.model || \"Chưa xác định\" }}\n- Trạng thái dữ liệu: {{ $json.need_more_info ? \"Thiếu thông tin\" : \"Đã có dữ liệu\" }}\n\n### [LỊCH SỬ HỘI THOẠI]\n{{ $json.history || \"Bắt đầu cuộc hội thoại mới\" }}\n\n\n### [DỮ LIỆU TRI THỨC - CONTEXT_BUNDLE]\n{{ $json.context_bundle }}"
+                        }
+                    ]
+                },
+                "builtInTools": {},
+                "options": {
+                    "systemMessage": "# ROLE\nBạn là Chuyên viên tư vấn ảo cao cấp của THACO AUTO. Nhiệm vụ của bạn là sử dụng dữ liệu được cung cấp trong [CONTEXT_BUNDLE] để hỗ trợ khách hàng một cách chuyên nghiệp, tận tâm và chính xác.\n\n# TONE & MOOD THEO THƯƠNG HIỆU\nHãy điều chỉnh giọng văn dựa trên [BRAND] được cung cấp:\n- KIA/MAZDA: Thân thiện, hiện đại, nhiệt tình, sử dụng ngôn từ gần gũi.\n- BMW/PEUGEOT/MINI: Sang trọng, lịch lãm, tinh tế, tập trung vào trải nghiệm đẳng cấp.\n- TRUCK/BUS: Tin cậy, thực tế, bền bỉ, tập trung vào giá trị kinh tế.\n- CHUNG (THACO AUTO): Chuyên nghiệp, chuẩn mực, hiếu khách.\n\n# QUY TẮC XƯNG HÔ\n- Sử dụng \"Anh/Chị\" làm đại từ chính để gọi khách hàng (trừ khi khách yêu cầu khác).\n- Tự xưng là \"Em\" hoặc \"Tư vấn viên THACO AUTO\" để tạo sự gần gũi nhưng vẫn tôn trọng.\n\n# NGUYÊN TẮC TRẢ LỜI\n1. BÁM SÁT DỮ LIỆU: Chỉ trả lời dựa trên thông tin trong [CONTEXT_BUNDLE]. \n   - Nếu dữ liệu ghi \"[LỖI]\" hoặc trống: Hãy lịch sự cáo lỗi và đề nghị khách để lại số điện thoại hoặc đặt câu hỏi cụ thể hơn để bạn hỗ trợ tra cứu lại.\n2. CẤU TRÚC PHẢN HỒI: \n   - Lời chào (nếu là câu đầu tiên).\n   - Câu trả lời trực tiếp vào vấn đề.\n   - Các điểm nổi bật (dùng Bullet points cho dễ đọc).\n   - Lời mời/CTA (Mời lái thử, ghé showroom, hoặc cần hỗ trợ thêm).\n3. TRÁNH HALLUCINATION: Tuyệt đối không tự bịa ra giá xe hoặc thông số nếu trong file không có.\n\n# TRƯỜNG HỢP THIẾU THÔNG TIN (need_more_info = true)\nNếu hệ thống báo thiếu thông tin, hãy khéo léo đưa ra các gợi ý lựa chọn (Kia, Mazda, BMW...) để khách dễ dàng phản hồi.\n\n# ĐỘ DÀI PHẢN HỒI: Nói ngắn gọn đủ ý, tránh nói dài dòng, giới hạn 200 từ."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.googleGemini",
+            "typeVersion": 1.1,
+            "position": [
+                432,
+                1264
+            ],
+            "id": "074bd4dd-03a3-4628-ad2a-7b5b9013e7db",
+            "name": "Message a model1",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "dQF7ecZV9SX7qFA3",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "=### [TIN NHẮN NGƯỜI DÙNG HIỆN TẠI]\n\"{{ $json.chatInput }}\"\n\n### [PHÂN LOẠI VÀ TRÍCH XUẤT]",
+                "options": {
+                    "systemMessage": "=## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI, Truck/Bus).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất thông tin dòng xe.\n\n## Danh mục Category: \n- GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot. \n- SAFETY_GUARD: Chửi thề, xúc phạm, nội dung nhạy cảm, chính trị hoặc quấy rối. \n- SALES_LEAD: Hỏi giá, thông số, E-catalog, khuyến mãi, trả góp, so sánh xe, đăng ký lái thử. \n- SERVICE_APPOINTMENT: Đặt lịch bảo dưỡng, sửa chữa, phụ tùng, chi phí dịch vụ xưởng. \n- NETWORK_LOCATION: Tìm showroom, địa chỉ, hotline, giờ mở cửa chi nhánh. \n- CRITICAL_COMPLAINT: Khiếu nại, than phiền dịch vụ, thái độ nhân viên, E-survey tiêu cực. \n- POLICY_LEGAL: Chính sách bảo hành, thủ tục đăng ký xe, bảo hiểm, quy định pháp lý. \n- OUT_OF_SCOPE: Các chủ đề không liên quan đến ngành ô tô (thời tiết, tán gẫu, kiến thức chung). \n- AMBIGUOUS: Câu hỏi cụt ngủn hoặc mơ hồ, cần đối chiếu [LỊCH SỬ] để xác định lại 1 trong các nhóm trên. \n\n ## Quy tắc trích xuất:\n1. model_slug: Tên dòng xe khách nhắc tới (Ví dụ: \"Carens\", \"CX-5\"). Nếu không có để \"\".\n2. brand: Tên thương hiệu nhắc tới (Kia, Mazda, BMW...), Nếu không có để \"\".\n3. Ưu tiên: SAFETY_GUARD > CRITICAL_COMPLAINT.\n4. Sử dụng [LỊCH SỬ] để điền 'model' nếu khách chỉ nói \"giá nó bao nhiêu\" sau khi đã hỏi về một dòng xe cụ thể.\n\n## Yêu cầu kỹ thuật:\n- Chỉ trả về duy nhất định dạng JSON. Không giải thích, không dùng ký tự markdown (```).\n\n## Định dạng Output:\n{\"category\": \"NAME\", \"brand\": \"brand_name\", \"model_slug\": \"model_name\", \"status\": true}"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3.1,
+            "position": [
+                -784,
+                1232
+            ],
+            "id": "979203bb-25b8-4d3f-b204-d2a0fb1714b0",
+            "name": "AI Agent"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "maxOutputTokens": 256
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+            "typeVersion": 1,
+            "position": [
+                -832,
+                1424
+            ],
+            "id": "fdc4452c-deee-4138-bf5d-b1ca9310436e",
+            "name": "Google Gemini Chat Model",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "dQF7ecZV9SX7qFA3",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "contextWindowLength": 10
+            },
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "typeVersion": 1.3,
+            "position": [
+                -704,
+                1440
+            ],
+            "id": "17c80954-f518-498d-9937-9510a0a50220",
+            "name": "Simple Memory"
+        },
+        {
+            "parameters": {
+                "toolDescription": "Makes an HTTP request and returns the response data (markdown file)",
+                "url": "https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/index.md",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequestTool",
+            "typeVersion": 4.3,
+            "position": [
+                -560,
+                1440
+            ],
+            "id": "05f4d1b9-54c3-4bc1-9557-201b4d8ba701",
+            "name": "HTTP Request"
+        },
+        {
+            "parameters": {
+                "jsCode": "// 1. Lấy dữ liệu từ node trước (AI Router/Classifier)\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\n// Chuẩn hóa dữ liệu đầu vào\nconst category = d.category || \"\";\nconst brand = (d.brand || \"\").toLowerCase().trim();\n// Giả định AI đã trích xuất được địa điểm hoặc tên showroom (ví dụ: \"Phú Mỹ Hưng\", \"Quận 7\")\nconst location_query = (d.location || \"\").toLowerCase().trim(); \nconst showroom_slug = (d.showroom_slug || \"\").toLowerCase().trim();\n\nlet files = [];\nlet need_location = false; // Cờ báo hiệu cần hỏi thêm vị trí khách hàng\nlet bundle = '';\n\n// ==========================================\n// 2. LOGIC PHÂN LUỒNG NETWORK_LOCATION\n// ==========================================\n\nif (category === \"NETWORK_LOCATION\") {\n    \n    // TH1: Nếu đã xác định được showroom cụ thể (đã có slug)\n    if (showroom_slug) {\n        // Ví dụ: wiki/dealers/showroom-kia-phu-my-hung.md\n        files.push(`wiki/dealers/${showroom_slug}.md`);\n    } \n    \n    // TH2: Nếu khách có nhắc đến địa danh nhưng chưa rõ showroom nào (vd: \"Showroom ở Bình Dương\")\n    else if (location_query) {\n        // AI có thể tìm file index để lọc hoặc tìm file theo tỉnh thành nếu bạn có cấu trúc đó\n        // Ở đây ta ưu tiên lấy index để AI có dữ liệu tổng quát rồi tự lọc\n        files.push(`wiki/dealers/index.md`);\n        // Có thể bổ sung logic tìm theo tỉnh: files.push(`wiki/dealers/provinces/${location_query}.md`);\n    }\n    \n    // TH3: Hỏi chung chung hoặc không có thông tin vị trí\n    else {\n        files.push(`wiki/dealers/index.md`);\n        need_location = true; // Bật cờ để AI hỏi \"Anh/Chị đang ở khu vực nào?\"\n    }\n}\n\n// ==========================================\n// 3. TRUY VẤN DỮ LIỆU TỪ GITHUB\n// ==========================================\n\nif (files.length > 0) {\n    for (const f of files) {\n        try {\n            const data = await this.helpers.httpRequest({ \n                method: 'GET', \n                url: base + f, \n                returnFullResponse: false \n            });\n            \n            bundle += `\\n\\n=== TÀI LIỆU HỆ THỐNG MẠNG LƯỚI: ${f} ===\\n${typeof data === 'string' ? data : JSON.stringify(data)}`;\n            \n        } catch (e) { \n            bundle += `\\n\\n=== TÀI LIỆU: ${f} ===\\n[LỖI: Hiện chưa có dữ liệu chi tiết cho mục này. Vui lòng hướng dẫn khách để lại SĐT để tổng đài viên hỗ trợ trực tiếp.]`; \n        }\n    }\n}\n\n// ==========================================\n// 4. TRẢ KẾT QUẢ\n// ==========================================\nreturn [{ \n    json: { \n        ...d,\n        need_location: need_location,\n        files_used: files, \n        context_bundle: bundle,\n        // Gợi ý cho AI cách phản hồi nếu thiếu vị trí\n        ai_suggestion: need_location ? \"Hãy chào khách và hỏi xem họ đang ở tỉnh thành hoặc quận huyện nào để tìm showroom gần nhất.\" : \"Sử dụng dữ liệu showroom trong context để cung cấp địa chỉ, hotline và giờ làm việc.\"\n    } \n}];"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                256,
+                1472
+            ],
+            "id": "a6d89588-16d0-4cb5-a38d-0dfedc680c1b",
+            "name": "Code in JavaScript1"
+        }
+    ],
+    "connections": {
+        "When chat message received": {
+            "main": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "xu_ly_category": {
+            "main": [
+                [
+                    {
+                        "node": "Route by Intent1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Route by Intent1": {
+            "main": [
+                [],
+                [],
+                [
+                    {
+                        "node": "Code in JavaScript",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [],
+                [
+                    {
+                        "node": "Code in JavaScript1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Code in JavaScript": {
+            "main": [
+                [
+                    {
+                        "node": "Message a model1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Agent": {
+            "main": [
+                [
+                    {
+                        "node": "xu_ly_category",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Gemini Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Simple Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "HTTP Request": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "07c1c7ec2cda95a2b0ca5f954d25b4243bbf78131f2b02a8a5d44c777d7f6dfd"
+    }
+}

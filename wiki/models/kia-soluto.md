@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/kia/brochure/brochure-soluto-1107202
 image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-13.webp
 generated: true
 generated_from: raw/models/kia/kia-soluto.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-soluto.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

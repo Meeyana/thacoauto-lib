@@ -12,7 +12,7 @@ version_count: 2
 image: https://thacoautotphcm.vn/storage/new-morning/kia.webp
 generated: true
 generated_from: raw/models/kia/kia-new-morning.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-new-morning.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

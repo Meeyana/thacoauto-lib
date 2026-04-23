@@ -232,14 +232,45 @@ def render_model(json_path: Path, brand: str):
 
     out_file = WIKI_DIR / f"{slug}.md"
     out_file.write_text("\n".join(md), encoding="utf-8")
-    return slug, name, pmin, brand
+    catalog_entry = {
+        "slug": slug,
+        "name": name,
+        "brand": brand,
+        "car_type": car.get("car_type"),
+        "seat": car.get("seat"),
+        "fuel": car.get("fuel"),
+        "price_min_vnd": pmin,
+        "price_max_vnd": pmax,
+        "version_count": len(versions),
+        "status": "dang-ban",
+        "url": f"wiki/models/{slug}.md",
+        "faq_url": f"wiki/faq/{slug}-qa.md" if faq_file.exists() else None,
+        "image": car.get("image"),
+        "brochure": car.get("brochure"),
+    }
+    return slug, name, pmin, brand, catalog_entry
+
+
+def write_catalog(generated):
+    """Ghi wiki/models/catalog.json — filter index cho chatbot/n8n."""
+    catalog = [g[4] for g in generated]
+    today = date.today().isoformat()
+    payload = {
+        "updated": today,
+        "total": len(catalog),
+        "models": catalog,
+    }
+    (WIKI_DIR / "catalog.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 
 def render_models_subindex(generated):
-    """Tạo wiki/models/index.md tổng hợp tất cả model + tra cứu theo brand/loại/giá."""
+    """Tạo wiki/models/index.md tổng hợp tất cả model + bảng filter đầy đủ."""
     today = date.today().isoformat()
     by_brand = {}
-    for slug, name, pmin, brand in generated:
+    for slug, name, pmin, brand, _ in generated:
         by_brand.setdefault(brand, []).append((slug, name, pmin))
 
     md = []
@@ -270,6 +301,23 @@ def render_models_subindex(generated):
             md.append(f"| [[models/{slug}\\|{name}]] | {fmt_vnd(pmin)} |")
         md.append("")
 
+    # Bảng filter tổng — mọi model + tag (brand, loại, chỗ, nhiên liệu, giá)
+    md.append("## Bảng tra cứu nhanh (filter theo tag)")
+    md.append("")
+    md.append("| Model | Thương hiệu | Loại xe | Số chỗ | Nhiên liệu | Giá từ |")
+    md.append("|---|---|---|---|---|---|")
+    all_rows = sorted(generated, key=lambda x: (x[3], x[4].get("car_type") or "", x[2] or 0))
+    for slug, name, pmin, brand, entry in all_rows:
+        md.append(
+            f"| [[models/{slug}\\|{name}]] | {brand.capitalize()} | "
+            f"{entry.get('car_type') or '—'} | {entry.get('seat') or '—'} | "
+            f"{entry.get('fuel') or '—'} | {fmt_vnd(pmin)} |"
+        )
+    md.append("")
+    md.append("> 📊 **Filter dạng JSON cho chatbot:** [[models/catalog|catalog.json]] "
+              "(machine-readable, dùng cho n8n / API).")
+    md.append("")
+
     md.append("## Liên kết")
     md.append("- [[company/thaco-auto]]")
     md.append("")
@@ -278,12 +326,13 @@ def render_models_subindex(generated):
 
 def update_index(generated):
     render_models_subindex(generated)
+    write_catalog(generated)
     if not INDEX_FILE.exists():
         return
     content = INDEX_FILE.read_text(encoding="utf-8")
 
     by_brand = {}
-    for slug, name, pmin, brand in generated:
+    for slug, name, pmin, brand, _ in generated:
         by_brand.setdefault(brand, []).append((slug, name, pmin))
 
     brands_summary = ", ".join(f"{b.capitalize()} ({len(items)})"
@@ -316,7 +365,7 @@ def update_index(generated):
 def update_brand_pages(generated):
     """Inject danh sách model vào trang brand giữa BRAND_MARKER_BEGIN/END."""
     by_brand = {}
-    for slug, name, pmin, brand in generated:
+    for slug, name, pmin, brand, _ in generated:
         by_brand.setdefault(brand, []).append((slug, name, pmin))
 
     for brand, items in by_brand.items():
