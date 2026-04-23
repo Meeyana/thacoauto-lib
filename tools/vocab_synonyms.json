@@ -29,10 +29,37 @@
   },
 
   "use_case": {
-    "gia_dinh": ["gia đình", "gia dinh", "đi chơi cuối tuần", "chở con", "đưa đón con", "cho gia đình"],
-    "do_thi": ["đô thị", "do thi", "đi phố", "trong thành phố", "chạy phố", "nội thành", "đi làm hàng ngày"],
-    "di_tinh": ["đi tỉnh", "di tinh", "đường dài", "liên tỉnh", "đi xa", "đèo núi", "đi du lịch"],
-    "kinh_doanh": ["kinh doanh", "chở hàng", "dịch vụ", "taxi", "grab", "be", "chạy dịch vụ"],
-    "lai_thu": ["lái thử", "lai thu", "trải nghiệm", "test drive", "đi thử"]
+    "gia_dinh": [
+      "gia đình", "gia dinh", "đưa đón con", "chở con", "đi học", "vợ con",
+      "cho gia đình", "đại gia đình", "nhiều người", "đi chơi cuối tuần",
+      "ông bà", "cả nhà", "7 người", "8 người"
+    ],
+    "do_thi": [
+      "đô thị", "do thi", "đi phố", "nội thành", "chạy phố",
+      "đi làm hàng ngày", "kẹt xe", "trong thành phố", "thành phố",
+      "đi làm", "phố", "ngách hẻm", "linh hoạt", "xe nhỏ gọn"
+    ],
+    "di_tinh": [
+      "đi tỉnh", "di tinh", "đường dài", "liên tỉnh", "đi xa",
+      "đèo núi", "đường trường", "đi du lịch", "phượt", "off-road",
+      "vượt địa hình", "về quê", "di chuyển xa"
+    ],
+    "kinh_doanh": [
+      "kinh doanh", "chở hàng", "dịch vụ", "taxi", "grab", "be",
+      "chạy dịch vụ", "buôn bán", "vận tải", "công ty",
+      "thương mại", "xe chạy app", "xe dịch vụ"
+    ],
+    "khang_dinh_vi_the": [
+      "đẳng cấp", "sang trọng", "thể hiện đẳng cấp", "doanh nhân",
+      "xe sếp", "cao cấp", "thương gia", "luxury", "premium",
+      "sang chảnh", "vip", "địa vị", "thể hiện bản thân",
+      "xe sang", "xe cho sếp"
+    ],
+    "tech_eco": [
+      "công nghệ", "tiết kiệm xăng", "tiết kiệm nhiên liệu", "hybrid",
+      "lai điện", "xe điện", "thân thiện môi trường", "xanh", "eco",
+      "kinh tế nhiên liệu", "ít tốn xăng", "tech", "smart car",
+      "xe thông minh", "ecology", "bảo vệ môi trường"
+    ]
   }
 }

@@ -16,7 +16,7 @@ updated: 2026-04-22
 | [[faq/kia-k5-qa]] | [[models/kia-k5]] | 10 | D-Sedan |
 | [[faq/kia-sportage-qa]] | [[models/kia-sportage]] | 13 | C-SUV |
 | [[faq/kia-new-sorento-qa]] | [[models/kia-new-sorento]] | 11 | D-SUV (xăng/dầu) |
-| [[faq/kia-sorento-hevphev-qa]] | [[models/kia-sorento-hevphev]] | 11 | D-SUV (Hybrid) |
+| [[faq/kia-sorento-hybrid-qa]] | [[models/kia-sorento-hybrid]] | 11 | D-SUV (Hybrid) |
 | [[faq/kia-new-carnival-qa]] | [[models/kia-new-carnival]] | 2 | SUV Onroad / MPV (so sánh thế hệ) |
 
 **Tổng: 5 trang FAQ · 47 câu Q&A**

@@ -188,9 +188,9 @@ Thời gian sạc đầy đối với bộ sạc tiêu chuẩn theo công bố c
 
 ## 📚 Q&A mở rộng (từ tài liệu đào tạo bán hàng)
 
-Xem trang Q&A chi tiết: [[faq/kia-sorento-hevphev-qa]] — câu hỏi & trả lời tư vấn khách hàng, biên soạn từ tài liệu đào tạo chính thức.
+Xem trang Q&A chi tiết: [[faq/kia-sorento-hybrid-qa]] — câu hỏi & trả lời tư vấn khách hàng, biên soạn từ tài liệu đào tạo chính thức.
 
 ## Liên kết
 - [[brands/kia]]
 - [[company/thaco-auto]]
-- [[faq/kia-sorento-hevphev-qa|Q&A — KIA SORENTO HEV/PHEV]]
+- [[faq/kia-sorento-hybrid-qa|Q&A — KIA SORENTO HEV/PHEV]]

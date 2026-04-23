@@ -19,6 +19,22 @@
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-carens-1.pdf"
     },
     {
+      "slug": "kia-carnival",
+      "name": "KIA NEW CARNIVAL",
+      "brand": "kia",
+      "car_type": "D-SUV",
+      "seat": "8",
+      "fuel": "Dầu",
+      "price_min_vnd": 1299000000,
+      "price_max_vnd": 1649000000,
+      "version_count": 6,
+      "status": "dang-ban",
+      "url": "wiki/models/kia-carnival.md",
+      "faq_url": null,
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-carnival/new-carnival.webp",
+      "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-new-carnival-1.pdf"
+    },
+    {
       "slug": "kia-k3",
       "name": "KIA K3",
       "brand": "kia",
@@ -67,22 +83,6 @@
       "brochure": "https://thacoautotphcm.vn/storage/brochure-morning.pdf"
     },
     {
-      "slug": "kia-new-carnival",
-      "name": "KIA NEW CARNIVAL",
-      "brand": "kia",
-      "car_type": "D-SUV",
-      "seat": "8",
-      "fuel": "Dầu",
-      "price_min_vnd": 1299000000,
-      "price_max_vnd": 1649000000,
-      "version_count": 6,
-      "status": "dang-ban",
-      "url": "wiki/models/kia-new-carnival.md",
-      "faq_url": "wiki/faq/kia-new-carnival-qa.md",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-carnival/new-carnival.webp",
-      "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-new-carnival-1.pdf"
-    },
-    {
       "slug": "kia-new-morning",
       "name": "KIA NEW MORNING",
       "brand": "kia",
@@ -99,7 +99,7 @@
       "brochure": ""
     },
     {
-      "slug": "kia-new-seltos",
+      "slug": "kia-seltos",
       "name": "KIA NEW SELTOS",
       "brand": "kia",
       "car_type": "B-SUV",
@@ -109,42 +109,10 @@
       "price_max_vnd": 699000000,
       "version_count": 6,
       "status": "dang-ban",
-      "url": "wiki/models/kia-new-seltos.md",
+      "url": "wiki/models/kia-seltos.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-08.webp",
       "brochure": "https://thacoautotphcm.vn/storage/brochure/kia/brochure-seltos-v7-0606.pdf"
-    },
-    {
-      "slug": "kia-new-sonet",
-      "name": "KIA NEW SONET",
-      "brand": "kia",
-      "car_type": "B-SUV",
-      "seat": "5",
-      "fuel": "Xăng",
-      "price_min_vnd": 489000000,
-      "price_max_vnd": 609000000,
-      "version_count": 4,
-      "status": "dang-ban",
-      "url": "wiki/models/kia-new-sonet.md",
-      "faq_url": null,
-      "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-01.webp",
-      "brochure": "https://thacoautotphcm.vn/storage/brochure/kia/e-brochure-kia-new-sonet.pdf"
-    },
-    {
-      "slug": "kia-new-sorento",
-      "name": "KIA NEW SORENTO",
-      "brand": "kia",
-      "car_type": "D-SUV",
-      "seat": "7",
-      "fuel": "Xăng",
-      "price_min_vnd": 1199000000,
-      "price_max_vnd": 1449000000,
-      "version_count": 8,
-      "status": "dang-ban",
-      "url": "wiki/models/kia-new-sorento.md",
-      "faq_url": "wiki/faq/kia-new-sorento-qa.md",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-sorento/new-sorento-02.webp",
-      "brochure": "https://thacoautotphcm.vn/storage/kia-new-sorento/e-brochure-v6-1509-copy.pdf"
     },
     {
       "slug": "kia-soluto",
@@ -163,7 +131,23 @@
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/brochure-soluto-11072023.pdf"
     },
     {
-      "slug": "kia-sorento-hevphev",
+      "slug": "kia-sonet",
+      "name": "KIA NEW SONET",
+      "brand": "kia",
+      "car_type": "B-SUV",
+      "seat": "5",
+      "fuel": "Xăng",
+      "price_min_vnd": 489000000,
+      "price_max_vnd": 609000000,
+      "version_count": 4,
+      "status": "dang-ban",
+      "url": "wiki/models/kia-sonet.md",
+      "faq_url": null,
+      "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-01.webp",
+      "brochure": "https://thacoautotphcm.vn/storage/brochure/kia/e-brochure-kia-new-sonet.pdf"
+    },
+    {
+      "slug": "kia-sorento-hybrid",
       "name": "KIA SORENTO HEV/PHEV",
       "brand": "kia",
       "car_type": "D-SUV",
@@ -173,10 +157,26 @@
       "price_max_vnd": 1399000000,
       "version_count": 2,
       "status": "dang-ban",
-      "url": "wiki/models/kia-sorento-hevphev.md",
-      "faq_url": "wiki/faq/kia-sorento-hevphev-qa.md",
+      "url": "wiki/models/kia-sorento-hybrid.md",
+      "faq_url": "wiki/faq/kia-sorento-hybrid-qa.md",
       "image": "https://thacoautotphcm.vn/storage/kia/360/sorento-hybrid/3f92c6fc-a4f3-4fbe-84cc-3cd32e03ef42.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-sorento-hev-phev-v1201222-s.pdf"
+    },
+    {
+      "slug": "kia-sorento",
+      "name": "KIA NEW SORENTO",
+      "brand": "kia",
+      "car_type": "D-SUV",
+      "seat": "7",
+      "fuel": "Xăng",
+      "price_min_vnd": 1199000000,
+      "price_max_vnd": 1449000000,
+      "version_count": 8,
+      "status": "dang-ban",
+      "url": "wiki/models/kia-sorento.md",
+      "faq_url": null,
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-sorento/new-sorento-02.webp",
+      "brochure": "https://thacoautotphcm.vn/storage/kia-new-sorento/e-brochure-v6-1509-copy.pdf"
     },
     {
       "slug": "kia-sportage",
@@ -195,7 +195,7 @@
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/brochure-sportage.pdf"
     },
     {
-      "slug": "mazda2-sport",
+      "slug": "mazda-2-sport",
       "name": "MAZDA2 SPORT",
       "brand": "mazda",
       "car_type": "Hatchback",
@@ -205,13 +205,13 @@
       "price_max_vnd": 537000000,
       "version_count": 1,
       "status": "dang-ban",
-      "url": "wiki/models/mazda2-sport.md",
+      "url": "wiki/models/mazda-2-sport.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2-sport.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda2-sport-v5-05062023.pdf"
     },
     {
-      "slug": "mazda2",
+      "slug": "mazda-2",
       "name": "MAZDA2",
       "brand": "mazda",
       "car_type": "Sedan",
@@ -221,13 +221,13 @@
       "price_max_vnd": 494000000,
       "version_count": 4,
       "status": "dang-ban",
-      "url": "wiki/models/mazda2.md",
+      "url": "wiki/models/mazda-2.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/catalog/e-brochure-mazda2-sedan-v5-06-03-2023.pdf"
     },
     {
-      "slug": "mazda3-sport",
+      "slug": "mazda-3-sport",
       "name": "MAZDA3 SPORT",
       "brand": "mazda",
       "car_type": "Hatchback",
@@ -237,13 +237,13 @@
       "price_max_vnd": 719000000,
       "version_count": 2,
       "status": "dang-ban",
-      "url": "wiki/models/mazda3-sport.md",
+      "url": "wiki/models/mazda-3-sport.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-3-sport.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda3-sport-v5-05062023.pdf"
     },
     {
-      "slug": "mazda3",
+      "slug": "mazda-3",
       "name": "MAZDA3",
       "brand": "mazda",
       "car_type": "Sedan",
@@ -253,13 +253,13 @@
       "price_max_vnd": 719000000,
       "version_count": 3,
       "status": "dang-ban",
-      "url": "wiki/models/mazda3.md",
+      "url": "wiki/models/mazda-3.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-3.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda3-sedan-v5-05062023.pdf"
     },
     {
-      "slug": "new-mazda-cx-3",
+      "slug": "mazda-cx-3",
       "name": "NEW MAZDA CX-3",
       "brand": "mazda",
       "car_type": "B-SUV",
@@ -269,7 +269,7 @@
       "price_max_vnd": 659000000,
       "version_count": 4,
       "status": "dang-ban",
-      "url": "wiki/models/new-mazda-cx-3.md",
+      "url": "wiki/models/mazda-cx-3.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-3/new-cx-3.webp",
       "brochure": ""
@@ -307,7 +307,7 @@
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-5-final.pdf"
     },
     {
-      "slug": "new-mazda-cx-8",
+      "slug": "mazda-cx-8",
       "name": "NEW MAZDA CX-8",
       "brand": "mazda",
       "car_type": "D-SUV",
@@ -317,7 +317,7 @@
       "price_max_vnd": 1149000000,
       "version_count": 3,
       "status": "dang-ban",
-      "url": "wiki/models/new-mazda-cx-8.md",
+      "url": "wiki/models/mazda-cx-8.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/new-mazda-cx-8/anh-xe/mazda-cx-8.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-8-v3-05062023.pdf"
@@ -355,7 +355,7 @@
       "brochure": ""
     },
     {
-      "slug": "new-peugeot-2008",
+      "slug": "peugeot-2008",
       "name": "NEW PEUGEOT 2008",
       "brand": "peugeot",
       "car_type": "C-SUV",
@@ -365,13 +365,13 @@
       "price_max_vnd": 899000000,
       "version_count": 3,
       "status": "dang-ban",
-      "url": "wiki/models/new-peugeot-2008.md",
+      "url": "wiki/models/peugeot-2008.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-new-2008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/7-peugeot-new-2008-e-salekit.pdf"
     },
     {
-      "slug": "new-peugeot-3008",
+      "slug": "peugeot-3008",
       "name": "NEW PEUGEOT 3008",
       "brand": "peugeot",
       "car_type": "C-SUV",
@@ -381,7 +381,7 @@
       "price_max_vnd": 1109000000,
       "version_count": 3,
       "status": "dang-ban",
-      "url": "wiki/models/new-peugeot-3008.md",
+      "url": "wiki/models/peugeot-3008.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-3008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/10-peugeot-3008-new-logo-e-salekit.pdf"
@@ -403,7 +403,7 @@
       "brochure": "https://thacoautotphcm.vn/storage/peugeot/brochure/e-brochure-peugeot-408.pdf"
     },
     {
-      "slug": "new-peugeot-5008",
+      "slug": "peugeot-5008",
       "name": "NEW PEUGEOT 5008",
       "brand": "peugeot",
       "car_type": "D-SUV",
@@ -413,7 +413,7 @@
       "price_max_vnd": 1209000000,
       "version_count": 2,
       "status": "dang-ban",
-      "url": "wiki/models/new-peugeot-5008.md",
+      "url": "wiki/models/peugeot-5008.md",
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-5008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/1-peugeot-5008-new-logo-e-salekit.pdf"

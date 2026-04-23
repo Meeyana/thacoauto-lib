@@ -1,7 +1,7 @@
 ---
 title: Q&A — Kia Sorento HEV/PHEV
 type: faq
-model: "[[models/kia-sorento-hevphev]]"
+model: "[[models/kia-sorento-hybrid]]"
 brand: "[[brands/kia]]"
 related_models: ["[[models/kia-new-sorento]]"]
 source_pdf: raw/models/kia/Q&A/Câu hỏi Q&A - Kia Sorento HEV_PHEV-compressed.pdf
@@ -14,7 +14,7 @@ updated: 2026-04-22
 
 # Q&A — Kia Sorento HEV/PHEV
 
-Phân khúc D-SUV Hybrid. Liên kết model: [[models/kia-sorento-hevphev]]. Xem thêm phiên bản xăng/dầu: [[faq/kia-new-sorento-qa]].
+Phân khúc D-SUV Hybrid. Liên kết model: [[models/kia-sorento-hybrid]]. Xem thêm phiên bản xăng/dầu: [[faq/kia-new-sorento-qa]].
 
 ---
 
@@ -96,7 +96,7 @@ VinFast phải tới trạm sạc của hãng — bất tiện cho khu vực kh�
 ---
 
 ## Liên kết
-- [[models/kia-sorento-hevphev|← Quay lại trang model Kia Sorento HEV/PHEV]]
+- [[models/kia-sorento-hybrid|← Quay lại trang model Kia Sorento HEV/PHEV]]
 - [[faq/kia-new-sorento-qa|Q&A phiên bản xăng/dầu]]
 - [[brands/kia]]
 - [[faq/index|Tất cả FAQ]]

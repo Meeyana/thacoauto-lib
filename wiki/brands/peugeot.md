@@ -23,10 +23,10 @@ _Tự động sinh từ `tools/sync_models.py` — 4 model._
 
 | Model | Giá từ |
 |---|---|
-| [[models/new-peugeot-2008\|NEW PEUGEOT 2008]] | 779.000.000 ₫ |
-| [[models/new-peugeot-3008\|NEW PEUGEOT 3008]] | 929.000.000 ₫ |
+| [[models/peugeot-2008\|NEW PEUGEOT 2008]] | 779.000.000 ₫ |
+| [[models/peugeot-3008\|NEW PEUGEOT 3008]] | 929.000.000 ₫ |
 | [[models/peugeot-408\|PEUGEOT 408]] | 1.019.000.000 ₫ |
-| [[models/new-peugeot-5008\|NEW PEUGEOT 5008]] | 1.109.000.000 ₫ |
+| [[models/peugeot-5008\|NEW PEUGEOT 5008]] | 1.109.000.000 ₫ |
 
 <!-- END: auto-generated model list -->
 

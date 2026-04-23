@@ -104,7 +104,10 @@ def render_model(json_path: Path, brand: str):
     car = data.get("car_info", {})
     versions = data.get("versions", [])
     name = car.get("name", json_path.stem).strip()
-    slug = slugify(name)
+    # Slug = raw JSON filename (deterministic, khớp với tên file gốc)
+    # Không dùng slugify(name) vì title trong JSON có thể đổi → slug bị shift,
+    # phá vỡ liên kết FAQ và URL đã share trước đó.
+    slug = json_path.stem.lower()
 
     prices = [v["price"] for v in versions if v.get("price")]
     if car.get("lowest_price"):
