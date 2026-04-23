@@ -7,7 +7,7 @@ showroom_count: 7
 brands: [BMW, BMW Motorrad, Iveco Daily, KIA, KIA Frontier, MAZDA, MINI, Mercedes-Benz Bus, Mitsubishi Fuso, PEUGEOT, PEUGEOT MOTOCYCLES, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.

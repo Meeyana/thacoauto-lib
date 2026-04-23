@@ -48,7 +48,7 @@ Cập nhật lần cuối: 2026-04-22
 ## Models (Dòng xe)
 <!-- BEGIN: auto-generated models -->
 
-**12 model** trên 1 thương hiệu: Kia (12).
+**26 model** trên 3 thương hiệu: Kia (12), Mazda (10), Peugeot (4).
 
 📋 **Sub-index chi tiết:** [[models/index]] (bảng đầy đủ + giá từng model)
 

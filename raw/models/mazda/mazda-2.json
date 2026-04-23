@@ -1,0 +1,252 @@
+{
+  "car_info": {
+    "name": "MAZDA2",
+    "car_type": "Sedan",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2.webp",
+    "lowest_price": 418000000,
+    "exterior_colors": [
+      "Đỏ",
+      "Xanh dương",
+      "Trắng",
+      "Xám"
+    ],
+    "interior_colors": [
+      "Đen",
+      "Đen - Đỏ"
+    ],
+    "brochure": "https://thacoautotphcm.vn/storage/mazda/catalog/e-brochure-mazda2-sedan-v5-06-03-2023.pdf",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá 19 triệu đồng",
+        "price_gift": "19000000"
+      }
+    ],
+    "warranty_policy": [
+      "Phim cách nhiệt Llumar",
+      "Thảm lót sàn, Tấm lót khoang hành lý, Dù che mưa thương hiệu, Phiếu nhiên liệu giao xe"
+    ],
+    "faqs": [
+      {
+        "chu_de": "MAZDA2",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Mazda2 là xe nhập khẩu hay lắp ráp?",
+            "cau_tra_loi": "Mazda2 là xe được nhập khẩu nguyên chiếc từ Thái Lan về Việt Nam."
+          },
+          {
+            "cau_hoi": "Mazda2 sử dụng động cơ gì, có đạt tiêu chuẩn khí thải Euro 5 không?",
+            "cau_tra_loi": "Mazda2 sử dụng động cơ SkyactivG 1.5L, có công suất 110Hp. Xe đạt tiêu chuẩn khí thải Euro5 tại thị trường Việt Nam."
+          },
+          {
+            "cau_hoi": "Mazda2 có sử dụng được xăng sinh học E10 không?",
+            "cau_tra_loi": "Mazda2 sử dụng được xăng sinh học E10."
+          },
+          {
+            "cau_hoi": " Mức tiêu hao nhiên liệu Mazda2 là bao nhiêu?",
+            "cau_tra_loi": "Mức tiêu hao nhiên liệu Đô thị 7,91L/100Km - Ngoài đô thị 5,07 L/100Km - Kết hợp 6,11 L/100Km."
+          },
+          {
+            "cau_hoi": "Trang bị An toàn trên Mazda2 gồm những gì?",
+            "cau_tra_loi": " Trang bị An toàn trên Mazda2 bao gồm: Hệ thống chống bó cứng phanh ABS, Hệ thống phân bổ lực phanh điện tử EBD, Hệ thống hỗ trợ lực phanh khẩn cấp EBA, Hệ thống cảnh báo phanh khẩn cấp ESS, Hệ thống cân bằng điện tử DSC, Hệ thống kiểm soát lực kéo chống trượt TCS, Hệ thống hỗ trợ khởi hành ngang dốc HLA, Camera lùi, Cảm biến cảnh báo va chạm phía sau...\n"
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "4355 x 1695 x 1470 mm",
+        "Chiều dài cơ sở": "2570 mm",
+        "Bán kính quay vòng tối thiểu": "5000 mm",
+        "Khoảng sáng gầm xe": "140 mm",
+        "Khối lượng không tải": "1109 kg",
+        "Khối lượng toàn tải": "1528 kg",
+        "Thể tích khoang hành lý": "440 L",
+        "Dung tích thùng nhiên liệu": "44 L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "Nhập Khẩu"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "Skyactiv-G 1.5L",
+        "Dung tích xi lanh": "1496 cc",
+        "Công suất cực đại": "110 / 6000 hp @ rpm",
+        "Mômen xoắn cực đại": "144 / 4000 Nm @ rpm",
+        "Hộp số": "6AT",
+        "Hệ thống dẫn động": "Cầu trước (FWD)",
+        "Hệ thống treo trước ": "Độc lập McPherson",
+        "Hệ thống treo sau": "Thanh xoắn",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Đĩa",
+        "Thông số lốp xe": "185/65 R15",
+        "Tiêu thụ nhiên liệu đô thị": "7.91 L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "5.07 L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "6.11 L/100km",
+        "Hệ thống dừng/Khởi động động cơ thông minh": "-",
+        "Chế độ lái ": "Normal/Sport",
+        "Chế độ địa hình": "-",
+        "Trang bị khác": "Hệ thống kiểm soát gia tốc nâng cao GVC Plus"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "LED",
+        "Đèn trước tự động bật/tắt": "-",
+        "Đèn trước tự động chiếu xa/chiếu gần": "-",
+        "Đèn trước chức năng tự động cân bằng góc chiếu": "●",
+        "Đèn trước mở rộng góc chiếu": "-",
+        "Đèn ban ngày LED": "Halogen",
+        "Đèn sương mù": "-",
+        "Cụm đèn sau": "Halogen",
+        "Gương chiếu hậu chỉnh điện, gập điện": "Chỉnh điện",
+        "Gạt mưa tự động": "-",
+        "Cửa sổ trời": "-"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "-",
+        "Chất liệu ghế": "Nỉ",
+        "Ghế người lái chỉnh cơ": "●",
+        "Ghế người lái chỉnh điện": "-",
+        "Ghế người lái có nhớ vị trí": "-",
+        "Ghế hành khách phía trước chỉnh cơ": "●",
+        "Ghế hành khách phía trước chỉnh điện": "-",
+        "Hàng ghế trước có tính năng làm mát": "-",
+        "Hàng ghế trước có tính năng sưởi": "-",
+        "Hàng ghế trước có tính năng massage": "-",
+        "Tính năng cửa hít": "-",
+        "Kính cửa sổ chỉnh điện": "●",
+        "Màn hình đồng hồ đa thông tin": "Analog + Digital",
+        "Màn hình HUD": "-",
+        "Màn hình giải trí trung tâm": "-",
+        "Kết nối Apple Carplay/Android Auto": "-",
+        "Hệ thống điều hòa tự động": "Chỉnh cơ",
+        "Số vùng khí hậu điều hòa": "1",
+        "Cửa gió cho hàng ghế sau": "-",
+        "Chìa khóa thông minh": "●",
+        "Khởi động nút bấm": "●",
+        "Khởi động từ xa": "-",
+        "Hệ thống âm thanh": "4 loa",
+        "Lẫy chuyển số": "-",
+        "Sạc không dây Qi": "-",
+        "Phanh đỗ điện tử": "-",
+        "Giữ phanh tự động Autohold": "-",
+        "Đèn trang trí nội thất": "-",
+        "Rèm che nắng": "-",
+        "Móc khóa ghế trẻ em ISOFIX": "●"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "2",
+        "Hệ thống chống bó cứng phanh ABS": "●",
+        "Hệ thống phân phối lực phanh EBD": "●",
+        "Hệ thống hỗ trợ phanh khẩn cấp BA": "●",
+        "Hệ thống cảnh báo phanh khẩn cấp ESS": "●",
+        "Hệ thống cân bằng điện tử": "●",
+        "Hệ thống kiểm soát lực kéo chống trượt TCS": "●",
+        "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "●",
+        "Mã hóa chống sao chép chìa khóa": "●",
+        "Hệ thống cảnh báo chống trộm": "●",
+        "Cảm biến hỗ trợ đỗ xe": "-",
+        "Hệ thống cảnh báo điểm mù ": "-",
+        "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+        "Hệ thống cảnh báo lệch làn đường ": "-",
+        "Hệ thống hỗ trợ giữ làn đường ": "-",
+        "Hệ thống hỗ trợ phanh chủ động": "-",
+        "Hệ thống điều khiển hành trình": "-",
+        "Hệ thống điều khiển hành trình thích ứng": "-",
+        "Hệ thống cảnh báo áp suất lốp": "-",
+        "Camera lùi": "-"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "Mazda2 1.5L AT",
+      "price": 418000000,
+      "features": "Đặt điểm nổi bậtNgoại thấtMặt ga lăng thiết kế theo phong cách \"New Wave\" với lưới tản nhiệt to bản hiện đạiĐèn trước LED projector – Cân bằng cao/thấp tự độngGương chiếu hậu chỉnh điệnMâm đúc 15”Nội thấtChìa khóa thông minhKhởi động nút bấmHệ thống giải trí USB, AUX, Radio + 4 loaĐiều hòa cơVận hànhĐộng cơ 1.5G SkyActiv 110Hp – 144NmAn toàn2 túi khíCảnh báo thắt dây an toàn ghế trước - sau ",
+      "spec_different": null
+    },
+    {
+      "version_name": "Mazda2 1.5L AT (Thêm tùy chọn)",
+      "price": 429000000,
+      "features": "Đặt điểm nổi bậtNgoại thất (Tương tự với bản 1.5 AT)Nội thất (Nâng cấp so với bản 1.5AT)Ghế da similiMàn hình giải trí trung tâm Android 7”Kết nối Apple Carplay & Android AutoVận hành (Tương tự với bản 1.5 AT)An toàn (Nâng cấp so với bản 1.5AT)Camera lùi",
+      "spec_different": {
+        "NỘI THẤT - TIỆN NGHI": {
+          "Chất liệu ghế": "Da Simili",
+          "Màn hình giải trí trung tâm": "Android 7”",
+          "Kết nối Apple Carplay/Android Auto": "●"
+        },
+        "AN TOÀN": {
+          "Camera lùi": "●"
+        }
+      }
+    },
+    {
+      "version_name": "Mazda2 1.5L Deluxe",
+      "price": 459000000,
+      "features": "Đặt điểm nổi bậtNgoại thất (Nâng cấp so với bản 1.5AT)Gương chiếu hậu chỉnh điện, gập điện, tích hợp báo rẽNội thất (Nâng cấp so với bản 1.5AT)Hệ thống âm thanh 6 loaHàng ghế sau gập 60:40Vận hành (Tương tự với bản 1.5 AT)An toàn (Nâng cấp so với bản 1.5AT)Cảm biến hỗ trợ đỗ xe phía sauCamera lùi",
+      "spec_different": {
+        "NGOẠI THẤT": {
+          "Gương chiếu hậu chỉnh điện, gập điện": "●"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Màn hình giải trí trung tâm": "7\"",
+          "Kết nối Apple Carplay/Android Auto": "●",
+          "Hệ thống âm thanh": "6 loa"
+        },
+        "AN TOÀN": {
+          "Cảm biến hỗ trợ đỗ xe": "Sau",
+          "Camera lùi": "●"
+        }
+      }
+    },
+    {
+      "version_name": "Mazda2 1.5L Luxury",
+      "price": 494000000,
+      "features": "Đặt điểm nổi bậtNgoại thất (Nâng cấp so với bản 1.5 Deluxe)Hệ thống bật/tắt đèn tự độngĐèn ban ngày dạng LedGạt mưa tự độngMâm đúc 16” (Thiết kế mới)Nội thất (Nâng cấp so với bản 1.5 Deluxe)Ghế da pha nỉ màu đen chỉ đỏ (Thiết kế mới)Tay lái bọc da (có nút bấm) & lẫy chuyển sốĐiều hòa tự động (1 vùng)Gương chiếu hậu trung tâm chống chói tự độngVận hành (Nâng cấp so với bản 1.5 Deluxe)Điều khiển hành trìnhAn toàn (Tương tự với bản 1.5 Deluxe)",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Khối lượng không tải": "1118 kg",
+          "Khối lượng toàn tải": "1538 kg"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Thông số lốp xe": "185/60 R16",
+          "Tiêu thụ nhiên liệu đô thị": "7.13 L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "4.82 L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "5.66 L/100km",
+          "Hệ thống dừng/Khởi động động cơ thông minh": "●"
+        },
+        "NGOẠI THẤT": {
+          "Đèn trước tự động bật/tắt": "●",
+          "Đèn ban ngày LED": "●",
+          "Gương chiếu hậu chỉnh điện, gập điện": "●",
+          "Gạt mưa tự động": "●"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "●",
+          "Chất liệu ghế": "Da + Nỉ",
+          "Màn hình giải trí trung tâm": "7''",
+          "Kết nối Apple Carplay/Android Auto": "●",
+          "Hệ thống điều hòa tự động": "●",
+          "Hệ thống âm thanh": "6 loa",
+          "Lẫy chuyển số": "●"
+        },
+        "AN TOÀN": {
+          "Cảm biến hỗ trợ đỗ xe": "Sau",
+          "Hệ thống điều khiển hành trình": "●",
+          "Camera lùi": "●"
+        }
+      }
+    }
+  ]
+}

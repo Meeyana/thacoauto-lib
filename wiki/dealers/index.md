@@ -5,7 +5,7 @@ total_areas: 22
 total_showrooms: 74
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-04-22
+updated: 2026-04-23
 ---
 
 > ⚠️ Trang này được **tự động sinh**. **KHÔNG sửa tay**.
