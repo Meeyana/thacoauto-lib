@@ -1,0 +1,311 @@
+{
+  "car_info": {
+    "name": "BMW 5 SERIES",
+    "car_type": "Sedan",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-5-series.webp",
+    "lowest_price": 1979000000,
+    "exterior_colors": [
+      "Xanh Dương",
+      "Trắng"
+    ],
+    "interior_colors": [
+      "Trắng"
+    ],
+    "brochure": "https://thacoautotphcm.vn/storage/bmw/view.pdf",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá lên đến 400 triệu đồng.",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng gói bảo dưỡng BSI 5 năm/ 60.000km.",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu BMW."
+    ],
+    "faqs": [
+      {
+        "chu_de": "GIẢI ĐÁP THẮC MẮC VỀ BMW 5 SERIES",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Màu sơn và nội thất có những lựa chọn nào?",
+            "cau_tra_loi": "Màu sơn phổ biến: Alpine White, Black Sapphire, Sophisto Grey, Phytonic Blue, Bernina Grey, Mineral White. Nội thất: Da Dakota màu đen, be, nâu mocha, xanh Navy."
+          },
+          {
+            "cau_hoi": "Xe phù hợp với đối tượng khách hàng nào?",
+            "cau_tra_loi": "520i: Doanh nhân yêu phong cách sang trọng, đẳng cấp, đề cao sự thoải mái.\n\n530i M Sport: Người thành đạt, yêu lái, thích phong cách thể thao nhưng vẫn tinh tế."
+          },
+          {
+            "cau_hoi": "Hệ thống treo & chế độ lái?",
+            "cau_tra_loi": "520i: treo tiêu chuẩn êm ái.\n\n530i M Sport: M Adaptive Suspension điều chỉnh điện tử, 3 chế độ lái: Eco Pro – Comfort – Sport."
+          },
+          {
+            "cau_hoi": "Tiện nghi nổi bật?",
+            "cau_tra_loi": "Điều hòa tự động 4 vùng độc lập.\n\nGhế trước chỉnh điện có nhớ vị trí & sưởi ghế.\n\nCửa sổ trời Panorama.\n\nMở cốp rảnh tay, rèm điện phía sau.\n\nHệ thống âm thanh Harman Kardon 16 loa (530i)."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "mm",
+        "Chiều dài cơ sở": "mm",
+        "Bán kính quay vòng tối thiểu": "mm",
+        "Khoảng sáng gầm xe": "mm",
+        "Khối lượng không tải": "kg",
+        "Khối lượng toàn tải": "kg",
+        "Thể tích khoang hành lý": "L",
+        "Dung tích thùng nhiên liệu": "L"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Dung tích xi lanh": "cc",
+        "Công suất cực đại": "hp @ rpm",
+        "Mômen xoắn cực đại": "Nm @ rpm",
+        "Tiêu thụ nhiên liệu đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "BMW 520i M SPORT 2023",
+      "price": 2359000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "BMW 520i 2023",
+      "price": 1979000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "4963 x 1868 x 1479 mm",
+          "Chiều dài cơ sở": "2975 mm",
+          "Bán kính quay vòng tối thiểu": "5600 mm",
+          "Khoảng sáng gầm xe": "142 mm",
+          "Khối lượng không tải": "1610 kg",
+          "Khối lượng toàn tải": "2285 kg",
+          "Thể tích khoang hành lý": "530 L",
+          "Dung tích thùng nhiên liệu": "68 L",
+          "Số chỗ ngồi": "5",
+          "Nguồn gốc": "Lắp ráp trong nước"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Loại động cơ": "I4 2.0L TwinPower Turbo",
+          "Dung tích xi lanh": "1.998 cc",
+          "Công suất cực đại": "135 kW (184 HP) @ 5000-6500 vòng/phút hp @ rpm",
+          "Mômen xoắn cực đại": "290 Nm @ 1350-3800 vòng/phút Nm @ rpm",
+          "Hộp số": "8AT Steptronic",
+          "Hệ thống dẫn động": "Cầu sau (RWD)",
+          "Hệ thống treo trước ": "Tay đòn kép",
+          "Hệ thống treo sau": "Liên kết đa điểm",
+          "Hệ thống phanh trước": "Đĩa",
+          "Hệ thống phanh sau": "Đĩa",
+          "Thông số lốp xe": "245/40 R 19",
+          "Tiêu thụ nhiên liệu đô thị": "7,7 L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "6,1 L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "- L/100km",
+          "Hệ thống dừng/Khởi động động cơ thông minh": "Có",
+          "Chế độ lái ": "Tùy chỉnh 03 chế độ lái: Comfort, Eco Pro, Sport",
+          "Chế độ địa hình": "-",
+          "Trang bị khác": "-"
+        },
+        "NGOẠI THẤT": {
+          "Cụm đèn trước": "Adaptive LED",
+          "Đèn trước tự động bật/tắt": "Có",
+          "Đèn trước tự động chiếu xa/chiếu gần": "Có",
+          "Đèn trước chức năng tự động cân bằng góc chiếu": "Có",
+          "Đèn trước mở rộng góc chiếu": "Có",
+          "Đèn ban ngày LED": "Có",
+          "Đèn sương mù": "-",
+          "Cụm đèn sau": "BMW LED",
+          "Gương chiếu hậu chỉnh điện, gập điện": "Có",
+          "Gạt mưa tự động": "Có",
+          "Cửa sổ trời": "-",
+          "Trang bị khác": "-"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "●",
+          "Chất liệu ghế": "Da Sensatec",
+          "Ghế người lái chỉnh cơ": "-",
+          "Ghế người lái chỉnh điện": "Có",
+          "Ghế người lái có nhớ vị trí": "Có",
+          "Ghế hành khách phía trước chỉnh cơ": "-",
+          "Ghế hành khách phía trước chỉnh điện": "Có",
+          "Hàng ghế trước có tính năng làm mát": "-",
+          "Hàng ghế trước có tính năng sưởi": "Có",
+          "Hàng ghế trước có tính năng massage": "-",
+          "Tính năng cửa hít": "-",
+          "Kính cửa sổ chỉnh điện": "Có",
+          "Màn hình đồng hồ đa thông tin": "Màn hình đa thông tin 12.3-inch",
+          "Màn hình HUD": "-",
+          "Màn hình giải trí trung tâm": "Màn hình điều khiển trung tâm 12.3-inch",
+          "Kết nối Apple Carplay/Android Auto": "Có",
+          "Hệ thống điều hòa tự động": "Có",
+          "Số vùng khí hậu điều hòa": "4",
+          "Cửa gió cho hàng ghế sau": "Có",
+          "Chìa khóa thông minh": "Có",
+          "Khởi động nút bấm": "Có",
+          "Khởi động từ xa": "●",
+          "Hệ thống âm thanh": "Hệ thống âm thanh HiFi, 12 loa, công suất 205W",
+          "Lẫy chuyển số": "Có",
+          "Sạc không dây Qi": "Có",
+          "Phanh đỗ điện tử": "Có",
+          "Giữ phanh tự động Autohold": "Có",
+          "Đèn trang trí nội thất": "Có",
+          "Rèm che nắng": "-",
+          "Móc khóa ghế trẻ em ISOFIX": "Có",
+          "Trang bị khác": "-"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "6",
+          "Hệ thống chống bó cứng phanh ABS": "Có",
+          "Hệ thống phân phối lực phanh EBD": "Có",
+          "Hệ thống hỗ trợ phanh khẩn cấp BA": "Có",
+          "Hệ thống cảnh báo phanh khẩn cấp ESS": "Có",
+          "Hệ thống cân bằng điện tử": "Có",
+          "Hệ thống kiểm soát lực kéo chống trượt TCS": "Có",
+          "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "Có",
+          "Mã hóa chống sao chép chìa khóa": "Có",
+          "Hệ thống cảnh báo chống trộm": "-",
+          "Cảm biến hỗ trợ đỗ xe": "Có",
+          "Hệ thống cảnh báo điểm mù ": "-",
+          "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+          "Hệ thống cảnh báo lệch làn đường ": "-",
+          "Hệ thống hỗ trợ giữ làn đường ": "-",
+          "Hệ thống hỗ trợ phanh chủ động": "Lùi xe",
+          "Hệ thống điều khiển hành trình": "Có",
+          "Hệ thống điều khiển hành trình thích ứng": "-",
+          "Hệ thống cảnh báo áp suất lốp": "Có",
+          "Camera lùi": "Có"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 530i MSPORT 2022",
+      "price": 2759000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "4963 x 1868 x 1479 mm",
+          "Chiều dài cơ sở": "2975 mm",
+          "Bán kính quay vòng tối thiểu": "5600 mm",
+          "Khoảng sáng gầm xe": "142 mm",
+          "Khối lượng không tải": "1625 kg",
+          "Khối lượng toàn tải": "2305 kg",
+          "Thể tích khoang hành lý": "530 L",
+          "Dung tích thùng nhiên liệu": "68 L",
+          "Số chỗ ngồi": "5",
+          "Nguồn gốc": "Nhập khẩu"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Loại động cơ": "I4 2.0L TwinPower Turbo",
+          "Dung tích xi lanh": "1.998 cc",
+          "Công suất cực đại": "185 kW (252 HP) @ 5200-6500 vòng/ phút hp @ rpm",
+          "Mômen xoắn cực đại": "350 Nm @ 1450-4800 vòng/ phút Nm @ rpm",
+          "Hộp số": "8AT Steptronic",
+          "Hệ thống dẫn động": "Cầu sau (RWD)",
+          "Hệ thống treo trước ": "Tay đòn kép với giảm chấn thích ứng",
+          "Hệ thống treo sau": "Liên kết đa điểm với giảm chấn thích ứng",
+          "Hệ thống phanh trước": "Đĩa",
+          "Hệ thống phanh sau": "Đĩa",
+          "Thông số lốp xe": "245/40 R 19",
+          "Tiêu thụ nhiên liệu đô thị": "7,7 L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "6,1 L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "- L/100km",
+          "Hệ thống dừng/Khởi động động cơ thông minh": "Có",
+          "Chế độ lái ": "Tùy chỉnh 03 chế độ lái: Comfort, Eco Pro, Sport",
+          "Chế độ địa hình": "-",
+          "Trang bị khác": "-"
+        },
+        "NGOẠI THẤT": {
+          "Cụm đèn trước": "BMW Laser",
+          "Đèn trước tự động bật/tắt": "Có",
+          "Đèn trước tự động chiếu xa/chiếu gần": "Có",
+          "Đèn trước chức năng tự động cân bằng góc chiếu": "Có",
+          "Đèn trước mở rộng góc chiếu": "Có",
+          "Đèn ban ngày LED": "Có",
+          "Đèn sương mù": "-",
+          "Cụm đèn sau": "BMW LED",
+          "Gương chiếu hậu chỉnh điện, gập điện": "Có",
+          "Gạt mưa tự động": "Có",
+          "Cửa sổ trời": "Có",
+          "Trang bị khác": "-"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "●",
+          "Chất liệu ghế": "Da Dakota",
+          "Ghế người lái chỉnh cơ": "-",
+          "Ghế người lái chỉnh điện": "Có",
+          "Ghế người lái có nhớ vị trí": "Có",
+          "Ghế hành khách phía trước chỉnh cơ": "-",
+          "Ghế hành khách phía trước chỉnh điện": "Có",
+          "Hàng ghế trước có tính năng làm mát": "-",
+          "Hàng ghế trước có tính năng sưởi": "-",
+          "Hàng ghế trước có tính năng massage": "-",
+          "Tính năng cửa hít": "-",
+          "Kính cửa sổ chỉnh điện": "Có",
+          "Màn hình đồng hồ đa thông tin": "Màn hình đa thông tin 12.3-inch",
+          "Màn hình HUD": "Có",
+          "Màn hình giải trí trung tâm": "Màn hình điều khiển trung tâm 12.3-inch",
+          "Kết nối Apple Carplay/Android Auto": "Có",
+          "Hệ thống điều hòa tự động": "Có",
+          "Số vùng khí hậu điều hòa": "4",
+          "Cửa gió cho hàng ghế sau": "Có",
+          "Chìa khóa thông minh": "Có",
+          "Khởi động nút bấm": "Có",
+          "Khởi động từ xa": "Có",
+          "Hệ thống âm thanh": "Hệ thống âm thanh Harman Kardon, 16 loa, công suất 464W",
+          "Lẫy chuyển số": "Có",
+          "Sạc không dây Qi": "Có",
+          "Phanh đỗ điện tử": "Có",
+          "Giữ phanh tự động Autohold": "Có",
+          "Đèn trang trí nội thất": "Có",
+          "Rèm che nắng": "Có",
+          "Móc khóa ghế trẻ em ISOFIX": "Có"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "6",
+          "Hệ thống chống bó cứng phanh ABS": "Có",
+          "Hệ thống phân phối lực phanh EBD": "Có",
+          "Hệ thống hỗ trợ phanh khẩn cấp BA": "Có",
+          "Hệ thống cảnh báo phanh khẩn cấp ESS": "Có",
+          "Hệ thống cân bằng điện tử": "Có",
+          "Hệ thống kiểm soát lực kéo chống trượt TCS": "Có",
+          "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "Có",
+          "Mã hóa chống sao chép chìa khóa": "Có",
+          "Hệ thống cảnh báo chống trộm": "-",
+          "Cảm biến hỗ trợ đỗ xe": "Có",
+          "Hệ thống cảnh báo điểm mù ": "-",
+          "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+          "Hệ thống cảnh báo lệch làn đường ": "-",
+          "Hệ thống hỗ trợ giữ làn đường ": "-",
+          "Hệ thống hỗ trợ phanh chủ động": "Lùi xe",
+          "Hệ thống điều khiển hành trình": "Có",
+          "Hệ thống điều khiển hành trình thích ứng": "Có",
+          "Hệ thống cảnh báo áp suất lốp": "Có",
+          "Camera lùi": "Có"
+        }
+      }
+    }
+  ]
+}

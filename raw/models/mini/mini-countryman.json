@@ -1,0 +1,318 @@
+{
+  "car_info": {
+    "name": "MINI COUNTRYMAN",
+    "car_type": "SUV",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/mini-ctm-u25-min.webp",
+    "lowest_price": 2639000000,
+    "exterior_colors": [
+      "Xám"
+    ],
+    "interior_colors": [
+      "Nâu"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi hành cho khách hàng Loyalty trị giá 20 triệu đồng.",
+        "price_gift": "20000000"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu MINI."
+    ],
+    "faqs": [
+      {
+        "chu_de": "GIẢI ĐÁP THÔNG TIN VỀ MINI COUNTRYMAN",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "MINI Countryman thế hệ mới (U25) có gì khác biệt?",
+            "cau_tra_loi": "Kích thước lớn hơn (dài 4.43m – rộng hơn, cao hơn), không gian nội thất rộng rãi hơn 25%.\n\nThiết kế hoàn toàn mới với ngôn ngữ “Charismatic Simplicity” – hiện đại, mạnh mẽ, tinh gọn.\n\nĐèn LED tam giác đặc trưng MINI thế hệ mới, tùy chỉnh 3 kiểu hiển thị khác nhau.\n\nKhoang lái tương lai với màn hình OLED tròn 9.4”, điều hành bởi MINI Operating System 9."
+          },
+          {
+            "cau_hoi": "MINI Countryman là mẫu xe gì?",
+            "cau_tra_loi": "MINI Countryman là mẫu SUV lớn nhất trong gia đình MINI, kết hợp giữa phong cách Anh Quốc sang trọng, cá tính và khả năng vận hành linh hoạt trên mọi địa hình. Đây là chiếc MINI dành cho những ai yêu thích sự tự do, khám phá và những hành trình dài – “Adventure in MINI Style”."
+          },
+          {
+            "cau_hoi": "MINI Countryman có phù hợp với gia đình không?",
+            "cau_tra_loi": "5 chỗ ngồi rộng rãi, trần cao thoáng.\n\nKhoang hành lý 460L, gập ghế linh hoạt 40:20:40.\n\nCửa sau mở điện, có tùy chọn Hands-Free Tailgate.\n\nTreo êm, vận hành ổn định trên cả đường thành phố lẫn dã ngoại."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "4,444 x 1,843 x 1,665 mm",
+        "Chiều dài cơ sở": "2,692 mm",
+        "Bán kính quay vòng tối thiểu": "5,800 mm",
+        "Khoảng sáng gầm xe": "202 mm",
+        "Khối lượng không tải": "1,654 kg",
+        "Khối lượng toàn tải": "2,195 kg",
+        "Thể tích khoang hành lý": "440 - 1,450 L",
+        "Dung tích thùng nhiên liệu": "45 L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "Nhập khẩu"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "Xăng, I4, Twin Power Turbo 2.0L",
+        "Dung tích xi lanh": "1998 cc",
+        "Công suất cực đại": "150 kW (204 PS) @ 5,000 - 6,500 vòng/phút hp @ rpm",
+        "Mômen xoắn cực đại": "300 Nm @ 1,450 - 4,500 vòng/phút Nm @ rpm",
+        "Hộp số": "\"7 cấp ly hợp kép Steptronic \"",
+        "Hệ thống dẫn động": "Hai cầu ALL4",
+        "Hệ thống treo trước ": "MacPherson",
+        "Hệ thống treo sau": "Liên kết đa điểm",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Đĩa",
+        "Thông số lốp xe": "245/40 R20",
+        "Tiêu thụ nhiên liệu đô thị": "8.6 L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "6.5 L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "7.2 L/100km",
+        "Hệ thống dừng/Khởi động động cơ thông minh": "Có",
+        "Chế độ lái ": "MINI Experience Modes: 7 chế độ",
+        "Chế độ địa hình": "-",
+        "Trang bị khác": "-"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "LED",
+        "Đèn trước tự động bật/tắt": "Có",
+        "Đèn trước tự động chiếu xa/chiếu gần": "Có",
+        "Đèn trước chức năng tự động cân bằng góc chiếu": "-",
+        "Đèn trước mở rộng góc chiếu": "Có",
+        "Đèn ban ngày LED": "Có",
+        "Đèn sương mù": "Có",
+        "Cụm đèn sau": "LED",
+        "Gương chiếu hậu chỉnh điện, gập điện": "CÓ",
+        "Gạt mưa tự động": "Có",
+        "Cửa sổ trời": "Cửa sổ trời toàn cảnh Panorama",
+        "Trang bị khác": "-"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "Da Nappa",
+        "Chất liệu ghế": "Da Vescin",
+        "Ghế người lái chỉnh cơ": "-",
+        "Ghế người lái chỉnh điện": "Có",
+        "Ghế người lái có nhớ vị trí": "Có",
+        "Ghế hành khách phía trước chỉnh cơ": "-",
+        "Ghế hành khách phía trước chỉnh điện": "Có",
+        "Hàng ghế trước có tính năng làm mát": "-",
+        "Hàng ghế trước có tính năng sưởi": "-",
+        "Hàng ghế trước có tính năng massage": "Có",
+        "Tính năng cửa hít": "-",
+        "Kính cửa sổ chỉnh điện": "Có",
+        "Màn hình đồng hồ đa thông tin": "OLED 9.5 inch tràn viền",
+        "Màn hình HUD": "Có",
+        "Màn hình giải trí trung tâm": "OLED 9.5 inch tràn viền",
+        "Kết nối Apple Carplay/Android Auto": "Có",
+        "Hệ thống điều hòa tự động": "Có",
+        "Số vùng khí hậu điều hòa": "2",
+        "Cửa gió cho hàng ghế sau": "Có",
+        "Chìa khóa thông minh": "Có",
+        "Khởi động nút bấm": "Có",
+        "Khởi động từ xa": "-",
+        "Hệ thống âm thanh": "Hệ thống âm thanh Harman Kardon (12 loa, 365 W)",
+        "Lẫy chuyển số": "Có",
+        "Sạc không dây Qi": "Có",
+        "Phanh đỗ điện tử": "Có",
+        "Giữ phanh tự động Autohold": "Có",
+        "Đèn trang trí nội thất": "12 màu",
+        "Rèm che nắng": "-",
+        "Móc khóa ghế trẻ em ISOFIX": "Có",
+        "Trang bị khác": "-"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "6",
+        "Hệ thống chống bó cứng phanh ABS": "Có",
+        "Hệ thống phân phối lực phanh EBD": "Có",
+        "Hệ thống hỗ trợ phanh khẩn cấp BA": "Có",
+        "Hệ thống cảnh báo phanh khẩn cấp ESS": "Có",
+        "Hệ thống cân bằng điện tử": "Có",
+        "Hệ thống kiểm soát lực kéo chống trượt TCS": "Có",
+        "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "Có",
+        "Mã hóa chống sao chép chìa khóa": "-",
+        "Hệ thống cảnh báo chống trộm": "-",
+        "Cảm biến hỗ trợ đỗ xe": "Có (Cảm biến lùi)",
+        "Hệ thống cảnh báo điểm mù ": "-",
+        "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+        "Hệ thống cảnh báo lệch làn đường ": "Có",
+        "Hệ thống hỗ trợ giữ làn đường ": "Có",
+        "Hệ thống hỗ trợ phanh chủ động": "Có",
+        "Hệ thống điều khiển hành trình": "Có",
+        "Hệ thống điều khiển hành trình thích ứng": "Có",
+        "Hệ thống cảnh báo áp suất lốp": "Có",
+        "Camera lùi": "Có",
+        "Khác": "-"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "MINI COUNTRYMAN ALL 4 2025",
+      "price": 2639000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "MINI JCW COUNTRYMAN 2025",
+      "price": 2789000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "4.447×1.843×1.645 (mm) mm",
+          "Chiều dài cơ sở": "2.692 (mm) mm",
+          "Bán kính quay vòng tối thiểu": "5.4 (m) mm",
+          "Khoảng sáng gầm xe": "190 (mm) mm",
+          "Khối lượng không tải": "1.660 (kg) kg",
+          "Khối lượng toàn tải": "2.235 (kg) kg",
+          "Thể tích khoang hành lý": "440−1.450 (L) L",
+          "Dung tích thùng nhiên liệu": "54 (L) L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Dung tích xi lanh": "2.0L cc",
+          "Công suất cực đại": "233 kW (317 PS) @ 5.750 - 6.500 vòng/phút hp @ rpm",
+          "Mômen xoắn cực đại": "400 Nm @ 2.000 - 4.500 vòng/phút Nm @ rpm",
+          "Hộp số": "7 cấp ly hợp kép Steptronic Sport",
+          "Hệ thống dẫn động": "Bốn bánh ALL4",
+          "Thông số lốp xe": "Lốp 245/40 R20",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "6,6 L/100km",
+          "Chế độ lái ": "**Green (tiết kiệm), **Mid (trung bình), và Sport (thể thao)"
+        },
+        "NGOẠI THẤT": {
+          "Đèn trước tự động bật/tắt": "có",
+          "Đèn trước tự động chiếu xa/chiếu gần": "có",
+          "Đèn trước chức năng tự động cân bằng góc chiếu": "có",
+          "Đèn trước mở rộng góc chiếu": "có",
+          "Đèn ban ngày LED": "có",
+          "Đèn sương mù": "có",
+          "Gương chiếu hậu chỉnh điện, gập điện": "có",
+          "Gạt mưa tự động": "có",
+          "Cửa sổ trời": "Cửa sổ trời Panorama"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "vô lăng thể thao",
+          "Chất liệu ghế": "Vescin",
+          "Màn hình giải trí trung tâm": "Màn hình giải trí trung tâm OLED 9.5",
+          "Kết nối Apple Carplay/Android Auto": "có",
+          "Hệ thống điều hòa tự động": "có",
+          "Cửa gió cho hàng ghế sau": "có",
+          "Chìa khóa thông minh": "có",
+          "Khởi động nút bấm": "có",
+          "Khởi động từ xa": "có"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "4",
+          "Hệ thống chống bó cứng phanh ABS": "có",
+          "Hệ thống phân phối lực phanh EBD": "có",
+          "Hệ thống hỗ trợ phanh khẩn cấp BA": "có",
+          "Hệ thống cảnh báo phanh khẩn cấp ESS": "có",
+          "Hệ thống cân bằng điện tử": "có",
+          "Hệ thống kiểm soát lực kéo chống trượt TCS": "có",
+          "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "có",
+          "Mã hóa chống sao chép chìa khóa": "có",
+          "Hệ thống cảnh báo chống trộm": "có",
+          "Cảm biến hỗ trợ đỗ xe": "có"
+        }
+      }
+    },
+    {
+      "version_name": "MINI COUNTRYMAN SE 2025",
+      "price": 2989000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "4.445×1.843×1.635 (mm) mm",
+          "Chiều dài cơ sở": "2.692 (mm) mm",
+          "Bán kính quay vòng tối thiểu": "mm",
+          "Khoảng sáng gầm xe": "mm",
+          "Khối lượng không tải": "2.000 (kg) kg",
+          "Khối lượng toàn tải": "2.570 (kg) kg",
+          "Thể tích khoang hành lý": "450−1.450 (L) L",
+          "Dung tích thùng nhiên liệu": "L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Loại động cơ": "Động cơ thuần điện MINI",
+          "Dung tích xi lanh": "cc",
+          "Công suất cực đại": "230 kW (313 PS) hp @ rpm",
+          "Mômen xoắn cực đại": "494 Nm Nm @ rpm",
+          "Hộp số": "Tự động 1 cấp",
+          "Hệ thống dẫn động": "Bốn bánh ALL4",
+          "Thông số lốp xe": "Lốp 245/40 R20",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "18−11 (kWh/100 km) L/100km",
+          "Trang bị khác": "Pin (66,5/64,6 kWh), Thời gian sạc (10−80%: 29 phút sạc DC 130 kW), Hệ thống kiểm soát áp suất lốp, Bộ dụng cụ sửa chữa lốp xe, Lốp Runflat, Cap đồng bộ màu."
+        },
+        "NGOẠI THẤT": {
+          "NGOẠI THẤT": "LED",
+          "Cụm đèn trước": "Có",
+          "Đèn trước tự động chiếu xa/chiếu gần": "có",
+          "Đèn trước chức năng tự động cân bằng góc chiếu": "có",
+          "Đèn trước mở rộng góc chiếu": "có",
+          "Đèn sương mù": "có",
+          "Cụm đèn sau": "có",
+          "Gương chiếu hậu chỉnh điện, gập điện": "có",
+          "Gạt mưa tự động": "có",
+          "Cửa sổ trời": "Cửa sổ trời Panorama"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "vô lăng bọc da Nappa",
+          "Chất liệu ghế": "Vescin",
+          "Ghế người lái chỉnh cơ": "Có",
+          "Ghế hành khách phía trước chỉnh điện": "có",
+          "Hàng ghế trước có tính năng làm mát": "có",
+          "Hàng ghế trước có tính năng sưởi": "có",
+          "Hàng ghế trước có tính năng massage": "có",
+          "Tính năng cửa hít": "có",
+          "Màn hình giải trí trung tâm": "Màn hình giải trí trung tâm OLED 9.5\" tràn viền",
+          "Kết nối Apple Carplay/Android Auto": "có",
+          "Hệ thống điều hòa tự động": "có",
+          "Cửa gió cho hàng ghế sau": "có",
+          "Hệ thống âm thanh": "Harman Kardon",
+          "Phanh đỗ điện tử": "có",
+          "Giữ phanh tự động Autohold": "có",
+          "Đèn trang trí nội thất": "có",
+          "Móc khóa ghế trẻ em ISOFIX": "có"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "4",
+          "Hệ thống chống bó cứng phanh ABS": "có",
+          "Hệ thống phân phối lực phanh EBD": "có",
+          "Hệ thống hỗ trợ phanh khẩn cấp BA": "có",
+          "Hệ thống cảnh báo phanh khẩn cấp ESS": "có",
+          "Hệ thống cân bằng điện tử": "có",
+          "Hệ thống kiểm soát lực kéo chống trượt TCS": "có",
+          "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "có",
+          "Mã hóa chống sao chép chìa khóa": "có",
+          "Hệ thống cảnh báo chống trộm": "có",
+          "Cảm biến hỗ trợ đỗ xe": "có",
+          "Hệ thống cảnh báo điểm mù ": "có",
+          "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "có",
+          "Hệ thống cảnh báo lệch làn đường ": "có",
+          "Hệ thống hỗ trợ giữ làn đường ": "có",
+          "Hệ thống hỗ trợ phanh chủ động": "có",
+          "Hệ thống điều khiển hành trình": "có",
+          "Hệ thống điều khiển hành trình thích ứng": "có",
+          "Hệ thống cảnh báo áp suất lốp": "có",
+          "Camera lùi": "có"
+        }
+      }
+    }
+  ]
+}

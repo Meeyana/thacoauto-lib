@@ -1,0 +1,84 @@
+{
+  "car_info": {
+    "name": "BMW iX3",
+    "car_type": "SUV",
+    "seat": "5",
+    "fuel": "Điện",
+    "image": "https://thacoautotphcm.vn/storage/bmw/bmw-i-series/bmw-i3/bmw-i3.webp",
+    "lowest_price": 3539000000,
+    "exterior_colors": [
+      "Đen",
+      "Bạc",
+      "Xám",
+      "Trắng",
+      "Xanh",
+      "Đỏ"
+    ],
+    "interior_colors": [
+      "Màu Đen viền chỉ tương phản Xanh",
+      "Nâu",
+      "Trắng"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá lên đến 130 triệu đồng.",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng bộ sạc Wall box chính hãng trị giá 20 triệu đồng.",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng 03 gói sạc xe điện tại hệ thống Charge+.",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu BMW."
+    ],
+    "faqs": [],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "mm",
+        "Chiều dài cơ sở": "mm",
+        "Bán kính quay vòng tối thiểu": "mm",
+        "Khoảng sáng gầm xe": "mm",
+        "Khối lượng không tải": "kg",
+        "Khối lượng toàn tải": "kg",
+        "Thể tích khoang hành lý": "L",
+        "Dung tích thùng nhiên liệu": "L"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Dung tích xi lanh": "cc",
+        "Công suất cực đại": "hp @ rpm",
+        "Mômen xoắn cực đại": "Nm @ rpm",
+        "Tiêu thụ nhiên liệu đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "BMW iX3 M SPORT 2023",
+      "price": 2445000000,
+      "features": "",
+      "spec_different": null
+    }
+  ]
+}

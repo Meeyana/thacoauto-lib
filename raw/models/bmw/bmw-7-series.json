@@ -1,0 +1,260 @@
+{
+  "car_info": {
+    "name": "BMW 7 SERIES",
+    "car_type": "Sedan",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-7-series.webp",
+    "lowest_price": 4499000000,
+    "exterior_colors": [
+      "Đen"
+    ],
+    "interior_colors": [
+      "Đỏ"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Tăng gói 07 đặc quyền BMW Excellence Club",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng gói bảo dưỡng BSI 3 năm/40.000 km",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu BMW."
+    ],
+    "faqs": [
+      {
+        "chu_de": "NHỮNG CÂU HỎI THƯỜNG GẶP VỀ BMW 7 SERIES.",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "BMW 7 Series là mẫu xe gì, phân khúc ra sao?",
+            "cau_tra_loi": "BMW 7 Series là sedan đầu bảng của BMW tại Việt Nam, thuộc phân khúc hạng sang cao cấp, thiết kế sang trọng toàn diện, nhiều công nghệ tiên tiến, hướng đến khách hàng doanh nhân, VIP hoặc người tìm kiếm sự đẳng cấp, tiện nghi tối đa."
+          },
+          {
+            "cau_hoi": "Thiết kế ngoại thất nổi bật có những gì?",
+            "cau_tra_loi": "Lưới tản nhiệt lớn (kidney grille) đặc trưng, có “Iconic Glow” bằng pha lê Swarovski cho các phiên bản cao cấp. Tay nắm cửa ẩn, gương chiếu hậu hiện đại, đường viền chrome tinh tế. Đèn hậu LED, cản sau tạo điểm nhấn chiều rộng, thiết kế tổng thể mượt mà và uyển chuyển."
+          },
+          {
+            "cau_hoi": "Công nghệ cảm giác lái (steering / lái chủ động) có gì?",
+            "cau_tra_loi": "Có hệ thống Integral Active Steering — bánh sau có thể đánh lệch để hỗ trợ xoay sở không gian hẹp và ổn định khi tốc cao. Trang bị lái mượt, nhiều chế độ lái tùy chọn, hệ dẫn động tiên tiến (ví dụ bản điện i7 có dẫn động xDrive 2 cầu) giúp cảm giác mạnh mẽ và ổn định."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "5391 x 1950 x 1544 mm",
+        "Chiều dài cơ sở": "3215 mm",
+        "Bán kính quay vòng tối thiểu": "6150 mm",
+        "Khoảng sáng gầm xe": "136 mm",
+        "Khối lượng không tải": "2075 kg",
+        "Khối lượng toàn tải": "2785 kg",
+        "Thể tích khoang hành lý": "540 L",
+        "Dung tích thùng nhiên liệu": "74 L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "Nhập khẩu"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "I6 TwinPower Turbo & Mild Hybrid",
+        "Dung tích xi lanh": "2998 cc",
+        "Công suất cực đại": "210 kW (286 HP) @ 5000-6500 vòng/phút hp @ rpm",
+        "Mômen xoắn cực đại": "425 Nm @ 1600-4500 vòng/phút Nm @ rpm",
+        "Hộp số": "8AT Steptronic",
+        "Hệ thống dẫn động": "Cầu sau (RWD)",
+        "Hệ thống treo trước ": "Hệ thống treo khí nén thích ứng",
+        "Hệ thống treo sau": "Hệ thống treo khí nén thích ứng",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Đĩa",
+        "Thông số lốp xe": "Trước: 255/45 R20 - Sau: 285/40 R20",
+        "Tiêu thụ nhiên liệu đô thị": "9.5 L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "7.2 L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "- L/100km",
+        "Hệ thống dừng/Khởi động động cơ thông minh": "Có",
+        "Chế độ lái ": "Tùy chỉnh 03 chế độ lái: Comfort, Eco Pro, Sport",
+        "Chế độ địa hình": "-",
+        "Trang bị khác": "-"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "Adaptive LED",
+        "Đèn trước tự động bật/tắt": "Có",
+        "Đèn trước tự động chiếu xa/chiếu gần": "Có",
+        "Đèn trước chức năng tự động cân bằng góc chiếu": "Có",
+        "Đèn trước mở rộng góc chiếu": "Có",
+        "Đèn ban ngày LED": "Có",
+        "Đèn sương mù": "Phía sau",
+        "Cụm đèn sau": "BMW LED",
+        "Gương chiếu hậu chỉnh điện, gập điện": "Có",
+        "Gạt mưa tự động": "Có",
+        "Cửa sổ trời": "Sky Lounge",
+        "Trang bị khác": "-"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "Có",
+        "Chất liệu ghế": "Da Merino",
+        "Ghế người lái chỉnh cơ": "-",
+        "Ghế người lái chỉnh điện": "Có",
+        "Ghế người lái có nhớ vị trí": "Có",
+        "Ghế hành khách phía trước chỉnh cơ": "-",
+        "Ghế hành khách phía trước chỉnh điện": "Có",
+        "Hàng ghế trước có tính năng làm mát": "Có",
+        "Hàng ghế trước có tính năng sưởi": "Có",
+        "Hàng ghế trước có tính năng massage": "-",
+        "Tính năng cửa hít": "-",
+        "Kính cửa sổ chỉnh điện": "Có",
+        "Màn hình đồng hồ đa thông tin": "Màn hình đa thông tin 12.3-inch",
+        "Màn hình HUD": "Có",
+        "Màn hình giải trí trung tâm": "Màn hình điều khiển trung tâm 14.9-inch",
+        "Kết nối Apple Carplay/Android Auto": "Có",
+        "Hệ thống điều hòa tự động": "Có",
+        "Số vùng khí hậu điều hòa": "4",
+        "Cửa gió cho hàng ghế sau": "Có",
+        "Chìa khóa thông minh": "Có",
+        "Khởi động nút bấm": "Có",
+        "Khởi động từ xa": "Có",
+        "Hệ thống âm thanh": "Hệ thống âm thanh Bowers & Wilkins, 18 loa, 655 Watts",
+        "Lẫy chuyển số": "Có",
+        "Sạc không dây Qi": "Có",
+        "Phanh đỗ điện tử": "Có",
+        "Giữ phanh tự động Autohold": "Có",
+        "Đèn trang trí nội thất": "Có",
+        "Rèm che nắng": "Có",
+        "Móc khóa ghế trẻ em ISOFIX": "Có",
+        "Trang bị khác": "-"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "7",
+        "Hệ thống chống bó cứng phanh ABS": "Có",
+        "Hệ thống phân phối lực phanh EBD": "Có",
+        "Hệ thống hỗ trợ phanh khẩn cấp BA": "Có",
+        "Hệ thống cảnh báo phanh khẩn cấp ESS": "Có",
+        "Hệ thống cân bằng điện tử": "Có",
+        "Hệ thống kiểm soát lực kéo chống trượt TCS": "Có",
+        "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "Có",
+        "Mã hóa chống sao chép chìa khóa": "Có",
+        "Hệ thống cảnh báo chống trộm": "-",
+        "Cảm biến hỗ trợ đỗ xe": "Có",
+        "Hệ thống cảnh báo điểm mù ": "-",
+        "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+        "Hệ thống cảnh báo lệch làn đường ": "Có",
+        "Hệ thống hỗ trợ giữ làn đường ": "-",
+        "Hệ thống hỗ trợ phanh chủ động": "Có",
+        "Hệ thống điều khiển hành trình": "Có",
+        "Hệ thống điều khiển hành trình thích ứng": "-",
+        "Hệ thống cảnh báo áp suất lốp": "Có",
+        "Camera lùi": "Có"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "BMW 735i PURE EXCELLENCE 2026",
+      "price": 5899000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "BMW 740i PURE EXCELLENCE 2026",
+      "price": 6799000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Khối lượng không tải": "2090 kg"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Công suất cực đại": "280 kW (381 HP) @ 5200-6250 vòng/phút hp @ rpm",
+          "Mômen xoắn cực đại": "520 Nm @ 1850-5000 vòng/ phút Nm @ rpm"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Hàng ghế trước có tính năng massage": "Có",
+          "Tính năng cửa hít": "Có",
+          "Hệ thống âm thanh": "Hệ thống âm thanh Bowers & Wilkins Diamond, 36 loa, 1965 Watts"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 740i PURE EXCELLENCE 2025",
+      "price": 6799000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Khối lượng không tải": "2090 kg"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Công suất cực đại": "280 kW (381 HP) @ 5200-6250 vòng/phút hp @ rpm",
+          "Mômen xoắn cực đại": "520 Nm @ 1850-5000 vòng/ phút Nm @ rpm"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Hàng ghế trước có tính năng massage": "Có",
+          "Tính năng cửa hít": "Có",
+          "Hệ thống âm thanh": "Hệ thống âm thanh Bowers & Wilkins Diamond, 36 loa, 1965 Watts"
+        },
+        "AN TOÀN": {
+          "Hệ thống cảnh báo điểm mù ": "Có",
+          "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "Có",
+          "Hệ thống hỗ trợ giữ làn đường ": "Có",
+          "Hệ thống điều khiển hành trình thích ứng": "Có"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 735i PURE EXCELLENCE 2025",
+      "price": 5699000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "BMW 735i MSPORT 2025",
+      "price": 5099000000,
+      "features": "",
+      "spec_different": {
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Hệ thống phanh trước": "M Sport",
+          "Hệ thống phanh sau": "M Sport",
+          "Thông số lốp xe": "Trước: 255/40R21 - Sau: 285/35R21"
+        },
+        "NGOẠI THẤT": {
+          "Cửa sổ trời": "Có"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "9"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 735i MSPORT 2026",
+      "price": 5299000000,
+      "features": "",
+      "spec_different": {
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Hệ thống phanh trước": "M Sport",
+          "Hệ thống phanh sau": "M Sport",
+          "Thông số lốp xe": "Trước: 255/40R21 - Sau: 285/35R21"
+        },
+        "NGOẠI THẤT": {
+          "Cửa sổ trời": "Có"
+        },
+        "AN TOÀN": {
+          "Số túi khí": "9"
+        }
+      }
+    }
+  ]
+}

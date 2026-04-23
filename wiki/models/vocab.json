@@ -3,8 +3,10 @@
   "_note": "Canonical values rút từ catalog.json. Synonyms từ tools/vocab_synonyms.json. Dùng cho normalize entity AI extract trong n8n.",
   "brand": {
     "canonical": [
+      "bmw",
       "kia",
       "mazda",
+      "mini",
       "peugeot"
     ],
     "synonyms": {
@@ -38,11 +40,14 @@
     "canonical": [
       "B-SUV",
       "C-SUV",
+      "Convertible",
+      "Coupe",
       "D-SUV",
       "D-Sedan",
       "E-SUV",
       "Hatchback",
       "Roadster",
+      "SUV",
       "SUV Coupe",
       "Sedan"
     ],
@@ -114,7 +119,8 @@
     "canonical": [
       "Dầu",
       "Hybrid",
-      "Xăng"
+      "Xăng",
+      "Điện"
     ],
     "synonyms": {
       "xăng": [
@@ -162,6 +168,7 @@
   "seat": {
     "canonical": [
       2,
+      4,
       5,
       7,
       8
@@ -277,6 +284,21 @@
     }
   },
   "model_slugs": [
+    "bmw-3-series",
+    "bmw-4-series",
+    "bmw-5-series",
+    "bmw-5-series-all-new",
+    "bmw-7-series",
+    "bmw-i4",
+    "bmw-i7",
+    "bmw-ix3",
+    "bmw-x3",
+    "bmw-x3-all-new",
+    "bmw-x4",
+    "bmw-x5",
+    "bmw-x6",
+    "bmw-x7",
+    "bmw-z4",
     "kia-carens",
     "kia-carnival",
     "kia-k3",
@@ -299,6 +321,11 @@
     "mazda-cx-8",
     "mazda-cx-90",
     "mazda-mx-5",
+    "mini-3-door",
+    "mini-5-door",
+    "mini-clubman",
+    "mini-convertible",
+    "mini-countryman",
     "peugeot-2008",
     "peugeot-3008",
     "peugeot-408",

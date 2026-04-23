@@ -1,0 +1,319 @@
+{
+  "car_info": {
+    "name": "BMW 3 SERIES",
+    "car_type": "Sedan",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/bmw/the-new-3/bmw-the-new-3-320i-m-sport.webp",
+    "lowest_price": 1599000000,
+    "exterior_colors": [
+      "Trắng Alpine",
+      "Đen Sapphire",
+      "Xám Skyscraper",
+      "Xanh dương M Portimao"
+    ],
+    "interior_colors": [
+      "Da Sensatec phối Alcantara | Màu Black, chỉ khâu tương phản Blue"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá lên đến 220 triệu đồng.",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu BMW."
+    ],
+    "faqs": [
+      {
+        "chu_de": "Xe nhập khẩu hay lắp ráp trong nước?",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Xe nhập khẩu hay lắp ráp trong nước?",
+            "cau_tra_loi": "Toàn bộ BMW 3 Series hiện được lắp ráp trong nước."
+          }
+        ]
+      },
+      {
+        "chu_de": "Động cơ và công suất?",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Động cơ và công suất?",
+            "cau_tra_loi": "320i / 320i M Sport: 2.0L TwinPower Turbo, 184 mã lực, mô-men xoắn 300 Nm. Trong khi mẫu 330i M Sport: 2.0L TwinPower Turbo, 258 mã lực, mô-men xoắn 400 Nm. Tất cả đều dùng hộp số tự động 8 cấp Steptronic."
+          }
+        ]
+      },
+      {
+        "chu_de": "Mức tiêu hao nhiên liệu trung bình?",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Mức tiêu hao nhiên liệu trung bình?",
+            "cau_tra_loi": "320i / 320i M Sport: ~6,3 – 6,8 lít/100km. 330i M Sport: ~6,6 – 7,1 lít/100km."
+          }
+        ]
+      },
+      {
+        "chu_de": "Có những màu sơn và nội thất nào?",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "Có những màu sơn và nội thất nào?",
+            "cau_tra_loi": "Màu sơn phổ biến: Alpine White, Black Sapphire, Mineral Grey, Phytonic Blue, Melbourne Red. Nội thất: Da Vernasca màu đen, nâu mocha, be nhạt, xám."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "4713 x 1827 x 1440 mm",
+        "Chiều dài cơ sở": "2.851 mm",
+        "Bán kính quay vòng tối thiểu": "5.300 mm",
+        "Khoảng sáng gầm xe": "135 đến 141 mm",
+        "Khối lượng không tải": "1515 kg",
+        "Khối lượng toàn tải": "2070 kg",
+        "Thể tích khoang hành lý": "480 L",
+        "Dung tích thùng nhiên liệu": "59 L",
+        "Số chỗ ngồi": "5",
+        "Nguồn gốc": "Lắp ráp trong nước"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Loại động cơ": "I4 2.0L TwinPower Turbo",
+        "Dung tích xi lanh": "1.998 cc",
+        "Công suất cực đại": "135 kW (184 HP) @ 5000-6500 vòng/phút hp @ rpm",
+        "Mômen xoắn cực đại": "300 Nm @ 1350-4000 vòng/phút Nm @ rpm",
+        "Hộp số": "8AT Steptronic",
+        "Hệ thống dẫn động": "Cầu sau (RWD)",
+        "Hệ thống treo trước ": "Mc Pherson tay đòn kép",
+        "Hệ thống treo sau": "Liên kết đa điểm",
+        "Hệ thống phanh trước": "Đĩa",
+        "Hệ thống phanh sau": "Đĩa",
+        "Thông số lốp xe": "225/40 R18",
+        "Tiêu thụ nhiên liệu đô thị": "9.19 L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "7.5 L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "7.05 L/100km",
+        "Hệ thống dừng/Khởi động động cơ thông minh": "Có",
+        "Chế độ lái ": "Tùy chỉnh 03 chế độ lái: Comfort, Eco Pro, Sport",
+        "Chế độ địa hình": "-",
+        "Trang bị khác": "-"
+      },
+      "NGOẠI THẤT": {
+        "Cụm đèn trước": "BMW LED",
+        "Đèn trước tự động bật/tắt": "Có",
+        "Đèn trước tự động chiếu xa/chiếu gần": "Có",
+        "Đèn trước chức năng tự động cân bằng góc chiếu": "Có",
+        "Đèn trước mở rộng góc chiếu": "-",
+        "Đèn ban ngày LED": "Có",
+        "Đèn sương mù": "-",
+        "Cụm đèn sau": "BMW LED",
+        "Gương chiếu hậu chỉnh điện, gập điện": "Có",
+        "Gạt mưa tự động": "Có",
+        "Cửa sổ trời": "-",
+        "Trang bị khác": "-"
+      },
+      "NỘI THẤT - TIỆN NGHI": {
+        "Vô lăng bọc da": "Có",
+        "Chất liệu ghế": "Da Sensatec",
+        "Ghế người lái chỉnh điện": "Có",
+        "Ghế người lái có nhớ vị trí": "Có",
+        "Ghế hành khách phía trước chỉnh cơ": "-",
+        "Ghế hành khách phía trước chỉnh điện": "Có",
+        "Hàng ghế trước có tính năng làm mát": "-",
+        "Hàng ghế trước có tính năng sưởi": "-",
+        "Hàng ghế trước có tính năng massage": "-",
+        "Tính năng cửa hít": "-",
+        "Kính cửa sổ chỉnh điện": "Có",
+        "Màn hình đồng hồ đa thông tin": "Màn hình đa thông tin 12.3-inch",
+        "Màn hình HUD": "-",
+        "Màn hình giải trí trung tâm": "Màn hình điều khiển trung tâm 14.9-inch",
+        "Kết nối Apple Carplay/Android Auto": "Có",
+        "Hệ thống điều hòa tự động": "Có",
+        "Số vùng khí hậu điều hòa": "3",
+        "Cửa gió cho hàng ghế sau": "Có",
+        "Chìa khóa thông minh": "Có",
+        "Khởi động nút bấm": "Có",
+        "Khởi động từ xa": "Có",
+        "Hệ thống âm thanh": "Hệ thống âm thanh Harman Kardon, 16 loa, công suất 464W",
+        "Lẫy chuyển số": "Có",
+        "Sạc không dây Qi": "Có",
+        "Phanh đỗ điện tử": "Có",
+        "Giữ phanh tự động Autohold": "Có",
+        "Đèn trang trí nội thất": "Có",
+        "Rèm che nắng": "-",
+        "Móc khóa ghế trẻ em ISOFIX": "Có",
+        "Trang bị khác": "-"
+      },
+      "AN TOÀN": {
+        "Số túi khí": "6",
+        "Hệ thống chống bó cứng phanh ABS": "Có",
+        "Hệ thống phân phối lực phanh EBD": "Có",
+        "Hệ thống hỗ trợ phanh khẩn cấp BA": "Có",
+        "Hệ thống cảnh báo phanh khẩn cấp ESS": "Có",
+        "Hệ thống cân bằng điện tử": "Có",
+        "Hệ thống kiểm soát lực kéo chống trượt TCS": "Có",
+        "Hệ thống hỗ trợ khởi hành ngang dốc HLA": "Có",
+        "Mã hóa chống sao chép chìa khóa": "Có",
+        "Hệ thống cảnh báo chống trộm": "-",
+        "Cảm biến hỗ trợ đỗ xe": "Có",
+        "Hệ thống cảnh báo điểm mù ": "-",
+        "Hệ thống cảnh báo phương tiện cắt ngang khi lùi ": "-",
+        "Hệ thống cảnh báo lệch làn đường ": "-",
+        "Hệ thống hỗ trợ giữ làn đường ": "-",
+        "Hệ thống hỗ trợ phanh chủ động": "Có",
+        "Hệ thống điều khiển hành trình": "-",
+        "Hệ thống điều khiển hành trình thích ứng": "Có",
+        "Hệ thống cảnh báo áp suất lốp": "Có",
+        "Camera lùi": "Có"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "BMW 320i SPORTLINE 2026",
+      "price": 1649000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "BMW 330i M SPORT 2026",
+      "price": 2099000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Khối lượng không tải": "1525 kg",
+          "Khối lượng toàn tải": "2080 kg"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Công suất cực đại": "190 kW (258 HP) @ 5000-6500 rpm hp @ rpm",
+          "Mômen xoắn cực đại": "400 Nm @ 1600-4000 rpm Nm @ rpm",
+          "Hệ thống treo sau": "Hệ thống treo thích ứng (Adaptive M suspension)",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "7.9 L/100km"
+        },
+        "NGOẠI THẤT": {
+          "Cụm đèn trước": "Adaptive LED",
+          "Đèn trước mở rộng góc chiếu": "Có",
+          "Cửa sổ trời": "Có"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Vô lăng bọc da": "●",
+          "Ghế người lái chỉnh cơ": "-",
+          "Màn hình HUD": "Có"
+        },
+        "AN TOÀN": {
+          "Hệ thống hỗ trợ phanh chủ động": "Lùi xe",
+          "Hệ thống điều khiển hành trình": "Có",
+          "Hệ thống điều khiển hành trình thích ứng": "-"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 320i SPORTLINE 2025",
+      "price": 1649000000,
+      "features": "",
+      "spec_different": {
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Thông số lốp xe": "225/45 R18"
+        },
+        "NỘI THẤT - TIỆN NGHI": {
+          "Ghế người lái chỉnh cơ": "-",
+          "Khởi động nút bấm": "-",
+          "Khởi động từ xa": "-",
+          "Hệ thống âm thanh": "Hệ thống âm thanh HiFi, 10 loa, công suất 205W"
+        },
+        "AN TOÀN": {
+          "Hệ thống hỗ trợ phanh chủ động": "Lùi xe",
+          "Hệ thống điều khiển hành trình": "Có",
+          "Hệ thống điều khiển hành trình thích ứng": "-"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 320i MSPORT 2026",
+      "price": 1899000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "mm",
+          "Chiều dài cơ sở": "mm",
+          "Bán kính quay vòng tối thiểu": "mm",
+          "Khoảng sáng gầm xe": "mm",
+          "Khối lượng không tải": "kg",
+          "Khối lượng toàn tải": "kg",
+          "Thể tích khoang hành lý": "L",
+          "Dung tích thùng nhiên liệu": "L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Dung tích xi lanh": "cc",
+          "Công suất cực đại": "hp @ rpm",
+          "Mômen xoắn cực đại": "Nm @ rpm",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 320i MSPORT 2025",
+      "price": 1779000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "mm",
+          "Chiều dài cơ sở": "mm",
+          "Bán kính quay vòng tối thiểu": "mm",
+          "Khoảng sáng gầm xe": "mm",
+          "Khối lượng không tải": "kg",
+          "Khối lượng toàn tải": "kg",
+          "Thể tích khoang hành lý": "L",
+          "Dung tích thùng nhiên liệu": "L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Dung tích xi lanh": "cc",
+          "Công suất cực đại": "hp @ rpm",
+          "Mômen xoắn cực đại": "Nm @ rpm",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+        }
+      }
+    },
+    {
+      "version_name": "BMW 330i MSPORT 2025",
+      "price": 2079000000,
+      "features": "",
+      "spec_different": {
+        "KÍCH THƯỚC - KHỐI LƯỢNG": {
+          "Kích thước tổng thể": "mm",
+          "Chiều dài cơ sở": "mm",
+          "Bán kính quay vòng tối thiểu": "mm",
+          "Khoảng sáng gầm xe": "mm",
+          "Khối lượng không tải": "kg",
+          "Khối lượng toàn tải": "kg",
+          "Thể tích khoang hành lý": "L",
+          "Dung tích thùng nhiên liệu": "L"
+        },
+        "DẪN ĐỘNG - KHUNG GẦM": {
+          "Dung tích xi lanh": "cc",
+          "Công suất cực đại": "hp @ rpm",
+          "Mômen xoắn cực đại": "Nm @ rpm",
+          "Tiêu thụ nhiên liệu đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+          "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+        }
+      }
+    }
+  ]
+}

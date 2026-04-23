@@ -1,0 +1,92 @@
+{
+  "car_info": {
+    "name": "BMW i4",
+    "car_type": "Sedan",
+    "seat": "5",
+    "fuel": "Điện",
+    "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-i4.webp",
+    "lowest_price": 3799000000,
+    "exterior_colors": [
+      "Cam",
+      "Xanh lá",
+      "Đỏ",
+      "Xám",
+      "Đen",
+      "Trắng",
+      "Trắng"
+    ],
+    "interior_colors": [
+      "Trắng",
+      "Nâu",
+      "Đỏ",
+      "Đen"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá lên đến 200 triệu đồng.",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng bộ sạc Wall box chính hãng trị giá 20 triệu đồng.",
+        "price_gift": "0"
+      },
+      {
+        "promotion_gift": "Tặng 03 gói sạc xe điện tại hệ thống Charge+.",
+        "price_gift": "0"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu BMW."
+    ],
+    "faqs": [],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "mm",
+        "Chiều dài cơ sở": "mm",
+        "Bán kính quay vòng tối thiểu": "mm",
+        "Khoảng sáng gầm xe": "mm",
+        "Khối lượng không tải": "kg",
+        "Khối lượng toàn tải": "kg",
+        "Thể tích khoang hành lý": "L",
+        "Dung tích thùng nhiên liệu": "L"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Dung tích xi lanh": "cc",
+        "Công suất cực đại": "hp @ rpm",
+        "Mômen xoắn cực đại": "Nm @ rpm",
+        "Tiêu thụ nhiên liệu đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "BMW i4 eDRIVE40 GC 2024",
+      "price": 3244000000,
+      "features": "",
+      "spec_different": null
+    },
+    {
+      "version_name": "BMW i4 eDRIVE40 GC 2023",
+      "price": 2950000000,
+      "features": "",
+      "spec_different": null
+    }
+  ]
+}

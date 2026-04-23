@@ -1,0 +1,103 @@
+{
+  "car_info": {
+    "name": "MINI CLUBMAN",
+    "car_type": "SUV",
+    "seat": "5",
+    "fuel": "Xăng",
+    "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/hinh-san-pham-mini-mini-clubman.webp",
+    "lowest_price": 2539000000,
+    "exterior_colors": [
+      "Đỏ"
+    ],
+    "interior_colors": [
+      "Nâu"
+    ],
+    "brochure": "",
+    "gifts": [
+      {
+        "promotion_gift": "Ưu đãi giá lên đến 280 triệu đồng.",
+        "price_gift": "280000000"
+      },
+      {
+        "promotion_gift": "Tặng 01 năm BHVC trị giá 40 triệu đồng (không quy đổi).",
+        "price_gift": "40000000"
+      },
+      {
+        "promotion_gift": "Tặng voucher mua hàng Lifestyle trị giá 150 triệu đồng (được quy đổi).",
+        "price_gift": "150000000"
+      },
+      {
+        "promotion_gift": "Ưu đãi khách hàng Loyalty trị giá 20 triệu đồng.",
+        "price_gift": "20000000"
+      }
+    ],
+    "warranty_policy": [
+      "Thảm lót sàn.",
+      "Dù thương hiệu MINI."
+    ],
+    "faqs": [
+      {
+        "chu_de": "GIẢI PHÁP THÔNG TIN VỀ MINI CLUBMAN",
+        "danh_sach_cau_hoi": [
+          {
+            "cau_hoi": "MINI Clubman là mẫu xe gì?",
+            "cau_tra_loi": "MINI Clubman là mẫu xe 5 cửa (station wagon / shooting brake) độc đáo nhất trong gia đình MINI.\nNó kết hợp giữa phong cách cổ điển đậm DNA Anh Quốc với tính tiện dụng và không gian linh hoạt – lý tưởng cho người cần sự cá tính nhưng vẫn muốn sự thực tế hàng ngày."
+          },
+          {
+            "cau_hoi": "MINI Clubman khác gì so với MINI 3 Door hoặc Countryman?",
+            "cau_tra_loi": "So với MINI 3 Door / 5 Door: Clubman có kích thước lớn hơn, 5 cửa tiện lợi, khoang hành lý rộng rãi hơn.\n\nSo với Countryman: Clubman mang thiết kế thấp, thể thao hơn, hướng đến phong cách “urban chic” – sang trọng đô thị, trong khi Countryman là SUV nhỏ gọn, gầm cao hơn.\n\nĐiểm độc đáo nhất: Cửa sau mở kiểu “Barn Door” hai cánh – biểu tượng riêng của Clubman."
+          },
+          {
+            "cau_hoi": "Khoang nội thất MINI Clubman có gì đặc biệt?",
+            "cau_tra_loi": "Phong cách tròn – cổ điển – tinh xảo, đậm DNA MINI.\n\nMàn hình trung tâm OLED tròn cảm ứng 9,4 inch (thế hệ mới).\n\nCụm đồng hồ kỹ thuật số 5,5 inch, hệ thống đèn viền nội thất Ambient Light 12 màu.\n\nGhế da Chester hoặc Lounge cao cấp, điều hòa tự động 2 vùng, HUD, âm thanh Harman Kardon 12 loa (trên bản cao cấp)."
+          },
+          {
+            "cau_hoi": "MINI Clubman có những màu đặc trưng nào?",
+            "cau_tra_loi": "British Racing Green II, Melting Silver, Midnight Black, Moonwalk Grey, Indian Summer Red, White Silver, Enigmatic Black.\nKết hợp với màu nóc tương phản (đen / bạc / đỏ) giúp Clubman luôn nổi bật trên mọi cung đường."
+          }
+        ]
+      }
+    ],
+    "specifications": {
+      "KÍCH THƯỚC - KHỐI LƯỢNG": {
+        "Kích thước tổng thể": "mm",
+        "Chiều dài cơ sở": "mm",
+        "Bán kính quay vòng tối thiểu": "mm",
+        "Khoảng sáng gầm xe": "mm",
+        "Khối lượng không tải": "kg",
+        "Khối lượng toàn tải": "kg",
+        "Thể tích khoang hành lý": "L",
+        "Dung tích thùng nhiên liệu": "L"
+      },
+      "DẪN ĐỘNG - KHUNG GẦM": {
+        "Dung tích xi lanh": "cc",
+        "Công suất cực đại": "hp @ rpm",
+        "Mômen xoắn cực đại": "Nm @ rpm",
+        "Tiêu thụ nhiên liệu đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu ngoài đô thị": "L/100km",
+        "Tiêu thụ nhiên liệu hỗn hợp": "L/100km"
+      },
+      "KÍCH THƯỚC": {
+        "Chiều cao yên xe": "mm",
+        "Chiều dài trục cơ sở": "mm",
+        "Dung tích bình xăng": "lít",
+        "Kích thước Dài x rộng x cao": "mm",
+        "Trọng lượng xe": "kg",
+        "Trọng lượng tối đa": "kg"
+      },
+      "ĐỘNG CƠ": {
+        "Dung tích động cơ": "cc",
+        "Công suất cực đại": "hp / rpm",
+        "Mômen xoắn cực đại": "Nm / rpm"
+      }
+    }
+  },
+  "versions": [
+    {
+      "version_name": "MINI CLUBMAN 2023",
+      "price": 2539000000,
+      "features": "",
+      "spec_different": null
+    }
+  ]
+}
