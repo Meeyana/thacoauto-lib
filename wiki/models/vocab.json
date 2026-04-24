@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-23",
+  "updated": "2026-04-24",
   "_note": "Canonical values rút từ catalog.json. Synonyms từ tools/vocab_synonyms.json. Dùng cho normalize entity AI extract trong n8n.",
   "brand": {
     "canonical": [
@@ -67,14 +67,17 @@
         "D-Sedan",
         "xe sedan",
         "xe 4 cửa",
-        "xe lịch lãm"
+        "xe lịch lãm",
+        "xe doanh nhân"
       ],
       "hatchback": [
         "hatchback",
         "Hatchback",
         "xe nhỏ",
         "xe đô thị nhỏ",
-        "xe gọn"
+        "xe gọn",
+        "5 cửa",
+        "3 cửa"
       ],
       "suv": [
         "suv",
@@ -82,10 +85,22 @@
         "B-SUV",
         "C-SUV",
         "D-SUV",
+        "E-SUV",
+        "SUV Coupe",
         "xe gầm cao",
         "xe 7 chỗ gầm cao",
         "crossover",
-        "cuv"
+        "cuv",
+        "sav",
+        "SAV",
+        "sports activity vehicle",
+        "sac",
+        "SAC",
+        "sports activity coupe",
+        "estate",
+        "Estate",
+        "wagon",
+        "station wagon"
       ],
       "mpv": [
         "mpv",
@@ -94,6 +109,32 @@
         "xe 7 chỗ rộng",
         "minivan",
         "van"
+      ],
+      "coupe": [
+        "coupe",
+        "Coupe",
+        "xe coupe",
+        "xe 2 cửa",
+        "thể thao 2 cửa",
+        "sport coupe",
+        "grand coupe"
+      ],
+      "convertible": [
+        "convertible",
+        "Convertible",
+        "mui trần",
+        "xe mui trần",
+        "open-top",
+        "cabriolet",
+        "cabrio"
+      ],
+      "roadster": [
+        "roadster",
+        "Roadster",
+        "mui trần 2 chỗ",
+        "xe thể thao mui trần",
+        "spider",
+        "spyder"
       ],
       "pickup": [
         "pickup",
@@ -155,13 +196,18 @@
       ],
       "ev": [
         "ev",
+        "EV",
+        "Điện",
         "điện",
         "dien",
         "thuần điện",
         "xe điện",
         "xe dien",
         "battery",
-        "bev"
+        "bev",
+        "electric",
+        "xe chạy điện",
+        "xe chạy pin"
       ]
     }
   },

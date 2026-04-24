@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/bmw/ban-sao-cua-430i-convertible-m-s
 image: https://thacoautotphcm.vn/storage/bmw-anh-dai-dien/bmw-4-series.webp
 generated: true
 generated_from: raw/models/bmw/bmw-4-series.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-4-series.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

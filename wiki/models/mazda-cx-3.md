@@ -12,7 +12,7 @@ version_count: 4
 image: https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-3/new-cx-3.webp
 generated: true
 generated_from: raw/models/mazda/mazda-cx-3.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mazda/mazda-cx-3.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

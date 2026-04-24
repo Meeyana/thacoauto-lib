@@ -4,7 +4,7 @@ type: model-index
 total_models: 46
 total_brands: 5
 generated: true
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh**. **KHÔNG sửa tay**.
@@ -89,10 +89,10 @@ updated: 2026-04-23
 
 | Model | Thương hiệu | Loại xe | Số chỗ | Nhiên liệu | Giá từ |
 |---|---|---|---|---|---|
-| [[models/bmw-x3\|BMW X3]] | Bmw | — | 5 | Xăng | 2.279.000.000 ₫ |
 | [[models/bmw-4-series\|BMW 4 SERIES]] | Bmw | Coupe | 4 | Xăng | 2.629.000.000 ₫ |
 | [[models/bmw-z4\|BMW Z4]] | Bmw | Coupe | 2 | Xăng | 3.139.000.000 ₫ |
 | [[models/bmw-x3-all-new\|BMW X3 ALL NEW]] | Bmw | SUV | 5 | Xăng | 2.279.000.000 ₫ |
+| [[models/bmw-x3\|BMW X3]] | Bmw | SUV | 5 | Xăng | 2.279.000.000 ₫ |
 | [[models/bmw-ix3\|BMW iX3]] | Bmw | SUV | 5 | Điện | 2.445.000.000 ₫ |
 | [[models/bmw-x4\|BMW X4]] | Bmw | SUV | 5 | Xăng | 2.999.000.000 ₫ |
 | [[models/bmw-x5\|BMW X5]] | Bmw | SUV | 5 | Xăng | 3.559.000.000 ₫ |

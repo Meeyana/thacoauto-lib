@@ -12,7 +12,7 @@ version_count: 1
 image: https://thacoautotphcm.vn/storage/bmw/bmw-i-series/bmw-i3/bmw-i3.webp
 generated: true
 generated_from: raw/models/bmw/bmw-ix3.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-ix3.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

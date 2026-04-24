@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/mazda/catalog/e-brochure-mazda2-seda
 image: https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2.webp
 generated: true
 generated_from: raw/models/mazda/mazda-2.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mazda/mazda-2.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

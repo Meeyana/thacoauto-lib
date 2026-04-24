@@ -12,7 +12,7 @@ version_count: 2
 image: https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-i4.webp
 generated: true
 generated_from: raw/models/bmw/bmw-i4.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-i4.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

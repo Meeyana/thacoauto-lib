@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/traveller/1-peugeot-5008-new-logo-e-
 image: https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-5008-gt.webp
 generated: true
 generated_from: raw/models/peugeot/peugeot-5008.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/peugeot/peugeot-5008.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

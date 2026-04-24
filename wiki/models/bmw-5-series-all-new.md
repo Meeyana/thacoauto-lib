@@ -12,7 +12,7 @@ version_count: 3
 image: https://thacoautotphcm.vn/storage/bmw/bmw-all-new-5-series/bmw-5-series-new.webp
 generated: true
 generated_from: raw/models/bmw/bmw-5-series-all-new.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-5-series-all-new.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

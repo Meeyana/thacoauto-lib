@@ -36,6 +36,34 @@ MARKER_END = "<!-- END: auto-generated models -->"
 BRAND_MARKER_BEGIN = "<!-- BEGIN: auto-generated model list -->"
 BRAND_MARKER_END = "<!-- END: auto-generated model list -->"
 
+# BMW/MINI dùng thuật ngữ kiểu dáng riêng. Khi trả lời khách phải dùng tên này
+# (vẫn match SUV để filter, nhưng hiển thị khác).
+# SAV = Sports Activity Vehicle  (X3, X5, X7, iX3, Countryman)
+# SAC = Sports Activity Coupe    (X4, X6)
+# Estate = wagon (Clubman)
+BODY_STYLE_DISPLAY = {
+    # SAV
+    "bmw-x3": "SAV",
+    "bmw-x3-all-new": "SAV",
+    "bmw-x5": "SAV",
+    "bmw-x7": "SAV",
+    "bmw-ix3": "SAV",
+    "mini-countryman": "SAV",
+    # SAC
+    "bmw-x4": "SAC",
+    "bmw-x6": "SAC",
+    # Estate
+    "mini-clubman": "Estate",
+}
+
+# Suy ra car_type cho các slug có sẵn body_style_display nhưng JSON thiếu car_type
+# (vd bmw-x3 có car_type rỗng)
+DISPLAY_TO_CAR_TYPE = {
+    "SAV": "SUV",
+    "SAC": "SUV",
+    "Estate": "SUV",
+}
+
 
 def slugify(s: str) -> str:
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
@@ -235,11 +263,20 @@ def render_model(json_path: Path, brand: str):
 
     out_file = WIKI_DIR / f"{slug}.md"
     out_file.write_text("\n".join(md), encoding="utf-8")
+
+    # Body style display name riêng cho BMW/MINI (SAV/SAC/Estate)
+    body_display = BODY_STYLE_DISPLAY.get(slug)
+    car_type = car.get("car_type")
+    # Fallback: nếu JSON trống car_type nhưng slug có trong map → suy ra SUV
+    if not car_type and body_display:
+        car_type = DISPLAY_TO_CAR_TYPE.get(body_display)
+
     catalog_entry = {
         "slug": slug,
         "name": name,
         "brand": brand,
-        "car_type": car.get("car_type"),
+        "car_type": car_type,
+        "body_style_display": body_display,  # null cho các hãng khác (Kia/Mazda/Peugeot)
         "seat": car.get("seat"),
         "fuel": car.get("fuel"),
         "price_min_vnd": pmin,

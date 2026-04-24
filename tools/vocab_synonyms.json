@@ -11,13 +11,45 @@
   },
 
   "car_type": {
-    "sedan": ["sedan", "Sedan", "D-Sedan", "xe sedan", "xe 4 cửa", "xe lịch lãm"],
-    "hatchback": ["hatchback", "Hatchback", "xe nhỏ", "xe đô thị nhỏ", "xe gọn"],
-    "suv": ["suv", "SUV", "B-SUV", "C-SUV", "D-SUV", "xe gầm cao", "xe 7 chỗ gầm cao", "crossover", "cuv"],
-    "mpv": ["mpv", "MPV", "xe gia đình", "xe 7 chỗ rộng", "minivan", "van"],
-    "pickup": ["pickup", "bán tải", "xe bán tải", "ban tai"],
-    "truck": ["truck", "xe tải", "tải", "xe chở hàng"],
-    "bus": ["bus", "xe khách", "xe buýt", "xe bus"]
+    "sedan": [
+      "sedan", "Sedan", "D-Sedan", "xe sedan", "xe 4 cửa",
+      "xe lịch lãm", "xe doanh nhân"
+    ],
+    "hatchback": [
+      "hatchback", "Hatchback", "xe nhỏ", "xe đô thị nhỏ",
+      "xe gọn", "5 cửa", "3 cửa"
+    ],
+    "suv": [
+      "suv", "SUV", "B-SUV", "C-SUV", "D-SUV", "E-SUV", "SUV Coupe",
+      "xe gầm cao", "xe 7 chỗ gầm cao", "crossover", "cuv",
+      "sav", "SAV", "sports activity vehicle",
+      "sac", "SAC", "sports activity coupe",
+      "estate", "Estate", "wagon", "station wagon"
+    ],
+    "mpv": [
+      "mpv", "MPV", "xe gia đình", "xe 7 chỗ rộng", "minivan", "van"
+    ],
+    "coupe": [
+      "coupe", "Coupe", "xe coupe", "xe 2 cửa", "thể thao 2 cửa",
+      "sport coupe", "grand coupe"
+    ],
+    "convertible": [
+      "convertible", "Convertible", "mui trần", "xe mui trần",
+      "open-top", "cabriolet", "cabrio"
+    ],
+    "roadster": [
+      "roadster", "Roadster", "mui trần 2 chỗ", "xe thể thao mui trần",
+      "spider", "spyder"
+    ],
+    "pickup": [
+      "pickup", "bán tải", "xe bán tải", "ban tai"
+    ],
+    "truck": [
+      "truck", "xe tải", "tải", "xe chở hàng"
+    ],
+    "bus": [
+      "bus", "xe khách", "xe buýt", "xe bus"
+    ]
   },
 
   "fuel": {
@@ -25,7 +57,11 @@
     "dầu": ["dầu", "dau", "diesel", "máy dầu", "may dau", "dầu diesel"],
     "hybrid": ["hybrid", "hev", "lai", "lai điện", "lai dien", "xe lai"],
     "phev": ["phev", "plug-in hybrid", "lai cắm sạc", "lai sạc điện"],
-    "ev": ["ev", "điện", "dien", "thuần điện", "xe điện", "xe dien", "battery", "bev"]
+    "ev": [
+      "ev", "EV", "Điện", "điện", "dien",
+      "thuần điện", "xe điện", "xe dien", "battery", "bev",
+      "electric", "xe chạy điện", "xe chạy pin"
+    ]
   },
 
   "use_case": {
