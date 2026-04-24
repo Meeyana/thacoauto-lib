@@ -1,0 +1,530 @@
+{
+  "updated": "2026-04-24",
+  "total_questions": 47,
+  "total_models": 5,
+  "stats_by_model": {
+    "kia-k5": 10,
+    "kia-new-carnival": 2,
+    "kia-new-sorento": 11,
+    "kia-sorento-hybrid": 11,
+    "kia-sportage": 13
+  },
+  "intents_definition": {
+    "SO_SANH": "So sánh & Ra quyết định (so sánh phiên bản, đối thủ, đáng mua không)",
+    "VAN_HANH": "Vận hành & Trải nghiệm lái (động cơ, hộp số, cách âm, cảm giác lái)",
+    "TIEU_HAO": "Mức tiêu hao nhiên liệu (xăng/dầu/điện, chi phí vận hành)",
+    "NGOAI_THAT": "Ngoại thất & Kích thước (form dáng, gầm, mâm, đèn, màu)",
+    "NOI_THAT": "Nội thất & Không gian (ghế, màn hình, âm thanh, điều hòa)",
+    "AN_TOAN": "Hệ thống an toàn (túi khí, ADAS, camera, bảo hành)",
+    "NHU_CAU": "Sự phù hợp với nhu cầu (gia đình, dịch vụ, đô thị, đi tỉnh)"
+  },
+  "questions": [
+    {
+      "id": "kia-k5-q1",
+      "model_slug": "kia-k5",
+      "qno": 1,
+      "question": "Kia K5 kích thước xe dài nên đi trong phố sẽ bất tiện không?",
+      "intents": [
+        "VAN_HANH",
+        "NGOAI_THAT"
+      ],
+      "answer": "Kia K5 có **bán kính quay vòng nhỏ nhất phân khúc D-Sedan: 5,49 m**, di chuyển linh hoạt trong phố nhưng vẫn giữ được nét sang trọng, thanh lịch và không gian rộng rãi đẳng cấp xe Sedan hạng D đứng đầu line-up K-Series Sedan tại Việt Nam.\n\nTham khảo bán kính quay vòng đối thủ:\n- K5: **5,49 m**\n- Camry: 5,80 m\n- Mazda6: 5,60 m\n- Accord: 5,70 m"
+    },
+    {
+      "id": "kia-k5-q2",
+      "model_slug": "kia-k5",
+      "qno": 2,
+      "question": "Tại sao K5 giá trên dưới 1 tỷ đồng mà không có an toàn chủ động ADAS?",
+      "intents": [
+        "AN_TOAN",
+        "SO_SANH"
+      ],
+      "answer": "Kia K5 vẫn trang bị đầy đủ hệ thống an toàn cần thiết:\n- ABS (chống bó cứng phanh)\n- ESC (cân bằng điện tử)\n- HAC (hỗ trợ khởi hành ngang dốc)\n- BCA (hỗ trợ tránh va chạm điểm mù phía sau)\n- BVM (hiển thị điểm mù trên màn hình đa thông tin)"
+    },
+    {
+      "id": "kia-k5-q3",
+      "model_slug": "kia-k5",
+      "qno": 3,
+      "question": "Động cơ 2.0L có đủ để đi hằng ngày không, hay phải lên 2.5L mới đủ?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO",
+        "SO_SANH"
+      ],
+      "answer": "Động cơ **2.0L đủ đáp ứng** cho di chuyển trong đô thị và ngoại thành.\n\nThông số 2.0L + hộp số 6 cấp:\n- Công suất tối đa: **150 mã lực**\n- Mômen xoắn cực đại: **292 N.m**\n- Tiêu hao nhiên liệu hỗn hợp: **6,9 L/100km**\n\nNếu khách có nhu cầu **lái thể thao, đam mê tốc độ**, đề xuất phiên bản **2.5L GT-Line**."
+    },
+    {
+      "id": "kia-k5-q4",
+      "model_slug": "kia-k5",
+      "qno": 4,
+      "question": "Xe chạy có ồn không, có đầm chắc không?",
+      "intents": [
+        "VAN_HANH",
+        "NOI_THAT"
+      ],
+      "answer": "- Ứng dụng nền tảng khung gầm mới nhất của Kia → tối ưu cấu trúc thân xe, giảm khối lượng, gia cố thép cường lực tại các vị trí trọng yếu → vận hành ổn định, đầm chắc.\n- Trang bị nhiều tấm che dưới gầm xe, phun foam ốp vòm bánh xe → giảm lực cản không khí và hạn chế tiếng ồn."
+    },
+    {
+      "id": "kia-k5-q5",
+      "model_slug": "kia-k5",
+      "qno": 5,
+      "question": "Xe Sedan chạy có gì tốt hơn xe SUV?",
+      "intents": [
+        "SO_SANH",
+        "NHU_CAU"
+      ],
+      "answer": "| Tiêu chí | Sedan (K3, K5) | SUV (Sportage, Sorento, Seltos) |\n|---|---|---|\n| Thiết kế | Lịch lãm, sang trọng, doanh nhân | Gầm cao, khoang xe rộng |\n| Trọng lượng | Nhẹ hơn → bốc hơn khi tăng tốc | Nặng hơn |\n| Trọng tâm | Thấp → ổn định, bám đường, lái tốt | Cao hơn |"
+    },
+    {
+      "id": "kia-k5-q6",
+      "model_slug": "kia-k5",
+      "qno": 6,
+      "question": "K5 có gì nổi bật so với các đối thủ ở các hãng khác?",
+      "intents": [
+        "SO_SANH",
+        "NGOAI_THAT"
+      ],
+      "answer": "- **Thiết kế \"FASTBACK\"** đuôi lướt tối ưu khí động học, đậm chất thể thao và năng động.\n- **Kích thước vượt trội**, không gian rộng rãi hàng đầu phân khúc.\n- Động cơ - hộp số **Smartstream thế hệ mới** + khung gầm chắc chắn → cảm giác lái phấn khích."
+    },
+    {
+      "id": "kia-k5-q7",
+      "model_slug": "kia-k5",
+      "qno": 7,
+      "question": "Sao K5 đẹp nhưng ít thấy xe này chạy ngoài đường vậy?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "K5 vẫn duy trì **sản lượng đứng thứ 2 phân khúc D-Sedan, chỉ sau Camry**. Xe di chuyển nhiều tại HCM, Hà Nội, Đà Nẵng, Cần Thơ."
+    },
+    {
+      "id": "kia-k5-q8",
+      "model_slug": "kia-k5",
+      "qno": 8,
+      "question": "Kia K5 (hay Kia nói chung) sau bán lại có bị mất giá hơn xe Nhật không?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Việc định giá xe cũ phụ thuộc nhiều yếu tố: năm sản xuất, nhu cầu thị trường, thương hiệu... Hiện tại trên thị trường xe đã qua sử dụng, **Kia là một trong những thương hiệu có các mẫu xe giữ giá tốt nhất**."
+    },
+    {
+      "id": "kia-k5-q9",
+      "model_slug": "kia-k5",
+      "qno": 9,
+      "question": "Nội thất bản GT-Line có thể đổi được không (màu chói quá) và tại sao K5 lái ồn hơn K3?",
+      "intents": [
+        "NOI_THAT"
+      ],
+      "answer": "Bản **GT-Line chỉ có một màu nội thất đỏ** + bộ mâm 18 inch — đây là gói thiết kế thể thao đặc trưng của K5, đem lại phong cách mạnh mẽ cá tính, **không thể đổi**."
+    },
+    {
+      "id": "kia-k5-q10",
+      "model_slug": "kia-k5",
+      "qno": 10,
+      "question": "Cùng tầm tiền, sao phải mua K5 mà không chọn Camry?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "| K5 | Camry |\n|---|---|\n| Thiết kế **Fastback** thể thao, hiện đại, đậm chất công nghệ | Thiết kế truyền thống |\n| **3 chế độ lái thể thao**, cảm giác lái phấn khích, mạnh mẽ | Thiên hướng phục vụ người ngồi sau, ít cảm giác lái |\n| Nhiều tiện nghi cao cấp, an toàn tiên tiến | — |\n| Giá cạnh tranh hơn ở cả 3 phiên bản | — |\n\n---\n\n## Liên kết\n- [[models/kia-k5|← Quay lại trang model Kia K5]]\n- [[brands/kia]]\n- [[faq/index|Tất cả FAQ]]"
+    },
+    {
+      "id": "kia-new-carnival-q1",
+      "model_slug": "kia-new-carnival",
+      "qno": 1,
+      "question": "Tại sao phiên bản New Carnival **Premium** có giá cao hơn Carnival Premium hiện hữu ~ **200 triệu đồng**?",
+      "intents": [
+        "SO_SANH",
+        "AN_TOAN",
+        "NOI_THAT",
+        "NGOAI_THAT"
+      ],
+      "answer": "**Tổng giá trị mang lại cho khách hàng: 200 triệu đồng** (70 + 30 + 100).\n\n### Kiểu dáng ngoại thất — 70 triệu\n\nSản phẩm thế hệ mới, thiết kế hoàn toàn mới:\n\n| Vị trí | Nâng cấp | Giá trị |\n|---|---|---|\n| Phía trước | Cụm đèn pha, đèn định vị ban ngày Star-map mới, mặt ga lăng, cản trước, đèn sương mù mới | 35tr |\n| Bên hông | Mâm kiểu dáng mới | 10tr |\n| Phía sau | Cụm đèn hậu Star-map mới, cản sau thiết kế SUV hơn | 25tr |\n\n### Tiện nghi nội thất — 30 triệu\n\nKhông gian rộng rãi hàng đầu phân khúc:\n- Cụm màn hình cong **Panoramic** thế hệ mới nhất (10tr)\n- Cụm điều khiển trung tâm cảm ứng hiện đại (10tr)\n- Apple CarPlay & Android Auto **không dây** (5tr)\n- Viền nội thất ốp đen bóng cao cấp (5tr)\n\n### An toàn thông minh ADAS 2.0 — 100 triệu ⭐\n\nNâng cấp & **bổ sung mới hoàn toàn** (Carnival Premium hiện hữu không có ADAS):\n- **FCA 2.0** — Cảnh báo và hỗ trợ tránh va chạm phía trước (có khả năng **tự động đánh lái giảm va chạm**) — 40tr\n- Hỗ trợ tránh va chạm & đỗ xe an toàn — 10tr\n- **BCA** — Hỗ trợ tránh va chạm điểm mù phía sau — 10tr\n- **RCCA** — Hỗ trợ phòng tránh va chạm phương tiện cắt ngang khi lùi — 10tr\n- **LKA & LFA** — Hỗ trợ giữ làn và theo làn đường — 20tr\n- Thêm **túi khí giữa hàng ghế trước** — 10tr"
+    },
+    {
+      "id": "kia-new-carnival-q2",
+      "model_slug": "kia-new-carnival",
+      "qno": 2,
+      "question": "Tại sao phiên bản New Carnival **Signature** có giá cao hơn Carnival Signature hiện hữu ~ **160 triệu đồng**?",
+      "intents": [
+        "SO_SANH",
+        "AN_TOAN",
+        "NOI_THAT",
+        "NGOAI_THAT"
+      ],
+      "answer": "**Tổng giá trị mang lại cho khách hàng: 160 triệu đồng** (70 + 30 + 60).\n\n### Kiểu dáng ngoại thất — 70 triệu\n\n(Giống bản Premium — xem mục 1.)\n\n### Tiện nghi nội thất — 30 triệu\n\n(Giống bản Premium — xem mục 1.)\n\n### An toàn thông minh ADAS 2.0 — 60 triệu ⭐\n\nNâng cấp **từ ADAS 1.5 lên ADAS 2.0**:\n- **Nâng cấp FCA 1.5 → FCA 2.0:** Cảnh báo và hỗ trợ tránh va chạm phía trước có khả năng **tự động đánh lái giảm va chạm** — 20tr\n- Hỗ trợ tránh va chạm & đỗ xe an toàn — 10tr\n- **BCA** — Hỗ trợ tránh va chạm điểm mù phía sau — 10tr\n- **RCCA** — Hỗ trợ phòng tránh va chạm phương tiện cắt ngang khi lùi — 10tr\n- Thêm **túi khí giữa hàng ghế trước** — 10tr\n\n---\n\n## So sánh nhanh giá trị nâng cấp\n\n| Hạng mục | New Carnival Premium | New Carnival Signature |\n|---|---|---|\n| Ngoại thất mới | 70tr | 70tr |\n| Nội thất tiện nghi | 30tr | 30tr |\n| ADAS 2.0 | **100tr** (bổ sung mới hoàn toàn) | **60tr** (nâng cấp 1.5 → 2.0) |\n| **Tổng giá trị** | **200tr** | **160tr** |\n\n---\n\n## Liên kết\n- [[models/kia-new-carnival|← Quay lại trang model Kia New Carnival]]\n- [[brands/kia]]\n- [[faq/index|Tất cả FAQ]]"
+    },
+    {
+      "id": "kia-new-sorento-q1",
+      "model_slug": "kia-new-sorento",
+      "qno": 1,
+      "question": "Sự khác nhau giữa động cơ xăng và dầu?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO",
+        "SO_SANH"
+      ],
+      "answer": "Tùy nhu cầu sử dụng:\n- **Động cơ xăng:** đô thị lớn → tăng tốc, phản hồi chân ga nhạy, vận hành êm dịu.\n- **Động cơ dầu:** quãng đường dài, liên tỉnh, công trường, đèo núi → mạnh mẽ và tiết kiệm nhiên liệu."
+    },
+    {
+      "id": "kia-new-sorento-q2",
+      "model_slug": "kia-new-sorento",
+      "qno": 2,
+      "question": "Khách hàng thường nghe xe máy dầu rất ồn và có mùi hôi?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "Động cơ **SmartStream 2.2 Turbo Diesel** trên Sorento:\n- Ứng dụng công nghệ mới nhất từ tập đoàn Hyundai Kia\n- Cải thiện rõ rệt tiếng ồn và độ êm ái\n- Đạt **tiêu chuẩn khí thải Euro 5** → cải thiện rất nhiều công nghệ xử lý khí thải"
+    },
+    {
+      "id": "kia-new-sorento-q3",
+      "model_slug": "kia-new-sorento",
+      "qno": 3,
+      "question": "Sorento đi có đầm chắc, ổn định, cách âm tốt không?",
+      "intents": [
+        "VAN_HANH",
+        "NOI_THAT"
+      ],
+      "answer": "- Trọng lượng gần 2 tấn, kết cấu thân xe **nguyên khối**, khung sườn dạng vòng\n- Vật liệu **thép dập nóng** → tăng độ bền kéo, an toàn cao nhất\n- Hệ thống treo thế hệ mới → tối ưu phân bố tải trọng, êm dịu, lái chính xác\n- Gầm xe được che chắn tốt → giảm ồn từ mặt đường và gió\n\n**Giải thưởng:** Xe của năm **2020, 2021, 2023**."
+    },
+    {
+      "id": "kia-new-sorento-q4",
+      "model_slug": "kia-new-sorento",
+      "qno": 4,
+      "question": "Động cơ dầu Sorento và Santafe cái nào tốt hơn? Sorento có tiết kiệm hơn SantaFe không?",
+      "intents": [
+        "SO_SANH",
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "Cả Kia và Hyundai cùng tập đoàn → **công nghệ động cơ, khung gầm giống nhau**, không khác biệt vận hành.\n\nNếu quan tâm tiết kiệm nhiên liệu → đề xuất **Sorento HEV/PHEV** (xem [[faq/kia-sorento-hybrid-qa]])."
+    },
+    {
+      "id": "kia-new-sorento-q5",
+      "model_slug": "kia-new-sorento",
+      "qno": 5,
+      "question": "Tại sao Kia không có chương trình giảm giá hay khuyến mãi?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Chính sách bán hàng THACO AUTO **tính giá hợp lý ngay từ đầu**, thống nhất toàn quốc. Trừ trực tiếp khuyến mãi vào giá bán → khách hàng có lợi khi đóng **lệ phí trước bạ**."
+    },
+    {
+      "id": "kia-new-sorento-q6",
+      "model_slug": "kia-new-sorento",
+      "qno": 6,
+      "question": "Lắp thêm phụ kiện ngoài có ảnh hưởng bảo hành không?",
+      "intents": [
+        "AN_TOAN",
+        "NOI_THAT"
+      ],
+      "answer": "Kia Việt Nam **không khuyến cáo** lắp thêm trang bị ngoài tiêu chuẩn (đặc biệt liên quan hệ thống điện) để:\n- Đảm bảo xe vận hành tốt nhất\n- Giảm thiểu nguy cơ cháy nổ\n- Tránh sai thông số kỹ thuật → ảnh hưởng quyền lợi bảo hành\n\n(Kia Việt Nam không đảm bảo chất lượng và kỹ thuật lắp đặt của đối tác bên ngoài, kể cả linh kiện chính hãng.)"
+    },
+    {
+      "id": "kia-new-sorento-q7",
+      "model_slug": "kia-new-sorento",
+      "qno": 7,
+      "question": "Sorento dùng hộp số ly hợp kép có bị quá nhiệt giống Seltos không?",
+      "intents": [
+        "VAN_HANH"
+      ],
+      "answer": "Sorento dùng **hộp số kép ướt 8 cấp** với lá ly hợp ngâm hoàn toàn trong dầu → giải nhiệt tốt hơn, độ bền vượt trội, chịu sức kéo tốt hơn.\n\nĐiều khiển thủy lực có hiệu suất cao → giảm tổn thất công suất → cải thiện tiêu hao nhiên liệu so với hộp số thường."
+    },
+    {
+      "id": "kia-new-sorento-q8",
+      "model_slug": "kia-new-sorento",
+      "qno": 8,
+      "question": "Trên hội nhóm có chia sẻ Sorento đi ồn và xe mới sử dụng 1 thời gian bị chết máy?",
+      "intents": [
+        "VAN_HANH"
+      ],
+      "answer": "Khẳng định **3 năm trở lại đây chưa ghi nhận lỗi chết máy** trên Sorento.\n\nSử dụng đúng quy cách + bảo dưỡng định kỳ → nâng cao tuổi thọ sản phẩm."
+    },
+    {
+      "id": "kia-new-sorento-q9",
+      "model_slug": "kia-new-sorento",
+      "qno": 9,
+      "question": "Hệ thống ADAS Sorento và SantaFe cái nào tốt hơn?",
+      "intents": [
+        "AN_TOAN",
+        "SO_SANH"
+      ],
+      "answer": "Tương đương nhau (cùng dùng radar + camera). Đặc biệt Sorento **nhỉnh hơn ở hệ thống cảnh báo va chạm phía trước:**\n- Nhận diện nhiều vật thể (người đi bộ, phương tiện, giao lộ)\n- Dải tốc độ hoạt động tốt hơn SantaFe"
+    },
+    {
+      "id": "kia-new-sorento-q10",
+      "model_slug": "kia-new-sorento",
+      "qno": 10,
+      "question": "Bảo hành Sorento và SantaFe cái nào lợi hơn?",
+      "intents": [
+        "AN_TOAN",
+        "SO_SANH"
+      ],
+      "answer": "| Mẫu xe | Bảo hành |\n|---|---|\n| **Kia Sorento** | **5 năm / 150,000 km** ⭐ tốt nhất thị trường |\n| Hyundai SantaFe | 5 năm / 100,000 km |\n\nHệ thống Showroom & xưởng dịch vụ đạt chuẩn Kia toàn cầu phủ tất cả tỉnh thành Việt Nam."
+    },
+    {
+      "id": "kia-new-sorento-q11",
+      "model_slug": "kia-new-sorento",
+      "qno": 11,
+      "question": "Tại sao Hyundai SantaFe bán chạy hơn Kia Sorento?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "- **Tại Hàn Quốc:** doanh số Sorento **vượt trội** so với SantaFe.\n- **Tại Việt Nam:** SantaFe đang nhỉnh hơn vì gia nhập thị trường từ **2006** — một trong những SUV du lịch đầu tiên.\n- Từ năm 2020 (Sorento mới ra mắt): doanh số **tăng 1.5–2 lần mỗi năm** → tự tin khoảng cách doanh số sẽ không còn.\n\n---\n\n## Liên kết\n- [[models/kia-new-sorento|← Quay lại trang model Kia New Sorento]]\n- [[faq/kia-sorento-hybrid-qa|Q&A phiên bản HEV/PHEV]]\n- [[brands/kia]]\n- [[faq/index|Tất cả FAQ]]"
+    },
+    {
+      "id": "kia-sorento-hybrid-q1",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 1,
+      "question": "Sorento HEV/PHEV được bảo hành pin bao lâu?",
+      "intents": [
+        "AN_TOAN",
+        "SO_SANH"
+      ],
+      "answer": "Pin Hybrid: **7 năm / 150,000 km** (tùy điều kiện nào đến trước) — **tốt nhất thị trường xe Hybrid Việt Nam**.\n\n| Hãng | Bảo hành pin Hybrid |\n|---|---|\n| **Kia Sorento HEV/PHEV** | **7 năm / 150,000 km** ⭐ |\n| Hyundai Hybrid | 5 năm / 100,000 km |\n| Honda Hybrid | 5 năm / 130,000 km |"
+    },
+    {
+      "id": "kia-sorento-hybrid-q2",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 2,
+      "question": "Chi phí bảo dưỡng có đắt hơn động cơ xăng không? Chi phí thay thế?",
+      "intents": [
+        "TIEU_HAO",
+        "SO_SANH"
+      ],
+      "answer": "- **Chi phí và thời gian bảo dưỡng gần như không chênh lệch** so với động cơ xăng.\n- Pin Hybrid **gần như không cần bảo dưỡng định kỳ** — tuổi thọ vận hành lên đến **300,000 km**.\n- **Pin Lithium-ion Polymer** kết cấu thân thiện, dễ sửa chữa: chỉ cần thay **thành phần hư hỏng**, không phải thay cả cụm pin lớn → tối ưu chi phí so với hãng khác."
+    },
+    {
+      "id": "kia-sorento-hybrid-q3",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 3,
+      "question": "Pin Hybrid có dễ hư hỏng, ngập nước hay không?",
+      "intents": [
+        "AN_TOAN",
+        "VAN_HANH"
+      ],
+      "answer": "Khuyến cáo **không nên sử dụng trong điều kiện ngập nước sâu** (dễ hư động cơ và hệ thống điện). Vẫn có thể lái tốc độ chậm qua khu vực ngập nước **nếu mực nước không cao hơn nửa bánh xe**."
+    },
+    {
+      "id": "kia-sorento-hybrid-q4",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 4,
+      "question": "Nguyên lý hoạt động của Sorento HEV/PHEV?",
+      "intents": [
+        "VAN_HANH"
+      ],
+      "answer": "**HEV:** Động cơ đốt trong + motor điện + pin Hybrid.\n- Di chuyển chậm/phố đông: động cơ xăng gần như không hoạt động.\n- Tăng tốc nhanh hoặc pin gần hết: động cơ xăng bù vào để bứt tốc/sạc điện.\n- Xuống dốc/giảm tốc/đạp phanh: động cơ xăng ngắt, **động năng thừa chuyển hóa thành điện sạc pin**.\n\n**PHEV:** Tương tự HEV nhưng có pin Hybrid cao áp **dung lượng lớn hơn**, sạc được từ nguồn điện ngoài. Có thể chạy **thuần điện 50–70 km**.\n\n**Lợi điểm:** Tiết kiệm nhiên liệu, nhiều chế độ vận hành, tăng tốc tốt hơn, lái phấn khích."
+    },
+    {
+      "id": "kia-sorento-hybrid-q5",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 5,
+      "question": "Sorento PHEV có cần đổ xăng không hay chạy bằng điện là được?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "Sorento PHEV sử dụng **song song hai động cơ xăng và điện**. Quãng đường thuần điện: **71 km**.\n\n**Lợi thế so với VinFast:** sạc được từ **điện gia dụng** (VinFast phải sạc từ nguồn cao áp >300V tại trạm sạc công cộng)."
+    },
+    {
+      "id": "kia-sorento-hybrid-q6",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 6,
+      "question": "Pin hybrid trên Sorento PHEV có bắt buộc cắm sạc, hay tự sạc như HEV?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "Hai chế độ:\n- **Thuần điện:** phải cắm sạc từ điện gia dụng → quãng đường tối đa **71 km** khi sạc đầy.\n- **Hybrid (HEV):** **tự sạc** qua công nghệ phanh tái sinh (chỉ hoạt động khi phanh hoặc xuống dốc) → tiết kiệm nhiên liệu hơn động cơ xăng."
+    },
+    {
+      "id": "kia-sorento-hybrid-q7",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 7,
+      "question": "Khi pin hư, xe có chạy được không?",
+      "intents": [
+        "VAN_HANH",
+        "AN_TOAN"
+      ],
+      "answer": "Khi pin Hybrid hư, xe **vẫn vận hành bình thường bằng động cơ xăng**. Đèn cảnh báo trên đồng hồ đa thông tin sẽ hiển thị → đưa xe đến xưởng dịch vụ Kia chính hãng để kiểm tra."
+    },
+    {
+      "id": "kia-sorento-hybrid-q8",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 8,
+      "question": "Sorento PHEV cần bao lâu để sạc đầy pin và quãng đường tối đa?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "- **Thời gian sạc từ 0% – 100%:** ~**9 tiếng** (bộ sạc tiêu chuẩn theo xe).\n- **Quãng đường thuần điện tối đa: 71 km**."
+    },
+    {
+      "id": "kia-sorento-hybrid-q9",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 9,
+      "question": "Ưu điểm của PHEV so với HEV, HEV so với xe xăng?",
+      "intents": [
+        "SO_SANH",
+        "VAN_HANH"
+      ],
+      "answer": "**PHEV vs HEV:**\n- PHEV tiết kiệm chi phí hơn cho khách di chuyển ngắn/đô thị nhờ chế độ thuần điện.\n- Cảm giác lái vui vẻ, tăng tốc ấn tượng hơn.\n\n**HEV vs xăng:**\n- Khởi hành êm ái nhờ motor điện.\n- Motor điện hỗ trợ → tăng tốc phấn khích ở các dải tốc độ.\n- Hộp số 6 cấp công nghệ điều khiển cải tiến → rút ngắn thời gian chuyển số, tiết kiệm nhiên liệu."
+    },
+    {
+      "id": "kia-sorento-hybrid-q10",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 10,
+      "question": "Tại sao giá Sorento PHEV cao hơn động cơ dầu (diesel)?",
+      "intents": [
+        "SO_SANH",
+        "TIEU_HAO"
+      ],
+      "answer": "PHEV được trang bị thêm **hệ thống pin hybrid dung lượng lớn** với hai chế độ chạy thuần điện và hybrid → tiết kiệm nhiên liệu, gia tăng trải nghiệm lái."
+    },
+    {
+      "id": "kia-sorento-hybrid-q11",
+      "model_slug": "kia-sorento-hybrid",
+      "qno": 11,
+      "question": "Sorento PHEV có sạc được tại trạm sạc VinFast không?",
+      "intents": [
+        "VAN_HANH",
+        "SO_SANH"
+      ],
+      "answer": "**Không** — và việc này **không cần thiết** vì:\n- Sorento PHEV trang bị **bộ sạc tiêu chuẩn**, sử dụng được với **nguồn điện dân dụng bất kỳ đâu**.\n- Sạc đầy ~9 tiếng → quãng đường tối đa 71 km → không thay đổi nhiều thói quen sử dụng xe.\n\nVinFast phải tới trạm sạc của hãng — bất tiện cho khu vực không có trạm sạc.\n\n---\n\n## Liên kết\n- [[models/kia-sorento-hybrid|← Quay lại trang model Kia Sorento HEV/PHEV]]\n- [[faq/kia-new-sorento-qa|Q&A phiên bản xăng/dầu]]\n- [[brands/kia]]\n- [[faq/index|Tất cả FAQ]]"
+    },
+    {
+      "id": "kia-sportage-q1",
+      "model_slug": "kia-sportage",
+      "qno": 1,
+      "question": "Tại sao giá Sportage cao hơn CX-5, Tucson và Territory?",
+      "intents": [
+        "SO_SANH",
+        "AN_TOAN"
+      ],
+      "answer": "Kia Sportage được trang bị các tính năng vượt trội trong phân khúc:\n\n**Công nghệ hiện đại hơn đối thủ:**\n- Cụm màn hình kích thước lớn\n- Ghế lái nhớ vị trí, hàng ghế trước chỉnh điện\n- Cốp chỉnh điện\n- Chất liệu hoàn thiện cao cấp\n- Thiết kế hiện đại, phá cách\n\n**An toàn cao cấp:** FCA, BCA, LKA, BVM\n- Đạt giải **\"Mẫu xe SUV tốt nhất cho gia đình năm 2023\"**"
+    },
+    {
+      "id": "kia-sportage-q2",
+      "model_slug": "kia-sportage",
+      "qno": 2,
+      "question": "Tại sao Kia không có chương trình khuyến mãi như Honda, Toyota, Hyundai? Có hỗ trợ thuế trước bạ không?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Chính sách bán hàng THACO AUTO **tính toán giá bán hợp lý ngay từ đầu**, thống nhất toàn hệ thống tại Việt Nam.\n\n**Lợi ích:** Trừ trực tiếp khuyến mãi vào giá bán giúp khách hàng **có lợi khi đóng lệ phí trước bạ** trong quá trình đăng ký xe."
+    },
+    {
+      "id": "kia-sportage-q3",
+      "model_slug": "kia-sportage",
+      "qno": 3,
+      "question": "Chính sách bảo hành Kia áp dụng như thế nào?",
+      "intents": [
+        "AN_TOAN"
+      ],
+      "answer": "THACO AUTO áp dụng bảo hành **5 năm / 150,000 km** (tùy điều kiện nào đến trước) cho Kia Sportage — **chính sách tốt nhất thị trường ô tô hiện tại**.\n\nHệ thống dịch vụ chính hãng rộng khắp toàn quốc, quy trình & tiêu chuẩn Kia toàn cầu."
+    },
+    {
+      "id": "kia-sportage-q4",
+      "model_slug": "kia-sportage",
+      "qno": 4,
+      "question": "Tham khảo trên hội nhóm thấy Kia Sportage hay bị lỗi?",
+      "intents": [
+        "VAN_HANH",
+        "AN_TOAN",
+        "SO_SANH"
+      ],
+      "answer": "Khẳng định Sportage là **mẫu xe tốt nhất hiện tại của Kia** và **chưa gặp phản hồi tiêu cực** nào về chất lượng sản phẩm.\n\nBộ phận Dịch vụ Kia tư vấn, hướng dẫn kiểm tra, hỗ trợ xử lý kịp thời mọi vấn đề."
+    },
+    {
+      "id": "kia-sportage-q5",
+      "model_slug": "kia-sportage",
+      "qno": 5,
+      "question": "Kia hay thay đổi mẫu mã thì mua bản cũ có dễ mất giá không?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Kia dẫn đầu xu hướng nâng cấp facelift **2-5 năm/lần** (trước đây Toyota, Honda 4-7 năm — nay cũng phải điều chỉnh tương tự Kia).\n\nTrên thị trường xe cũ, **Kia là một trong những thương hiệu giữ giá tốt nhất**."
+    },
+    {
+      "id": "kia-sportage-q6",
+      "model_slug": "kia-sportage",
+      "qno": 6,
+      "question": "Tại sao ở Việt Nam Kia Sportage cao giá hơn Hyundai Tucson dù cùng tập đoàn?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Kia và Hyundai cùng thuộc tập đoàn Hyundai (Hàn Quốc). Những năm gần đây Kia tăng trưởng tốt → tập đoàn cho phép **áp dụng công nghệ mới trên Kia trước**, sau mới đến Hyundai (bắt đầu từ Sorento, Sportage).\n\nCác mẫu Kia ra mắt tại Việt Nam luôn là **thiết kế mới và công nghệ hiện đại nhất**."
+    },
+    {
+      "id": "kia-sportage-q7",
+      "model_slug": "kia-sportage",
+      "qno": 7,
+      "question": "Sportage có quá nhiều phiên bản, khó chọn?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Kia phát triển nhiều phiên bản với nhiều mức giá để phục vụ đa dạng khách hàng.\n\n**3 phiên bản có doanh số tốt nhất:**\n- 1.6T Signature AWD\n- 1.6T X-Line\n- 2.0 Signature"
+    },
+    {
+      "id": "kia-sportage-q8",
+      "model_slug": "kia-sportage",
+      "qno": 8,
+      "question": "So sánh loa Harman Kardon trên Sportage với loa Bose của đối thủ?",
+      "intents": [
+        "NOI_THAT",
+        "SO_SANH"
+      ],
+      "answer": "Cả hai đều là thương hiệu loa nổi tiếng thế giới.\n\n**Harman Kardon (xuất xứ Mỹ)** trên Sportage: chất âm mạnh mẽ, sống động, đồng bộ với thiết kế Sportage. Đây là loa được trang bị tốt nhất trên các mẫu xe cao cấp nhất của Kia là **K9 (Quoris)**."
+    },
+    {
+      "id": "kia-sportage-q9",
+      "model_slug": "kia-sportage",
+      "qno": 9,
+      "question": "Hộp số ly hợp kép 7DCT của Kia hay bị quá nhiệt và báo lỗi?",
+      "intents": [
+        "VAN_HANH"
+      ],
+      "answer": "Khẳng định **3 năm trở lại đây hộp số Kia bị lỗi là chưa từng xảy ra**.\n\nSử dụng đúng quy cách + bảo dưỡng định kỳ → nâng cao tuổi thọ. Lỗi trong phạm vi bảo hành sẽ được xử lý theo tiêu chuẩn Kia Việt Nam."
+    },
+    {
+      "id": "kia-sportage-q10",
+      "model_slug": "kia-sportage",
+      "qno": 10,
+      "question": "Khách thường nghe xe máy dầu thì rất ồn và có mùi hôi?",
+      "intents": [
+        "VAN_HANH",
+        "TIEU_HAO"
+      ],
+      "answer": "Động cơ **SmartStream 2.0 Diesel** trang bị trên Sportage:\n- Ứng dụng công nghệ mới nhất từ tập đoàn Hyundai Kia\n- Tối ưu thiết kế, vật liệu, tinh chỉnh động cơ\n- Cải thiện rõ rệt tiếng ồn và độ êm ái\n- Đạt **tiêu chuẩn khí thải Euro 5**"
+    },
+    {
+      "id": "kia-sportage-q11",
+      "model_slug": "kia-sportage",
+      "qno": 11,
+      "question": "Tại sao Sportage trang bị nhiều mà không có HUD?",
+      "intents": [
+        "NOI_THAT"
+      ],
+      "answer": "Sportage trang bị **cụm màn hình cong Panoramic** mới nhất của Kia → tối ưu khả năng hiển thị, đảm bảo người lái cập nhật kịp thời các thông số quan trọng (tốc độ, vòng tua...)."
+    },
+    {
+      "id": "kia-sportage-q12",
+      "model_slug": "kia-sportage",
+      "qno": 12,
+      "question": "Tại sao xe Hàn cao giá hơn xe Nhật?",
+      "intents": [
+        "SO_SANH"
+      ],
+      "answer": "Chất lượng xe Hàn Quốc và Nhật Bản hiện **tương đương nhau** — chứng minh qua doanh số tại các thị trường lớn (Hàn Quốc, Mỹ).\n\nMức chênh lệch giá Sportage so với đối thủ phù hợp do trang bị nhiều tiện nghi hiện đại + an toàn cao cấp **(FCA, BCA, LKA, BVM)** trong phân khúc C-SUV. Doanh số đứng đầu line-up Kia tại Mỹ năm 2023."
+    },
+    {
+      "id": "kia-sportage-q13",
+      "model_slug": "kia-sportage",
+      "qno": 13,
+      "question": "Vì sao không giữ vỏ Michelin?",
+      "intents": [
+        "VAN_HANH"
+      ],
+      "answer": "Michelin, Continental, Bridgestone đều là thương hiệu lốp nổi tiếng thế giới. Kia đã nghiên cứu chọn loại lốp phù hợp nhất để **đồng bộ với hệ thống treo, lái, truyền động** trên Sportage → vận hành tối ưu và hiệu quả nhất.\n\n---\n\n## Liên kết\n- [[models/kia-sportage|← Quay lại trang model Kia Sportage]]\n- [[brands/kia]]\n- [[faq/index|Tất cả FAQ]]"
+    }
+  ]
+}
