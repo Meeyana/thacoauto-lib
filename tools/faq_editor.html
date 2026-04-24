@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>FAQ Editor — THACO Wiki</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 20px;
+    color: #1f2937;
+    background: #f9fafb;
+  }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  .subtitle { color: #6b7280; font-size: 13px; margin-bottom: 16px; }
+  header {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 16px;
+  }
+  main {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  input[type=text], textarea, select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  textarea { resize: vertical; }
+  textarea#answer { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13px; }
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  .btn-primary { background: #2563eb; color: white; }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-secondary { background: #e5e7eb; color: #1f2937; }
+  .btn-secondary:hover { background: #d1d5db; }
+  #intentBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .intent {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    margin: 0;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+  .intent:hover { background: #e5e7eb; }
+  .intent code { color: #2563eb; font-size: 12px; font-weight: 600; }
+  pre#preview {
+    background: #1f2937;
+    color: #e5e7eb;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-top: 6px;
+  }
+  .hint {
+    background: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .hint code { background: #fbbf24; padding: 1px 6px; border-radius: 3px; font-size: 12px; }
+  #folderStatus {
+    margin-left: 8px;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  #folderStatus.ok { color: #059669; font-weight: 600; }
+  .meta { color: #6b7280; font-size: 12px; margin-top: 4px; }
+  .actions { margin-top: 18px; padding-top: 14px; border-top: 1px solid #e5e7eb; }
+  .api-warning {
+    background: #fee2e2;
+    border-left: 3px solid #dc2626;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📝 FAQ Editor — THACO Wiki</h1>
+  <p class="subtitle">Thêm câu hỏi mới vào <code>wiki/faq/&lt;slug&gt;-qa.md</code> + auto-format intent.</p>
+  <button id="pickFolder" class="btn-primary">📂 Mở thư mục wiki/</button>
+  <span id="folderStatus">(chưa chọn)</span>
+  <div id="apiWarning" class="api-warning" style="display:none">
+    ⚠️ Trình duyệt không hỗ trợ File System Access API. Dùng Chrome/Edge mới nhất, hoặc dùng "Copy snippet" rồi paste tay.
+  </div>
+</header>
+
+<main id="form" style="display:none">
+
+  <label>Chọn xe:</label>
+  <select id="modelSelect">
+    <option value="">— Chọn xe —</option>
+  </select>
+  <div id="modelMeta" class="meta"></div>
+
+  <label>Câu hỏi (sẽ thành H2 của FAQ):</label>
+  <textarea id="question" rows="2" placeholder="Vd: Sportage có hộp số kép quá nhiệt không?"></textarea>
+
+  <label>Intents (chọn 1-3):</label>
+  <div id="intentBox"></div>
+
+  <label>Câu trả lời (markdown — bullet, **bold**, bảng OK):</label>
+  <textarea id="answer" rows="8" placeholder="Trả lời ngắn gọn ở đây.&#10;&#10;- Bullet 1&#10;- Bullet 2"></textarea>
+
+  <label>Preview snippet sẽ append:</label>
+  <pre id="preview">(điền form để xem preview)</pre>
+
+  <div class="actions">
+    <button id="appendBtn" class="btn-primary">💾 Append vào file FAQ</button>
+    <button id="copyBtn" class="btn-secondary">📋 Copy snippet</button>
+  </div>
+
+  <p class="hint">
+    💡 Sau khi append, mở terminal chạy <code>python tools/build_faq_index.py</code> rồi <code>git push</code> để n8n đọc được câu mới.
+  </p>
+</main>
+
+<script>
+// ===== CONSTANTS =====
+const INTENTS = [
+  ['SO_SANH',    'So sánh & Ra quyết định'],
+  ['VAN_HANH',   'Vận hành & Trải nghiệm lái'],
+  ['TIEU_HAO',   'Tiêu hao nhiên liệu'],
+  ['NGOAI_THAT', 'Ngoại thất & Kích thước'],
+  ['NOI_THAT',   'Nội thất & Không gian'],
+  ['AN_TOAN',    'Hệ thống an toàn'],
+  ['NHU_CAU',    'Sự phù hợp với nhu cầu']
+];
+
+let wikiDirHandle = null;
+let modelsCatalog = null;
+let faqCatalog = null;
+let currentSlug = null;
+let nextQno = 1;
+
+// ===== CHECK API SUPPORT =====
+if (!window.showDirectoryPicker) {
+  document.getElementById('apiWarning').style.display = 'block';
+  document.getElementById('pickFolder').disabled = true;
+}
+
+// ===== INTENT CHECKBOXES =====
+const intentBox = document.getElementById('intentBox');
+INTENTS.forEach(([code, label]) => {
+  const wrap = document.createElement('label');
+  wrap.className = 'intent';
+  wrap.innerHTML = `<input type="checkbox" value="${code}"> <code>${code}</code> ${label}`;
+  intentBox.appendChild(wrap);
+});
+
+// ===== PICK FOLDER =====
+document.getElementById('pickFolder').onclick = async () => {
+  try {
+    wikiDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+    const status = document.getElementById('folderStatus');
+    status.textContent = '✓ ' + wikiDirHandle.name;
+    status.className = 'ok';
+    await loadCatalogs();
+    document.getElementById('form').style.display = 'block';
+  } catch(e) {
+    if (e.name !== 'AbortError') alert('Lỗi mở thư mục: ' + e.message);
+  }
+};
+
+// ===== LOAD CATALOG =====
+async function loadCatalogs() {
+  // models/catalog.json
+  try {
+    const mDir = await wikiDirHandle.getDirectoryHandle('models');
+    const mFile = await mDir.getFileHandle('catalog.json');
+    modelsCatalog = JSON.parse(await (await mFile.getFile()).text());
+  } catch(e) {
+    alert('Không tìm thấy wiki/models/catalog.json. Bạn có chọn đúng thư mục wiki/ không?\n\n' + e.message);
+    return;
+  }
+
+  // faq/catalog.json (có thể chưa tồn tại)
+  try {
+    const fDir = await wikiDirHandle.getDirectoryHandle('faq');
+    const fFile = await fDir.getFileHandle('catalog.json');
+    faqCatalog = JSON.parse(await (await fFile.getFile()).text());
+  } catch(e) {
+    faqCatalog = { questions: [] };
+  }
+
+  // Populate dropdown
+  const sel = document.getElementById('modelSelect');
+  sel.innerHTML = '<option value="">— Chọn xe —</option>';
+  modelsCatalog.models
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.slug;
+      const ct = m.car_type || '?';
+      const seat = m.seat ? `${m.seat} chỗ` : '';
+      opt.textContent = `${m.name}  ·  ${m.brand.toUpperCase()}  ·  ${ct} ${seat}`.trim();
+      sel.appendChild(opt);
+    });
+}
+
+// ===== MODEL CHANGE =====
+document.getElementById('modelSelect').onchange = (e) => {
+  currentSlug = e.target.value;
+  const meta = document.getElementById('modelMeta');
+  if (!currentSlug) { meta.textContent = ''; nextQno = 1; updatePreview(); return; }
+
+  const existing = faqCatalog.questions.filter(q => q.model_slug === currentSlug);
+  nextQno = existing.length ? Math.max(...existing.map(q => q.qno)) + 1 : 1;
+  meta.textContent = `${existing.length} câu hỏi đã có. Câu mới sẽ là số ${nextQno}.`;
+  updatePreview();
+};
+
+// ===== PREVIEW =====
+['question', 'answer'].forEach(id =>
+  document.getElementById(id).addEventListener('input', updatePreview)
+);
+intentBox.addEventListener('change', updatePreview);
+
+function getSelectedIntents() {
+  return [...intentBox.querySelectorAll('input:checked')].map(i => i.value);
+}
+
+function buildSnippet() {
+  const q = document.getElementById('question').value.trim();
+  const a = document.getElementById('answer').value.trim();
+  const intents = getSelectedIntents();
+  if (!currentSlug || !q || !a || !intents.length) return '';
+  const intentStr = intents.map(i => '`' + i + '`').join(', ');
+  return `\n## ${nextQno}. ${q}\n**🏷 Intents:** ${intentStr}\n\n${a}\n`;
+}
+
+function updatePreview() {
+  document.getElementById('preview').textContent =
+    buildSnippet() || '(điền đủ form để xem preview)';
+}
+
+// ===== COPY =====
+document.getElementById('copyBtn').onclick = async () => {
+  const s = buildSnippet();
+  if (!s) return alert('Điền đủ: xe + câu hỏi + intent + trả lời.');
+  await navigator.clipboard.writeText(s.trim());
+  alert('✓ Đã copy snippet vào clipboard.');
+};
+
+// ===== APPEND TO FILE =====
+document.getElementById('appendBtn').onclick = async () => {
+  const s = buildSnippet();
+  if (!s) return alert('Điền đủ thông tin trước.');
+  if (!confirm(`Append câu ${nextQno} vào ${currentSlug}-qa.md?`)) return;
+
+  try {
+    const faqDir = await wikiDirHandle.getDirectoryHandle('faq', { create: true });
+    const fname = `${currentSlug}-qa.md`;
+
+    let fileHandle, existing = '';
+    let isNewFile = false;
+    try {
+      fileHandle = await faqDir.getFileHandle(fname);
+      existing = await (await fileHandle.getFile()).text();
+    } catch (e) {
+      // Tạo file mới
+      isNewFile = true;
+      fileHandle = await faqDir.getFileHandle(fname, { create: true });
+      const model = modelsCatalog.models.find(m => m.slug === currentSlug);
+      const today = new Date().toISOString().slice(0, 10);
+      existing =
+`---
+title: Q&A — ${model.name}
+type: faq
+model: "[[models/${currentSlug}]]"
+brand: "[[brands/${model.brand}]]"
+tags: [${model.brand}, faq, sales-script]
+updated: ${today}
+---
+
+> 📚 Trang Q&A tổng hợp — biên soạn từ tài liệu đào tạo bán hàng. Sửa file này → chạy \`python tools/build_faq_index.py\`.
+
+# Q&A — ${model.name}
+
+---
+`;
+    }
+
+    // Insert trước "## Liên kết" nếu có; nếu không thì append cuối
+    const linkIdx = existing.lastIndexOf('## Liên kết');
+    let newContent;
+    if (linkIdx > 0) {
+      newContent = existing.slice(0, linkIdx).trimEnd() + '\n' + s + '\n' + existing.slice(linkIdx);
+    } else {
+      newContent = existing.trimEnd() + '\n' + s + '\n';
+    }
+
+    // Cuối: append section "## Liên kết" nếu file mới tạo
+    if (isNewFile && !newContent.includes('## Liên kết')) {
+      newContent += `\n---\n\n## Liên kết\n- [[models/${currentSlug}|← Quay lại trang model]]\n- [[faq/index|Tất cả FAQ]]\n`;
+    }
+
+    const writable = await fileHandle.createWritable();
+    await writable.write(newContent);
+    await writable.close();
+
+    // Cập nhật bộ nhớ catalog locally để tăng nextQno
+    faqCatalog.questions.push({
+      id: `${currentSlug}-q${nextQno}`,
+      model_slug: currentSlug,
+      qno: nextQno,
+      question: document.getElementById('question').value.trim(),
+      intents: getSelectedIntents(),
+      answer: document.getElementById('answer').value.trim()
+    });
+
+    alert(`✓ Đã append câu ${nextQno} vào ${fname}\n\n👉 Bước cuối: chạy "python tools/build_faq_index.py" + git push.`);
+
+    // Reset form
+    document.getElementById('question').value = '';
+    document.getElementById('answer').value = '';
+    intentBox.querySelectorAll('input:checked').forEach(i => i.checked = false);
+    nextQno++;
+    document.getElementById('modelMeta').textContent =
+      `Đã thêm. Câu kế tiếp sẽ là số ${nextQno}.`;
+    updatePreview();
+  } catch (e) {
+    alert('Lỗi append: ' + e.message);
+    console.error(e);
+  }
+};
+
+updatePreview();
+</script>
+</body>
+</html>

@@ -3,6 +3,7 @@ title: BMW X3
 type: model
 brand: Bmw
 status: dang-ban
+car_type: SUV
 seat: 5
 fuel: Xăng
 price_min_vnd: 2279000000
@@ -22,6 +23,7 @@ updated: 2026-04-24
 ![BMW X3](https://thacoautotphcm.vn/storage/da-thuong-hieu/den-1.webp)
 
 ## Tóm tắt
+- **Phân loại:** SUV
 - **Số chỗ ngồi:** 5
 - **Nhiên liệu:** Xăng
 - **Giá từ:** 2.279.000.000 ₫

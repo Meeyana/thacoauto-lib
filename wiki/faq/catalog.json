@@ -1,9 +1,9 @@
 {
   "updated": "2026-04-24",
-  "total_questions": 47,
+  "total_questions": 48,
   "total_models": 5,
   "stats_by_model": {
-    "kia-k5": 10,
+    "kia-k5": 11,
     "kia-new-carnival": 2,
     "kia-new-sorento": 11,
     "kia-sorento-hybrid": 11,
@@ -125,6 +125,16 @@
         "SO_SANH"
       ],
       "answer": "| K5 | Camry |\n|---|---|\n| Thiết kế **Fastback** thể thao, hiện đại, đậm chất công nghệ | Thiết kế truyền thống |\n| **3 chế độ lái thể thao**, cảm giác lái phấn khích, mạnh mẽ | Thiên hướng phục vụ người ngồi sau, ít cảm giác lái |\n| Nhiều tiện nghi cao cấp, an toàn tiên tiến | — |\n| Giá cạnh tranh hơn ở cả 3 phiên bản | — |"
+    },
+    {
+      "id": "kia-k5-q11",
+      "model_slug": "kia-k5",
+      "qno": 11,
+      "question": "Mức tiêu hao nhiên liệu thực tế của Kia K5 khi kẹt xe trong phố và chạy đường trường là bao nhiêu?",
+      "intents": [
+        "TIEU_HAO"
+      ],
+      "answer": "- **Đô thị / Kẹt xe:** Dao động 9 - 11 lít/100km (Hợp lý cho form xe hạng D xác nặng).\n- **Đường trường / Cao tốc:** Chỉ từ 5.8 - 6.5 lít/100km (Xe đầm, tua máy thấp).\n- **Hỗ trợ tối ưu:** Có trang bị chế độ lái Eco tiết kiệm nhiên liệu.\n- **Lưu ý phụ trợ:** Mức hao xăng thực tế sẽ xê dịch tùy thuộc vào \"độ bốc\" của chân ga người lái."
     },
     {
       "id": "kia-new-carnival-q1",

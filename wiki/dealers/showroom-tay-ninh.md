@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-04-23
+updated: 2026-04-24
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
