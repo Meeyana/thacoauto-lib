@@ -28,7 +28,15 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "raw"
 DEALERS_DIR = ROOT / "wiki" / "dealers"
 ROOT_INDEX = ROOT / "index.md"
-ALIASES_FILE = ROOT / "tools" / "dealer_aliases.json"
+
+# Map tỉnh/thành → URL trang showroom chính thức (THACO AUTO)
+# Khách hỏi chung "showroom ở HCM" → gửi link tỉnh đó
+PROVINCE_URLS = {
+    "ho-chi-minh": "https://thacoautotphcm.vn/showrooms",
+    # "ha-noi": "https://thacoautohanoi.vn/showrooms",   # bổ sung khi có
+    # "da-nang": "https://thacoautodanang.vn/showrooms",
+    # "binh-duong": "https://thacoautobinhduong.vn/showrooms",
+}
 
 ROOT_MARKER_BEGIN = "<!-- BEGIN: auto-generated dealers -->"
 ROOT_MARKER_END = "<!-- END: auto-generated dealers -->"
@@ -227,20 +235,13 @@ def render_dealers_index(groups_summary, source_files):
 
 
 def write_dealer_catalog(all_items, source_files):
-    """Sinh wiki/dealers/catalog.json — flat list cho n8n filter.
+    """Sinh wiki/dealers/catalog.json — flat list cho n8n.
 
-    Mỗi showroom là 1 entry độc lập có address parsed + brand_slugs để filter.
-    Kèm aliases để khách dùng tên quận cũ vẫn match được.
+    Use case:
+    - Khách hỏi đích danh tên showroom → lookup theo title
+    - Khách hỏi chung theo tỉnh → trả PROVINCE_URLS[province]
     """
     today = date.today().isoformat()
-
-    # Load aliases (quận cũ → list phường mới)
-    aliases = {}
-    if ALIASES_FILE.exists():
-        try:
-            aliases = json.loads(ALIASES_FILE.read_text(encoding="utf-8"))
-        except Exception as e:
-            print(f"  ! Lỗi đọc dealer_aliases.json: {e}")
 
     catalog_items = []
     for it in all_items:
@@ -281,7 +282,7 @@ def write_dealer_catalog(all_items, source_files):
             "brands": distinct_brands,
             "wards": distinct_wards,
         },
-        "aliases": aliases,
+        "province_urls": PROVINCE_URLS,
         "showrooms": catalog_items,
     }
     (DEALERS_DIR / "catalog.json").write_text(
