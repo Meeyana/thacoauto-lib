@@ -28,9 +28,45 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "raw"
 DEALERS_DIR = ROOT / "wiki" / "dealers"
 ROOT_INDEX = ROOT / "index.md"
+ALIASES_FILE = ROOT / "tools" / "dealer_aliases.json"
 
 ROOT_MARKER_BEGIN = "<!-- BEGIN: auto-generated dealers -->"
 ROOT_MARKER_END = "<!-- END: auto-generated dealers -->"
+
+
+def slugify_simple(s: str) -> str:
+    import unicodedata
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    s = re.sub(r"[^\w\s-]", "", s).strip().lower()
+    return re.sub(r"[-\s]+", "-", s)
+
+
+def parse_address(addr: str) -> dict:
+    """Tách địa chỉ thành street + ward + province (best effort).
+
+    Format chuẩn: "<số nhà + tên đường>, Phường <X>, <Tỉnh/TP>"
+    Có thể có thêm Xã/Thị trấn thay Phường.
+    """
+    if not addr:
+        return {"full": "", "street": "", "ward": "", "province": ""}
+    full = addr.strip()
+    parts = [p.strip() for p in full.split(",")]
+    street, ward, province = "", "", ""
+    if len(parts) >= 3:
+        street = parts[0]
+        # Tìm phần tử có "Phường|Xã|Thị trấn"
+        for p in parts[1:-1]:
+            m = re.match(r"^(Phường|Xã|Thị trấn)\s+(.+)$", p)
+            if m:
+                ward = m.group(2).strip()
+                break
+        province = parts[-1]
+    elif len(parts) == 2:
+        street = parts[0]
+        province = parts[1]
+    else:
+        street = full
+    return {"full": full, "street": street, "ward": ward, "province": province}
 
 
 def safe(v, default="—"):
@@ -190,6 +226,72 @@ def render_dealers_index(groups_summary, source_files):
     (DEALERS_DIR / "index.md").write_text("\n".join(md), encoding="utf-8")
 
 
+def write_dealer_catalog(all_items, source_files):
+    """Sinh wiki/dealers/catalog.json — flat list cho n8n filter.
+
+    Mỗi showroom là 1 entry độc lập có address parsed + brand_slugs để filter.
+    Kèm aliases để khách dùng tên quận cũ vẫn match được.
+    """
+    today = date.today().isoformat()
+
+    # Load aliases (quận cũ → list phường mới)
+    aliases = {}
+    if ALIASES_FILE.exists():
+        try:
+            aliases = json.loads(ALIASES_FILE.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"  ! Lỗi đọc dealer_aliases.json: {e}")
+
+    catalog_items = []
+    for it in all_items:
+        actions = it.get("actions") or {}
+        addr_parsed = parse_address(it.get("address", ""))
+        brand_slugs = sorted({slugify_simple(b) for b in it.get("brands", []) if b})
+        province_slug = slugify_simple(addr_parsed["province"]) if addr_parsed["province"] else None
+
+        catalog_items.append({
+            "id": slugify_simple(it.get("title", "")),
+            "title": it.get("title", "").strip(),
+            "brands": it.get("brands", []),
+            "brand_slugs": brand_slugs,
+            "business": it.get("business"),
+            "type_showroom": it.get("type_showroom"),  # oto / tai
+            "services": it.get("tags", []),  # Showroom / Phụ tùng / Dịch vụ
+            "address": addr_parsed,
+            "province_slug": province_slug,
+            "phone_sale": it.get("phone"),
+            "phone_service": it.get("phone_dv_pt"),
+            "phone_cskh": it.get("phone_cskh"),
+            "map_url": actions.get("mapUrl"),
+            "website": actions.get("website"),
+            "image": it.get("image"),
+        })
+
+    # Stats
+    distinct_provinces = sorted({c["province_slug"] for c in catalog_items if c["province_slug"]})
+    distinct_brands = sorted({b for c in catalog_items for b in c["brand_slugs"]})
+    distinct_wards = sorted({c["address"]["ward"] for c in catalog_items if c["address"]["ward"]})
+
+    payload = {
+        "updated": today,
+        "total": len(catalog_items),
+        "source_files": source_files,
+        "stats": {
+            "provinces": distinct_provinces,
+            "brands": distinct_brands,
+            "wards": distinct_wards,
+        },
+        "aliases": aliases,
+        "showrooms": catalog_items,
+    }
+    (DEALERS_DIR / "catalog.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"  ~ wiki/dealers/catalog.json ({len(catalog_items)} showroom, "
+          f"{len(distinct_brands)} brand, {len(distinct_wards)} ward)")
+
+
 def update_root_index(groups_summary):
     if not ROOT_INDEX.exists():
         return
@@ -231,6 +333,7 @@ def run_once():
         return []
 
     all_summary = []
+    all_items = []  # flat list mọi showroom cho catalog.json
     source_files = []
     for jf in json_files:
         rel = jf.relative_to(ROOT).as_posix()
@@ -242,14 +345,16 @@ def run_once():
             for g in groups:
                 summary = render_group(g, rel)
                 all_summary.append(summary)
+                all_items.extend(g.get("items", []))
                 print(f"  + dealers/{summary[0]}.md  ({summary[2]} showroom)")
         except Exception as e:
             print(f"  ! LỖI {rel}: {e}")
 
     if all_summary:
         render_dealers_index(all_summary, source_files)
+        write_dealer_catalog(all_items, source_files)
         update_root_index(all_summary)
-        print(f"\n  ~ wiki/dealers/index.md")
+        print(f"  ~ wiki/dealers/index.md")
         print(f"  ~ index.md (cập nhật mục Dealers)")
 
     total = sum(s[2] for s in all_summary)
