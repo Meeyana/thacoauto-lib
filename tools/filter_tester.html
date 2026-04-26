@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Filter Tester — THACO Wiki SALES_LEAD</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+  header {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 16px;
+  }
+  h1 { margin: 0 0 4px; font-size: 20px; }
+  .subtitle { color: #6b7280; font-size: 13px; margin: 0; }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  section {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    min-height: 600px;
+  }
+  h2 { margin: 0 0 12px; font-size: 16px; }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 12px;
+    resize: vertical;
+  }
+  button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 2px 4px 2px 0;
+  }
+  .btn-primary { background: #2563eb; color: white; padding: 8px 16px; font-weight: 600; }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-preset { background: #e5e7eb; color: #374151; }
+  .btn-preset:hover { background: #d1d5db; }
+  .presets { margin-bottom: 8px; }
+  .presets-label { font-size: 12px; color: #6b7280; margin-right: 6px; }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .badge-detail { background: #dbeafe; color: #1e40af; }
+  .badge-shortlist-small { background: #d1fae5; color: #065f46; }
+  .badge-shortlist-big { background: #fef3c7; color: #92400e; }
+  .badge-ask-more { background: #fee2e2; color: #991b1b; }
+  .badge-error { background: #fce7f3; color: #9f1239; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .stat {
+    background: #f9fafb;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+  }
+  .stat-label { font-size: 11px; color: #6b7280; text-transform: uppercase; }
+  .stat-value { font-size: 18px; font-weight: 600; margin-top: 2px; }
+
+  .shortlist {
+    margin-top: 12px;
+    display: grid;
+    gap: 8px;
+  }
+  .car-card {
+    background: #f9fafb;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    font-size: 13px;
+  }
+  .car-name { font-weight: 600; color: #1f2937; }
+  .car-meta { color: #6b7280; font-size: 12px; margin-top: 2px; }
+  .car-slug {
+    display: inline-block;
+    background: #ede9fe;
+    color: #5b21b6;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+
+  .files {
+    margin-top: 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .files h3 { margin: 0 0 6px; font-size: 13px; }
+  .files ul { margin: 0; padding-left: 18px; font-size: 12px; font-family: monospace; }
+
+  pre.bundle {
+    background: #1f2937;
+    color: #e5e7eb;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-top: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .empty { color: #9ca3af; text-align: center; padding: 40px 20px; }
+  .error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .loading { color: #6b7280; font-style: italic; }
+
+  details { margin-top: 8px; font-size: 12px; }
+  summary { cursor: pointer; color: #6b7280; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔍 Filter Tester — Node "Code in JavaScript" (SALES_LEAD)</h1>
+  <p class="subtitle">Test logic filter trên catalog thực từ GitHub. Input = JSON output của <code>Normalize Entities</code> (= input vào node Code in JavaScript).</p>
+</header>
+
+<main>
+  <section class="left">
+    <h2>📥 Input JSON</h2>
+    <div class="presets">
+      <span class="presets-label">Preset:</span>
+      <button class="btn-preset" data-preset="detail">📄 Detail (Sportage)</button>
+      <button class="btn-preset" data-preset="cx3">🚗 Slug rút gọn (cx-3)</button>
+      <button class="btn-preset" data-preset="shortlist-small">📋 Filter ít</button>
+      <button class="btn-preset" data-preset="shortlist-big">📊 Filter nhiều</button>
+      <button class="btn-preset" data-preset="ev">⚡ EV BMW</button>
+      <button class="btn-preset" data-preset="ask-more">❓ Trống</button>
+      <button class="btn-preset" data-preset="no-match">🚫 Không khớp</button>
+    </div>
+    <textarea id="input" rows="18"></textarea>
+    <button id="run" class="btn-primary">▶ Run Filter</button>
+    <button id="clear" class="btn-preset">Clear</button>
+  </section>
+
+  <section class="right">
+    <h2>📤 Output</h2>
+    <div id="output"><div class="empty">Chọn preset hoặc paste JSON → nhấn <strong>Run Filter</strong></div></div>
+  </section>
+</main>
+
+<script>
+const BASE = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';
+
+// =========================================================
+// PORTED FROM n8n Code in JavaScript node
+// =========================================================
+function trimMarkdown(md, allowlist, opts = {}) {
+  if (!md || typeof md !== 'string') return '';
+  const maxChars = opts.maxChars || 3500;
+  md = md.replace(/^---[\s\S]*?---\s*/m, '');
+  md = md.replace(/^>.*$/gm, '');
+  md = md.replace(/!\[[^\]]*\]\([^\)]*\)/g, '');
+
+  const parts = md.split(/^## /m);
+  const intro = parts.shift() || '';
+  let kept = intro.trim() + '\n';
+  for (const part of parts) {
+    const heading = part.split('\n')[0].toLowerCase();
+    if (allowlist.some(k => heading.includes(k.toLowerCase()))) {
+      kept += '\n## ' + part.trim() + '\n';
+    }
+  }
+  if (kept.length > maxChars) kept = kept.slice(0, maxChars) + '\n...[đã rút gọn]';
+  return kept.trim();
+}
+
+let _faqCatalog = null;
+async function loadFaqFiltered(modelSlug, intents, maxQ = 5) {
+  if (!modelSlug) return '';
+  try {
+    if (!_faqCatalog) {
+      const res = await fetch(BASE + 'wiki/faq/catalog.json');
+      _faqCatalog = await res.json();
+    }
+    let qs = (_faqCatalog.questions || []).filter(q => q.model_slug === modelSlug);
+    if (!qs.length) return '';
+
+    if (intents && intents.length) {
+      const matched = qs.filter(q => q.intents.some(i => intents.includes(i)));
+      if (matched.length) qs = matched;
+    }
+    qs = qs.slice(0, maxQ);
+
+    return '\n\n=== FAQ ĐÃ FILTER (model=' + modelSlug
+      + ', intents=[' + (intents || []).join(',') + '], '
+      + qs.length + ' câu) ===\n'
+      + qs.map(q =>
+          `\n**Q${q.qno}: ${q.question}**\n_intents: ${q.intents.join(', ')}_\n${q.answer}`
+        ).join('\n\n---\n');
+  } catch (e) {
+    return `\n[FAQ LỖI: ${e.message}]`;
+  }
+}
+
+const PROFILES = {
+  detail: {
+    model: ['tóm tắt', 'phiên bản', 'màu sắc', 'khuyến mãi', 'trang bị nổi bật'],
+    faq_max_q: 5,
+    model_max_chars: 3500
+  },
+  shortlist_small: {
+    model: ['tóm tắt', 'phiên bản', 'khuyến mãi'],
+    faq_max_q: 3,
+    model_max_chars: 2000
+  },
+  shortlist_big: {}
+};
+
+async function runFilter(d) {
+  const brand       = (d.brand || "").toLowerCase().trim();
+  const model_slug  = (d.model_slug || "").toLowerCase().trim();
+  const car_type    = (d.car_type || "").toLowerCase().trim();
+  const seat_min    = d.seat_min ? Number(d.seat_min) : null;
+  const fuel        = (d.fuel || "").toLowerCase().trim();
+  const budget_max  = d.budget_max ? Number(d.budget_max) : null;
+  const qa_intents  = Array.isArray(d.qa_intents) ? d.qa_intents : [];
+
+  let mode = "unknown";
+  let files_used = [];
+  let shortlist = [];
+  let bundle = '';
+
+  if (model_slug) {
+    let final_slug = model_slug;
+    if (brand && !model_slug.startsWith(brand)) final_slug = `${brand}-${model_slug}`;
+    files_used.push(`wiki/models/${final_slug}.md`);
+    mode = "detail";
+  } else if (brand || car_type || seat_min || fuel || budget_max) {
+    let catalog;
+    try {
+      const r = await fetch(BASE + 'wiki/models/catalog.json');
+      const raw = await r.json();
+      catalog = raw.models || [];
+    } catch(e) { catalog = []; }
+
+    shortlist = catalog.filter(m => {
+      if (brand && (m.brand || "").toLowerCase() !== brand) return false;
+      if (car_type && !(m.car_type || "").toLowerCase().includes(car_type)) return false;
+      if (seat_min && Number(m.seat || 0) < seat_min) return false;
+      if (fuel) {
+        const f = (m.fuel || "").toLowerCase();
+        const fuelMap = {
+          'dầu':['dầu','diesel'],
+          'xăng':['xăng','petrol','gasoline'],
+          'hybrid':['hybrid','hev'],
+          'phev':['phev','hybrid'],
+          'ev':['ev','điện']
+        };
+        if (!(fuelMap[fuel] || [fuel]).some(a => f.includes(a))) return false;
+      }
+      // Budget filter: smart bounds (upper +5%, lower 65% chỉ khi budget > 1 tỷ)
+      if (budget_max) {
+        const p = Number(m.price_min_vnd || 0);
+        const upper = budget_max * 1.05;
+        const lower = budget_max > 1_000_000_000 ? budget_max * 0.65 : 0;
+        if (p > upper) return false;
+        if (lower && p < lower) return false;
+      }
+      return true;
+    });
+
+    // Sort theo budget closeness; nếu không có budget → sort price ASC
+    if (budget_max) {
+      shortlist.sort((a, b) =>
+        Math.abs(Number(a.price_min_vnd || 0) - budget_max) -
+        Math.abs(Number(b.price_min_vnd || 0) - budget_max)
+      );
+    } else {
+      shortlist.sort((a, b) => (a.price_min_vnd || 0) - (b.price_min_vnd || 0));
+    }
+
+    // Lưu FULL list trước khi slice (để tool hiển thị tất cả match)
+    var _all_matches = shortlist.slice();
+
+    shortlist = shortlist.slice(0, 5);
+
+    if (shortlist.length === 0) {
+      mode = "ask_more";
+      bundle = `[KHÔNG có model nào khớp filter: brand=${brand}, type=${car_type}, seat>=${seat_min}, fuel=${fuel}, budget<=${budget_max}]\nGợi ý cho AI: xin lỗi khách, đề xuất nới 1 tiêu chí.`;
+    } else {
+      mode = shortlist.length <= 2 ? "shortlist_small" : "shortlist_big";
+      bundle = `=== SHORTLIST (${shortlist.length} xe khớp tiêu chí) ===\n`
+             + shortlist.map(m =>
+                 `- ${m.name} (${m.car_type}${m.body_style_display ? '/' + m.body_style_display : ''}, ${m.seat} chỗ, ${m.fuel}) — Giá từ ${(m.price_min_vnd/1e6).toFixed(0)} triệu — slug: ${m.slug}`
+               ).join('\n');
+
+      if (mode === "shortlist_small") {
+        for (const m of shortlist) files_used.push(m.url);
+      }
+    }
+  } else {
+    mode = "ask_more";
+    bundle = "[Khách chưa đủ thông tin để filter. AI cần hỏi: thương hiệu? loại xe? số chỗ? ngân sách?]";
+  }
+
+  const profile = PROFILES[mode] || PROFILES.detail;
+
+  for (const f of files_used) {
+    try {
+      const res = await fetch(BASE + f);
+      if (!res.ok) continue;
+      const raw = await res.text();
+      const trimmed = trimMarkdown(
+        raw,
+        profile.model || ['tóm tắt','phiên bản','khuyến mãi'],
+        { maxChars: profile.model_max_chars || 3000 }
+      );
+      bundle += `\n\n=== FILE: ${f} ===\n${trimmed}`;
+    } catch(e) { /* skip */ }
+  }
+
+  if (mode === "detail") {
+    let final_slug = model_slug;
+    if (brand && !model_slug.startsWith(brand)) final_slug = `${brand}-${model_slug}`;
+    bundle += await loadFaqFiltered(final_slug, qa_intents, profile.faq_max_q);
+  } else if (mode === "shortlist_small") {
+    for (const m of shortlist) {
+      bundle += await loadFaqFiltered(m.slug, qa_intents, profile.faq_max_q);
+    }
+  }
+
+  return {
+    ...d,
+    mode,
+    shortlist,
+    all_matches: typeof _all_matches !== 'undefined' ? _all_matches : shortlist,
+    files_used,
+    qa_intents,
+    context_bundle: bundle,
+    bundle_size: bundle.length,
+    budget_max
+  };
+}
+
+// =========================================================
+// PRESETS
+// =========================================================
+const PRESETS = {
+  'detail': {
+    brand: 'kia',
+    model_slug: 'kia-sportage',
+    car_type: '', seat_min: null, fuel: '', budget_max: null,
+    qa_intents: [], status: true
+  },
+  'cx3': {
+    brand: 'mazda',
+    model_slug: 'cx-3',  // intentionally short — test fuzzy match
+    car_type: '', seat_min: null, fuel: '', budget_max: null,
+    qa_intents: ['NOI_THAT'], status: true
+  },
+  'shortlist-small': {
+    brand: 'kia', model_slug: '',
+    car_type: '', seat_min: 7, fuel: 'dầu', budget_max: null,
+    qa_intents: [], status: true
+  },
+  'shortlist-big': {
+    brand: 'kia', model_slug: '',
+    car_type: 'suv', seat_min: null, fuel: '', budget_max: null,
+    qa_intents: [], status: true
+  },
+  'ev': {
+    brand: 'bmw', model_slug: '',
+    car_type: '', seat_min: null, fuel: 'ev', budget_max: null,
+    qa_intents: [], status: true
+  },
+  'ask-more': {
+    brand: '', model_slug: '',
+    car_type: '', seat_min: null, fuel: '', budget_max: null,
+    qa_intents: [], status: true
+  },
+  'no-match': {
+    brand: 'kia', model_slug: '',
+    car_type: '', seat_min: 9, fuel: 'dầu', budget_max: 300000000,
+    qa_intents: [], status: true
+  }
+};
+
+// =========================================================
+// RENDER
+// =========================================================
+function fmtVnd(n) {
+  if (!n) return '—';
+  return (n / 1e6).toFixed(0) + ' triệu';
+}
+
+function render(result) {
+  const out = document.getElementById('output');
+
+  const modeBadge = `<span class="badge badge-${result.mode.replace('_', '-')}">${result.mode}</span>`;
+
+  let html = `<div>${modeBadge}`;
+  if (result.qa_intents && result.qa_intents.length) {
+    html += result.qa_intents.map(i => `<span class="badge" style="background:#fde68a;color:#78350f">${i}</span>`).join('');
+  }
+  html += `</div>`;
+
+  const totalMatches = (result.all_matches || []).length;
+  const cutOff = Math.max(0, totalMatches - result.shortlist.length);
+
+  // Stats — 4 cells
+  html += `<div class="stats" style="grid-template-columns:repeat(4,1fr)">
+    <div class="stat"><div class="stat-label">Bundle size</div><div class="stat-value">${result.bundle_size.toLocaleString()} chars</div></div>
+    <div class="stat"><div class="stat-label">Files loaded</div><div class="stat-value">${result.files_used.length}</div></div>
+    <div class="stat"><div class="stat-label">Top picked</div><div class="stat-value">${result.shortlist.length}</div></div>
+    <div class="stat"><div class="stat-label">Total matches</div><div class="stat-value">${totalMatches}${cutOff > 0 ? ` <span style="font-size:11px;color:#9ca3af">(+${cutOff} cut)</span>` : ''}</div></div>
+  </div>`;
+
+  // Helper: render 1 car card với optional gap-from-budget
+  function carCard(m, isPicked) {
+    const gap = result.budget_max
+      ? ` · <span style="color:#7c3aed">gap ${fmtVnd(Math.abs((m.price_min_vnd||0) - result.budget_max))}</span>`
+      : '';
+    const opacity = isPicked ? 1 : 0.55;
+    const border = isPicked ? '#10b981' : '#e5e7eb';
+    const tag = isPicked ? '✓ PICKED' : '';
+    return `<div class="car-card" style="opacity:${opacity};border-left:3px solid ${border}">
+      <div class="car-name">${m.name} <span class="car-slug">${m.slug}</span> ${tag ? `<span style="background:#d1fae5;color:#065f46;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;margin-left:4px">${tag}</span>` : ''}</div>
+      <div class="car-meta">${m.car_type || '?'}${m.body_style_display ? '/' + m.body_style_display : ''} · ${m.seat || '?'} chỗ · ${m.fuel || '?'} · từ ${fmtVnd(m.price_min_vnd)}${gap}</div>
+    </div>`;
+  }
+
+  // Top picked (shortlist 5)
+  if (result.shortlist.length) {
+    html += `<h3 style="font-size:14px;margin:16px 0 6px">🎯 Top picked (${result.shortlist.length} xe — gửi cho AI):</h3><div class="shortlist">`;
+    result.shortlist.forEach(m => html += carCard(m, true));
+    html += `</div>`;
+  }
+
+  // Full match list (nếu có nhiều hơn 5 → hiện cả list để debug)
+  if (cutOff > 0) {
+    const pickedSlugs = new Set(result.shortlist.map(s => s.slug));
+    html += `<details style="margin-top:14px">
+      <summary style="font-weight:600;color:#1f2937;font-size:14px">📋 Toàn bộ ${totalMatches} match (${cutOff} xe BỊ CẮT khỏi top 5)</summary>
+      <div class="shortlist" style="margin-top:8px">`;
+    result.all_matches.forEach(m => html += carCard(m, pickedSlugs.has(m.slug)));
+    html += `</div></details>`;
+  }
+
+  // Files used
+  if (result.files_used.length) {
+    html += `<div class="files"><h3>📂 Files đã load (${result.files_used.length}):</h3><ul>`;
+    result.files_used.forEach(f => html += `<li>${f}</li>`);
+    html += `</ul></div>`;
+  }
+
+  // Bundle preview
+  html += `<details open>
+    <summary>📋 context_bundle (${result.bundle_size} chars)</summary>
+    <pre class="bundle">${escapeHtml(result.context_bundle)}</pre>
+  </details>`;
+
+  // Raw output JSON
+  html += `<details>
+    <summary>🔍 Full output JSON</summary>
+    <pre class="bundle">${escapeHtml(JSON.stringify(result, null, 2))}</pre>
+  </details>`;
+
+  out.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, m => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[m]);
+}
+
+// =========================================================
+// HANDLERS
+// =========================================================
+document.querySelectorAll('[data-preset]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.preset;
+    document.getElementById('input').value = JSON.stringify(PRESETS[key], null, 2);
+  });
+});
+
+document.getElementById('clear').onclick = () => {
+  document.getElementById('input').value = '';
+  document.getElementById('output').innerHTML = '<div class="empty">Cleared.</div>';
+};
+
+document.getElementById('run').onclick = async () => {
+  const text = document.getElementById('input').value.trim();
+  if (!text) return alert('Paste JSON input trước.');
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch(e) {
+    document.getElementById('output').innerHTML =
+      `<div class="error">❌ JSON không hợp lệ: ${e.message}</div>`;
+    return;
+  }
+
+  document.getElementById('output').innerHTML =
+    '<div class="loading">⏳ Đang chạy filter + fetch GitHub...</div>';
+
+  // Reset FAQ cache mỗi run để pick up data mới nhất
+  _faqCatalog = null;
+
+  try {
+    const t0 = performance.now();
+    const result = await runFilter(parsed);
+    const t1 = performance.now();
+    render(result);
+    const out = document.getElementById('output');
+    out.insertAdjacentHTML('afterbegin',
+      `<div style="font-size:12px;color:#6b7280;margin-bottom:8px">⏱ ${(t1-t0).toFixed(0)}ms</div>`);
+  } catch(e) {
+    document.getElementById('output').innerHTML =
+      `<div class="error">❌ Lỗi runtime: ${e.message}</div>`;
+  }
+};
+
+// Auto-load detail preset on page load
+document.querySelector('[data-preset="detail"]').click();
+</script>
+</body>
+</html>

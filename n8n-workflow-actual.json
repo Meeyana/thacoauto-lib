@@ -2,13 +2,14 @@
     "nodes": [
         {
             "parameters": {
+                "public": true,
                 "options": {}
             },
             "type": "@n8n/n8n-nodes-langchain.chatTrigger",
             "typeVersion": 1.4,
             "position": [
-                -2064,
-                224
+                -2256,
+                240
             ],
             "id": "825c4eb2-73a7-42ce-b7eb-157dc97a911c",
             "name": "When chat message received",
@@ -16,13 +17,13 @@
         },
         {
             "parameters": {
-                "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response || \n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: p.category || null,\n      brand: (p.brand || \"\").toLowerCase().trim(),\n      model_slug: (p.model_slug || \"\").toLowerCase().trim(),\n      car_type: (p.car_type || \"\").toLowerCase().trim(),\n      seat_min: p.seat_min ? Number(p.seat_min) : null,\n      fuel: (p.fuel || \"\").toLowerCase().trim(),\n      budget_max: p.budget_max ? Number(p.budget_max) : null,\n      use_case: p.use_case || null,\n      status: typeof p.status === \"boolean\" ? p.status : false\n    }\n  }];\n} catch(e) {\n  return [{ json: { category: \"ERROR_FORMAT\", raw_debug: rawText.substring(0,200), status: false }}];\n}"
+                "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response || \n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: p.category || null,\n      brand: (p.brand || \"\").toLowerCase().trim(),\n      model_slug: (p.model_slug || \"\").toLowerCase().trim(),\n      car_type: (p.car_type || \"\").toLowerCase().trim(),\n      seat_min: p.seat_min ? Number(p.seat_min) : null,\n      fuel: (p.fuel || \"\").toLowerCase().trim(),\n      budget_max: p.budget_max ? Number(p.budget_max) : null,\n      use_case: p.use_case || null,\n      qa_intents: Array.isArray(p.qa_intents) ? p.qa_intents : [],\n      status: typeof p.status === \"boolean\" ? p.status : false\n    }\n  }];\n} catch(e) {\n  return [{ json: { category: \"ERROR_FORMAT\", raw_debug: rawText.substring(0,200), status: false }}];\n}"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1360,
-                160
+                -1440,
+                240
             ],
             "id": "8abb21d7-6c73-408e-a756-7db7a93ebffd",
             "name": "xu_ly_category"
@@ -264,13 +265,13 @@
             "type": "n8n-nodes-base.switch",
             "typeVersion": 3.2,
             "position": [
-                -1120,
+                -1088,
                 96
             ]
         },
         {
             "parameters": {
-                "jsCode": "// FILTER ENGINE — Catalog-based query for SALES_LEAD\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst brand       = (d.brand || \"\").toLowerCase().trim();\nconst model_slug  = (d.model_slug || \"\").toLowerCase().trim();\nconst car_type    = (d.car_type || \"\").toLowerCase().trim();\nconst seat_min    = d.seat_min ? Number(d.seat_min) : null;\nconst fuel        = (d.fuel || \"\").toLowerCase().trim();\nconst budget_max  = d.budget_max ? Number(d.budget_max) : null;\n\nlet mode = \"unknown\";        // 'detail' | 'shortlist' | 'ask_more'\nlet files_used = [];\nlet shortlist = [];\nlet bundle = '';\n\n// =========================================================\n// MODE 1: KHÁCH NHẮC MODEL CỤ THỂ → load file detail\n// =========================================================\nif (model_slug) {\n  let final_slug = model_slug;\n  if (brand && !model_slug.startsWith(brand)) final_slug = `${brand}-${model_slug}`;\n  \n  const detail_path = `wiki/models/${final_slug}.md`;\n  files_used.push(detail_path);\n  // load FAQ nếu có\n  files_used.push(`wiki/faq/${final_slug}-qa.md`);\n  mode = \"detail\";\n\n// =========================================================\n// MODE 2: CÓ FILTER CRITERIA → query catalog.json → shortlist\n// =========================================================\n} else if (brand || car_type || seat_min || fuel || budget_max) {\n  // Load catalog\n  let catalog;\n  try {\n    const raw = await this.helpers.httpRequest({ \n      method: 'GET', \n      url: base + 'wiki/models/catalog.json', \n      json: true,\n      returnFullResponse: false \n    });\n    catalog = (typeof raw === 'string' ? JSON.parse(raw) : raw).models || [];\n  } catch(e) {\n    catalog = [];\n  }\n  \n  // Apply filters (tất cả là AND, mỗi filter chỉ áp dụng nếu khách có nói)\n  shortlist = catalog.filter(m => {\n    if (brand && (m.brand || \"\").toLowerCase() !== brand) return false;\n    if (car_type) {\n      const ct = (m.car_type || \"\").toLowerCase();\n      // \"suv\" match cả B-SUV, C-SUV, D-SUV; \"sedan\" match cả D-Sedan\n      if (!ct.includes(car_type)) return false;\n    }\n    if (seat_min && Number(m.seat || 0) < seat_min) return false;\n    if (fuel) {\n      const f = (m.fuel || \"\").toLowerCase();\n      // map \"dầu\" ↔ \"diesel\", \"xăng\" ↔ \"petrol\"\n      const fuelMap = { 'dầu': ['dầu','diesel'], 'xăng': ['xăng','petrol','gasoline'], \n                        'hybrid': ['hybrid','hev'], 'phev': ['phev','hybrid'], 'ev': ['ev','điện'] };\n      const accepted = fuelMap[fuel] || [fuel];\n      if (!accepted.some(a => f.includes(a))) return false;\n    }\n    if (budget_max && Number(m.price_min_vnd || 0) > budget_max) return false;\n    return true;\n  }).slice(0, 5); // Tối đa 5 xe shortlist\n  \n  if (shortlist.length === 0) {\n    mode = \"ask_more\";\n    bundle = `[KHÔNG có model nào khớp filter: brand=${brand}, type=${car_type}, seat>=${seat_min}, fuel=${fuel}, budget<=${budget_max}]\\n\\nGợi ý cho AI: xin lỗi khách, đề xuất NỚI 1 tiêu chí (vd nâng budget lên +20%, hoặc bỏ ràng buộc nhiên liệu).`;\n  } else {\n    mode = \"shortlist\";\n    // Bundle = catalog entry của shortlist + load 1-2 file model nếu shortlist <=2\n    bundle = `=== SHORTLIST (${shortlist.length} xe khớp tiêu chí) ===\\n` \n           + shortlist.map(m => \n               `- ${m.name} (${m.car_type}, ${m.seat} chỗ, ${m.fuel}) — Giá từ ${(m.price_min_vnd/1e6).toFixed(0)} triệu — slug: ${m.slug}`\n             ).join('\\n');\n    \n    if (shortlist.length <= 2) {\n      // Load chi tiết các xe shortlist để agent trả lời sâu\n      for (const m of shortlist) {\n        files_used.push(m.url);\n        if (m.faq_url) files_used.push(m.faq_url);\n      }\n    }\n  }\n\n// =========================================================\n// MODE 3: KHÔNG CÓ ENTITY NÀO → cần hỏi thêm\n// =========================================================\n} else {\n  mode = \"ask_more\";\n  // Vẫn load index để có context overview\n  files_used.push('wiki/models/index.md');\n  bundle = \"[Khách chưa cung cấp đủ thông tin để filter. AI cần hỏi: thương hiệu nào? loại xe (sedan/SUV)? số chỗ? ngân sách?]\";\n}\n\n// =========================================================\n// FETCH các file MD đã chọn\n// =========================================================\nfor (const f of files_used) {\n  try {\n    const data = await this.helpers.httpRequest({ \n      method: 'GET', url: base + f, returnFullResponse: false \n    });\n    bundle += `\\n\\n=== FILE: ${f} ===\\n${typeof data === 'string' ? data : JSON.stringify(data)}`;\n  } catch(e) {\n    // Bỏ qua file không tồn tại (vd FAQ chưa có cho model đó) — không cần báo lỗi cho AI\n  }\n}\n\nreturn [{ \n  json: { \n    ...d, \n    mode,\n    shortlist,\n    files_used, \n    context_bundle: bundle \n  } \n}];"
+                "jsCode": "// FILTER ENGINE + MARKDOWN TRIMMER + FAQ INTENT FILTER — SALES_LEAD branch\n// Paste vào n8n node: \"Code in JavaScript\" (sau Switch.SALES_LEAD)\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst brand       = (d.brand || \"\").toLowerCase().trim();\nconst model_slug  = (d.model_slug || \"\").toLowerCase().trim();\nconst car_type    = (d.car_type || \"\").toLowerCase().trim();\nconst seat_min    = d.seat_min ? Number(d.seat_min) : null;\nconst fuel        = (d.fuel || \"\").toLowerCase().trim();\nconst budget_max  = d.budget_max ? Number(d.budget_max) : null;\nconst qa_intents  = Array.isArray(d.qa_intents) ? d.qa_intents : [];\n\n// =========================================================\n// HELPER 1: Trim markdown — chỉ giữ section H2 trong allowlist\n// =========================================================\nfunction trimMarkdown(md, allowlist, opts = {}) {\n  if (!md || typeof md !== 'string') return '';\n  const maxChars = opts.maxChars || 3500;\n  md = md.replace(/^---[\\s\\S]*?---\\s*/m, '');\n  md = md.replace(/^>.*$/gm, '');\n  md = md.replace(/!\\[[^\\]]*\\]\\([^\\)]*\\)/g, '');\n\n  const parts = md.split(/^## /m);\n  const intro = parts.shift() || '';\n  let kept = intro.trim() + '\\n';\n  for (const part of parts) {\n    const heading = part.split('\\n')[0].toLowerCase();\n    if (allowlist.some(k => heading.includes(k.toLowerCase()))) {\n      kept += '\\n## ' + part.trim() + '\\n';\n    }\n  }\n  if (kept.length > maxChars) kept = kept.slice(0, maxChars) + '\\n...[đã rút gọn]';\n  return kept.trim();\n}\n\n// =========================================================\n// HELPER 2: Load FAQ filtered by model + intent (thay vì cả file MD)\n// =========================================================\nlet _faqCatalog = null;\nasync function loadFaqFiltered(modelSlug, intents, maxQ = 5) {\n  if (!modelSlug) return '';\n  try {\n    if (!_faqCatalog) {\n      const cat = await this.helpers.httpRequest({\n        method: 'GET',\n        url: base + 'wiki/faq/catalog.json',\n        json: true,\n        returnFullResponse: false\n      });\n      _faqCatalog = (typeof cat === 'string' ? JSON.parse(cat) : cat);\n    }\n    let qs = (_faqCatalog.questions || []).filter(q => q.model_slug === modelSlug);\n    if (!qs.length) return '';\n\n    if (intents && intents.length) {\n      const matched = qs.filter(q => q.intents.some(i => intents.includes(i)));\n      if (matched.length) qs = matched;\n    }\n    qs = qs.slice(0, maxQ);\n\n    return '\\n\\n=== FAQ ĐÃ FILTER (model=' + modelSlug\n      + ', intents=[' + (intents || []).join(',') + '], '\n      + qs.length + ' câu) ===\\n'\n      + qs.map(q =>\n          `\\n**Q${q.qno}: ${q.question}**\\n_intents: ${q.intents.join(', ')}_\\n${q.answer}`\n        ).join('\\n\\n---\\n');\n  } catch (e) {\n    return `\\n[FAQ LỖI: ${e.message}]`;\n  }\n}\n\n// =========================================================\n// PROFILES — section allowlist + cap chars theo mode\n// =========================================================\nconst PROFILES = {\n  detail: {\n    model: ['tóm tắt', 'phiên bản', 'màu sắc', 'khuyến mãi', 'trang bị nổi bật'],\n    faq_max_q: 5,\n    model_max_chars: 3500\n  },\n  shortlist_small: {\n    model: ['tóm tắt', 'phiên bản', 'khuyến mãi'],\n    faq_max_q: 3,\n    model_max_chars: 2000\n  },\n  shortlist_big: {}\n};\n\nlet mode = \"unknown\";\nlet files_used = [];\nlet shortlist = [];\nlet bundle = '';\n\n// =========================================================\n// MODE 1: DETAIL — khách nhắc model cụ thể\n// =========================================================\nif (model_slug) {\n  let final_slug = model_slug;\n  if (brand && !model_slug.startsWith(brand)) final_slug = `${brand}-${model_slug}`;\n  files_used.push(`wiki/models/${final_slug}.md`);\n  mode = \"detail\";\n\n// =========================================================\n// MODE 2: FILTER → catalog → smart bounds → sort by closeness → top 5\n// =========================================================\n} else if (brand || car_type || seat_min || fuel || budget_max) {\n  let catalog;\n  try {\n    const raw = await this.helpers.httpRequest({\n      method: 'GET',\n      url: base + 'wiki/models/catalog.json',\n      json: true, returnFullResponse: false\n    });\n    catalog = (typeof raw === 'string' ? JSON.parse(raw) : raw).models || [];\n  } catch(e) { catalog = []; }\n\n  // Phase 1: Filter\n  shortlist = catalog.filter(m => {\n    if (brand && (m.brand || \"\").toLowerCase() !== brand) return false;\n    if (car_type && !(m.car_type || \"\").toLowerCase().includes(car_type)) return false;\n    if (seat_min && Number(m.seat || 0) < seat_min) return false;\n    if (fuel) {\n      const f = (m.fuel || \"\").toLowerCase();\n      const fuelMap = {\n        'dầu':['dầu','diesel'],\n        'xăng':['xăng','petrol','gasoline'],\n        'hybrid':['hybrid','hev'],\n        'phev':['phev','hybrid'],\n        'ev':['ev','điện']\n      };\n      if (!(fuelMap[fuel] || [fuel]).some(a => f.includes(a))) return false;\n    }\n    // Budget: smart bounds\n    //  - Upper = budget × 1.05  (cho phép vượt 5% xử lý case xe 779tr ≈ budget 800tr)\n    //  - Lower = budget × 0.65  (chỉ áp dụng khi budget > 1 tỷ — tránh xe khác phân khúc)\n    if (budget_max) {\n      const p = Number(m.price_min_vnd || 0);\n      const upper = budget_max * 1.05;\n      const lower = budget_max > 1_000_000_000 ? budget_max * 0.65 : 0;\n      if (p > upper) return false;\n      if (lower && p < lower) return false;\n    }\n    return true;\n  });\n\n  // Phase 2: Sort\n  //  - Có budget → sort theo độ gần budget (xe gần budget xếp trước)\n  //  - Không budget → sort giá ASC (gợi ý xe rẻ trước)\n  if (budget_max) {\n    shortlist.sort((a, b) =>\n      Math.abs(Number(a.price_min_vnd || 0) - budget_max) -\n      Math.abs(Number(b.price_min_vnd || 0) - budget_max)\n    );\n  } else {\n    shortlist.sort((a, b) => (a.price_min_vnd || 0) - (b.price_min_vnd || 0));\n  }\n\n  // Phase 3: Top 5\n  shortlist = shortlist.slice(0, 5);\n\n  if (shortlist.length === 0) {\n    mode = \"ask_more\";\n    bundle = `[KHÔNG có model nào khớp filter: brand=${brand}, type=${car_type}, seat>=${seat_min}, fuel=${fuel}, budget=${budget_max}]\\nGợi ý cho AI: xin lỗi khách, đề xuất nới 1 tiêu chí.`;\n  } else {\n    mode = shortlist.length <= 2 ? \"shortlist_small\" : \"shortlist_big\";\n    bundle = `=== SHORTLIST (${shortlist.length} xe khớp tiêu chí) ===\\n`\n           + shortlist.map(m =>\n               `- ${m.name} (${m.car_type}${m.body_style_display ? '/' + m.body_style_display : ''}, ${m.seat} chỗ, ${m.fuel}) — Giá từ ${(m.price_min_vnd/1e6).toFixed(0)} triệu — slug: ${m.slug}`\n             ).join('\\n');\n\n    if (mode === \"shortlist_small\") {\n      for (const m of shortlist) files_used.push(m.url);\n    }\n  }\n\n// =========================================================\n// MODE 3: ASK_MORE — thiếu entity\n// =========================================================\n} else {\n  mode = \"ask_more\";\n  bundle = \"[Khách chưa đủ thông tin để filter. AI cần hỏi: thương hiệu? loại xe? số chỗ? ngân sách?]\";\n}\n\n// =========================================================\n// FETCH model MD + TRIM theo profile\n// =========================================================\nconst profile = PROFILES[mode] || PROFILES.detail;\n\nfor (const f of files_used) {\n  try {\n    const data = await this.helpers.httpRequest({\n      method: 'GET', url: base + f, returnFullResponse: false\n    });\n    const raw = typeof data === 'string' ? data : JSON.stringify(data);\n    const trimmed = trimMarkdown(\n      raw,\n      profile.model || ['tóm tắt','phiên bản','khuyến mãi'],\n      { maxChars: profile.model_max_chars || 3000 }\n    );\n    bundle += `\\n\\n=== FILE: ${f} ===\\n${trimmed}`;\n  } catch(e) { /* skip 404 silently */ }\n}\n\n// =========================================================\n// LOAD FAQ FILTERED (thay loop load file MD cũ)\n// =========================================================\nif (mode === \"detail\") {\n  let final_slug = model_slug;\n  if (brand && !model_slug.startsWith(brand)) final_slug = `${brand}-${model_slug}`;\n  bundle += await loadFaqFiltered.call(this, final_slug, qa_intents, profile.faq_max_q);\n} else if (mode === \"shortlist_small\") {\n  for (const m of shortlist) {\n    bundle += await loadFaqFiltered.call(this, m.slug, qa_intents, profile.faq_max_q);\n  }\n}\n\nreturn [{\n  json: {\n    ...d,\n    mode,\n    shortlist,\n    files_used,\n    qa_intents,\n    context_bundle: bundle,\n    bundle_size: bundle.length\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
@@ -283,51 +284,16 @@
         },
         {
             "parameters": {
-                "modelId": {
-                    "__rl": true,
-                    "value": "models/gemini-2.5-flash",
-                    "mode": "list",
-                    "cachedResultName": "models/gemini-2.5-flash"
-                },
-                "messages": {
-                    "values": [
-                        {
-                            "content": "==Hãy dựa trên Persona để phản hồi:\n\n### [CÂU HỎI HIỆN TẠI]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode trả lời: {{ $json.mode }}\n- Thương hiệu: {{ $json.brand || \"Chung\" }}\n- Loại xe: {{ $json.car_type || \"—\" }}\n- Số chỗ tối thiểu: {{ $json.seat_min || \"—\" }}\n- Nhiên liệu: {{ $json.fuel || \"—\" }}\n- Ngân sách max: {{ $json.budget_max || \"—\" }}\n\n### [DỮ LIỆU TRI THỨC - CONTEXT_BUNDLE]\n{{ $json.context_bundle }}"
-                        }
-                    ]
-                },
-                "builtInTools": {},
-                "options": {
-                    "systemMessage": "# ROLE\nBạn là Chuyên viên tư vấn ảo cao cấp của THACO AUTO. Sử dụng [CONTEXT_BUNDLE] để hỗ trợ khách chuyên nghiệp, chính xác.\n\n# 3 MODE TRẢ LỜI (xem field \"mode\")\n- mode = \"detail\" → Khách hỏi 1 xe cụ thể: trả lời sâu (giá phiên bản, thông số, ưu điểm) dùng nguyên văn từ FILE.\n- mode = \"shortlist\" → Có nhiều xe khớp filter: trình bày BẢNG so sánh ngắn (tên | loại | chỗ | nhiên liệu | giá), gợi ý 1-2 xe nổi bật nhất theo nhu cầu khách, mời khách chọn để tư vấn sâu hơn.\n- mode = \"ask_more\" → Thiếu info: hỏi lại khéo léo theo gợi ý trong bundle. Đưa CHỌN LỰA cụ thể (vd \"Anh/chị thích sedan thanh lịch hay SUV gầm cao?\") thay vì hỏi mở.\n\n# TONE & MOOD theo BRAND\n- KIA/MAZDA: thân thiện, hiện đại\n- BMW/PEUGEOT/MINI: sang trọng, lịch lãm\n- TRUCK/BUS: tin cậy, thực tế\n- Mặc định: chuyên nghiệp, hiếu khách\n\n# XƯNG HÔ\n\"Anh/Chị\" - \"Em\".\n\n# QUY TẮC\n1. CHỈ dùng số liệu (giá, thông số) trong CONTEXT. Tuyệt đối KHÔNG bịa.\n2. Nếu CONTEXT có \"[KHÔNG có model nào khớp]\" → xin lỗi, đề xuất nới 1 tiêu chí cụ thể.\n3. Nếu CONTEXT trống/lỗi → xin SĐT khách để tổng đài hỗ trợ.\n4. Định dạng giá VNĐ giữ nguyên format \"999.000.000 ₫\".\n5. KHÔNG in wikilink [[...]] cho khách.\n6. Cuối câu: 1 CTA cụ thể (lái thử / báo giá lăn bánh / so sánh / ghé showroom).\n7. Tối đa 200 từ."
-                }
-            },
-            "type": "@n8n/n8n-nodes-langchain.googleGemini",
-            "typeVersion": 1.1,
-            "position": [
-                -560,
-                256
-            ],
-            "id": "63ca9da6-df0e-4d33-8568-b07349b8c7e9",
-            "name": "Message a model1",
-            "credentials": {
-                "googlePalmApi": {
-                    "id": "dQF7ecZV9SX7qFA3",
-                    "name": "Google Gemini(PaLM) Api account"
-                }
-            }
-        },
-        {
-            "parameters": {
                 "promptType": "define",
-                "text": "=### [TIN NHẮN NGƯỜI DÙNG HIỆN TẠI]\n\"{{ $json.chatInput }}\"\n\n### [PHÂN LOẠI VÀ TRÍCH XUẤT]",
+                "text": "==### [TIN NHẮN NGƯỜI DÙNG HIỆN TẠI]\n\"{{ $json.chatInput }}\"\n\n### [NGỮ CẢNH HỘI THOẠI — chỉ tham chiếu nếu khách nói cụt/tiếp nối]\n- Câu hỏi trước: \"{{ $json._prev.last_user_msg || '—' }}\"\n- Intent trước: {{ $json._prev.last_intent || '—' }}\n- Brand đã nhắc: {{ $json._prev.last_brand || '—' }}\n- Model đã nhắc: {{ $json._prev.last_model || '—' }}\n- AI vừa trả lời (tóm tắt): \"{{ $json._prev.last_ai_reply || '—' }}\"\n\nHướng dẫn:\n- Khách nói cụt \"thế bản đó\", \"phiên bản đó\", \"loại đó\"... → đọc \"AI vừa trả lời\" để suy ra phiên bản/loại nào AI đã đề cập, gắn lại vào model_slug + chú thích trong qa_intents.\n- Khách hỏi \"tính năng nổi bật của phiên bản đó\" + AI vừa nhắc \"Signature 1.6T\" → vẫn extract model_slug = kia-sportage, qa_intents = [\"NOI_THAT\",\"NGOAI_THAT\"]\n\n### [PHÂN LOẠI VÀ TRÍCH XUẤT]\n",
                 "options": {
-                    "systemMessage": "=## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI, Truck/Bus).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất thông tin dòng xe.\n\n## Danh mục Category: \n- GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot. \n- SAFETY_GUARD: Chửi thề, xúc phạm, nội dung nhạy cảm, chính trị hoặc quấy rối. \n- SALES_LEAD: Hỏi giá, thông số, E-catalog, khuyến mãi, trả góp, so sánh xe, đăng ký lái thử. \n- SERVICE_APPOINTMENT: Đặt lịch bảo dưỡng, sửa chữa, phụ tùng, chi phí dịch vụ xưởng. \n- NETWORK_LOCATION: Tìm showroom, địa chỉ, hotline, giờ mở cửa chi nhánh. \n- CRITICAL_COMPLAINT: Khiếu nại, than phiền dịch vụ, thái độ nhân viên, E-survey tiêu cực. \n- POLICY_LEGAL: Chính sách bảo hành, thủ tục đăng ký xe, bảo hiểm, quy định pháp lý. \n- OUT_OF_SCOPE: Các chủ đề không liên quan đến ngành ô tô (thời tiết, tán gẫu, kiến thức chung). \n- AMBIGUOUS: Câu hỏi cụt ngủn hoặc mơ hồ, cần đối chiếu [LỊCH SỬ] để xác định lại 1 trong các nhóm trên. \n\n## Quy tắc trích xuất ENTITY:\n1. brand: Tên thương hiệu (kia | mazda | peugeot | bmw | mini). Lowercase. Nếu không có → \"\".\n2. model_slug: Nếu khách nhắc TÊN xe cụ thể (vd \"Sportage\", \"Carens\", \"K5\"). Lowercase, không dấu, có dash. Nếu không có → \"\".\n3. car_type: Loại xe khách muốn: \"sedan\" | \"hatchback\" | \"suv\" | \"mpv\" | \"pickup\" | \"truck\" | \"bus\". Dùng khi khách mô tả nhu cầu (vd \"xe gầm cao\" → \"suv\", \"xe gia đình\" → null hoặc suv/mpv). Nếu không có → \"\".\n4. seat_min: Số chỗ tối thiểu khách cần (số nguyên: 4/5/7/8/9). Vd \"xe 7 chỗ\" → 7. Nếu không có → null.\n5. fuel: Loại nhiên liệu: \"xăng\" | \"dầu\" | \"hybrid\" | \"phev\" | \"ev\". Khách nói \"máy dầu\" → \"dầu\", \"lai điện\" → \"hybrid\". Nếu không có → \"\".\n6. budget_max: Ngân sách tối đa của khách (số VNĐ). Vd \"dưới 800 triệu\" → 800000000, \"tầm 1 tỷ\" → 1100000000 (cộng 10% buffer). Nếu không có → null.\n7. use_case: Mục đích sử dụng (1 cụm ngắn): \"gia đình\" | \"đi tỉnh\" | \"đô thị\" | \"kinh doanh\" | \"lái thử\" | null.\n\n## Yêu cầu kỹ thuật:\n- Chỉ trả về duy nhất định dạng JSON. Không giải thích, không dùng ký tự markdown (```)\n\n## Định dạng Output (BẮT BUỘC JSON):\n{\"category\":\"NAME\",\"brand\":\"\",\"model_slug\":\"\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"use_case\":null,\"status\":true}"
+                    "systemMessage": "=## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI, Truck/Bus).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất thông tin dòng xe.\n\n## Danh mục Category: \n- SALES_LEAD: Hỏi giá, thông số, E-catalog, khuyến mãi, trả góp, so sánh xe, đăng ký lái thử. \n- GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot. \n- SAFETY_GUARD: Chửi thề, xúc phạm, nội dung nhạy cảm, chính trị hoặc quấy rối.\n- SERVICE_APPOINTMENT: Đặt lịch bảo dưỡng, sửa chữa, phụ tùng, chi phí dịch vụ xưởng. \n- NETWORK_LOCATION: Tìm showroom, địa chỉ, hotline, giờ mở cửa chi nhánh. \n- CRITICAL_COMPLAINT: Khiếu nại, than phiền dịch vụ, thái độ nhân viên, E-survey tiêu cực. \n- POLICY_LEGAL: Chính sách bảo hành, thủ tục đăng ký xe, bảo hiểm, quy định pháp lý. \n- OUT_OF_SCOPE: Các chủ đề không liên quan đến ngành ô tô (thời tiết, tán gẫu, kiến thức chung). \n- AMBIGUOUS: Câu hỏi cụt ngủn hoặc mơ hồ, cần đối chiếu [LỊCH SỬ] để xác định lại 1 trong các nhóm trên. \n\n## Quy tắc trích xuất ENTITY:\n1. brand: Tên thương hiệu (kia | mazda | peugeot | bmw | mini). Lowercase. Nếu không có → \"\".\n2. model_slug: Nếu khách nhắc TÊN xe cụ thể (vd \"Sportage\", \"Carens\", \"K5\"). Lowercase, không dấu, có dash. Nếu không có → \"\".\n3. car_type: Loại xe khách muốn: \"sedan\" | \"hatchback\" | \"suv\" | \"mpv\" | \"pickup\" | \"truck\" | \"bus\". Dùng khi khách mô tả nhu cầu (vd \"xe gầm cao\" → \"suv\", \"xe gia đình\" → null hoặc suv/mpv). Nếu không có → \"\". Ngoài ra LƯU Ý: BMW/MINI dùng \"SAV\"/\"SAC\"/\"Estate\" → vẫn map về \"suv\"; \"Cabriolet\" → \"convertible\".\n4. seat_min: Số chỗ tối thiểu khách cần (số nguyên: 4/5/7/8/9). Vd \"xe 7 chỗ\" → 7. Nếu không có → null.\n5. fuel: Loại nhiên liệu: \"xăng\" | \"dầu\" | \"hybrid\" | \"phev\" | \"ev\". Khách nói \"máy dầu\" → \"dầu\", \"lai điện\" → \"hybrid\". Nếu không có → \"\".\n6. budget_max: Ngân sách tối đa của khách (số VNĐ). Vd \"dưới 800 triệu\" → 800000000, \"tầm 1 tỷ\" → 1100000000 (cộng 10% buffer). Nếu không có → null.\n7. use_case: Mục đích sử dụng (1 cụm ngắn): gia_dinh | do_thi | di_tinh | kinh_doanh | khang_dinh_vi_the | tech_eco |null\n8. qa_intents: List intent của câu hỏi tư vấn sâu (chọn 1-3 trong list, hoặc [] nếu không có). Dùng cho Q&A filter, KHÁC với category routing chính.   \n   - SO_SANH: so sánh model/đối thủ/phiên bản, \"đáng mua không\", \"vì sao\"\n   - VAN_HANH: động cơ, hộp số, cách âm, cảm giác lái, đầm chắc, hộp số kép\n   - TIEU_HAO: tiết kiệm xăng/dầu, chi phí vận hành, hybrid lợi điểm\n   - NGOAI_THAT: form dáng, gầm, mâm, đèn, màu sắc, kích thước\n   - NOI_THAT: ghế, màn hình, âm thanh, điều hòa, cửa sổ trời\n   - AN_TOAN: ADAS, túi khí, camera, bảo hành, cảnh báo, phanh\n   - NHU_CAU: gia đình, dịch vụ, đi phố, đi tỉnh, công việc\n\n## Yêu cầu kỹ thuật:\n- Chỉ trả về duy nhất định dạng JSON. Không giải thích, không dùng ký tự markdown (```)\n\n## Định dạng Output (BẮT BUỘC JSON):\n{\"category\":\"NAME\",\"brand\":\"\",\"model_slug\":\"\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[], \"status\":true}"
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -1776,
+                -1792,
                 224
             ],
             "id": "7f0e518a-e339-4437-aef3-dfa9e62e9a98",
@@ -336,14 +302,14 @@
         {
             "parameters": {
                 "options": {
-                    "maxOutputTokens": 256
+                    "maxOutputTokens": 2048
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
                 -1824,
-                400
+                432
             ],
             "id": "a2724fe7-1b8a-480c-8fde-0bc9464ee63e",
             "name": "Google Gemini Chat Model",
@@ -356,29 +322,477 @@
         },
         {
             "parameters": {
-                "contextWindowLength": 10
-            },
-            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-            "typeVersion": 1.3,
-            "position": [
-                -1696,
-                416
-            ],
-            "id": "56d96b8b-1239-4544-98ae-07ddbc129162",
-            "name": "Simple Memory"
-        },
-        {
-            "parameters": {
-                "jsCode": "// 1. Lấy dữ liệu từ node trước (AI Router/Classifier)\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\n// Chuẩn hóa dữ liệu đầu vào\nconst category = d.category || \"\";\nconst brand = (d.brand || \"\").toLowerCase().trim();\n// Giả định AI đã trích xuất được địa điểm hoặc tên showroom (ví dụ: \"Phú Mỹ Hưng\", \"Quận 7\")\nconst location_query = (d.location || \"\").toLowerCase().trim(); \nconst showroom_slug = (d.showroom_slug || \"\").toLowerCase().trim();\n\nlet files = [];\nlet need_location = false; // Cờ báo hiệu cần hỏi thêm vị trí khách hàng\nlet bundle = '';\n\n// ==========================================\n// 2. LOGIC PHÂN LUỒNG NETWORK_LOCATION\n// ==========================================\n\nif (category === \"NETWORK_LOCATION\") {\n    \n    // TH1: Nếu đã xác định được showroom cụ thể (đã có slug)\n    if (showroom_slug) {\n        // Ví dụ: wiki/dealers/showroom-kia-phu-my-hung.md\n        files.push(`wiki/dealers/${showroom_slug}.md`);\n    } \n    \n    // TH2: Nếu khách có nhắc đến địa danh nhưng chưa rõ showroom nào (vd: \"Showroom ở Bình Dương\")\n    else if (location_query) {\n        // AI có thể tìm file index để lọc hoặc tìm file theo tỉnh thành nếu bạn có cấu trúc đó\n        // Ở đây ta ưu tiên lấy index để AI có dữ liệu tổng quát rồi tự lọc\n        files.push(`wiki/dealers/index.md`);\n        // Có thể bổ sung logic tìm theo tỉnh: files.push(`wiki/dealers/provinces/${location_query}.md`);\n    }\n    \n    // TH3: Hỏi chung chung hoặc không có thông tin vị trí\n    else {\n        files.push(`wiki/dealers/index.md`);\n        need_location = true; // Bật cờ để AI hỏi \"Anh/Chị đang ở khu vực nào?\"\n    }\n}\n\n// ==========================================\n// 3. TRUY VẤN DỮ LIỆU TỪ GITHUB\n// ==========================================\n\nif (files.length > 0) {\n    for (const f of files) {\n        try {\n            const data = await this.helpers.httpRequest({ \n                method: 'GET', \n                url: base + f, \n                returnFullResponse: false \n            });\n            \n            bundle += `\\n\\n=== TÀI LIỆU HỆ THỐNG MẠNG LƯỚI: ${f} ===\\n${typeof data === 'string' ? data : JSON.stringify(data)}`;\n            \n        } catch (e) { \n            bundle += `\\n\\n=== TÀI LIỆU: ${f} ===\\n[LỖI: Hiện chưa có dữ liệu chi tiết cho mục này. Vui lòng hướng dẫn khách để lại SĐT để tổng đài viên hỗ trợ trực tiếp.]`; \n        }\n    }\n}\n\n// ==========================================\n// 4. TRẢ KẾT QUẢ\n// ==========================================\nreturn [{ \n    json: { \n        ...d,\n        need_location: need_location,\n        files_used: files, \n        context_bundle: bundle,\n        // Gợi ý cho AI cách phản hồi nếu thiếu vị trí\n        ai_suggestion: need_location ? \"Hãy chào khách và hỏi xem họ đang ở tỉnh thành hoặc quận huyện nào để tìm showroom gần nhất.\" : \"Sử dụng dữ liệu showroom trong context để cung cấp địa chỉ, hotline và giờ làm việc.\"\n    } \n}];"
+                "jsCode": "// NORMALIZE ENTITIES — Validate AI output against vocab.json from GitHub\nconst VOCAB_URL = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/wiki/models/vocab.json';\n\nlet vocab;\ntry {\n  vocab = await this.helpers.httpRequest({ method: 'GET', url: VOCAB_URL, json: true, returnFullResponse: false });\n  if (typeof vocab === 'string') vocab = JSON.parse(vocab);\n} catch (e) {\n  // Fail-open: nếu vocab không tải được thì pass-through (đừng chặn cả pipeline)\n  return [{ json: { ...$input.first().json, _vocab_error: e.message } }];\n}\n\nconst d = $input.first().json;\n\n// Helper: lookup giá trị qua synonym map → trả canonical key, hoặc null\nfunction lookupSynonym(value, dict) {\n  if (!value) return null;\n  const v = value.toString().toLowerCase().trim();\n  if (!dict || !dict.synonyms) return null;\n\n  // 1. Direct match canonical key\n  for (const canon of Object.keys(dict.synonyms)) {\n    if (canon.toLowerCase() === v) return canon;\n  }\n  // 2. Match trong list synonym (exact)\n  for (const [canon, syns] of Object.entries(dict.synonyms)) {\n    if (syns.some(s => s.toLowerCase() === v)) return canon;\n  }\n  // 3. Partial match (substring) — nới lỏng cho text dài\n  for (const [canon, syns] of Object.entries(dict.synonyms)) {\n    if (syns.some(s => v.includes(s.toLowerCase()) || s.toLowerCase().includes(v))) return canon;\n  }\n  return null;\n}\n\n// Helper: validate model_slug có trong list không\nfunction validateSlug(slug, validList) {\n  if (!slug) return null;\n  const s = slug.toString().toLowerCase().trim().replace(/\\s+/g, '-');\n\n  // 1. Exact match\n  if (validList.includes(s)) return s;\n\n  // 2. Thử ghép brand prefix: \"carens\" + brand=\"kia\" → \"kia-carens\"\n  if (d.brand) {\n    const guess = `${d.brand.toLowerCase()}-${s}`;\n    if (validList.includes(guess)) return guess;\n  }\n\n  // 3. Partial match có dash boundary: \"cx-3\" → \"mazda-cx-3\"\n  const candidates = validList.filter(v => {\n    if (d.brand && !v.startsWith(d.brand.toLowerCase() + '-')) return false;\n    return v.endsWith('-' + s) || v === s || v.includes('-' + s + '-');\n  });\n  if (candidates.length === 1) return candidates[0];\n  if (candidates.length > 1) {\n    return candidates.sort((a, b) => a.length - b.length)[0];\n  }\n\n  // 4. ⭐ MỚI — Strip-dash compare: \"cx3\" → \"mazdacx3\" → so với \"mazda-cx-3\" → \"mazdacx3\" ✅\n  //    Áp dụng cho TẤT CẢ slug viết liền không dash (cx3, cx30, mx5, k5...)\n  const stripDash = (x) => x.replace(/-/g, '');\n  const sStripped = stripDash(s);\n\n  const fuzzyCandidates = validList.filter(v => {\n    if (d.brand && !v.startsWith(d.brand.toLowerCase() + '-')) return false;\n    const vStripped = stripDash(v);\n    // EXACT strip match: \"cx3\" === \"mazdacx3\"? Không, nhưng endsWith mới đúng\n    // endsWith match: \"mazdacx3\".endsWith(\"cx3\") ✅; \"mazdacx30\".endsWith(\"cx3\") ❌\n    return vStripped === sStripped || vStripped.endsWith(sStripped);\n  });\n\n  if (fuzzyCandidates.length === 1) return fuzzyCandidates[0];\n  if (fuzzyCandidates.length > 1) {\n    // Ưu tiên slug ngắn hơn (cụ thể hơn): \"cx3\" → \"mazda-cx-3\" thắng \"mazda-cx-30\"\n    return fuzzyCandidates.sort((a, b) => a.length - b.length)[0];\n  }\n\n  return null;\n}\n\n\n// Validate seat_min: phải là số nguyên trong canonical\nfunction validateSeat(value, allowed) {\n  if (value === null || value === undefined || value === '') return null;\n  const n = Number(value);\n  if (!Number.isFinite(n)) return null;\n  // Cho phép giá trị nhỏ hơn min canonical (vd khách hỏi \"4 chỗ\" nhưng catalog chỉ có từ 5)\n  // Nhưng giới hạn trong khoảng hợp lý 2-16\n  return (n >= 2 && n <= 16) ? n : null;\n}\n\n// Normalize tất cả entity\nconst normalized = {\n  brand:      lookupSynonym(d.brand, vocab.brand),\n  car_type:   lookupSynonym(d.car_type, vocab.car_type),\n  fuel:       lookupSynonym(d.fuel, vocab.fuel),\n  use_case:   lookupSynonym(d.use_case, vocab.use_case),\n  seat_min:   validateSeat(d.seat_min, vocab.seat?.canonical || []),\n  model_slug: validateSlug(d.model_slug, vocab.model_slugs || []),\n};\n\n// Track giá trị AI bịa (để review & bổ sung synonym sau)\nconst unknown = {};\nfor (const [k, originalRaw] of Object.entries({\n  brand: d.brand, car_type: d.car_type, fuel: d.fuel,\n  use_case: d.use_case, model_slug: d.model_slug\n})) {\n  if (originalRaw && !normalized[k]) {\n    unknown[k] = originalRaw;\n  }\n}\n\nreturn [{\n  json: {\n    ...d,\n    ...normalized,\n    budget_max: d.budget_max ? Number(d.budget_max) : null,  // numeric, không cần normalize\n    _unknown: Object.keys(unknown).length ? unknown : null,\n    _normalized_at: new Date().toISOString()\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -736,
+                -1216,
+                240
+            ],
+            "id": "f82b05ed-99b2-4dc4-879a-8a1e8d2178cb",
+            "name": "Normalize Entities"
+        },
+        {
+            "parameters": {
+                "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response ||\n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\nconst router = $('xu_ly_category').first().json;\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: router.category,\n      province: (p.province || \"\").toLowerCase().trim(),\n      showroom_name: (p.showroom_name || \"\").trim(),\n      brand: (p.brand || router.brand || \"\").toLowerCase().trim(),\n      status: true\n    }\n  }];\n} catch (e) {\n  return [{\n    json: {\n      category: router.category,\n      province: \"\", showroom_name: \"\", brand: router.brand || \"\",\n      status: false,\n      _error: e.message,\n      _raw_debug: rawText.substring(0, 200)\n    }\n  }];\n}\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -544,
+                464
+            ],
+            "id": "1b347b65-397f-42a2-8a83-ae3ba078d6b4",
+            "name": "xu_ly_location1"
+        },
+        {
+            "parameters": {
+                "jsCode": "// DEALER LOOKUP — 5 mode:\n//  1. area_overview        → khách hỏi tên KHU VỰC (PMH, An Sương...) → liệt kê TẤT CẢ showroom + tổng quan brand\n//  2. specific_found       → khách hỏi đích danh 1 showroom → trả info chi tiết\n//  3. specific_not_found   → match 0 showroom\n//  4. province_link        → khách hỏi chung theo tỉnh → trả URL\n//  5. ask_province         → khách chưa nói gì → hỏi khu vực\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst province      = (d.province || \"\").toLowerCase().trim();\nconst showroom_name = (d.showroom_name || \"\").toLowerCase().trim();\nconst brand         = (d.brand || \"\").toLowerCase().trim();\n\nlet mode = \"ask_province\";\nlet bundle = '';\nlet matched_showrooms = [];\nlet province_url = null;\n\ntry {\n  // ============================================\n  // MODE: KHÁCH HỎI ĐÍCH DANH SHOWROOM hoặc KHU VỰC\n  // ============================================\n  if (showroom_name) {\n    const cat = await this.helpers.httpRequest({\n      method: 'GET',\n      url: base + 'wiki/dealers/catalog.json',\n      json: true,\n      returnFullResponse: false\n    });\n    const data = (typeof cat === 'string') ? JSON.parse(cat) : cat;\n\n    // Helper: chuẩn hoá string (bỏ dấu cách thừa, lowercase)\nfunction norm(s) {\n  return (s || \"\").toLowerCase().trim().replace(/\\s+/g, ' ');\n}\n\n// Helper: tách thành tokens (theo word boundary, giữ tiếng Việt có dấu)\nfunction tokens(s) {\n  return norm(s).split(/[\\s\\-,]+/).filter(Boolean);\n}\n\n// Helper: cho điểm match giữa title và query\nfunction scoreMatch(title, query) {\n  const t = norm(title);\n  const q = norm(query);\n  if (!t || !q) return 0;\n\n  // 100: exact match\n  if (t === q) return 100;\n\n  // 80: title chứa nguyên cụm query (bao quanh bởi khoảng trắng / đầu / cuối)\n  //     → đảm bảo \"phú mỹ hưng\" KHÔNG match title chỉ chứa \"phú mỹ\"\n  const qPattern = new RegExp(`(^|\\\\s)${q.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (qPattern.test(t)) return 80;\n\n  // 60: query chứa nguyên title (cho case khách gõ dài hơn title, vd \"showroom BMW Sala\" vs title \"BMW Sala\")\n  const tPattern = new RegExp(`(^|\\\\s)${t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (tPattern.test(q)) return 60;\n\n  // 40: tất cả token của query xuất hiện trong title (any order, exact word)\n  const qTok = tokens(q);\n  const tTokSet = new Set(tokens(t));\n  if (qTok.length && qTok.every(w => tTokSet.has(w))) return 40;\n\n  return 0;\n}\n\n// Score toàn bộ catalog\nconst scored = (data.showrooms || [])\n  .map(s => ({ s, score: scoreMatch(s.title, showroom_name) }))\n  .filter(x => x.score > 0)\n  .sort((a, b) => b.score - a.score);\n\n// CHỈ GIỮ điểm cao nhất → loại các match yếu hơn\nlet matches = [];\nif (scored.length) {\n  const bestScore = scored[0].score;\n  matches = scored.filter(x => x.score === bestScore).map(x => x.s);\n}\n\n\n    // Nếu khách có nói brand cụ thể → narrow xuống brand đó\n    if (brand && matches.length > 1) {\n      const filtered = matches.filter(s =>\n        (s.brand_slugs || []).some(b => b === brand || b.includes(brand))\n      );\n      // Chỉ apply filter nếu vẫn còn match (tránh ra rỗng)\n      if (filtered.length) matches = filtered;\n    }\n\n    matched_showrooms = matches;\n\n    if (matches.length === 0) {\n      mode = \"specific_not_found\";\n      bundle = `[KHÔNG tìm thấy showroom \"${d.showroom_name}\" trong hệ thống.\nGợi ý cho AI: xin lỗi khách, đề xuất gọi hotline 1900 56 5499.]`;\n\n    } else if (matches.length === 1) {\n      // 1 showroom đích danh → trả chi tiết đầy đủ\n      mode = \"specific_found\";\n      const f = matches[0];\n      bundle = `=== SHOWROOM: ${f.title} ===\n- Thương hiệu: ${f.brands.join(', ')}\n- 📍 Địa chỉ: ${f.address.full}\n- 📞 Bán hàng: ${f.phone_sale || '—'}\n- 📞 Dịch vụ: ${f.phone_service || '—'}\n- 🏷 Dịch vụ cung cấp: ${f.services.join(', ')}\n- 🗺 Maps: ${f.map_url || '—'}\n- 🌐 Website: ${f.website || '—'}`;\n\n    } else {\n      // Nhiều showroom cùng khu vực → tổng quan\n      mode = \"area_overview\";\n\n      // Tổng hợp brand của cả khu vực (unique)\n      const allBrands = [...new Set(matches.flatMap(s => s.brands || []))].sort();\n      // Tên khu vực: lấy phần chung trong title (vd \"Phú Mỹ Hưng\")\n      const areaName = d.showroom_name;\n      // Địa chỉ chung: lấy phường + tỉnh từ showroom đầu (thường giống nhau)\n      const sampleAddr = matches[0].address || {};\n      const ward = sampleAddr.ward ? `Phường ${sampleAddr.ward}` : '';\n      const city = sampleAddr.province || '';\n\n      bundle = `=== TỔNG QUAN KHU VỰC: ${areaName.toUpperCase()} ===\n- Vị trí: ${[ward, city].filter(Boolean).join(', ') || '—'}\n- Số showroom trong khu vực: ${matches.length}\n- Tất cả thương hiệu có mặt: ${allBrands.join(', ')}\n\n=== CHI TIẾT TỪNG SHOWROOM ===\n${matches.map(s => `\n**${s.title}**\n- Thương hiệu: ${s.brands.join(', ')}\n- 📍 ${s.address.full}\n- 📞 Bán hàng: ${s.phone_sale || '—'} | Dịch vụ: ${s.phone_service || '—'}\n- 🏷 ${s.services.join(', ')}\n- 🗺 ${s.map_url || '—'}`).join('\\n\\n---\\n')}`;\n    }\n\n  // ============================================\n  // MODE: KHÁCH HỎI CHUNG, CÓ TỈNH/THÀNH\n  // ============================================\n  } else if (province) {\n    const cat = await this.helpers.httpRequest({\n      method: 'GET',\n      url: base + 'wiki/dealers/catalog.json',\n      json: true,\n      returnFullResponse: false\n    });\n    const data = (typeof cat === 'string') ? JSON.parse(cat) : cat;\n    province_url = (data.province_urls || {})[province] || null;\n\n    if (province_url) {\n      mode = \"province_link\";\n      bundle = `=== KHÁCH HỎI CHUNG SHOWROOM TẠI: ${province} ===\nURL chính thức: ${province_url}\nBrand quan tâm: ${brand || 'tất cả'}`;\n    } else {\n      mode = \"province_no_link\";\n      bundle = `[Chưa có URL website cho tỉnh \"${province}\".\nGợi ý cho AI: xin lỗi và mời khách gọi hotline 1900 56 5499.]`;\n    }\n\n  // ============================================\n  // MODE: CHƯA CÓ THÔNG TIN — HỎI LẠI\n  // ============================================\n  } else {\n    mode = \"ask_province\";\n    bundle = `[Khách hỏi chung \"showroom\" nhưng chưa nói khu vực hay tên cụ thể.\nGợi ý cho AI: hỏi lịch sự \"Anh/Chị đang ở tỉnh/thành hoặc khu vực nào ạ?\"]`;\n  }\n\n} catch (e) {\n  bundle = `[LỖI: ${e.message}. Hướng dẫn khách gọi hotline 1900 56 5499.]`;\n  mode = \"error\";\n}\n\nreturn [{\n  json: {\n    ...d,\n    mode,\n    matched_showrooms,\n    matched_count: matched_showrooms.length,\n    province_url,\n    context_bundle: bundle\n  }\n}];\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -368,
                 464
             ],
             "id": "f45db898-0f43-4f48-bbd5-fc8208e488d3",
-            "name": "Code in JavaScript1"
+            "name": "Code in Javescript 1"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "==### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [JSON]\n",
+                "options": {
+                    "systemMessage": "=## Vai trò: AI extract entity cho hệ thống tìm showroom THACO AUTO.\n## CHỈ trả về JSON thuần, KHÔNG markdown, KHÔNG giải thích.\n\n## Quy tắc trích xuất:\n\n1. province (tỉnh/thành — lowercase, dash, không dấu):\n   \"ho-chi-minh\" | \"ha-noi\" | \"da-nang\" | \"binh-duong\" | \"ba-ria-vung-tau\" | \"tay-ninh\" | \"can-tho\" | \"\"\n   - \"Sài Gòn\" / \"TP.HCM\" / \"HCM\" → \"ho-chi-minh\"\n   - \"HN\" / \"Thủ đô\" → \"ha-noi\"\n   - Để \"\" nếu khách không nhắc\n\n2. showroom_name (tên showroom đích danh khách hỏi — chuỗi text gốc):\n   - Khách nói \"BMW Sala\", \"Kia Phú Mỹ Hưng\", \"Mazda Trường Chinh\" → giữ nguyên\n   - Để \"\" nếu khách hỏi chung chung kiểu \"showroom Kia ở đâu\"\n\n3. brand (lowercase): \n   \"kia\" | \"mazda\" | \"peugeot\" | \"bmw\" | \"mini\" | \"thaco-truck\" | \"thaco-bus\" | \"\"\n\n## Định dạng Output BẮT BUỘC:\n{\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\"}\n\n## Ví dụ:\n- \"Showroom Kia ở Sài Gòn\" → {\"province\":\"ho-chi-minh\",\"showroom_name\":\"\",\"brand\":\"kia\"}\n- \"Cho em địa chỉ BMW Sala\" → {\"province\":\"\",\"showroom_name\":\"BMW Sala\",\"brand\":\"bmw\"}\n- \"Tôi muốn xem showroom\" → {\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\"}\n"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3.1,
+            "position": [
+                -832,
+                448
+            ],
+            "id": "26fb643d-5c91-4ecb-9058-8ad57eb2b19b",
+            "name": "AI Agent - Location Extractor"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "==Hãy dựa trên Persona để phản hồi:\n\n### [CÂU HỎI HIỆN TẠI]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode trả lời: {{ $json.mode }}\n- Thương hiệu: {{ $json.brand || \"Chung\" }}\n- Loại xe: {{ $json.car_type || \"—\" }}\n- Số chỗ tối thiểu: {{ $json.seat_min || \"—\" }}\n- Nhiên liệu: {{ $json.fuel || \"—\" }}\n- Ngân sách max: {{ $json.budget_max || \"—\" }}\n\n### [DỮ LIỆU TRI THỨC - CONTEXT_BUNDLE]\n{{ $json.context_bundle }}",
+                "options": {
+                    "systemMessage": "=# ROLE\nBạn là Chuyên viên tư vấn ảo cao cấp của THACO AUTO. Sử dụng [CONTEXT_BUNDLE] để hỗ trợ khách chuyên nghiệp, chính xác.\n\n# 3 MODE TRẢ LỜI (xem field \"mode\")\n- mode = \"detail\" → Khách hỏi 1 xe cụ thể: trả lời sâu (giá phiên bản, thông số, ưu điểm) dùng nguyên văn từ FILE.\n- mode = \"shortlist\" → Có nhiều xe khớp filter: trình bày BẢNG so sánh ngắn (tên | loại | chỗ | nhiên liệu | giá), gợi ý 1-2 xe nổi bật nhất theo nhu cầu khách, mời khách chọn để tư vấn sâu hơn.\n- mode = \"ask_more\" → Thiếu info: hỏi lại khéo léo theo gợi ý trong bundle. Đưa CHỌN LỰA cụ thể (vd \"Anh/chị thích sedan thanh lịch hay SUV gầm cao?\") thay vì hỏi mở.\n\n# TONE & MOOD theo BRAND\n- KIA/MAZDA: thân thiện, hiện đại\n- BMW/PEUGEOT/MINI: sang trọng, lịch lãm\n- TRUCK/BUS: tin cậy, thực tế\n- Mặc định: chuyên nghiệp, hiếu khách\n\n# XƯNG HÔ\n\"Anh/Chị\" - \"Em\".\n\n# QUY TẮC\n0. Luôn luôn dạng list, không được dùng dạng bảng khi liệt kê \n1. CHỈ dùng số liệu (giá, thông số) trong CONTEXT. Tuyệt đối KHÔNG bịa.\n2. Nếu CONTEXT có \"[KHÔNG có model nào khớp]\" → xin lỗi, đề xuất nới 1 tiêu chí cụ thể.\n3. Nếu CONTEXT trống/lỗi → xin SĐT khách để tổng đài hỗ trợ.\n4. Định dạng giá VNĐ giữ nguyên format \"999.000.000 ₫\".\n5. KHÔNG in wikilink [[...]] cho khách.\n6. Cuối câu: 1 CTA cụ thể (lái thử / báo giá lăn bánh / so sánh / ghé showroom).\n7. Tối đa 200 từ.\n\n# THUẬT NGỮ KIỂU DÁNG ĐẶC BIỆT (BMW/MINI)\nKhi nhắc kiểu dáng xe BMW hoặc MINI trong câu trả lời, BẮT BUỘC dùng tên gọi\nchuyên biệt từ field `body_style_display` trong CONTEXT (nếu có), KHÔNG dùng \"SUV\":\n- body_style_display = \"SAV\" → gọi là \"SAV (Sports Activity Vehicle)\"\n- body_style_display = \"SAC\" → gọi là \"SAC (Sports Activity Coupe)\"\n- body_style_display = \"Estate\" → gọi là \"Estate\"\nLần đầu nhắc: viết đầy đủ \"SAV (Sports Activity Vehicle)\". Lần sau: viết tắt \"SAV\".\nLưu ý: filter vẫn dùng SUV, nhưng khi diễn đạt với khách → dùng tên brand-specific\nđể thể hiện sự am hiểu thương hiệu.\n\nVí dụ:\n❌ \"BMW X5 là mẫu SUV cao cấp...\"\n✅ \"BMW X5 là mẫu SAV (Sports Activity Vehicle) cao cấp của BMW...\""
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3.1,
+            "position": [
+                -496,
+                144
+            ],
+            "id": "6e894015-af18-4b3b-8815-171462709aa9",
+            "name": "Message a model1"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "==### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode: {{ $json.mode }}\n- Tỉnh/Thành: {{ $json.province || \"—\" }}\n- Brand: {{ $json.brand || \"—\" }}\n- Showroom name khách nhắc: {{ $json.showroom_name || \"—\" }}\n- URL tỉnh (nếu có): {{ $json.province_url || \"—\" }}\n\n### [DỮ LIỆU]\n{{ $json.context_bundle }}\n",
+                "options": {
+                    "systemMessage": "=# ROLE\nBạn là Tư vấn viên Hệ thống Mạng lưới THACO AUTO. Chuyên trả lời câu hỏi tìm showroom, đại lý.\n\n# TONE\n- Xưng \"Em\" - \"Anh/Chị\". Lịch sự, hữu ích, gọn gàng.\n- Tối đa 200 từ.\n\n# QUY TẮC PHẢN HỒI THEO 5 MODE TRẢ LỜI (xem field \"mode\")\n\n▸ mode = \"specific_found\":\n  Trả ĐẦY ĐỦ thông tin 1 showroom theo CONTEXT (tên, địa chỉ, hotline, dịch vụ, link Maps).\n  Cuối: mời khách đặt lịch xem xe / lái thử.\n\n▸ mode = \"area_overview\":   ← MỚI\n  Mở đầu: \"Dạ tại khu vực [areaName] có [N] showroom THACO AUTO ạ:\"\n  Liệt kê GỌN từng showroom (dạng bullet ngắn, KHÔNG full address):\n  - **Tên showroom** — Brand: ..., Hotline: ...\n  Sau đó tóm tắt: \"Tất cả các showroom đều cùng khu vực [địa chỉ rút gọn], tổng [N] thương hiệu: [list].\"\n  Hỏi khách: \"Anh/Chị quan tâm thương hiệu hoặc showroom nào ạ? Em sẽ gửi địa chỉ + Maps chi tiết.\"\n\n▸ mode = \"specific_not_found\":\n  Xin lỗi: \"Dạ em chưa tìm thấy showroom Anh/Chị nói trong hệ thống.\"\n  Mời gọi hotline 1900 56 5499.\n\n▸ mode = \"province_link\":\n  \"Dạ Anh/Chị có thể xem danh sách showroom THACO AUTO tại [tỉnh] qua link sau: [URL]\"\n  Nếu CONTEXT có brand → \"Vào trang lọc theo thương hiệu [brand] để tìm nhanh ạ.\"\n\n▸ mode = \"ask_province\" / \"province_no_link\" / \"error\":\n  Hỏi khéo \"Anh/Chị đang ở khu vực nào ạ?\" hoặc mời gọi hotline.\n\n# QUY TẮC CỨNG\n- KHÔNG bịa địa chỉ, hotline, link.\n- Mode area_overview: KHÔNG dump full address của tất cả 5 showroom (rườm rà), chỉ overview + tên + brand + hotline → để khách chọn rồi mới gửi chi tiết.\n- Tối đa 200 từ."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3.1,
+            "position": [
+                -32,
+                464
+            ],
+            "id": "0ae8fef9-d1a9-4870-a116-8de1ab9c4373",
+            "name": "Message a model"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+            "typeVersion": 1,
+            "position": [
+                -528,
+                336
+            ],
+            "id": "67e78dbb-5220-4961-aa70-ad78bc6f5141",
+            "name": "Google Gemini Chat Model1",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "dQF7ecZV9SX7qFA3",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+            "typeVersion": 1,
+            "position": [
+                -976,
+                656
+            ],
+            "id": "9903d39d-0e58-48e0-87f7-7c6854183f0a",
+            "name": "Google Gemini Chat Model2",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "dQF7ecZV9SX7qFA3",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+            "typeVersion": 1,
+            "position": [
+                -176,
+                672
+            ],
+            "id": "94579ebc-9144-4b37-8565-c45021a66e19",
+            "name": "Google Gemini Chat Model3",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "dQF7ecZV9SX7qFA3",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "documentId": {
+                    "__rl": true,
+                    "value": "1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY",
+                    "mode": "list",
+                    "cachedResultName": "THACO Chatbot Memory",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit?usp=drivesdk"
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "value": "gid=0",
+                    "mode": "list",
+                    "cachedResultName": "sessions",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit#gid=0"
+                },
+                "filtersUI": {
+                    "values": [
+                        {
+                            "lookupColumn": "sessionId",
+                            "lookupValue": "={{ $json.sessionId }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.7,
+            "position": [
+                -2048,
+                256
+            ],
+            "id": "e0c986cf-52d1-4373-be6d-658381358106",
+            "name": "gs_read_session",
+            "alwaysOutputData": true,
+            "credentials": {
+                "googleApi": {
+                    "id": "csqzboerlakrLVzv",
+                    "name": "Google Service Account account"
+                }
+            },
+            "onError": "continueRegularOutput"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Đọc kết quả Google Sheets + merge trigger data\nconst trigger = $('When chat message received').first().json;\nconst rows = $input.all();\n\n// Mặc định rỗng nếu không có row khớp\nlet prev = {\n  last_user_msg: '',\n  last_intent: '',\n  last_brand: '',\n  last_model: '',\n  last_ai_reply: ''\n};\n\n// Nếu googleSheets trả về row có sessionId thật → dùng làm prev\nif (rows.length && rows[0].json && rows[0].json.sessionId) {\n  prev = {\n    last_user_msg: rows[0].json.last_user_msg || '',\n    last_intent:   rows[0].json.last_intent   || '',\n    last_brand:    rows[0].json.last_brand    || '',\n    last_model:    rows[0].json.last_model    || '',\n    last_ai_reply: rows[0].json.last_ai_reply || ''\n  };\n}\n\nreturn [{\n  json: {\n    ...trigger,\n    _prev: prev\n  }\n}];\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -2016,
+                576
+            ],
+            "id": "607ad4b1-415f-413e-aa99-635396df024f",
+            "name": "parse_session"
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "appendOrUpdate",
+                "documentId": {
+                    "__rl": true,
+                    "value": "1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY",
+                    "mode": "list",
+                    "cachedResultName": "THACO Chatbot Memory",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit?usp=drivesdk"
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "value": "gid=0",
+                    "mode": "list",
+                    "cachedResultName": "sessions",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit#gid=0"
+                },
+                "columns": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "sessionId": "={{ $('When chat message received').item.json.sessionId }}",
+                        "last_user_msg": "={{ $('When chat message received').item.json.chatInput }}",
+                        "last_intent": "={{ $json.category }}",
+                        "last_brand": "={{ $json.brand }}",
+                        "last_model": "={{ $json.model_slug }}",
+                        "update_at": "={{ $now.toISO() }}"
+                    },
+                    "matchingColumns": [
+                        "sessionId"
+                    ],
+                    "schema": [
+                        {
+                            "id": "sessionId",
+                            "displayName": "sessionId",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true,
+                            "removed": false
+                        },
+                        {
+                            "id": "last_user_msg",
+                            "displayName": "last_user_msg",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_intent",
+                            "displayName": "last_intent",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_brand",
+                            "displayName": "last_brand",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_model",
+                            "displayName": "last_model",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_ai_reply",
+                            "displayName": "last_ai_reply",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true,
+                            "removed": false
+                        },
+                        {
+                            "id": "update_at",
+                            "displayName": "update_at",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        }
+                    ],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": false
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.7,
+            "position": [
+                -1344,
+                480
+            ],
+            "id": "5829068e-6dda-45af-ad06-6c0965ddf8ff",
+            "name": "gs_save_session",
+            "credentials": {
+                "googleApi": {
+                    "id": "csqzboerlakrLVzv",
+                    "name": "Google Service Account account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "// Pass through router output từ xu_ly_category để node tiếp theo (Normalize) dùng được\nreturn [{ json: $('xu_ly_category').first().json }];"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -1120,
+                480
+            ],
+            "id": "1608546e-f48c-4332-b641-7b4643370537",
+            "name": "restore_router"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Capture AI reply để lưu vào sheet\nconst reply = $input.first().json.output || '';\nreturn [{\n  json: {\n    output: reply,                              // giữ nguyên cho chat trigger\n    _ai_reply_short: reply.slice(0, 300)        // cap 300 chars để tránh bloat sheet\n  }\n}];\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                -160,
+                224
+            ],
+            "id": "16642328-bd69-45db-8074-1bc725d465ea",
+            "name": "capture_reply"
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "appendOrUpdate",
+                "documentId": {
+                    "__rl": true,
+                    "value": "1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY",
+                    "mode": "list",
+                    "cachedResultName": "THACO Chatbot Memory",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit?usp=drivesdk"
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "value": "gid=0",
+                    "mode": "list",
+                    "cachedResultName": "sessions",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gzh3nT0hUOV5SzD-6GhLIgepw26hrKiFP8ksNqzC_AY/edit#gid=0"
+                },
+                "columns": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "sessionId": "={{ $('When chat message received').item.json.sessionId }}",
+                        "last_ai_reply": "={{ $json._ai_reply_short }}"
+                    },
+                    "matchingColumns": [
+                        "sessionId"
+                    ],
+                    "schema": [
+                        {
+                            "id": "sessionId",
+                            "displayName": "sessionId",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true,
+                            "removed": false
+                        },
+                        {
+                            "id": "last_user_msg",
+                            "displayName": "last_user_msg",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_intent",
+                            "displayName": "last_intent",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_brand",
+                            "displayName": "last_brand",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_model",
+                            "displayName": "last_model",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "last_ai_reply",
+                            "displayName": "last_ai_reply",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "update_at",
+                            "displayName": "update_at",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        }
+                    ],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": false
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.7,
+            "position": [
+                64,
+                240
+            ],
+            "id": "e5a77bd4-8887-45d3-8c64-c84fb7109d3c",
+            "name": "gs_update_reply",
+            "credentials": {
+                "googleApi": {
+                    "id": "csqzboerlakrLVzv",
+                    "name": "Google Service Account account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "// Lấy reply gốc từ node capture_reply (cách 2 node phía trước)\n// vì gs_update_reply đã đổi shape output thành row của Google Sheets\nconst aiReply = $('capture_reply').first().json.output || '';\n\n// Emit lại theo format chat trigger hiểu\nreturn [{\n  json: {\n    output: aiReply\n  }\n}];\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                272,
+                240
+            ],
+            "id": "88a0fa93-8cb4-49f9-85fc-6990b2505801",
+            "name": "format_chat_reply"
         }
     ],
     "connections": {
@@ -386,7 +800,7 @@
             "main": [
                 [
                     {
-                        "node": "AI Agent",
+                        "node": "gs_read_session",
                         "type": "main",
                         "index": 0
                     }
@@ -397,7 +811,7 @@
             "main": [
                 [
                     {
-                        "node": "Route by Intent1",
+                        "node": "gs_save_session",
                         "type": "main",
                         "index": 0
                     }
@@ -418,7 +832,7 @@
                 [],
                 [
                     {
-                        "node": "Code in JavaScript1",
+                        "node": "AI Agent - Location Extractor",
                         "type": "main",
                         "index": 0
                     }
@@ -458,26 +872,164 @@
                 ]
             ]
         },
-        "Simple Memory": {
-            "ai_memory": [
+        "Normalize Entities": {
+            "main": [
+                [
+                    {
+                        "node": "Route by Intent1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "xu_ly_location1": {
+            "main": [
+                [
+                    {
+                        "node": "Code in Javescript 1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Code in Javescript 1": {
+            "main": [
+                [
+                    {
+                        "node": "Message a model",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Agent - Location Extractor": {
+            "main": [
+                [
+                    {
+                        "node": "xu_ly_location1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Message a model1": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Gemini Chat Model1": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Message a model1",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Gemini Chat Model2": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent - Location Extractor",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Gemini Chat Model3": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Message a model",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "gs_read_session": {
+            "main": [
+                [
+                    {
+                        "node": "parse_session",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "parse_session": {
+            "main": [
                 [
                     {
                         "node": "AI Agent",
-                        "type": "ai_memory",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "gs_save_session": {
+            "main": [
+                [
+                    {
+                        "node": "restore_router",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "restore_router": {
+            "main": [
+                [
+                    {
+                        "node": "Normalize Entities",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "capture_reply": {
+            "main": [
+                [
+                    {
+                        "node": "gs_update_reply",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "gs_update_reply": {
+            "main": [
+                [
+                    {
+                        "node": "format_chat_reply",
+                        "type": "main",
                         "index": 0
                     }
                 ]
             ]
         }
     },
-    "pinData": {
-        "AI Agent": [
-            {
-                "output": "{\"category\":\"SALES_LEAD\",\"brand\":\"kia\",\"model_slug\":\"\",\"car_type\":\"\",\"seat_min\":7,\"fuel\":\"dầu\",\"budget_max\":null,\"use_case\":null,\"status\":true}"
-            }
-        ]
-    },
+    "pinData": {},
     "meta": {
+        "templateCredsSetupCompleted": true,
         "instanceId": "07c1c7ec2cda95a2b0ca5f954d25b4243bbf78131f2b02a8a5d44c777d7f6dfd"
     }
 }
