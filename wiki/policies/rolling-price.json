@@ -1,8 +1,8 @@
 {
-  "_doc": "Công thức tính giá lăn bánh xe ô tô con tại Việt Nam. n8n Code node fetch file này → tính số thật → bundle cho AI format.",
+  "_doc": "Công thức tính giá lăn bánh xe ô tô con tại Việt Nam. n8n Code node fetch file này → tính số thật theo số chỗ + brand → bundle cho AI format.",
   "_updated": "2026-04-26",
   "_valid_from": "2024-03-01",
-  "_source": "Luật phí trước bạ + Thông tư 02/2024/TT-BTC",
+  "_source": "Luật phí trước bạ + Thông tư 02/2024/TT-BTC + biểu phí TNDS bắt buộc 2024",
 
   "registration_fee_pct": {
     "ho-chi-minh": 0.12,
@@ -18,9 +18,28 @@
 
   "fixed_fees_vnd": {
     "inspection": 340000,
-    "road_maintenance_yr": 1560000,
-    "tnds_insurance_yr": 480000,
-    "service_fee": 500000
+    "road_maintenance_yr": 1560000
+  },
+
+  "tnds_insurance_yr_vnd": {
+    "_doc": "Bảo hiểm TNDS bắt buộc 1 năm — tính theo số chỗ ngồi",
+    "5_seat_or_less": 530700,
+    "6_to_7_seat": 943400,
+    "8_seat_or_more": 953400
+  },
+
+  "service_fee_vnd": {
+    "_doc": "Phí dịch vụ đăng ký xe — tùy thương hiệu (xe sang chi phí cao hơn)",
+    "by_brand": {
+      "kia": 3200000,
+      "mazda": 3200000,
+      "peugeot": 3200000,
+      "bmw": 5000000,
+      "mini": 5000000,
+      "thaco-truck": 3200000,
+      "thaco-bus": 3200000
+    },
+    "default": 3200000
   },
 
   "physical_insurance_pct": 0.015,
@@ -39,6 +58,8 @@
   "notes": [
     "Phí trước bạ HCM/HN: 12%, các tỉnh khác: 10% (theo Thông tư 02/2024/TT-BTC)",
     "Phí biển số khu vực 1 (HCM/HN): 20.000.000 ₫. Khu vực 2-3: 1.000.000 ₫",
+    "Bảo hiểm TNDS theo số chỗ: ≤5 chỗ = 530.700 ₫; 6-7 chỗ = 943.400 ₫; ≥8 chỗ = 953.400 ₫",
+    "Phí dịch vụ Kia/Mazda/Peugeot/Truck/Bus = 3.200.000 ₫; BMW/MINI = 5.000.000 ₫",
     "Bảo hiểm vật chất KHUYẾN NGHỊ ~1.5%/năm (gói Premium); có thể chọn 1.2-2% tùy nhu cầu",
     "Số liệu trên là ƯỚC TÍNH — báo giá chính xác do showroom thực hiện sau khi tư vấn cụ thể",
     "Chưa bao gồm phí đậu xe / GPS / camera hành trình nếu khách lắp thêm"

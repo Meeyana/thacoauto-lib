@@ -1,4 +1,4 @@
-// FILTER ENGINE + MARKDOWN TRIMMER + FAQ INTENT FILTER + COMPARISON MODULE
+// FILTER ENGINE + MARKDOWN TRIMMER + FAQ INTENT FILTER + COMPARISON + ROLLING PRICE CALC
 // Paste vào n8n node: "Code in JavaScript" (sau Switch.SALES_LEAD)
 const d = $input.first().json;
 const base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';
@@ -12,17 +12,18 @@ const fuel = (d.fuel || "").toLowerCase().trim();
 const budget_max = d.budget_max ? Number(d.budget_max) : null;
 const qa_intents = Array.isArray(d.qa_intents) ? d.qa_intents : [];
 
-// === Entity so sánh (MỚI) ===
-const compare_target = (d.compare_target || "").toLowerCase().trim();        // slug nội bộ THACO
-const compare_with_brand = (d.compare_with_brand || "").toLowerCase().trim();    // brand đối thủ ngoài THACO
-const compare_with_model = (d.compare_with_model || "").trim();                   // tên xe đối thủ (text gốc)
+// === Entity so sánh ===
+const compare_target = (d.compare_target || "").toLowerCase().trim();
+const compare_with_brand = (d.compare_with_brand || "").toLowerCase().trim();
+const compare_with_model = (d.compare_with_model || "").trim();
 
 const sales_subcategory = (d.sales_subcategory || "consultation").toLowerCase().trim();
+const province = (d.province || "ho-chi-minh").toLowerCase().trim();
 
-// === Đếm số turn SALES_LEAD đã có để trigger lead capture ===
-const history = (d._prev?.history) || [];   // cần parse_session expose _prev
+// === Đếm SALES_LEAD turn để trigger lead capture ===
+const history = (d._prev?.history) || [];
 const sales_turn_count = history.filter(h => h.intent === 'SALES_LEAD').length;
-const should_capture_lead = sales_turn_count >= 2;  // sau 3 turn (this turn + 2 prev) → xin SĐT
+const should_capture_lead = sales_turn_count >= 2;
 
 const THACO_BRANDS = ['kia', 'mazda', 'peugeot', 'bmw', 'mini', 'thaco-truck', 'thaco-bus'];
 
@@ -35,7 +36,6 @@ function trimMarkdown(md, allowlist, opts = {}) {
   md = md.replace(/^---[\s\S]*?---\s*/m, '');
   md = md.replace(/^>.*$/gm, '');
   md = md.replace(/!\[[^\]]*\]\([^\)]*\)/g, '');
-
   const parts = md.split(/^## /m);
   const intro = parts.shift() || '';
   let kept = intro.trim() + '\n';
@@ -50,28 +50,20 @@ function trimMarkdown(md, allowlist, opts = {}) {
 }
 
 // =========================================================
-// HELPER 1B: Extract chỉ những section CẦN cho COMPARE MODE
-// → Tóm tắt + Trang bị nổi bật (CHỈ phiên bản đầu) → bundle nhẹ tối đa
+// HELPER 1B: Extract chỉ Tóm tắt + Trang bị nổi bật phiên bản đầu (cho compare)
 // =========================================================
 function extractCompareMd(md) {
   if (!md || typeof md !== 'string') return '';
   md = md.replace(/^---[\s\S]*?---\s*/m, '');
   md = md.replace(/^>.*$/gm, '');
   md = md.replace(/!\[[^\]]*\]\([^\)]*\)/g, '');
-
   let result = '';
-
-  // 1) Section "Tóm tắt" — giữ nguyên
   const tomtatMatch = md.match(/^## (Tóm tắt|Tom tat)[\s\S]*?(?=^## |\Z)/im);
   if (tomtatMatch) result += tomtatMatch[0].trim() + '\n\n';
-
-  // 2) Section "Trang bị nổi bật" — CHỈ giữ H3 phiên bản ĐẦU TIÊN
   const trangbiMatch = md.match(/^## Trang bị nổi bật[\s\S]*?(?=^## |\Z)/im);
   if (trangbiMatch) {
     const section = trangbiMatch[0];
     const h3Parts = section.split(/^### /m);
-    // h3Parts[0] = "## Trang bị nổi bật theo phiên bản\n"
-    // h3Parts[1] = phiên bản đầu, h3Parts[2+] = phiên bản sau (BỎ)
     if (h3Parts.length >= 2) {
       const header = h3Parts[0].trim();
       const firstVersion = h3Parts[1].trim();
@@ -80,15 +72,14 @@ function extractCompareMd(md) {
       result += section.trim() + '\n';
     }
   }
-
   return result.trim();
 }
 
 // =========================================================
-// HELPER 1C: Tính giá lăn bánh — fetch policy file + compute
+// HELPER 1C: Tính giá lăn bánh — fetch policy + compute theo seat + brand
 // =========================================================
 let _rollingPolicy = null;
-async function calcRollingPrice(modelPrice, province) {
+async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
   if (!modelPrice || modelPrice <= 0) return null;
   try {
     if (!_rollingPolicy) {
@@ -101,33 +92,61 @@ async function calcRollingPrice(modelPrice, province) {
       _rollingPolicy = (typeof data === 'string') ? JSON.parse(data) : data;
     }
     const p = _rollingPolicy;
-    const provinceKey = (p.registration_fee_pct[province]) ? province : 'default';
 
+    // 1. Province → phí trước bạ % + phí biển số
+    const provinceKey = (p.registration_fee_pct[provinceArg]) ? provinceArg : 'default';
     const reg_pct = p.registration_fee_pct[provinceKey];
     const plate = p.license_plate_fee_vnd[provinceKey];
     const reg_fee = Math.round(modelPrice * reg_pct);
-    const physical_ins = Math.round(modelPrice * p.physical_insurance_pct);
-    const fixed = p.fixed_fees_vnd;
 
+    // 2. Bảo hiểm vật chất theo % giá xe
+    const physical_ins = Math.round(modelPrice * p.physical_insurance_pct);
+
+    // 3. TNDS theo SỐ CHỖ NGỒI
+    const seatNum = Number(seatArg || 5);
+    let tnds;
+    let tnds_tier;
+    if (seatNum <= 5) {
+      tnds = p.tnds_insurance_yr_vnd['5_seat_or_less'];
+      tnds_tier = '≤5 chỗ';
+    } else if (seatNum <= 7) {
+      tnds = p.tnds_insurance_yr_vnd['6_to_7_seat'];
+      tnds_tier = '6-7 chỗ';
+    } else {
+      tnds = p.tnds_insurance_yr_vnd['8_seat_or_more'];
+      tnds_tier = '≥8 chỗ';
+    }
+
+    // 4. Service fee theo BRAND
+    const brandKey = (brandArg || '').toLowerCase().trim();
+    const service_fee = p.service_fee_vnd.by_brand[brandKey] || p.service_fee_vnd.default;
+
+    // 5. Phí cố định
+    const inspection = p.fixed_fees_vnd.inspection;
+    const road_maintenance = p.fixed_fees_vnd.road_maintenance_yr;
+
+    // 6. Tổng
     const total = modelPrice + reg_fee + plate
-                + fixed.inspection + fixed.road_maintenance_yr
-                + fixed.tnds_insurance_yr + fixed.service_fee
-                + physical_ins;
+      + inspection + road_maintenance + tnds + service_fee
+      + physical_ins;
 
     return {
       province_used: provinceKey,
       registration_fee_pct: reg_pct,
+      seat_used: seatNum,
+      tnds_tier,
+      brand_used: brandKey || 'default',
       breakdown: {
         model_price: modelPrice,
         registration_fee: reg_fee,
         license_plate: plate,
-        inspection: fixed.inspection,
-        road_maintenance: fixed.road_maintenance_yr,
-        tnds_insurance: fixed.tnds_insurance_yr,
-        service_fee: fixed.service_fee,
+        inspection,
+        road_maintenance,
+        tnds_insurance: tnds,
+        service_fee,
         physical_insurance: physical_ins
       },
-      total: total,
+      total,
       labels: p.fee_labels_vi,
       notes: p.notes
     };
@@ -136,27 +155,27 @@ async function calcRollingPrice(modelPrice, province) {
   }
 }
 
-// Format helper: số → "999.000.000 ₫"
+// Format helper VNĐ
 function fmtVnd(n) {
   if (n === null || n === undefined) return '—';
   return Math.round(n).toLocaleString('de-DE') + ' ₫';
 }
 
-// Format calc result thành text bundle cho AI
+// Format calc result thành text bundle
 function formatRollingPriceBundle(modelName, calc) {
   if (!calc || calc.error) return `\n[LỖI tính giá lăn bánh: ${calc?.error || 'không có giá'}]`;
   const b = calc.breakdown;
   const L = calc.labels;
   const provinceText = calc.province_used === 'ho-chi-minh' ? 'HCM' :
-                       calc.province_used === 'ha-noi' ? 'HN' : 'tỉnh khác';
-  return `\n\n=== GIÁ LĂN BÁNH ƯỚC TÍNH ${modelName} (đăng ký tại ${provinceText}) ===
+    calc.province_used === 'ha-noi' ? 'HN' : 'tỉnh khác';
+  return `\n\n=== GIÁ LĂN BÁNH ƯỚC TÍNH ${modelName} (đăng ký ${provinceText}, ${calc.seat_used} chỗ, brand=${calc.brand_used}) ===
 - ${L.model_price}: ${fmtVnd(b.model_price)}
 - ${L.registration_fee} (${(calc.registration_fee_pct * 100)}%): ${fmtVnd(b.registration_fee)}
 - ${L.license_plate}: ${fmtVnd(b.license_plate)}
 - ${L.inspection}: ${fmtVnd(b.inspection)}
 - ${L.road_maintenance}: ${fmtVnd(b.road_maintenance)}
-- ${L.tnds_insurance}: ${fmtVnd(b.tnds_insurance)}
-- ${L.service_fee}: ${fmtVnd(b.service_fee)}
+- ${L.tnds_insurance} [${calc.tnds_tier}]: ${fmtVnd(b.tnds_insurance)}
+- ${L.service_fee} [brand ${calc.brand_used}]: ${fmtVnd(b.service_fee)}
 - ${L.physical_insurance}: ${fmtVnd(b.physical_insurance)}
 - **TỔNG GIÁ LĂN BÁNH ƯỚC TÍNH: ${fmtVnd(calc.total)}**
 
@@ -175,20 +194,17 @@ async function loadFaqFiltered(modelSlug, intents, maxQ = 5) {
       const cat = await this.helpers.httpRequest({
         method: 'GET',
         url: base + 'wiki/faq/catalog.json',
-        json: true,
-        returnFullResponse: false
+        json: true, returnFullResponse: false
       });
       _faqCatalog = (typeof cat === 'string' ? JSON.parse(cat) : cat);
     }
     let qs = (_faqCatalog.questions || []).filter(q => q.model_slug === modelSlug);
     if (!qs.length) return '';
-
     if (intents && intents.length) {
       const matched = qs.filter(q => q.intents.some(i => intents.includes(i)));
       if (matched.length) qs = matched;
     }
     qs = qs.slice(0, maxQ);
-
     return '\n\n=== FAQ ĐÃ FILTER (model=' + modelSlug
       + ', intents=[' + (intents || []).join(',') + '], '
       + qs.length + ' câu) ===\n'
@@ -201,7 +217,7 @@ async function loadFaqFiltered(modelSlug, intents, maxQ = 5) {
 }
 
 // =========================================================
-// PROFILES — section allowlist + cap chars theo mode
+// PROFILES
 // =========================================================
 const PROFILES = {
   detail: {
@@ -215,15 +231,14 @@ const PROFILES = {
     model_max_chars: 2000
   },
   shortlist_big: {},
-  // 2 PROFILE MỚI cho comparison
   compare_internal: {
     model: ['tóm tắt', 'phiên bản', 'thông số', 'trang bị nổi bật', 'khuyến mãi'],
     faq_max_q: 3,
-    model_max_chars: 2500   // 2 file → bundle ~5KB
+    model_max_chars: 2500
   },
   compare_external: {
     model: ['tóm tắt', 'phiên bản', 'trang bị nổi bật'],
-    faq_max_q: 8,           // load nhiều FAQ SO_SANH (chứa lập luận đối thủ)
+    faq_max_q: 8,
     model_max_chars: 3000
   },
   // SUB-MODES of SALES_LEAD
@@ -235,17 +250,16 @@ const PROFILES = {
   sub_pricing_finance: {
     model: ['tóm tắt', 'phiên bản', 'khuyến mãi'],
     faq_max_q: 3,
-    model_max_chars: 2000,
-    extra_template: 'finance'   // append financing template vào bundle
+    model_max_chars: 2000
   },
   sub_tech_specs: {
-    model: ['tóm tắt', 'thông số', 'trang bị nổi bật', 'khác biệt'],   // load NHIỀU section
+    model: ['tóm tắt', 'thông số', 'trang bị nổi bật', 'khác biệt'],
     faq_max_q: 4,
-    model_max_chars: 4500       // nới cap vì specs nhiều
+    model_max_chars: 4500
   },
   sub_close_deal: {
-    model: ['tóm tắt'],         // chỉ tóm tắt — không cần data sâu
-    faq_max_q: 0,                // skip FAQ
+    model: ['tóm tắt'],
+    faq_max_q: 0,
     model_max_chars: 800
   }
 };
@@ -256,7 +270,6 @@ let shortlist = [];
 let all_matches = [];
 let bundle = '';
 
-// Helper: ghép brand prefix nếu slug chưa có
 function fullSlug(slug, brandHint) {
   if (!slug) return '';
   if (brandHint && !slug.startsWith(brandHint)) return `${brandHint}-${slug}`;
@@ -264,34 +277,25 @@ function fullSlug(slug, brandHint) {
 }
 
 // =========================================================
-// MODE: COMPARE_INTERNAL — so sánh 2 xe THACO (Sportage vs CX-5...)
+// MODE ROUTING
 // =========================================================
 if (model_slug && compare_target) {
   mode = "compare_internal";
   const slug_a = fullSlug(model_slug, brand);
-  const slug_b = compare_target;  // đã được Normalize Entities validate là slug hợp lệ
+  const slug_b = compare_target;
   files_used.push(`wiki/models/${slug_a}.md`);
   files_used.push(`wiki/models/${slug_b}.md`);
 
-  // =========================================================
-  // MODE: COMPARE_EXTERNAL — so sánh THACO vs đối thủ ngoài (Toyota/Hyundai/Honda...)
-  // =========================================================
 } else if (model_slug && compare_with_brand && !THACO_BRANDS.includes(compare_with_brand)) {
   mode = "compare_external";
   const slug_a = fullSlug(model_slug, brand);
   files_used.push(`wiki/models/${slug_a}.md`);
 
-  // =========================================================
-  // MODE: DETAIL — khách nhắc 1 model cụ thể (không so sánh)
-  // =========================================================
 } else if (model_slug) {
   mode = "detail";
   const slug_a = fullSlug(model_slug, brand);
   files_used.push(`wiki/models/${slug_a}.md`);
 
-  // =========================================================
-  // MODE: SHORTLIST — filter catalog theo brand/type/seat/fuel/budget
-  // =========================================================
 } else if (brand || car_type || seat_min || fuel || budget_max) {
   let catalog;
   try {
@@ -303,7 +307,6 @@ if (model_slug && compare_target) {
     catalog = (typeof raw === 'string' ? JSON.parse(raw) : raw).models || [];
   } catch (e) { catalog = []; }
 
-  // Phase 1: Filter
   let filtered = catalog.filter(m => {
     if (brand && (m.brand || "").toLowerCase() !== brand) return false;
     if (car_type && !(m.car_type || "").toLowerCase().includes(car_type)) return false;
@@ -319,7 +322,6 @@ if (model_slug && compare_target) {
       };
       if (!(fuelMap[fuel] || [fuel]).some(a => f.includes(a))) return false;
     }
-    // Budget: smart bounds
     if (budget_max) {
       const p = Number(m.price_min_vnd || 0);
       const upper = budget_max * 1.05;
@@ -330,7 +332,6 @@ if (model_slug && compare_target) {
     return true;
   });
 
-  // Phase 2: Sort
   if (budget_max) {
     filtered.sort((a, b) =>
       Math.abs(Number(a.price_min_vnd || 0) - budget_max) -
@@ -352,140 +353,115 @@ if (model_slug && compare_target) {
       + shortlist.map(m =>
         `- ${m.name} (${m.car_type}${m.body_style_display ? '/' + m.body_style_display : ''}, ${m.seat} chỗ, ${m.fuel}) — Giá từ ${(m.price_min_vnd / 1e6).toFixed(0)} triệu — slug: ${m.slug}`
       ).join('\n');
-
     if (mode === "shortlist_small") {
       for (const m of shortlist) files_used.push(m.url);
     }
   }
 
-  // =========================================================
-  // MODE: ASK_MORE — không có entity nào
-  // =========================================================
 } else {
   mode = "ask_more";
   bundle = "[Khách chưa đủ thông tin để filter. AI cần hỏi: thương hiệu? loại xe? số chỗ? ngân sách?]";
 }
 
 // =========================================================
-// FETCH model MD + TRIM theo profile
+// PROFILE OVERRIDE THEO SUB-CATEGORY
 // =========================================================
 let profile = { ...(PROFILES[mode] || PROFILES.detail) };
 
-// Trong detail/shortlist mode, override profile theo sub-category
 if ((mode === "detail" || mode === "shortlist_small") && d.category === "SALES_LEAD") {
   const subProfileKey = `sub_${sales_subcategory}`;
   if (PROFILES[subProfileKey]) {
     Object.assign(profile, PROFILES[subProfileKey]);
-    mode = mode + "_" + sales_subcategory;  // vd: "detail_pricing_finance"
+    mode = mode + "_" + sales_subcategory;
   }
 }
 
+// =========================================================
+// FETCH model MD + TRIM
+// =========================================================
 for (const f of files_used) {
   try {
     const data = await this.helpers.httpRequest({
       method: 'GET', url: base + f, returnFullResponse: false
     });
     const raw = typeof data === 'string' ? data : JSON.stringify(data);
-
     let trimmed;
     if (mode === "compare_internal" || mode === "compare_external") {
-      // Compare mode: extractor surgical — chỉ Tóm tắt + Trang bị nổi bật (phiên bản đầu)
       trimmed = extractCompareMd(raw);
-      // Vẫn áp cap để chống file lỗi
       if (trimmed.length > 2500) trimmed = trimmed.slice(0, 2500) + '\n...[đã rút gọn]';
     } else {
-      // Detail / shortlist: trimMarkdown theo allowlist
       trimmed = trimMarkdown(
         raw,
         profile.model || ['tóm tắt', 'phiên bản', 'khuyến mãi'],
         { maxChars: profile.model_max_chars || 3000 }
       );
     }
-
     bundle += `\n\n=== FILE: ${f} ===\n${trimmed}`;
-  } catch (e) { /* skip 404 silently */ }
+  } catch (e) { /* skip 404 */ }
 }
 
 // =========================================================
-// LOAD FAQ FILTERED — theo từng mode
+// LOAD FAQ FILTERED
 // =========================================================
 if (mode.startsWith("detail")) {
   const slug_a = fullSlug(model_slug, brand);
   bundle += await loadFaqFiltered.call(this, slug_a, qa_intents, profile.faq_max_q);
-
 } else if (mode.startsWith("shortlist_small")) {
   for (const m of shortlist) {
     bundle += await loadFaqFiltered.call(this, m.slug, qa_intents, profile.faq_max_q);
   }
-
 } else if (mode === "compare_internal") {
-  // Load FAQ SO_SANH cho CẢ 2 xe
   const slug_a = fullSlug(model_slug, brand);
   bundle += await loadFaqFiltered.call(this, slug_a, ["SO_SANH"], profile.faq_max_q);
   bundle += await loadFaqFiltered.call(this, compare_target, ["SO_SANH"], profile.faq_max_q);
-  // Hint cho AI
-  bundle += `\n\n=== ĐANG SO SÁNH NỘI BỘ THACO ===\nXe A: ${slug_a}\nXe B: ${compare_target}\nGợi ý: trình bày BẢNG so sánh trung thực, không thiên vị.`;
-
+  bundle += `\n\n=== ĐANG SO SÁNH NỘI BỘ THACO ===\nXe A: ${slug_a}\nXe B: ${compare_target}\nGợi ý: trình bày bullet trung thực, không thiên vị.`;
 } else if (mode === "compare_external") {
-  // Load nhiều FAQ SO_SANH (chứa lập luận đối thủ đã được THACO chuẩn hóa)
   const slug_a = fullSlug(model_slug, brand);
   bundle += await loadFaqFiltered.call(this, slug_a, ["SO_SANH"], profile.faq_max_q);
-  // Hint cho AI biết đối thủ là ai
   bundle += `\n\n=== ĐỐI THỦ KHÁCH NHẮC (NGOÀI THACO) ===\nBrand đối thủ: ${compare_with_brand}\nModel đối thủ: ${compare_with_model || '(không rõ)'}\nXe THACO đang tư vấn: ${slug_a}\nGợi ý: nêu điểm MẠNH của xe THACO bằng số liệu cụ thể từ FAQ. KHÔNG nói xấu đối thủ.`;
 }
 
 // =========================================================
-// ROLLING PRICE CALC — chỉ chạy khi sub-category = pricing_finance
-// → Tính giá lăn bánh thật bằng JS, đính bundle cho AI format
+// ROLLING PRICE CALC — chạy khi sub_pricing_finance
+// → Tính bằng JS theo seat + brand thực, AI chỉ format
 // =========================================================
-const province          = (d.province || "ho-chi-minh").toLowerCase().trim();  // default HCM
-
 if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mode.startsWith("shortlist_small"))) {
-  // Lấy danh sách xe + giá min để tính
+  // Lấy danh sách xe + giá min + seat + brand để tính
   let targets = [];
+
+  // Cần load catalog để lấy đủ thông tin (seat, brand, price)
+  let _catalog = [];
+  try {
+    const raw = await this.helpers.httpRequest({
+      method: 'GET', url: base + 'wiki/models/catalog.json',
+      json: true, returnFullResponse: false
+    });
+    _catalog = (typeof raw === 'string' ? JSON.parse(raw) : raw).models || [];
+  } catch (e) { }
+
   if (mode.startsWith("detail")) {
-    // Cần load catalog để lấy price_min của model_slug
-    try {
-      const raw = await this.helpers.httpRequest({
-        method: 'GET', url: base + 'wiki/models/catalog.json',
-        json: true, returnFullResponse: false
-      });
-      const catalog = (typeof raw === 'string' ? JSON.parse(raw) : raw).models || [];
-      const slug_a = fullSlug(model_slug, brand);
-      const m = catalog.find(x => x.slug === slug_a);
-      if (m) targets.push({ name: m.name, price: m.price_min_vnd });
-    } catch(e) {}
+    const slug_a = fullSlug(model_slug, brand);
+    const m = _catalog.find(x => x.slug === slug_a);
+    if (m) targets.push({
+      name: m.name,
+      price: m.price_min_vnd,
+      seat: m.seat,
+      brand: m.brand
+    });
   } else if (mode.startsWith("shortlist_small")) {
-    // Tính cho 1-2 xe trong shortlist
-    targets = shortlist.slice(0, 2).map(m => ({ name: m.name, price: m.price_min_vnd }));
+    targets = shortlist.slice(0, 2).map(m => ({
+      name: m.name,
+      price: m.price_min_vnd,
+      seat: m.seat,
+      brand: m.brand
+    }));
   }
 
   for (const t of targets) {
     if (!t.price) continue;
-    const calc = await calcRollingPrice.call(this, t.price, province);
+    const calc = await calcRollingPrice.call(this, t.price, province, t.seat, t.brand);
     bundle += formatRollingPriceBundle(t.name, calc);
   }
-}
-
-if (sales_subcategory === "pricing_finance") {
-  bundle += `
-
-=== TEMPLATE TÍNH GIÁ LĂN BÁNH (chuẩn áp dụng VN 2026) ===
-- Phí trước bạ: 12% giá xe (HN/HCM); 10% các tỉnh khác
-- Phí đăng ký biển: 20.000.000 ₫ (HN/HCM khu vực 1); 1.000.000 ₫ (tỉnh khác)
-- Phí đăng kiểm: ~340.000 ₫
-- Phí bảo trì đường bộ 1 năm: 1.560.000 ₫
-- Bảo hiểm TNDS bắt buộc: ~480.000 ₫
-- Bảo hiểm vật chất 1 năm (khuyến nghị): ~1.5% giá xe
-
-=== TEMPLATE TRẢ GÓP (tham khảo VN 2026) ===
-- Trả trước tối thiểu: 20% (một số gói chỉ 10% nếu thế chấp xe)
-- Lãi suất: 7.5% – 10%/năm (tùy ngân hàng: VPBank, Shinhan, BIDV, MBBank, TPBank, VietinBank)
-- Kỳ hạn: 12 – 96 tháng (phổ biến 60-84 tháng)
-- Hồ sơ: CMND/CCCD, hộ khẩu/KT3, sao kê lương 3-6 tháng
-
-Công thức gần đúng: Trả góp tháng ≈ (Số tiền vay × lãi suất tháng) / (1 - (1+lãi suất tháng)^(-số tháng))
-`;
 }
 
 return [{
@@ -493,11 +469,13 @@ return [{
     ...d,
     mode,
     shortlist,
+    all_matches,
     files_used,
     qa_intents,
     sales_subcategory,
     sales_turn_count,
     should_capture_lead,
+    province_used: province,
     context_bundle: bundle,
     bundle_size: bundle.length
   }
