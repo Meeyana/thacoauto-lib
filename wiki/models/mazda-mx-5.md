@@ -12,7 +12,7 @@ version_count: 2
 image: https://thacoautotphcm.vn/storage/mazda/360/mazda-mx-5/46v-nk5/mx-5-nel3-nh7wlab-46v-nk5-ext-360-72-transparentpng-0011.webp
 generated: true
 generated_from: raw/models/mazda/mazda-mx-5.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mazda/mazda-mx-5.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

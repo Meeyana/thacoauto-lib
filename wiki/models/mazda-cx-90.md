@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-8
 image: https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/cx90.webp
 generated: true
 generated_from: raw/models/mazda/mazda-cx-90.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mazda/mazda-cx-90.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

@@ -271,6 +271,14 @@ def render_model(json_path: Path, brand: str):
     if not car_type and body_display:
         car_type = DISPLAY_TO_CAR_TYPE.get(body_display)
 
+    # Versions array cho n8n match khi khách hỏi đích danh phiên bản
+    versions_compact = []
+    for v in versions:
+        vname = (v.get("version_name") or "").strip()
+        vprice = v.get("price")
+        if vname and vprice:
+            versions_compact.append({"name": vname, "price": vprice})
+
     catalog_entry = {
         "slug": slug,
         "name": name,
@@ -282,6 +290,7 @@ def render_model(json_path: Path, brand: str):
         "price_min_vnd": pmin,
         "price_max_vnd": pmax,
         "version_count": len(versions),
+        "versions": versions_compact,        # MỚI: list {name, price} của mọi phiên bản
         "status": "dang-ban",
         "url": f"wiki/models/{slug}.md",
         "faq_url": f"wiki/faq/{slug}-qa.md" if faq_file.exists() else None,

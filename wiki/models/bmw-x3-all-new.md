@@ -12,7 +12,7 @@ version_count: 5
 image: https://thacoautotphcm.vn/storage/hinh-anh-final/bmw-x3-all-new.webp
 generated: true
 generated_from: raw/models/bmw/bmw-x3-all-new.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-x3-all-new.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

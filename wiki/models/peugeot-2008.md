@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/traveller/7-peugeot-new-2008-e-salek
 image: https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-new-2008-gt.webp
 generated: true
 generated_from: raw/models/peugeot/peugeot-2008.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/peugeot/peugeot-2008.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

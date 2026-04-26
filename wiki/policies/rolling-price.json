@@ -5,7 +5,7 @@
   "_source": "Luật phí trước bạ + Thông tư 02/2024/TT-BTC + biểu phí TNDS bắt buộc 2024",
 
   "registration_fee_pct": {
-    "ho-chi-minh": 0.12,
+    "ho-chi-minh": 0.10,
     "ha-noi": 0.12,
     "default": 0.10
   },
@@ -56,7 +56,7 @@
   },
 
   "notes": [
-    "Phí trước bạ HCM/HN: 12%, các tỉnh khác: 10% (theo Thông tư 02/2024/TT-BTC)",
+    "Phí trước bạ: Hà Nội 12%, TP.HCM 10%, các tỉnh khác 10% (theo Thông tư 02/2024/TT-BTC)",
     "Phí biển số khu vực 1 (HCM/HN): 20.000.000 ₫. Khu vực 2-3: 1.000.000 ₫",
     "Bảo hiểm TNDS theo số chỗ: ≤5 chỗ = 530.700 ₫; 6-7 chỗ = 943.400 ₫; ≥8 chỗ = 953.400 ₫",
     "Phí dịch vụ Kia/Mazda/Peugeot/Truck/Bus = 3.200.000 ₫; BMW/MINI = 5.000.000 ₫",

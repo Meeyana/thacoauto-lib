@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-carens-1.pdf
 image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-03.webp
 generated: true
 generated_from: raw/models/kia/kia-carens.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-carens.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

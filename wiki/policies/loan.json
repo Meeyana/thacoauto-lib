@@ -1,0 +1,42 @@
+{
+  "_doc": "Chính sách trả góp xe THACO AUTO. n8n Code node fetch + tính trả góp theo công thức annuity.",
+  "_updated": "2026-04-26",
+
+  "loan_pct_default": 0.85,
+  "down_payment_pct_default": 0.15,
+  "first_deposit_pct": 0.10,
+  "interest_rate_yr_default": 0.06,
+  "tenure_months_options": [60, 84, 96],
+
+  "process_steps": [
+    "Lần 1: Khách hàng thanh toán phần đặt cọc 10% giá trị xe ngay sau khi ký Hợp đồng.",
+    "Lần 2: Sau khi nhận được thông báo cho vay chính thức từ ngân hàng, khách hàng thanh toán đủ giá trị đối ứng còn lại của xe (5% giá trị xe + chi phí đăng ký xe). Showroom sẽ tiến hành xuất hóa đơn và thực hiện các thủ tục đăng ký xe theo quy định để tiến hành giải ngân.",
+    "Ngân hàng sẽ giải ngân số tiền vay vào tài khoản của Bên Bán. Sau khi nhận được khoản giải ngân, Bên Bán tiến hành bàn giao xe cho khách hàng."
+  ],
+
+  "banks_partners": [
+    "VPBank", "Shinhan Bank", "BIDV", "VietinBank", "MBBank", "TPBank"
+  ],
+
+  "documents_required": [
+    "CMND/CCCD bản gốc + bản sao",
+    "Hộ khẩu hoặc KT3",
+    "Sao kê lương 3-6 tháng gần nhất (nhân viên) HOẶC giấy phép kinh doanh + sao kê tài khoản (kinh doanh)",
+    "Hợp đồng mua bán xe (showroom cấp sau khi đặt cọc)"
+  ],
+
+  "labels_vi": {
+    "loan_amount": "Ngân hàng hỗ trợ vay (85% giá trị xe)",
+    "down_payment": "Số tiền cần trả trước (15% + Chi phí đăng ký)",
+    "first_deposit": "Lần 1: Đặt cọc 10% giá trị xe",
+    "second_payment": "Lần 2: 5% giá trị xe + Chi phí đăng ký",
+    "monthly_installment": "Trả góp hàng tháng (lãi suất tạm tính {rate}%/năm)"
+  },
+
+  "notes": [
+    "Lãi suất tạm tính 6%/năm — chính xác phụ thuộc ngân hàng + thời điểm + hồ sơ khách",
+    "Trả góp tính theo công thức annuity (gốc + lãi giảm dần) — số tháng đầu cao hơn tháng cuối",
+    "Có thể vay 90% giá trị xe nếu thế chấp chính xe + bổ sung giấy tờ",
+    "Ngân hàng đối tác có chương trình ưu đãi riêng — em xin SĐT để chuyên viên tài chính tư vấn cụ thể"
+  ]
+}

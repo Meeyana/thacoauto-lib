@@ -12,7 +12,7 @@ version_count: 1
 image: https://thacoautotphcm.vn/storage/hinh-anh-final/mini-mui-tran-min.webp
 generated: true
 generated_from: raw/models/mini/mini-convertible.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mini/mini-convertible.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

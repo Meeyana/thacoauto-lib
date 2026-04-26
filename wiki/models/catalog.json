@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-24",
+  "updated": "2026-04-27",
   "total": 46,
   "models": [
     {
@@ -13,6 +13,32 @@
       "price_min_vnd": 1599000000,
       "price_max_vnd": 2099000000,
       "version_count": 6,
+      "versions": [
+        {
+          "name": "BMW 320i SPORTLINE 2026",
+          "price": 1649000000
+        },
+        {
+          "name": "BMW 330i M SPORT 2026",
+          "price": 2099000000
+        },
+        {
+          "name": "BMW 320i SPORTLINE 2025",
+          "price": 1649000000
+        },
+        {
+          "name": "BMW 320i MSPORT 2026",
+          "price": 1899000000
+        },
+        {
+          "name": "BMW 320i MSPORT 2025",
+          "price": 1779000000
+        },
+        {
+          "name": "BMW 330i MSPORT 2025",
+          "price": 2079000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-3-series.md",
       "faq_url": null,
@@ -30,6 +56,24 @@
       "price_min_vnd": 2629000000,
       "price_max_vnd": 3399000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "BMW 430i CONVERTIBLE MSPORT 2026",
+          "price": 3399000000
+        },
+        {
+          "name": "BMW 430i GRAN COUPÉ MSPORT 2023",
+          "price": 3069000000
+        },
+        {
+          "name": "BMW 430i CONVERTIBLE MSPORT 2025",
+          "price": 3349000000
+        },
+        {
+          "name": "BMW 430i GRAN COUPÉ MSPORT 2022",
+          "price": 2629000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-4-series.md",
       "faq_url": null,
@@ -47,6 +91,20 @@
       "price_min_vnd": 2589000000,
       "price_max_vnd": 3189000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "BMW 520i ALL NEW 2024",
+          "price": 2589000000
+        },
+        {
+          "name": "BMW 530i ALL NEW 2026",
+          "price": 3189000000
+        },
+        {
+          "name": "BMW 520i ALL NEW 2026",
+          "price": 2779000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-5-series-all-new.md",
       "faq_url": null,
@@ -64,6 +122,20 @@
       "price_min_vnd": 1979000000,
       "price_max_vnd": 2759000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "BMW 520i M SPORT 2023",
+          "price": 2359000000
+        },
+        {
+          "name": "BMW 520i 2023",
+          "price": 1979000000
+        },
+        {
+          "name": "BMW 530i MSPORT 2022",
+          "price": 2759000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-5-series.md",
       "faq_url": null,
@@ -81,6 +153,32 @@
       "price_min_vnd": 4499000000,
       "price_max_vnd": 6799000000,
       "version_count": 6,
+      "versions": [
+        {
+          "name": "BMW 735i PURE EXCELLENCE 2026",
+          "price": 5899000000
+        },
+        {
+          "name": "BMW 740i PURE EXCELLENCE 2026",
+          "price": 6799000000
+        },
+        {
+          "name": "BMW 740i PURE EXCELLENCE 2025",
+          "price": 6799000000
+        },
+        {
+          "name": "BMW 735i PURE EXCELLENCE 2025",
+          "price": 5699000000
+        },
+        {
+          "name": "BMW 735i MSPORT 2025",
+          "price": 5099000000
+        },
+        {
+          "name": "BMW 735i MSPORT 2026",
+          "price": 5299000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-7-series.md",
       "faq_url": null,
@@ -98,6 +196,16 @@
       "price_min_vnd": 2950000000,
       "price_max_vnd": 3799000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "BMW i4 eDRIVE40 GC 2024",
+          "price": 3244000000
+        },
+        {
+          "name": "BMW i4 eDRIVE40 GC 2023",
+          "price": 2950000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-i4.md",
       "faq_url": null,
@@ -115,6 +223,12 @@
       "price_min_vnd": 6449000000,
       "price_max_vnd": 6799000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "BMW i7 XDRIVE60 2024",
+          "price": 6449000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-i7.md",
       "faq_url": null,
@@ -132,6 +246,12 @@
       "price_min_vnd": 2445000000,
       "price_max_vnd": 3539000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "BMW iX3 M SPORT 2023",
+          "price": 2445000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-ix3.md",
       "faq_url": null,
@@ -149,6 +269,28 @@
       "price_min_vnd": 2279000000,
       "price_max_vnd": 2899000000,
       "version_count": 5,
+      "versions": [
+        {
+          "name": "BMW X3 20 ALL NEW 2025",
+          "price": 2279000000
+        },
+        {
+          "name": "BMW X3 30 MSPORT PRO ALL NEW 2026",
+          "price": 2899000000
+        },
+        {
+          "name": "BMW X3 20 MSPORT ALL NEW 2026",
+          "price": 2649000000
+        },
+        {
+          "name": "BMW X3 20 ALL NEW 2026",
+          "price": 2299000000
+        },
+        {
+          "name": "BMW X3 20 MSPORT ALL NEW 2025",
+          "price": 2649000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x3-all-new.md",
       "faq_url": null,
@@ -166,6 +308,12 @@
       "price_min_vnd": 2279000000,
       "price_max_vnd": 2419000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "BMW X3 30i M SPORT 2024",
+          "price": 2419000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x3.md",
       "faq_url": null,
@@ -183,6 +331,16 @@
       "price_min_vnd": 2999000000,
       "price_max_vnd": 3079000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "BMW X4 XDRIVE20I MSPORT 2023 V1.3",
+          "price": 2999000000
+        },
+        {
+          "name": "BMW X4 XDRIVE20I MSPORT 2023 V1.1",
+          "price": 3079000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x4.md",
       "faq_url": null,
@@ -200,6 +358,16 @@
       "price_min_vnd": 3559000000,
       "price_max_vnd": 4899000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "BMW X5 XDRIVE40I M SPORT 2025",
+          "price": 4599000000
+        },
+        {
+          "name": "BMW X5 XDRIVE40I XLINE 2025",
+          "price": 4899000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x5.md",
       "faq_url": null,
@@ -217,6 +385,12 @@
       "price_min_vnd": 4459000000,
       "price_max_vnd": 4459000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "BMW X6 XDRIVE40I MSPORT 2023",
+          "price": 4459000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x6.md",
       "faq_url": null,
@@ -234,6 +408,24 @@
       "price_min_vnd": 5549000000,
       "price_max_vnd": 6899000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "BMW X7 XDRIVE40I PURE EXCELLENCE 2026",
+          "price": 6899000000
+        },
+        {
+          "name": "BMW X7 XDRIVE40I PURE EXCELLENCE 2025",
+          "price": 6899000000
+        },
+        {
+          "name": "BMW X7 XDRIVE40 MSPORT 2026",
+          "price": 6299000000
+        },
+        {
+          "name": "BMW X7 XDRIVE 40I MSPORT 2025",
+          "price": 6199000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-x7.md",
       "faq_url": null,
@@ -251,6 +443,12 @@
       "price_min_vnd": 3139000000,
       "price_max_vnd": 3139000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "BMW Z4 SDRIVE20I",
+          "price": 3139000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/bmw-z4.md",
       "faq_url": null,
@@ -268,6 +466,28 @@
       "price_min_vnd": 579000000,
       "price_max_vnd": 639000000,
       "version_count": 5,
+      "versions": [
+        {
+          "name": "Kia Carens 1.5 Deluxe",
+          "price": 579000000
+        },
+        {
+          "name": "Kia Carens 1.5 Deluxe (xe tập lái)",
+          "price": 596000000
+        },
+        {
+          "name": "Kia Carens 1.5 IVT​",
+          "price": 599000000
+        },
+        {
+          "name": "Kia Carens 1.5 IVT (xe tập lái)",
+          "price": 616000000
+        },
+        {
+          "name": "Kia Carens 1.5 Luxury​",
+          "price": 639000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-carens.md",
       "faq_url": null,
@@ -285,6 +505,32 @@
       "price_min_vnd": 1299000000,
       "price_max_vnd": 1649000000,
       "version_count": 6,
+      "versions": [
+        {
+          "name": "Kia New Carnival 2.2D Luxury 8S",
+          "price": 1299000000
+        },
+        {
+          "name": "Kia New Carnival 2.2D Premium 8S​",
+          "price": 1459000000
+        },
+        {
+          "name": "Kia New Carnival 2.2D Premium 7S​",
+          "price": 1499000000
+        },
+        {
+          "name": "Kia New Carnival 2.2D Signature 7S​",
+          "price": 1569000000
+        },
+        {
+          "name": "Kia New Carnival 2.2D Signature 7S​ (Tùy chọn màu nội thất)",
+          "price": 1579000000
+        },
+        {
+          "name": "Kia New Carnival 2.2D Signature 7S​ (Tùy chọn hàng ghế 2 VIP + tùy chọn màu nội thất)",
+          "price": 1649000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-carnival.md",
       "faq_url": null,
@@ -302,6 +548,16 @@
       "price_min_vnd": 584000000,
       "price_max_vnd": 649000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Kia K3 1.6 Luxury​",
+          "price": 584000000
+        },
+        {
+          "name": "Kia K3 1.6 Turbo",
+          "price": 649000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-k3.md",
       "faq_url": null,
@@ -319,6 +575,20 @@
       "price_min_vnd": 769000000,
       "price_max_vnd": 935000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "Kia K5 2.0 Luxury​",
+          "price": 769000000
+        },
+        {
+          "name": "Kia K5 2.0 Premium​",
+          "price": 889000000
+        },
+        {
+          "name": "Kia K5 2.5 GT-Line​",
+          "price": 935000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-k5.md",
       "faq_url": "wiki/faq/kia-k5-qa.md",
@@ -336,6 +606,12 @@
       "price_min_vnd": 325000000,
       "price_max_vnd": 349000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "Kia Morning MT",
+          "price": 325000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-morning.md",
       "faq_url": null,
@@ -353,6 +629,16 @@
       "price_min_vnd": 439000000,
       "price_max_vnd": 469000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Kia New Morning AT",
+          "price": 439000000
+        },
+        {
+          "name": "Kia New Morning GT-Line",
+          "price": 469000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-new-morning.md",
       "faq_url": null,
@@ -370,6 +656,32 @@
       "price_min_vnd": 579000000,
       "price_max_vnd": 699000000,
       "version_count": 6,
+      "versions": [
+        {
+          "name": "Kia New Seltos 1.5 AT",
+          "price": 579000000
+        },
+        {
+          "name": "Kia New Seltos 1.5 Deluxe",
+          "price": 599000000
+        },
+        {
+          "name": "Kia New Seltos 1.5 Turbo Deluxe",
+          "price": 619000000
+        },
+        {
+          "name": "Kia New Seltos 1.5 Luxury",
+          "price": 645000000
+        },
+        {
+          "name": "Kia New Seltos 1.5 Turbo Luxury",
+          "price": 665000000
+        },
+        {
+          "name": "Kia New Seltos 1.5 Premium",
+          "price": 699000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-seltos.md",
       "faq_url": null,
@@ -387,6 +699,20 @@
       "price_min_vnd": 345000000,
       "price_max_vnd": 386000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "Kia Soluto MT​",
+          "price": 345000000
+        },
+        {
+          "name": "Kia Soluto MT Deluxe​",
+          "price": 375000000
+        },
+        {
+          "name": "Kia Soluto MT​ (xe tập lái)",
+          "price": 362000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-soluto.md",
       "faq_url": null,
@@ -404,6 +730,24 @@
       "price_min_vnd": 489000000,
       "price_max_vnd": 609000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "Kia New Sonet 1.5 AT",
+          "price": 489000000
+        },
+        {
+          "name": "Kia New Sonet 1.5 Deluxe​",
+          "price": 519000000
+        },
+        {
+          "name": "Kia New Sonet 1.5 Luxury​",
+          "price": 559000000
+        },
+        {
+          "name": "Kia New Sonet 1.5 Premium​",
+          "price": 609000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-sonet.md",
       "faq_url": null,
@@ -421,6 +765,16 @@
       "price_min_vnd": 1149000000,
       "price_max_vnd": 1399000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Sorento Hybrid Premium",
+          "price": 1149000000
+        },
+        {
+          "name": "Sorento Plug-in Hybrid Premium",
+          "price": 1399000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-sorento-hybrid.md",
       "faq_url": "wiki/faq/kia-sorento-hybrid-qa.md",
@@ -438,6 +792,40 @@
       "price_min_vnd": 1199000000,
       "price_max_vnd": 1449000000,
       "version_count": 8,
+      "versions": [
+        {
+          "name": "Kia New Sorento - 2.5G Signature FWD",
+          "price": 1199000000
+        },
+        {
+          "name": "Kia New Sorento - 2.5G Signature FWD (Tùy chọn màu nội thất)",
+          "price": 1229000000
+        },
+        {
+          "name": "Kia New Sorento - 2.5G Signature AWD",
+          "price": 1279000000
+        },
+        {
+          "name": "Kia New Sorento - 2.5G Signature AWD (Tùy chọn màu nội thất)",
+          "price": 1309000000
+        },
+        {
+          "name": "Kia New Sorento 2.2D Signature FWD",
+          "price": 1339000000
+        },
+        {
+          "name": "Kia New Sorento 2.2D Signature FWD (Tùy chọn màu nội thất)",
+          "price": 1369000000
+        },
+        {
+          "name": "Kia New Sorento 2.2D Signature AWD",
+          "price": 1419000000
+        },
+        {
+          "name": "Kia New Sorento 2.2D Signature AWD (Tùy chọn màu nội thất)",
+          "price": 1449000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-sorento.md",
       "faq_url": null,
@@ -455,6 +843,48 @@
       "price_min_vnd": 819000000,
       "price_max_vnd": 1039000000,
       "version_count": 10,
+      "versions": [
+        {
+          "name": "Kia Sportage 2.0G Premium​",
+          "price": 819000000
+        },
+        {
+          "name": "Kia Sportage 2.0G Premium​ (Tùy chọn màu nội thất)",
+          "price": 849000000
+        },
+        {
+          "name": "Kia Sportage 2.0G Signature​",
+          "price": 929000000
+        },
+        {
+          "name": "Kia Sportage 2.0G Signature​ (Tùy chọn màu nội thất)",
+          "price": 959000000
+        },
+        {
+          "name": "Kia Sportage 2.0D Signature (X-Line)",
+          "price": 939000000
+        },
+        {
+          "name": "Kia Sportage 2.0D Signature (X-Line) (Tùy chọn màu nội thất)",
+          "price": 969000000
+        },
+        {
+          "name": "Kia Sportage 1.6 Turbo Signature",
+          "price": 1009000000
+        },
+        {
+          "name": "Kia Sportage 1.6 Turbo Signature (Tùy chọn màu nội thất)",
+          "price": 1039000000
+        },
+        {
+          "name": "Kia Sportage 1.6 Turbo Signature (X-Line)",
+          "price": 999000000
+        },
+        {
+          "name": "Kia Sportage 1.6 Turbo Signature (X-Line) (Tùy chọn màu nội thất)",
+          "price": 1029000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/kia-sportage.md",
       "faq_url": "wiki/faq/kia-sportage-qa.md",
@@ -472,6 +902,12 @@
       "price_min_vnd": 537000000,
       "price_max_vnd": 537000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "Mazda2 Sport 1.5L Luxury",
+          "price": 537000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-2-sport.md",
       "faq_url": null,
@@ -489,6 +925,24 @@
       "price_min_vnd": 418000000,
       "price_max_vnd": 494000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "Mazda2 1.5L AT",
+          "price": 418000000
+        },
+        {
+          "name": "Mazda2 1.5L AT (Thêm tùy chọn)",
+          "price": 429000000
+        },
+        {
+          "name": "Mazda2 1.5L Deluxe",
+          "price": 459000000
+        },
+        {
+          "name": "Mazda2 1.5L Luxury",
+          "price": 494000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-2.md",
       "faq_url": null,
@@ -506,6 +960,16 @@
       "price_min_vnd": 659000000,
       "price_max_vnd": 719000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Mazda3 Sport 1.5L Luxury",
+          "price": 659000000
+        },
+        {
+          "name": "Mazda3 Sport 1.5L Premium",
+          "price": 719000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-3-sport.md",
       "faq_url": null,
@@ -523,6 +987,20 @@
       "price_min_vnd": 599000000,
       "price_max_vnd": 719000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "Mazda3 1.5L Deluxe​ (Nâng cấp)",
+          "price": 599000000
+        },
+        {
+          "name": "Mazda3 1.5L Luxury​",
+          "price": 644000000
+        },
+        {
+          "name": "Mazda3 1.5L Premium",
+          "price": 719000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-3.md",
       "faq_url": null,
@@ -540,6 +1018,24 @@
       "price_min_vnd": 549000000,
       "price_max_vnd": 659000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "New Mazda CX-3 1.5L AT",
+          "price": 549000000
+        },
+        {
+          "name": "New Mazda CX-3 1.5L Deluxe",
+          "price": 579000000
+        },
+        {
+          "name": "New Mazda CX-3 1.5L Luxury",
+          "price": 619000000
+        },
+        {
+          "name": "New Mazda CX-3 1.5L Premium",
+          "price": 659000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-cx-3.md",
       "faq_url": null,
@@ -557,6 +1053,16 @@
       "price_min_vnd": 699000000,
       "price_max_vnd": 749000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Mazda CX-30 2.0L Luxury",
+          "price": 699000000
+        },
+        {
+          "name": "Mazda CX-30 2.0L Premium",
+          "price": 749000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-cx-30.md",
       "faq_url": null,
@@ -574,6 +1080,32 @@
       "price_min_vnd": 699000000,
       "price_max_vnd": 869000000,
       "version_count": 6,
+      "versions": [
+        {
+          "name": "Mazda CX-5 2.0L Deluxe​",
+          "price": 699000000
+        },
+        {
+          "name": "Mazda CX-5 2.0L Deluxe​ (thêm tùy chọn)",
+          "price": 749000000
+        },
+        {
+          "name": "Mazda CX-5 2.0L Luxury",
+          "price": 789000000
+        },
+        {
+          "name": "Mazda CX-5 2.0L Premium Active",
+          "price": 829000000
+        },
+        {
+          "name": "Mazda CX-5 2.0L Premium Sport",
+          "price": 849000000
+        },
+        {
+          "name": "Mazda CX-5 2.0L Premium Exclusive",
+          "price": 869000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-cx-5.md",
       "faq_url": null,
@@ -591,6 +1123,20 @@
       "price_min_vnd": 949000000,
       "price_max_vnd": 1149000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "New Mazda CX-8 2.5 Luxury",
+          "price": 949000000
+        },
+        {
+          "name": "New Mazda CX-8 2.5 Premium",
+          "price": 1019000000
+        },
+        {
+          "name": "New Mazda CX-8 2.5 Signature AWD",
+          "price": 1149000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-cx-8.md",
       "faq_url": null,
@@ -608,6 +1154,12 @@
       "price_min_vnd": 2479000000,
       "price_max_vnd": 2479000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "Mazda CX-90 2.5 PHEV Signature AWD 7S",
+          "price": 2479000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-cx-90.md",
       "faq_url": null,
@@ -625,6 +1177,16 @@
       "price_min_vnd": 1359000000,
       "price_max_vnd": 1359000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "Mazda MX-5 2.0 MT",
+          "price": 1359000000
+        },
+        {
+          "name": "Mazda MX-5 2.0 AT",
+          "price": 1359000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mazda-mx-5.md",
       "faq_url": null,
@@ -642,6 +1204,24 @@
       "price_min_vnd": 2099000000,
       "price_max_vnd": 2529000000,
       "version_count": 4,
+      "versions": [
+        {
+          "name": "MINI 3-CỬA 2025",
+          "price": 2139000000
+        },
+        {
+          "name": "MINI 3-CỬA 2024",
+          "price": 2099000000
+        },
+        {
+          "name": "MINI JCW 3-CỬA 2025",
+          "price": 2529000000
+        },
+        {
+          "name": "MINI 3-CỬA SE 2025",
+          "price": 2199000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mini-3-door.md",
       "faq_url": null,
@@ -659,6 +1239,12 @@
       "price_min_vnd": 2199000000,
       "price_max_vnd": 2199000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "MINI 5-CỬA 2025",
+          "price": 2199000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mini-5-door.md",
       "faq_url": null,
@@ -676,6 +1262,12 @@
       "price_min_vnd": 2539000000,
       "price_max_vnd": 2539000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "MINI CLUBMAN 2023",
+          "price": 2539000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mini-clubman.md",
       "faq_url": null,
@@ -693,6 +1285,12 @@
       "price_min_vnd": 2639000000,
       "price_max_vnd": 2639000000,
       "version_count": 1,
+      "versions": [
+        {
+          "name": "MINI CONVERTIBLE 2025",
+          "price": 2639000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mini-convertible.md",
       "faq_url": null,
@@ -710,6 +1308,20 @@
       "price_min_vnd": 2639000000,
       "price_max_vnd": 2989000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "MINI COUNTRYMAN ALL 4 2025",
+          "price": 2639000000
+        },
+        {
+          "name": "MINI JCW COUNTRYMAN 2025",
+          "price": 2789000000
+        },
+        {
+          "name": "MINI COUNTRYMAN SE 2025",
+          "price": 2989000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/mini-countryman.md",
       "faq_url": null,
@@ -727,6 +1339,20 @@
       "price_min_vnd": 779000000,
       "price_max_vnd": 899000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "NEW PEUGEOT 2008 ICONIC",
+          "price": 779000000
+        },
+        {
+          "name": "NEW PEUGEOT 2008 PREMIUM",
+          "price": 849000000
+        },
+        {
+          "name": "NEW PEUGEOT 2008 GT",
+          "price": 899000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/peugeot-2008.md",
       "faq_url": null,
@@ -744,6 +1370,20 @@
       "price_min_vnd": 929000000,
       "price_max_vnd": 1109000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "NEW PEUGEOT 3008 ALLURE",
+          "price": 929000000
+        },
+        {
+          "name": "NEW PEUGEOT 3008 PREMIUM",
+          "price": 1019000000
+        },
+        {
+          "name": "NEW PEUGEOT 3008 GT",
+          "price": 1109000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/peugeot-3008.md",
       "faq_url": null,
@@ -761,6 +1401,20 @@
       "price_min_vnd": 1019000000,
       "price_max_vnd": 1269000000,
       "version_count": 3,
+      "versions": [
+        {
+          "name": "PEUGEOT 408 ALLURE",
+          "price": 1019000000
+        },
+        {
+          "name": "PEUGEOT 408 PREMIUM",
+          "price": 1119000000
+        },
+        {
+          "name": "PEUGEOT 408 GT",
+          "price": 1269000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/peugeot-408.md",
       "faq_url": null,
@@ -778,6 +1432,16 @@
       "price_min_vnd": 1109000000,
       "price_max_vnd": 1209000000,
       "version_count": 2,
+      "versions": [
+        {
+          "name": "NEW PEUGEOT 5008 PREMIUM",
+          "price": 1109000000
+        },
+        {
+          "name": "NEW PEUGEOT 5008 GT",
+          "price": 1209000000
+        }
+      ],
       "status": "dang-ban",
       "url": "wiki/models/peugeot-5008.md",
       "faq_url": null,

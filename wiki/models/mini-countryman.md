@@ -12,7 +12,7 @@ version_count: 3
 image: https://thacoautotphcm.vn/storage/hinh-anh-final/mini-ctm-u25-min.webp
 generated: true
 generated_from: raw/models/mini/mini-countryman.json
-updated: 2026-04-24
+updated: 2026-04-27
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mini/mini-countryman.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.
