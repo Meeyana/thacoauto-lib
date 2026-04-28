@@ -25,7 +25,7 @@ Xe khách muốn lên đời (nếu có): ${model_slug || '(chưa khai)'}
 
 - Xác nhận đúng dịch vụ thu cũ đổi mới của THACO AUTO.
 - ĐÍNH KÈM link: https://usedcars.thacoauto.vn
-- Đề xuất 3 cách: (1) website định giá online, (2) hotline 1900 56 5499, (3) tới showroom.
+- Đề xuất 3 cách: (1) website định giá online, (2) hotline 1900 545 591, (3) tới showroom.
 - KHÔNG tự định giá xe cũ — chỉ điều hướng.
 - Nếu khách có model muốn lên đời → gợi ý xem trang xe đó song song.`;
 

@@ -25,29 +25,15 @@ if (!brand) {
   }
 
   if (hit) {
-    files_used.push(hit.file);
     bundle = `=== METADATA THƯƠNG HIỆU ${hit.name} ===
 - Quốc gia: ${hit.country}
 - Mô tả ngắn: ${hit.short_desc || '—'}
 - Website chính thức: ${hit.official_site}
 - Trang THACO phân phối: ${hit.thaco_site}
-- Fanpage chính thức: ${hit.fanpage}\n\n`;
+- Fanpage chính thức: ${hit.fanpage}
 
-    // Đọc file brand MD lấy mô tả chi tiết
-    try {
-      const md = await this.helpers.httpRequest({
-        method: 'GET', url: base + hit.file, returnFullResponse: false
-      });
-      const raw = typeof md === 'string' ? md : JSON.stringify(md);
-      const cleaned = raw
-        .replace(/^---[\s\S]*?---\s*/m, '')
-        .replace(/<!--[\s\S]*?-->/g, '')
-        .trim();
-      bundle += `=== FILE: ${hit.file} ===\n${cleaned}\n\n`;
-    } catch (e) { /* skip */ }
-
-    bundle += `=== HƯỚNG DẪN AI ===
-- Trả lời ngắn gọn dựa trên metadata + nội dung brand file.
+=== HƯỚNG DẪN AI ===
+- Trả lời ngắn gọn DỰA HOÀN TOÀN trên metadata trên.
 - Đưa URL nguyên văn (web/fanpage), KHÔNG rút gọn.
 - Nếu khách hỏi về model cụ thể của hãng → gợi ý hỏi cụ thể tên xe.`;
   } else if (!bundle) {

@@ -16,6 +16,6 @@ const reply = `Dạ em đã ghi nhận đăng ký lái thử của Anh/Chị ạ
 
 Cảm ơn Anh/Chị đã quan tâm THACO AUTO!
 
-📞 Hotline hỗ trợ: **1900 56 5499**`;
+📞 Hotline hỗ trợ: **1900 545 591**`;
 
 return [{ json: { output: reply } }];

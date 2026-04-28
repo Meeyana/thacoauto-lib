@@ -3,7 +3,7 @@ title: Thu cũ đổi mới THACO AUTO
 type: service
 service_type: trade_in
 official_url: https://usedcars.thacoauto.vn
-hotline: 1900 56 5499
+hotline: 1900 545 591
 updated: 2026-04-28
 ---
 
@@ -25,5 +25,5 @@ THACO AUTO có dịch vụ thu mua xe cũ và hỗ trợ lên đời xe mới qu
 
 ## Cách tiếp cận
 - Web: https://usedcars.thacoauto.vn
-- Hotline: 1900 56 5499
+- Hotline: 1900 545 591
 - Showroom THACO bất kỳ.
