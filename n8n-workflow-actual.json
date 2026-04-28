@@ -9,10 +9,10 @@
             "type": "@n8n/n8n-nodes-langchain.chatTrigger",
             "typeVersion": 1.4,
             "position": [
-                -2528,
-                256
+                -1968,
+                1216
             ],
-            "id": "825c4eb2-73a7-42ce-b7eb-157dc97a911c",
+            "id": "6b65e469-7ea8-4c12-9aa8-0b415f643754",
             "name": "When chat message received",
             "webhookId": "5aefa0dc-4e5e-4a68-807d-c6c5e65fe663"
         },
@@ -23,10 +23,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1744,
-                256
+                -1184,
+                1216
             ],
-            "id": "8abb21d7-6c73-408e-a756-7db7a93ebffd",
+            "id": "8dcd2653-89bd-4737-ae11-33cae1789bcf",
             "name": "xu_ly_category"
         },
         {
@@ -386,13 +386,13 @@
                 },
                 "options": {}
             },
-            "id": "6aba3090-8872-49d7-8e67-8fbad878279b",
+            "id": "ede4301d-aed1-4935-9500-76885d2a0dae",
             "name": "Route by Intent1",
             "type": "n8n-nodes-base.switch",
             "typeVersion": 3.2,
             "position": [
-                -1008,
-                80
+                -448,
+                1040
             ]
         },
         {
@@ -402,10 +402,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -224,
-                -368
+                336,
+                592
             ],
-            "id": "ee55dead-f16e-429c-a2d0-f70cce3d4bed",
+            "id": "e8c39f5f-0924-4e38-817b-f90c241f157e",
             "name": "Code in JavaScript"
         },
         {
@@ -413,16 +413,16 @@
                 "promptType": "define",
                 "text": "==### [TIN NHẮN NGƯỜI DÙNG HIỆN TẠI]\n\"{{ $json.chatInput }}\"\n\n### [LỊCH SỬ 10 TURN GẦN NHẤT — dùng để hiểu khách nói cụt/tiếp nối]\n{{ ($json._prev.history || []).map((h, i) => `[${i+1}] User: \"${h.user}\"  →  intent=${h.intent}, brand=${h.brand || '—'}, model=${h.model || '—'}`).join('\\n') || '(chưa có lịch sử)' }}\n\n### [AI VỪA TRẢ LỜI Ở TURN NGAY TRƯỚC]\n\"{{ $json._prev.last_ai_reply || '—' }}\"\n\nHướng dẫn:\n- Khách nói cụt \"thế bản đó\", \"phiên bản đó\", \"loại đó\"... → đọc \"AI vừa trả lời\" để suy ra phiên bản/loại nào AI đã đề cập, gắn lại vào model_slug + chú thích trong qa_intents.\n- Khách hỏi \"tính năng nổi bật của phiên bản đó\" + AI vừa nhắc \"Signature 1.6T\" → vẫn extract model_slug = kia-sportage, qa_intents = [\"NOI_THAT\",\"NGOAI_THAT\"]\n- Nếu khách nói chủ đề rõ ràng → bỏ qua lịch sử cũ\n\n### [PHÂN LOẠI VÀ TRÍCH XUẤT]\n",
                 "options": {
-                    "systemMessage": "=## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI, Truck/Bus).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất thông tin dòng xe.\n\n## Danh mục Category: \n- SALES_LEAD: Hỏi giá, thông số, E-catalog, khuyến mãi, trả góp, so sánh xe, đăng ký lái thử. \n- GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot. \n- SAFETY_GUARD: Chửi thề, xúc phạm, nội dung nhạy cảm, chính trị hoặc quấy rối.\n- SERVICE_APPOINTMENT: Đặt lịch bảo dưỡng, sửa chữa, phụ tùng, chi phí dịch vụ xưởng \n- NETWORK_LOCATION: Tìm showroom, địa chỉ, hotline, giờ mở cửa chi nhánh. \n- CRITICAL_COMPLAINT: Khiếu nại, than phiền dịch vụ, thái độ nhân viên, E-survey tiêu cực. \n- POLICY_LEGAL: Chính sách bảo hành, thủ tục đăng ký xe, bảo hiểm, quy định pháp lý. \n- OUT_OF_SCOPE: Các chủ đề không liên quan đến ngành ô tô (thời tiết, tán gẫu, kiến thức chung). \n- AMBIGUOUS: Câu hỏi cụt ngủn hoặc mơ hồ, cần đối chiếu [LỊCH SỬ] để xác định lại 1 trong các nhóm trên.\n- TRADE_IN: Thu cũ đổi mới, lên đời xe, bán xe cũ cho THACO, định giá xe cũ.\n- BRAND_INFO: Hỏi thông tin thương hiệu (website, fanpage, mô tả ngắn về hãng, xuất xứ, lịch sử). KHÔNG kèm ý định mua model cụ thể.\n- RECRUITMENT: Tuyển dụng, tìm việc tại THACO, ứng tuyển, gửi CV, hỏi vị trí tuyển dụng.\n- URGENT_CONSULT: Khách yêu cầu gặp/gọi tư vấn viên ngay, xin số hotline,\"cho em số điện thoại sale\", \"kết nối nhân viên tư vấn\". KHÁC close_deal ở chỗ chưa chốt mua, chỉ muốn nói chuyện người thật.\n- COMPANY_CONTACT:  Hỏi thông tin LIÊN HỆ CÔNG TY THACO AUTO (không phải showroom):\nvăn phòng/trụ sở ở đâu, email CSKH, hotline tổng đài, số điện thoại công ty, fanpage chính thức của THACO AUTO.\n\n## Quy tắc trích xuất ENTITY:\n1. brand: Tên thương hiệu (kia | mazda | peugeot | bmw | mini). Lowercase. Nếu không có → \"\".\n2. model_slug: Nếu khách nhắc TÊN xe cụ thể (vd \"Sportage\", \"Carens\", \"K5\"). Lowercase, không dấu, có dash. Nếu không có → \"\".\n3. car_type: Loại xe khách muốn: \"sedan\" | \"hatchback\" | \"suv\" | \"mpv\" | \"pickup\" | \"truck\" | \"bus\". Dùng khi khách mô tả nhu cầu (vd \"xe gầm cao\" → \"suv\", \"xe gia đình\" → null hoặc suv/mpv). Nếu không có → \"\". Ngoài ra LƯU Ý: BMW/MINI dùng \"SAV\"/\"SAC\"/\"Estate\" → vẫn map về \"suv\"; \"Cabriolet\" → \"convertible\".\n4. seat_min: Số chỗ tối thiểu khách cần (số nguyên: 4/5/7/8/9). Vd \"xe 7 chỗ\" → 7. Nếu không có → null.\n5. fuel: Loại nhiên liệu: \"xăng\" | \"dầu\" | \"hybrid\" | \"phev\" | \"ev\". Khách nói \"máy dầu\" → \"dầu\", \"lai điện\" → \"hybrid\". Nếu không có → \"\".\n6. budget_max: Ngân sách tối đa của khách (số VNĐ). Vd \"dưới 800 triệu\" → 800000000, \"tầm 1 tỷ\" → 1100000000 (cộng 10% buffer). Nếu không có → null.\n7. price_sort: Nếu khách muốn tìm xe theo giá. \"asc\" (rẻ nhất, thấp nhất), \"desc\" (đắt nhất, cao nhất, mắc nhất). Nếu không có -> null.\n8. use_case: Mục đích sử dụng (1 cụm ngắn): gia_dinh | do_thi | di_tinh | kinh_doanh | khang_dinh_vi_the | tech_eco |null\n9. qa_intents: List intent của câu hỏi tư vấn sâu (chọn 1-3 trong list, hoặc [] nếu không có). Dùng cho Q&A filter, KHÁC với category routing chính.   \n   - SO_SANH: so sánh model/đối thủ/phiên bản, \"đáng mua không\", \"vì sao\"\n   - VAN_HANH: động cơ, hộp số, cách âm, cảm giác lái, đầm chắc, hộp số kép\n   - TIEU_HAO: tiết kiệm xăng/dầu, chi phí vận hành, hybrid lợi điểm\n   - NGOAI_THAT: form dáng, gầm, mâm, đèn, màu sắc, kích thước\n   - NOI_THAT: ghế, màn hình, âm thanh, điều hòa, cửa sổ trời\n   - AN_TOAN: ADAS, túi khí, camera, bảo hành, cảnh báo, phanh\n   - NHU_CAU: gia đình, dịch vụ, đi phố, đi tỉnh, công việc\n10. compare_with_brand: Nếu khách so sánh với xe HÃNG KHÁC (ngoài THACO AUTO).\n   Lowercase. Vd: \"toyota\" | \"honda\" | \"hyundai\" | \"ford\" | \"vinfast\" | \"nissan\" | \"mitsubishi\" | \"mg\" | \"chevrolet\" | \"suzuki\" | \"\"\n   Để \"\" nếu không có so sánh.\n\n11. compare_with_model: Tên xe được so sánh (giữ nguyên text khách nói).\n    Vd: \"Camry\", \"CR-V\", \"Tucson\", \"SantaFe\", \"VF8\", \"\"\n    KHÔNG normalize thành slug — chỉ lưu tên gốc khách nhắc.\n\n12. compare_target: Nếu so sánh với xe NỘI BỘ THACO (Kia vs Mazda, Sportage vs Sorento...).\n    Trả về model_slug HỢP LỆ giống field model_slug. Để \"\" nếu không.\n    Vd khách: \"So sánh Sportage và CX-5\" → model_slug=\"kia-sportage\", compare_target=\"mazda-cx-5\"\n13. sales_subcategory: Sub-category trong SALES_LEAD (chỉ áp dụng khi category=SALES_LEAD).\n    Chọn 1 giá trị:\n    - \"consultation\"     → Tư vấn chọn xe, so sánh model/đối thủ, \"có nên mua\", \"phù hợp không\", hỏi tình trạng xe (có sẵn, tồn kho, giao ngay, ký chờ, màu nào còn hàng, bao lâu có xe)\n    - \"pricing_finance\"  → Hỏi GIÁ LĂN BÁNH, mua trả góp, vay ngân hàng, lãi suất, khuyến mãi, chiết khấu, phí trước bạ\n    - \"tech_specs\"       → Hỏi sâu thông số, nội/ngoại thất, màu sắc, động cơ, hộp số, ADAS, an toàn, cách â\n    - \"close_deal\"       → Đặt lịch LÁI THỬ, đặt cọc, MUA xe, \"em đặt 1 chiếc\"\n    - Mặc định: \"consultation\"\n\n\n## Yêu cầu kỹ thuật:\n- Chỉ trả về duy nhất định dạng JSON. Không giải thích, không dùng ký tự markdown (```)\n\n## Định dạng Output (BẮT BUỘC JSON):\n{\"category\":\"NAME\",\"sales_subcategory\":\"\",\"brand\":\"\",\"model_slug\":\"\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"price_sort\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"status\":true}"
+                    "systemMessage": "=## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI, Truck/Bus).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất thông tin dòng xe.\n\n## Danh mục Category: \n- SALES_LEAD: Hỏi giá, thông số, E-catalog, khuyến mãi, trả góp, so sánh xe, đăng ký lái thử. \n- GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot. \n- SAFETY_GUARD: Chửi thề, xúc phạm, nội dung nhạy cảm, chính trị hoặc quấy rối.\n- SERVICE_APPOINTMENT: Đặt lịch bảo dưỡng, sửa chữa, phụ tùng, chi phí dịch vụ xưởng \n- NETWORK_LOCATION: Tìm showroom, địa chỉ, hotline, giờ mở cửa chi nhánh. \n- CRITICAL_COMPLAINT: Khiếu nại, than phiền dịch vụ, thái độ nhân viên, E-survey tiêu cực. \n- POLICY_LEGAL: Chính sách bảo hành, thủ tục đăng ký xe, bảo hiểm, quy định pháp lý. \n- OUT_OF_SCOPE: Các chủ đề không liên quan đến ngành ô tô (thời tiết, tán gẫu, kiến thức chung). \n- AMBIGUOUS: Câu hỏi cụt ngủn hoặc mơ hồ, cần đối chiếu [LỊCH SỬ] để xác định lại 1 trong các nhóm trên.\n- TRADE_IN: Thu cũ đổi mới, lên đời xe, bán xe cũ cho THACO, định giá xe cũ.\n- BRAND_INFO: Hỏi thông tin thương hiệu (website, fanpage, mô tả ngắn về hãng, xuất xứ, lịch sử). KHÔNG kèm ý định mua model cụ thể.\n- RECRUITMENT: Tuyển dụng, tìm việc tại THACO, ứng tuyển, gửi CV, hỏi vị trí tuyển dụng.\n- URGENT_CONSULT: Khách yêu cầu gặp/gọi tư vấn viên ngay, xin số hotline,\"cho em số điện thoại sale\", \"kết nối nhân viên tư vấn\". KHÁC close_deal ở chỗ chưa chốt mua, chỉ muốn nói chuyện người thật.\n- COMPANY_CONTACT:  Hỏi thông tin LIÊN HỆ CÔNG TY THACO AUTO (không phải showroom):\nvăn phòng/trụ sở ở đâu, email CSKH, hotline tổng đài, số điện thoại công ty, fanpage chính thức của THACO AUTO.\n\n## Quy tắc trích xuất ENTITY:\n1. brand: Tên thương hiệu (kia | mazda | peugeot | bmw | mini). Lowercase. Nếu không có → \"\".\n2. model_slug: Nếu khách nhắc TÊN xe cụ thể (vd \"Sportage\", \"Carens\", \"K5\"). Riêng trường hợp BMW nếu có nói các dòng 320i,330i,430i,520i,... thì phải là để \"[3|4|5]-series\". Nếu hỏi đời mới nhất thì thêm \"-all-new\" Lowercase, không dấu, có dash. Nếu không có → \"\".\n3. car_type: Loại xe khách muốn: \"sedan\" | \"hatchback\" | \"suv\" | \"mpv\" | \"pickup\" | \"truck\" | \"bus\". Dùng khi khách mô tả nhu cầu (vd \"xe gầm cao\" → \"suv\", \"xe gia đình\" → null hoặc suv/mpv). Nếu không có → \"\". Ngoài ra LƯU Ý: BMW/MINI dùng \"SAV\"/\"SAC\"/\"Estate\" → vẫn map về \"suv\"; \"Cabriolet\" → \"convertible\".\n4. seat_min: Số chỗ tối thiểu khách cần (số nguyên: 4/5/7/8/9). Vd \"xe 7 chỗ\" → 7. Nếu không có → null.\n5. fuel: Loại nhiên liệu: \"xăng\" | \"dầu\" | \"hybrid\" | \"phev\" | \"ev\". Khách nói \"máy dầu\" → \"dầu\", \"lai điện\" → \"hybrid\". Nếu không có → \"\".\n6. budget_max: Ngân sách tối đa của khách (số VNĐ). Vd \"dưới 800 triệu\" → 800000000, \"tầm 1 tỷ\" → 1100000000 (cộng 10% buffer). Nếu không có → null.\n7. use_case: Mục đích sử dụng (1 cụm ngắn): gia_dinh | do_thi | di_tinh | kinh_doanh | khang_dinh_vi_the | tech_eco |null\n8. qa_intents: List intent của câu hỏi tư vấn sâu (chọn 1-3 trong list, hoặc [] nếu không có). Dùng cho Q&A filter, KHÁC với category routing chính.   \n   - SO_SANH: so sánh model/đối thủ/phiên bản, \"đáng mua không\", \"vì sao\"\n   - VAN_HANH: động cơ, hộp số, cách âm, cảm giác lái, đầm chắc, hộp số kép\n   - TIEU_HAO: tiết kiệm xăng/dầu, chi phí vận hành, hybrid lợi điểm\n   - NGOAI_THAT: form dáng, gầm, mâm, đèn, màu sắc, kích thước\n   - NOI_THAT: ghế, màn hình, âm thanh, điều hòa, cửa sổ trời\n   - AN_TOAN: ADAS, túi khí, camera, bảo hành, cảnh báo, phanh\n   - NHU_CAU: gia đình, dịch vụ, đi phố, đi tỉnh, công việc\n9. compare_with_brand: Nếu khách so sánh với xe HÃNG KHÁC (ngoài THACO AUTO).\n   Lowercase. Vd: \"toyota\" | \"honda\" | \"hyundai\" | \"ford\" | \"vinfast\" | \"nissan\" | \"mitsubishi\" | \"mg\" | \"chevrolet\" | \"suzuki\" | \"\"\n   Để \"\" nếu không có so sánh.\n\n10. compare_with_model: Tên xe được so sánh (giữ nguyên text khách nói).\n    Vd: \"Camry\", \"CR-V\", \"Tucson\", \"SantaFe\", \"VF8\", \"\"\n    KHÔNG normalize thành slug — chỉ lưu tên gốc khách nhắc.\n\n11. compare_target: Nếu so sánh với xe NỘI BỘ THACO (Kia vs Mazda, Sportage vs Sorento...).\n    Trả về model_slug HỢP LỆ giống field model_slug. Để \"\" nếu không.\n    Vd khách: \"So sánh Sportage và CX-5\" → model_slug=\"kia-sportage\", compare_target=\"mazda-cx-5\"\n12. sales_subcategory: Sub-category trong SALES_LEAD (chỉ áp dụng khi category=SALES_LEAD).\n    Chọn 1 giá trị:\n    - \"consultation\"     → Tư vấn chọn xe, so sánh model/đối thủ, \"có nên mua\", \"phù hợp không\", hỏi tình trạng xe (có sẵn, tồn kho, giao ngay, ký chờ, màu nào còn hàng, bao lâu có xe)\n    - \"pricing_finance\"  → Hỏi GIÁ LĂN BÁNH, mua trả góp, vay ngân hàng, lãi suất, khuyến mãi, chiết khấu, phí trước bạ\n    - \"tech_specs\"       → Hỏi sâu thông số, nội/ngoại thất, màu sắc, động cơ, hộp số, ADAS, an toàn, cách â\n    - \"close_deal\"       → Đặt lịch LÁI THỬ, đặt cọc, MUA xe, \"em đặt 1 chiếc\"\n    - Mặc định: \"consultation\"\n13. price_sort: Nếu khách muốn tìm xe theo giá. \"asc\" (rẻ nhất, thấp nhất), \"desc\" (đắt nhất, cao nhất, mắc nhất). Nếu không có -> null.\n\n\n## Yêu cầu kỹ thuật:\n- Chỉ trả về duy nhất định dạng JSON. Không giải thích, không dùng ký tự markdown (```)\n\n## Định dạng Output (BẮT BUỘC JSON):\n{\"category\":\"NAME\",\"sales_subcategory\":\"\",\"brand\":\"\",\"model_slug\":\"\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null, \"status\":true}"
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -2032,
-                256
+                -1472,
+                1184
             ],
-            "id": "7f0e518a-e339-4437-aef3-dfa9e62e9a98",
+            "id": "579063f9-99a8-48a9-b0d5-40d614a2c94c",
             "name": "AI Agent"
         },
         {
@@ -434,10 +434,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -2064,
-                432
+                -1504,
+                1392
             ],
-            "id": "a2724fe7-1b8a-480c-8fde-0bc9464ee63e",
+            "id": "818706eb-d1d7-42ef-a0e0-36c9f9235dd3",
             "name": "Google Gemini Chat Model",
             "credentials": {
                 "googlePalmApi": {
@@ -453,10 +453,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1152,
-                256
+                -592,
+                1216
             ],
-            "id": "f82b05ed-99b2-4dc4-879a-8a1e8d2178cb",
+            "id": "46fa2d93-52f3-4e1a-ba35-453aff63e273",
             "name": "Normalize Entities"
         },
         {
@@ -466,10 +466,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -96,
-                -64
+                464,
+                896
             ],
-            "id": "1b347b65-397f-42a2-8a83-ae3ba078d6b4",
+            "id": "0aa83b94-fa05-47e5-9266-222348eec445",
             "name": "xu_ly_location1"
         },
         {
@@ -479,10 +479,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                64,
-                -64
+                624,
+                896
             ],
-            "id": "f45db898-0f43-4f48-bbd5-fc8208e488d3",
+            "id": "a9dc6768-ff3f-45e4-999f-b1e461bf4308",
             "name": "Code in Javescript 1"
         },
         {
@@ -496,10 +496,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -624,
-                -224
+                -64,
+                736
             ],
-            "id": "26fb643d-5c91-4ecb-9058-8ad57eb2b19b",
+            "id": "b5d8c351-16e5-4590-8645-2717cd36d5df",
             "name": "AI Agent - Location Extractor"
         },
         {
@@ -513,10 +513,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                16,
-                -368
+                576,
+                592
             ],
-            "id": "6e894015-af18-4b3b-8815-171462709aa9",
+            "id": "96f92bf8-0f85-45c5-9e98-44d88e62c0d0",
             "name": "Message a model1"
         },
         {
@@ -530,10 +530,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                208,
-                -64
+                768,
+                896
             ],
-            "id": "0ae8fef9-d1a9-4870-a116-8de1ab9c4373",
+            "id": "ec53622e-0583-4b7a-b79d-67894a7f6963",
             "name": "Message a model"
         },
         {
@@ -543,10 +543,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                16,
-                -224
+                576,
+                736
             ],
-            "id": "67e78dbb-5220-4961-aa70-ad78bc6f5141",
+            "id": "6450a538-ed31-4a21-a161-d231a4d1231f",
             "name": "Google Gemini Chat Model1",
             "credentials": {
                 "googlePalmApi": {
@@ -562,10 +562,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -624,
-                -80
+                -64,
+                880
             ],
-            "id": "9903d39d-0e58-48e0-87f7-7c6854183f0a",
+            "id": "fc8d29dd-73f2-457a-b7de-f10068b348c8",
             "name": "Google Gemini Chat Model2",
             "credentials": {
                 "googlePalmApi": {
@@ -581,10 +581,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                208,
-                96
+                768,
+                1056
             ],
-            "id": "94579ebc-9144-4b37-8565-c45021a66e19",
+            "id": "6dd899ef-8b83-4329-a49d-667ca0028d73",
             "name": "Google Gemini Chat Model3",
             "credentials": {
                 "googlePalmApi": {
@@ -623,10 +623,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                -2352,
-                256
+                -1792,
+                1216
             ],
-            "id": "e0c986cf-52d1-4373-be6d-658381358106",
+            "id": "de384f45-7bb2-409b-bbd9-ecd9ba909c26",
             "name": "gs_read_session",
             "alwaysOutputData": true,
             "credentials": {
@@ -644,10 +644,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -2192,
-                256
+                -1632,
+                1216
             ],
-            "id": "607ad4b1-415f-413e-aa99-635396df024f",
+            "id": "9ab70c30-f375-4184-a38d-f8b7db756339",
             "name": "parse_session"
         },
         {
@@ -767,10 +767,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                -1440,
-                256
+                -880,
+                1216
             ],
-            "id": "5829068e-6dda-45af-ad06-6c0965ddf8ff",
+            "id": "e44d91f3-a908-436a-977a-5d7db893980a",
             "name": "gs_save_session",
             "credentials": {
                 "googleApi": {
@@ -786,10 +786,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1296,
-                256
+                -736,
+                1216
             ],
-            "id": "1608546e-f48c-4332-b641-7b4643370537",
+            "id": "d965014c-aadf-4137-bc42-eef5bcb52bdd",
             "name": "restore_router"
         },
         {
@@ -799,10 +799,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                1712,
-                -304
+                2272,
+                656
             ],
-            "id": "16642328-bd69-45db-8074-1bc725d465ea",
+            "id": "f24829f4-715c-48c9-91f5-ec3d09905ccc",
             "name": "capture_reply"
         },
         {
@@ -906,10 +906,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                1872,
-                -304
+                2432,
+                656
             ],
-            "id": "e5a77bd4-8887-45d3-8c64-c84fb7109d3c",
+            "id": "c7ec5aa0-2a55-4498-859c-e8fbc7ee7cd7",
             "name": "gs_update_reply",
             "credentials": {
                 "googleApi": {
@@ -925,10 +925,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                2048,
-                -304
+                2608,
+                656
             ],
-            "id": "88a0fa93-8cb4-49f9-85fc-6990b2505801",
+            "id": "73b25b9f-be5b-4280-ba95-dafa03e16af4",
             "name": "format_chat_reply"
         },
         {
@@ -938,10 +938,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1584,
-                256
+                -1024,
+                1216
             ],
-            "id": "d2f575eb-391f-4853-9e89-e5360bf58a93",
+            "id": "9cd94f6a-4e7e-4138-99fd-1a331aeb0f81",
             "name": "save_sessions"
         },
         {
@@ -955,10 +955,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -592,
-                320
+                -32,
+                1280
             ],
-            "id": "14dbcea2-1380-4474-8050-fd9e38c1fa60",
+            "id": "0afec007-6ea5-49b1-8680-ec26b3f9c2c6",
             "name": "AI Agent — Disambiguator"
         },
         {
@@ -968,10 +968,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -624,
-                480
+                -64,
+                1440
             ],
-            "id": "570f79c2-b14f-4692-a664-c4bac80fe7f9",
+            "id": "03358d4f-f5ea-444d-ac2a-8ab8bafe7b48",
             "name": "Google Gemini Chat Model4",
             "credentials": {
                 "googlePalmApi": {
@@ -987,10 +987,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                176
+                -64,
+                1136
             ],
-            "id": "0f9ec3b5-d615-49fe-8ba3-4e46eef1162a",
+            "id": "f2f8c9fd-7f8d-4e07-ad36-f396ad9cd935",
             "name": "reply_out_of_scope"
         },
         {
@@ -1020,10 +1020,10 @@
             "type": "n8n-nodes-base.if",
             "typeVersion": 2.3,
             "position": [
-                -560,
-                -480
+                0,
+                480
             ],
-            "id": "76c3060c-8b25-4f48-b735-fc4f4ca860be",
+            "id": "2daf50c2-a9d8-42b1-982e-315e935ff716",
             "name": "IF sub_close_deal"
         },
         {
@@ -1056,10 +1056,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                -208,
-                -560
+                352,
+                400
             ],
-            "id": "6ce8264a-521c-4ca6-893a-e38d34965259",
+            "id": "ebdf08ec-5b5c-4f8d-9b06-0c0e8780a9eb",
             "name": "gs_read_lead_state",
             "alwaysOutputData": true,
             "credentials": {
@@ -1075,16 +1075,16 @@
                 "promptType": "define",
                 "text": "=### CURRENT MESSAGE\n     \"{{ $('When chat message received').item.json.chatInput }}\"\n     \n     ### PARTIAL STATE (đã thu thập trước, có thể null toàn bộ nếu lần đầu)\n     {{ $json.lead_partial_json || '{}' }}\n     \n     ### HISTORY 3 TURN GẦN NHẤT\n     {{ ($('parse_session').first().json._prev.history || []).slice(-3).map(h => `User: \"${h.user}\"`).join('\\n') || '(chưa có)' }}\n     \n     EXTRACT JSON:",
                 "options": {
-                    "systemMessage": "=Bạn là extractor cho hệ thống đăng ký lái thử THACO AUTO.\n     Trích xuất 5 field từ tin nhắn khách + history + state đã có.\n     CHỈ trả JSON thuần (không markdown, không giải thích).\n     \n     - name: Họ tên khách (≥ 2 từ, vd \"Nguyễn Văn A\"). null nếu chưa rõ.\n     - phone: SĐT VN (10 số bắt đầu 0, hoặc +84xxxxxxxxx). null nếu chưa hoặc sai format.\n     - model_interest: Tên xe khách quan tâm (vd \"Sportage\", \"Kia K5\", \"BMW X5\", \"CX-5\"). null nếu chưa.\n     - showroom: Tên showroom HOẶC khu vực (vd \"Phú Mỹ Hưng\", \"Sala\", \"Thủ Thiêm\", \"An Sương\", \"Kia Quận 7\"). null nếu chưa.\n     - preferred_datetime: Text tự nhiên (vd \"thứ 7 sáng\", \"9h ngày 28/4\", \"cuối tuần này\"). null nếu chưa.\n     \n     QUY TẮC:\n     - Đọc PARTIAL STATE + HISTORY để giữ lại field đã extract trước đó.\n     - Nếu khách nói lại field cũ với giá trị mới → ưu tiên giá trị mới.\n     - KHÔNG bịa. Thiếu thì để null.\n     \n     Output BẮT BUỘC:\n     {\"name\":null,\"phone\":null,\"model_interest\":null,\"showroom\":null,\"preferred_datetime\":null}"
+                    "systemMessage": "=Bạn là extractor cho hệ thống đăng ký lái thử THACO AUTO.\n     Trích xuất 5 field từ tin nhắn khách + history + state đã có.\n     CHỈ trả JSON thuần (không markdown, không giải thích).\n     \n     - name: Họ tên khách (vd \"Nguyễn Văn Tuấn\" hoặc \"Tuấn\"). null nếu chưa rõ.\n     - phone: SĐT VN (10 số bắt đầu 0, hoặc +84xxxxxxxxx). null nếu chưa hoặc sai format.\n     - model_interest: Tên xe khách quan tâm (vd \"Sportage\", \"Kia K5\", \"BMW X5\", \"CX-5\"). null nếu chưa.\n     - showroom: Tên showroom HOẶC khu vực (vd \"Phú Mỹ Hưng\", \"Sala\", \"Thủ Thiêm\", \"An Sương\", \"Kia Quận 7\"). null nếu chưa.\n     - preferred_datetime: Text tự nhiên (vd \"thứ 7 sáng\", \"9h ngày 28/4\", \"cuối tuần này\"). null nếu chưa.\n     \n     QUY TẮC:\n     - Đọc PARTIAL STATE + HISTORY để giữ lại field đã extract trước đó.\n     - Nếu khách nói lại field cũ với giá trị mới → ưu tiên giá trị mới.\n     - KHÔNG bịa. Thiếu thì để null.\n     \n     Output BẮT BUỘC:\n     {\"name\":null,\"phone\":null,\"model_interest\":null,\"showroom\":null,\"preferred_datetime\":null}"
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                32,
-                -624
+                592,
+                336
             ],
-            "id": "823f4b0c-0f9c-4d9a-b865-28e52137309a",
+            "id": "1a49567e-5772-4c06-80cf-3b70f5b0e060",
             "name": "AI Agent - Test Drive Extractor"
         },
         {
@@ -1094,10 +1094,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                16,
-                -496
+                576,
+                464
             ],
-            "id": "66d77a4a-62a7-43fd-bf42-1fc1f3f6aa67",
+            "id": "7a70a031-62a6-4696-ac81-c7c6adda3969",
             "name": "Google Gemini Chat Model5",
             "credentials": {
                 "googlePalmApi": {
@@ -1113,10 +1113,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                336,
-                -624
+                896,
+                336
             ],
-            "id": "fb126f99-3425-4c38-95fd-c9150aa0c54a",
+            "id": "e4ea094e-c258-46bb-8f60-667f4430b536",
             "name": "merge_lead_state"
         },
         {
@@ -1146,10 +1146,10 @@
             "type": "n8n-nodes-base.if",
             "typeVersion": 2.3,
             "position": [
-                544,
-                -624
+                1104,
+                336
             ],
-            "id": "dcbe502b-b70b-43b7-8bbe-434c106176be",
+            "id": "0d4e0d5e-7f13-4b50-9f98-c3b108b6c5e9",
             "name": "IF is_complete"
         },
         {
@@ -1275,10 +1275,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                752,
-                -720
+                1312,
+                240
             ],
-            "id": "e18f1cf9-c2b7-4013-bcf6-daec0689dac3",
+            "id": "ce2a0af4-2c50-4787-b4d0-8035ba4262a6",
             "name": "gs_append_test_drive",
             "credentials": {
                 "googleApi": {
@@ -1289,15 +1289,15 @@
         },
         {
             "parameters": {
-                "jsCode": "// reply_complete — Code node sau \"gs_append_test_drive\"\n// Static reply xác nhận đã save lead — KHÔNG gọi AI để tiết kiệm token + đảm bảo format ổn định.\n\nconst d = $('merge_lead_state').first().json.lead_data;\n\nconst reply = `Dạ em đã ghi nhận đăng ký lái thử của Anh/Chị ạ ✅\n\n📋 **Thông tin đã lưu:**\n- Họ tên: ${d.name}\n- SĐT: ${d.phone}\n- Xe quan tâm: ${d.model_interest}\n- Showroom: ${d.showroom}\n- Thời gian: ${d.preferred_datetime}\n\n🚗 Chuyên viên Sale sẽ liên hệ Anh/Chị trong **1-2 giờ làm việc** để xác nhận lịch và chuẩn bị xe.\n\nCảm ơn Anh/Chị đã quan tâm THACO AUTO!\n\n📞 Hotline hỗ trợ: **1900 56 5499**`;\n\nreturn [{ json: { output: reply } }];\n"
+                "jsCode": "// reply_complete — Code node sau \"gs_append_test_drive\"\n// Static reply xác nhận đã save lead — KHÔNG gọi AI để tiết kiệm token + đảm bảo format ổn định.\n\nconst d = $('merge_lead_state').first().json.lead_data;\n\nconst reply = `Dạ em đã ghi nhận đăng ký lái thử của Anh/Chị ạ ✅\n\n📋 **Thông tin đã lưu:**\n- Họ tên: ${d.name}\n- SĐT: ${d.phone}\n- Xe quan tâm: ${d.model_interest}\n- Showroom: ${d.showroom}\n- Thời gian: ${d.preferred_datetime}\n\n🚗 Chuyên viên Sale sẽ liên hệ Anh/Chị trong **1-2 giờ làm việc** để xác nhận lịch và chuẩn bị xe.\n\nCảm ơn Anh/Chị đã quan tâm THACO AUTO!\n\n📞 Hotline hỗ trợ: **1900 545 591**`;\n\nreturn [{ json: { output: reply } }];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                960,
-                -720
+                1520,
+                240
             ],
-            "id": "c31180b2-e8ca-4203-9235-629d0bbd152e",
+            "id": "2d728cdd-f45c-48b1-995c-fb0495389189",
             "name": "reply_complete"
         },
         {
@@ -1419,10 +1419,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                752,
-                -528
+                1312,
+                432
             ],
-            "id": "32ef52de-282a-49be-ba68-0a9a33ecf1c7",
+            "id": "0837f278-702e-4f9f-9da5-255cb2a906d5",
             "name": "gs_update_partial_state",
             "credentials": {
                 "googleApi": {
@@ -1442,10 +1442,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                960,
-                -528
+                1520,
+                432
             ],
-            "id": "a95f3116-4e36-40a4-8eaf-943fce7aa654",
+            "id": "e1551c81-a38e-4351-a1af-e6b4aab516d5",
             "name": "AI Agent - reply_ask_missing"
         },
         {
@@ -1455,10 +1455,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                960,
-                -368
+                1520,
+                592
             ],
-            "id": "0eb39e79-f2f2-4b45-89e4-2794cd05d50c",
+            "id": "130712b2-10bf-4728-930c-335f3c753b53",
             "name": "Google Gemini Chat Model6",
             "credentials": {
                 "googlePalmApi": {
@@ -1474,10 +1474,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -560,
-                -960
+                0,
+                0
             ],
-            "id": "f000edba-0569-4005-afa0-9acde3c76a13",
+            "id": "92cbb9a5-b73a-46a2-9b45-336d36ff5113",
             "name": "reply_greeting"
         },
         {
@@ -1487,10 +1487,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -560,
-                -720
+                0,
+                240
             ],
-            "id": "0eac4eb7-ecc1-4aaa-99b6-7650e9750f06",
+            "id": "2c228524-8de0-4e8a-afd0-7b473cab0061",
             "name": "safety_guard_reply"
         },
         {
@@ -1500,10 +1500,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                64
+                -64,
+                1024
             ],
-            "id": "f5180046-167b-47f5-b61f-150b7d34241e",
+            "id": "e51e9b77-024f-48c5-8576-9e2534067528",
             "name": "complaint_reply"
         },
         {
@@ -1513,10 +1513,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                640
+                -64,
+                1600
             ],
-            "id": "25cdf1cf-084a-4f1e-aa74-6ead10e4d0ea",
+            "id": "9c9e4244-2fcc-4769-8914-bb444b8dcdd1",
             "name": "trade_in_code"
         },
         {
@@ -1526,10 +1526,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                800
+                -64,
+                1760
             ],
-            "id": "3f708098-dc3b-4d5c-8785-49b74f7bc4d6",
+            "id": "c17d63b3-9e2c-4ed3-8fcb-fbaa24f8bfa8",
             "name": "brand_info_logic"
         },
         {
@@ -1539,10 +1539,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                944
+                -64,
+                1904
             ],
-            "id": "940ee8ff-4d40-452f-9ec1-2b4aee708214",
+            "id": "140401d8-8bd5-404d-9d0b-e7fee3508761",
             "name": "recruitment_code"
         },
         {
@@ -1552,10 +1552,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -624,
-                1104
+                -64,
+                2064
             ],
-            "id": "e615dc58-aaa2-432a-b856-e4f8c09b1c4a",
+            "id": "9fa14fff-d984-41fb-ab2a-1a7741f03820",
             "name": "urgent_consult_code"
         },
         {
@@ -1569,10 +1569,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                0,
-                816
+                560,
+                1776
             ],
-            "id": "53cf24b7-0638-42f8-b797-e668c7578173",
+            "id": "2f92e34b-e657-4925-a998-9178fc809616",
             "name": "AI Agent-Hand off reply"
         },
         {
@@ -1582,10 +1582,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                0,
-                976
+                560,
+                1936
             ],
-            "id": "eaa049e9-7fda-4587-9db4-71508b8bd844",
+            "id": "162d92e0-f0bc-4839-a22d-38b9bfd5267a",
             "name": "Google Gemini Chat Model7",
             "credentials": {
                 "googlePalmApi": {
@@ -1601,10 +1601,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -640,
-                1264
+                -80,
+                2224
             ],
-            "id": "d286cda3-5a43-48a6-bf8f-c39f6ac750bd",
+            "id": "d26dbd23-70a1-44cb-b430-89b187d270a0",
             "name": "company_contact_code"
         }
     ],
