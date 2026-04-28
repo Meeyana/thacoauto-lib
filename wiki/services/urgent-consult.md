@@ -9,11 +9,11 @@ updated: 2026-04-28
 # Tư vấn ngay
 
 ## Hotline
-**1900 56 5499** — phục vụ 8:00 - 21:00 hàng ngày.
+**1900 545 591** — phục vụ 8:00 - 21:00 hàng ngày.
 
 ## Quy trình bot xử lý
 1. Cảm ơn khách + trấn an "có chuyên viên hỗ trợ ngay".
-2. Cho ngay **hotline 1900 56 5499**.
+2. Cho ngay **hotline 1900 545 591**.
 3. **Đồng thời** xin **SĐT khách + thương hiệu/model quan tâm + tỉnh/thành** để chuyên viên Sale gọi lại trong 15 phút.
 4. Sau khi khách cung cấp SĐT → lưu lead (giống flow lái thử).
 
