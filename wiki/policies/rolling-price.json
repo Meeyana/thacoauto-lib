@@ -3,31 +3,26 @@
   "_updated": "2026-04-26",
   "_valid_from": "2024-03-01",
   "_source": "Luật phí trước bạ + Thông tư 02/2024/TT-BTC + biểu phí TNDS bắt buộc 2024",
-
   "registration_fee_pct": {
     "ho-chi-minh": 0.10,
     "ha-noi": 0.12,
     "default": 0.10
   },
-
   "license_plate_fee_vnd": {
-    "ho-chi-minh": 20000000,
+    "ho-chi-minh": 14000000,
     "ha-noi": 20000000,
     "default": 1000000
   },
-
   "fixed_fees_vnd": {
     "inspection": 340000,
     "road_maintenance_yr": 1560000
   },
-
   "tnds_insurance_yr_vnd": {
     "_doc": "Bảo hiểm TNDS bắt buộc 1 năm — tính theo số chỗ ngồi",
     "5_seat_or_less": 530700,
     "6_to_7_seat": 943400,
     "8_seat_or_more": 953400
   },
-
   "service_fee_vnd": {
     "_doc": "Phí dịch vụ đăng ký xe — tùy thương hiệu (xe sang chi phí cao hơn)",
     "by_brand": {
@@ -41,9 +36,7 @@
     },
     "default": 3200000
   },
-
-  "physical_insurance_pct": 0.015,
-
+  "physical_insurance_pct": 0,
   "fee_labels_vi": {
     "model_price": "Giá niêm yết",
     "registration_fee": "Phí trước bạ",
@@ -54,7 +47,6 @@
     "service_fee": "Phí dịch vụ đăng ký",
     "physical_insurance": "Bảo hiểm vật chất xe (1 năm, tùy chọn)"
   },
-
   "notes": [
     "Phí trước bạ: Hà Nội 12%, TP.HCM 10%, các tỉnh khác 10% (theo Thông tư 02/2024/TT-BTC)",
     "Phí biển số khu vực 1 (HCM/HN): 20.000.000 ₫. Khu vực 2-3: 1.000.000 ₫",

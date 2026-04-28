@@ -1,5 +1,4 @@
-// FILTER ENGINE + MARKDOWN TRIMMER + FAQ + COMPARISON + ROLLING PRICE + LOAN CALC + VERSION MATCH
-// + INTENT-AWARE SECTION AUGMENTATION (qa_intents → bơm section vào allowlist)
+// FILTER ENGINE + MARKDOWN TRIMMER + FAQ INTENT FILTER + COMPARISON + ROLLING PRICE CALC
 // Paste vào n8n node: "Code in JavaScript" (sau Switch.SALES_LEAD)
 const d = $input.first().json;
 const base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';
@@ -11,6 +10,7 @@ const car_type = (d.car_type || "").toLowerCase().trim();
 const seat_min = d.seat_min ? Number(d.seat_min) : null;
 const fuel = (d.fuel || "").toLowerCase().trim();
 const budget_max = d.budget_max ? Number(d.budget_max) : null;
+const price_sort = (d.price_sort || "").toLowerCase().trim();
 const qa_intents = Array.isArray(d.qa_intents) ? d.qa_intents : [];
 
 // === Entity so sánh ===
@@ -20,8 +20,8 @@ const compare_with_model = (d.compare_with_model || "").trim();
 
 const sales_subcategory = (d.sales_subcategory || "consultation").toLowerCase().trim();
 const province = (d.province || "ho-chi-minh").toLowerCase().trim();
-const version_query = (d.version_query || "").toString().toLowerCase().trim();
 
+// === Đếm SALES_LEAD turn để trigger lead capture ===
 const history = (d._prev?.history) || [];
 const sales_turn_count = history.filter(h => h.intent === 'SALES_LEAD').length;
 const should_capture_lead = sales_turn_count >= 2;
@@ -29,7 +29,7 @@ const should_capture_lead = sales_turn_count >= 2;
 const THACO_BRANDS = ['kia', 'mazda', 'peugeot', 'bmw', 'mini', 'thaco-truck', 'thaco-bus'];
 
 // =========================================================
-// HELPER: trimMarkdown / extractCompareMd
+// HELPER 1: Trim markdown — chỉ giữ section H2 trong allowlist
 // =========================================================
 function trimMarkdown(md, allowlist, opts = {}) {
   if (!md || typeof md !== 'string') return '';
@@ -50,58 +50,50 @@ function trimMarkdown(md, allowlist, opts = {}) {
   return kept.trim();
 }
 
+// =========================================================
+// HELPER 1B: Extract chỉ Tóm tắt + Trang bị nổi bật phiên bản đầu (cho compare)
+// =========================================================
 function extractCompareMd(md) {
   if (!md || typeof md !== 'string') return '';
   md = md.replace(/^---[\s\S]*?---\s*/m, '');
   md = md.replace(/^>.*$/gm, '');
   md = md.replace(/!\[[^\]]*\]\([^\)]*\)/g, '');
+
+  // Split theo ^## để lấy từng section H2 — tránh dùng \Z (không hỗ trợ trong JS regex,
+  // bị hiểu là literal Z và với /i flag thành [Zz] → cắt sai ở chữ z trong "mazda")
+  const sections = md.split(/^## /m);
   let result = '';
-  const tomtatMatch = md.match(/^## (Tóm tắt|Tom tat)[\s\S]*?(?=^## |\Z)/im);
-  if (tomtatMatch) result += tomtatMatch[0].trim() + '\n\n';
-  const trangbiMatch = md.match(/^## Trang bị nổi bật[\s\S]*?(?=^## |\Z)/im);
-  if (trangbiMatch) {
-    const section = trangbiMatch[0];
-    const h3Parts = section.split(/^### /m);
-    if (h3Parts.length >= 2) {
-      const header = h3Parts[0].trim();
-      const firstVersion = h3Parts[1].trim();
-      result += `${header}\n\n### ${firstVersion}\n`;
-    } else {
-      result += section.trim() + '\n';
+
+  // 1. Section Tóm tắt
+  for (const sec of sections.slice(1)) {
+    const heading = sec.split('\n')[0].toLowerCase();
+    if (heading.includes('tóm tắt') || heading.includes('tom tat')) {
+      result += '## ' + sec.trim() + '\n\n';
+      break;
     }
   }
+
+  // 2. Section Trang bị nổi bật → chỉ giữ phiên bản H3 đầu tiên
+  for (const sec of sections.slice(1)) {
+    const heading = sec.split('\n')[0].toLowerCase();
+    if (heading.includes('trang bị nổi bật')) {
+      const h3Parts = sec.split(/^### /m);
+      if (h3Parts.length >= 2) {
+        const header = '## ' + h3Parts[0].trim();
+        const firstVersion = h3Parts[1].trim();
+        result += `${header}\n\n### ${firstVersion}\n`;
+      } else {
+        result += '## ' + sec.trim() + '\n';
+      }
+      break;
+    }
+  }
+
   return result.trim();
 }
 
 // =========================================================
-// HELPER: VERSION MATCHING
-// =========================================================
-function matchVersion(versions, query) {
-  if (!versions || !versions.length || !query) return null;
-  const q = query.toLowerCase().trim().replace(/\s+/g, ' ');
-  const qTokens = q.split(/[\s\-,]+/).filter(t => t.length >= 2);
-
-  const scored = versions.map(v => {
-    const name = (v.name || '').toLowerCase();
-    let score = 0;
-    if (name === q) score = 100;
-    else if (name.includes(q)) score = 80;
-    else if (q.includes(name)) score = 60;
-    else {
-      const nameTokens = new Set(name.split(/[\s\-,]+/).filter(t => t.length >= 2));
-      const matchedTokens = qTokens.filter(t => nameTokens.has(t)).length;
-      if (matchedTokens === qTokens.length && qTokens.length) score = 50;
-      else if (matchedTokens >= 2) score = 30 + matchedTokens * 5;
-    }
-    return { version: v, score };
-  }).filter(x => x.score > 0);
-
-  scored.sort((a, b) => b.score - a.score);
-  return scored.length ? scored[0].version : null;
-}
-
-// =========================================================
-// HELPER: TÍNH GIÁ LĂN BÁNH
+// HELPER 1C: Tính giá lăn bánh — fetch policy + compute theo seat + brand
 // =========================================================
 let _rollingPolicy = null;
 async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
@@ -111,30 +103,49 @@ async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
       const data = await this.helpers.httpRequest({
         method: 'GET',
         url: base + 'wiki/policies/rolling-price.json',
-        json: true, returnFullResponse: false
+        json: true,
+        returnFullResponse: false
       });
       _rollingPolicy = (typeof data === 'string') ? JSON.parse(data) : data;
     }
     const p = _rollingPolicy;
+
+    // 1. Province → phí trước bạ % + phí biển số
     const provinceKey = (p.registration_fee_pct[provinceArg]) ? provinceArg : 'default';
     const reg_pct = p.registration_fee_pct[provinceKey];
     const plate = p.license_plate_fee_vnd[provinceKey];
     const reg_fee = Math.round(modelPrice * reg_pct);
+
+    // 2. Bảo hiểm vật chất theo % giá xe
     const physical_ins = Math.round(modelPrice * p.physical_insurance_pct);
 
+    // 3. TNDS theo SỐ CHỖ NGỒI
     const seatNum = Number(seatArg || 5);
-    let tnds, tnds_tier;
-    if (seatNum <= 5) { tnds = p.tnds_insurance_yr_vnd['5_seat_or_less']; tnds_tier = '≤5 chỗ'; }
-    else if (seatNum <= 7) { tnds = p.tnds_insurance_yr_vnd['6_to_7_seat']; tnds_tier = '6-7 chỗ'; }
-    else { tnds = p.tnds_insurance_yr_vnd['8_seat_or_more']; tnds_tier = '≥8 chỗ'; }
+    let tnds;
+    let tnds_tier;
+    if (seatNum <= 5) {
+      tnds = p.tnds_insurance_yr_vnd['5_seat_or_less'];
+      tnds_tier = '≤5 chỗ';
+    } else if (seatNum <= 7) {
+      tnds = p.tnds_insurance_yr_vnd['6_to_7_seat'];
+      tnds_tier = '6-7 chỗ';
+    } else {
+      tnds = p.tnds_insurance_yr_vnd['8_seat_or_more'];
+      tnds_tier = '≥8 chỗ';
+    }
 
+    // 4. Service fee theo BRAND
     const brandKey = (brandArg || '').toLowerCase().trim();
     const service_fee = p.service_fee_vnd.by_brand[brandKey] || p.service_fee_vnd.default;
+
+    // 5. Phí cố định
     const inspection = p.fixed_fees_vnd.inspection;
     const road_maintenance = p.fixed_fees_vnd.road_maintenance_yr;
 
-    const total = modelPrice + reg_fee + plate + inspection + road_maintenance + tnds + service_fee + physical_ins;
-    const registration_cost = reg_fee + plate + inspection + road_maintenance + tnds + service_fee;
+    // 6. Tổng
+    const total = modelPrice + reg_fee + plate
+      + inspection + road_maintenance + tnds + service_fee
+      + physical_ins;
 
     return {
       province_used: provinceKey,
@@ -142,23 +153,36 @@ async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
       seat_used: seatNum,
       tnds_tier,
       brand_used: brandKey || 'default',
-      breakdown: { model_price: modelPrice, registration_fee: reg_fee, license_plate: plate, inspection, road_maintenance, tnds_insurance: tnds, service_fee, physical_insurance: physical_ins },
+      breakdown: {
+        model_price: modelPrice,
+        registration_fee: reg_fee,
+        license_plate: plate,
+        inspection,
+        road_maintenance,
+        tnds_insurance: tnds,
+        service_fee,
+        physical_insurance: physical_ins
+      },
       total,
-      registration_cost,
       labels: p.fee_labels_vi,
       notes: p.notes
     };
-  } catch (e) { return { error: e.message }; }
+  } catch (e) {
+    return { error: e.message };
+  }
 }
 
+// Format helper VNĐ
 function fmtVnd(n) {
   if (n === null || n === undefined) return '—';
   return Math.round(n).toLocaleString('de-DE') + ' ₫';
 }
 
+// Format calc result thành text bundle
 function formatRollingPriceBundle(modelName, calc) {
   if (!calc || calc.error) return `\n[LỖI tính giá lăn bánh: ${calc?.error || 'không có giá'}]`;
-  const b = calc.breakdown, L = calc.labels;
+  const b = calc.breakdown;
+  const L = calc.labels;
   const provinceText = calc.province_used === 'ho-chi-minh' ? 'HCM' :
     calc.province_used === 'ha-noi' ? 'HN' : 'tỉnh khác';
   return `\n\n=== GIÁ LĂN BÁNH ƯỚC TÍNH ${modelName} (đăng ký ${provinceText}, ${calc.seat_used} chỗ, brand=${calc.brand_used}) ===
@@ -170,78 +194,14 @@ function formatRollingPriceBundle(modelName, calc) {
 - ${L.tnds_insurance} [${calc.tnds_tier}]: ${fmtVnd(b.tnds_insurance)}
 - ${L.service_fee} [brand ${calc.brand_used}]: ${fmtVnd(b.service_fee)}
 - ${L.physical_insurance}: ${fmtVnd(b.physical_insurance)}
-- **TỔNG GIÁ LĂN BÁNH ƯỚC TÍNH: ${fmtVnd(calc.total)}**`;
+- **TỔNG GIÁ LĂN BÁNH ƯỚC TÍNH: ${fmtVnd(calc.total)}**
+
+GHI CHÚ:
+${calc.notes.map(n => '- ' + n).join('\n')}`;
 }
 
 // =========================================================
-// HELPER: TÍNH TRẢ GÓP
-// =========================================================
-let _loanPolicy = null;
-async function calcLoanInstallments(modelPrice, registrationCost) {
-  if (!modelPrice) return null;
-  try {
-    if (!_loanPolicy) {
-      const data = await this.helpers.httpRequest({
-        method: 'GET',
-        url: base + 'wiki/policies/loan.json',
-        json: true, returnFullResponse: false
-      });
-      _loanPolicy = (typeof data === 'string') ? JSON.parse(data) : data;
-    }
-    const p = _loanPolicy;
-    const loanAmount = Math.round(modelPrice * p.loan_pct_default);
-    const downPayment = Math.round(modelPrice * p.down_payment_pct_default + (registrationCost || 0));
-    const firstDeposit = Math.round(modelPrice * p.first_deposit_pct);
-    const secondPayment = downPayment - firstDeposit;
-
-    const r = p.interest_rate_yr_default / 12;
-    const installments = p.tenure_months_options.map(months => {
-      const M = (loanAmount * r) / (1 - Math.pow(1 + r, -months));
-      return { months, monthly: Math.round(M) };
-    });
-
-    return {
-      loan_amount: loanAmount,
-      down_payment: downPayment,
-      first_deposit: firstDeposit,
-      second_payment: secondPayment,
-      interest_rate_yr: p.interest_rate_yr_default,
-      installments,
-      process_steps: p.process_steps,
-      banks: p.banks_partners,
-      documents: p.documents_required,
-      labels: p.labels_vi,
-      notes: p.notes
-    };
-  } catch (e) { return { error: e.message }; }
-}
-
-function formatLoanBundle(modelName, loan) {
-  if (!loan || loan.error) return `\n[LỖI tính trả góp: ${loan?.error || 'không có giá'}]`;
-  const L = loan.labels;
-  const ratePct = (loan.interest_rate_yr * 100).toFixed(1);
-  const installmentLines = loan.installments.map(i =>
-    `- Vay ${i.months} tháng: ~${fmtVnd(i.monthly)}/tháng đầu`
-  ).join('\n');
-
-  return `\n\n=== TRẢ GÓP ƯỚC TÍNH ${modelName} ===
-- ${L.loan_amount}: ${fmtVnd(loan.loan_amount)}
-- ${L.down_payment}: ${fmtVnd(loan.down_payment)}
-  · ${L.first_deposit}: ${fmtVnd(loan.first_deposit)}
-  · ${L.second_payment}: ${fmtVnd(loan.second_payment)}
-
-Trả góp hàng tháng (lãi suất tạm tính ${ratePct}%/năm):
-${installmentLines}
-
-QUY TRÌNH:
-${loan.process_steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
-
-NGÂN HÀNG ĐỐI TÁC: ${loan.banks.join(', ')}
-HỒ SƠ CẦN: ${loan.documents.join('; ')}`;
-}
-
-// =========================================================
-// HELPER: Load FAQ
+// HELPER 2: Load FAQ filtered by model + intent
 // =========================================================
 let _faqCatalog = null;
 async function loadFaqFiltered(modelSlug, intents, maxQ = 5) {
@@ -268,35 +228,57 @@ async function loadFaqFiltered(modelSlug, intents, maxQ = 5) {
       + qs.map(q =>
         `\n**Q${q.qno}: ${q.question}**\n_intents: ${q.intents.join(', ')}_\n${q.answer}`
       ).join('\n\n---\n');
-  } catch (e) { return `\n[FAQ LỖI: ${e.message}]`; }
+  } catch (e) {
+    return `\n[FAQ LỖI: ${e.message}]`;
+  }
 }
 
 // =========================================================
 // PROFILES
 // =========================================================
 const PROFILES = {
-  detail: { model: ['tóm tắt', 'phiên bản', 'màu sắc', 'khuyến mãi', 'trang bị nổi bật'], faq_max_q: 5, model_max_chars: 3500 },
-  shortlist_small: { model: ['tóm tắt', 'phiên bản', 'khuyến mãi'], faq_max_q: 3, model_max_chars: 2000 },
+  detail: {
+    model: ['tóm tắt', 'phiên bản', 'màu sắc', 'khuyến mãi', 'trang bị nổi bật'],
+    faq_max_q: 5,
+    model_max_chars: 3500
+  },
+  shortlist_small: {
+    model: ['tóm tắt', 'phiên bản', 'khuyến mãi'],
+    faq_max_q: 3,
+    model_max_chars: 2000
+  },
   shortlist_big: {},
-  compare_internal: { model: ['tóm tắt', 'phiên bản', 'thông số', 'trang bị nổi bật', 'khuyến mãi'], faq_max_q: 3, model_max_chars: 2500 },
-  compare_external: { model: ['tóm tắt', 'phiên bản', 'trang bị nổi bật'], faq_max_q: 8, model_max_chars: 3000 },
-  sub_consultation: { model: ['tóm tắt', 'phiên bản', 'khuyến mãi'], faq_max_q: 5, model_max_chars: 2500 },
-  sub_pricing_finance: { model: ['tóm tắt', 'phiên bản', 'khuyến mãi'], faq_max_q: 3, model_max_chars: 2000 },
-  sub_tech_specs: { model: ['tóm tắt', 'thông số', 'trang bị nổi bật', 'khác biệt'], faq_max_q: 4, model_max_chars: 4500 },
-  sub_close_deal: { model: ['tóm tắt'], faq_max_q: 0, model_max_chars: 800 }
-};
-
-// =========================================================
-// INTENT → SECTIONS MAP (augment allowlist từ qa_intents)
-// =========================================================
-const INTENT_TO_SECTIONS = {
-  NGOAI_THAT: ['màu sắc', 'ngoại thất', 'khuyến mãi'],
-  NOI_THAT:   ['nội thất', 'tiện nghi', 'màu sắc'],
-  AN_TOAN:    ['an toàn'],
-  VAN_HANH:   ['dẫn động', 'khung gầm', 'thông số'],
-  TIEU_HAO:   ['dẫn động', 'khung gầm'],
-  SO_SANH:    ['khác biệt', 'trang bị nổi bật'],
-  NHU_CAU:    ['tóm tắt', 'phiên bản', 'khuyến mãi']
+  compare_internal: {
+    model: ['tóm tắt', 'phiên bản', 'thông số', 'trang bị nổi bật', 'khuyến mãi'],
+    faq_max_q: 3,
+    model_max_chars: 3500
+  },
+  compare_external: {
+    model: ['tóm tắt', 'phiên bản', 'trang bị nổi bật'],
+    faq_max_q: 8,
+    model_max_chars: 3500
+  },
+  // SUB-MODES of SALES_LEAD
+  sub_consultation: {
+    model: ['tóm tắt', 'phiên bản', 'màu sắc', 'khuyến mãi'],
+    faq_max_q: 5,
+    model_max_chars: 2500
+  },
+  sub_pricing_finance: {
+    model: ['tóm tắt', 'phiên bản', 'khuyến mãi'],
+    faq_max_q: 3,
+    model_max_chars: 2000
+  },
+  sub_tech_specs: {
+    model: ['tóm tắt', 'thông số', 'trang bị nổi bật', 'khác biệt', 'màu sắc'],
+    faq_max_q: 4,
+    model_max_chars: 4500
+  },
+  sub_close_deal: {
+    model: ['tóm tắt'],
+    faq_max_q: 0,
+    model_max_chars: 800
+  }
 };
 
 let mode = "unknown";
@@ -304,7 +286,6 @@ let files_used = [];
 let shortlist = [];
 let all_matches = [];
 let bundle = '';
-let matched_version = null;
 
 function fullSlug(slug, brandHint) {
   if (!slug) return '';
@@ -313,13 +294,14 @@ function fullSlug(slug, brandHint) {
 }
 
 // =========================================================
-// MODE ROUTING (SALES_LEAD)
+// MODE ROUTING
 // =========================================================
 if (model_slug && compare_target) {
   mode = "compare_internal";
   const slug_a = fullSlug(model_slug, brand);
+  const slug_b = compare_target;
   files_used.push(`wiki/models/${slug_a}.md`);
-  files_used.push(`wiki/models/${compare_target}.md`);
+  files_used.push(`wiki/models/${slug_b}.md`);
 
 } else if (model_slug && compare_with_brand && !THACO_BRANDS.includes(compare_with_brand)) {
   mode = "compare_external";
@@ -348,7 +330,13 @@ if (model_slug && compare_target) {
     if (seat_min && Number(m.seat || 0) < seat_min) return false;
     if (fuel) {
       const f = (m.fuel || "").toLowerCase();
-      const fuelMap = { 'dầu': ['dầu', 'diesel'], 'xăng': ['xăng', 'petrol', 'gasoline'], 'hybrid': ['hybrid', 'hev'], 'phev': ['phev', 'hybrid'], 'ev': ['ev', 'điện'] };
+      const fuelMap = {
+        'dầu': ['dầu', 'diesel'],
+        'xăng': ['xăng', 'petrol', 'gasoline'],
+        'hybrid': ['hybrid', 'hev'],
+        'phev': ['phev', 'hybrid'],
+        'ev': ['ev', 'điện']
+      };
       if (!(fuelMap[fuel] || [fuel]).some(a => f.includes(a))) return false;
     }
     if (budget_max) {
@@ -366,11 +354,14 @@ if (model_slug && compare_target) {
       Math.abs(Number(a.price_min_vnd || 0) - budget_max) -
       Math.abs(Number(b.price_min_vnd || 0) - budget_max)
     );
+  } else if (price_sort === 'desc') {
+    filtered.sort((a, b) => (b.price_max_vnd || b.price_min_vnd || 0) - (a.price_max_vnd || a.price_min_vnd || 0));
   } else {
     filtered.sort((a, b) => (a.price_min_vnd || 0) - (b.price_min_vnd || 0));
   }
+
   all_matches = filtered.slice();
-  shortlist = filtered.slice(0, 5);
+  shortlist = filtered.slice(0, price_sort ? 3 : 5);
 
   if (shortlist.length === 0) {
     mode = "ask_more";
@@ -392,9 +383,10 @@ if (model_slug && compare_target) {
 }
 
 // =========================================================
-// PROFILE OVERRIDE THEO SUB-CATEGORY (chỉ cho SALES_LEAD)
+// PROFILE OVERRIDE THEO SUB-CATEGORY
 // =========================================================
 let profile = { ...(PROFILES[mode] || PROFILES.detail) };
+
 if ((mode === "detail" || mode === "shortlist_small") && d.category === "SALES_LEAD") {
   const subProfileKey = `sub_${sales_subcategory}`;
   if (PROFILES[subProfileKey]) {
@@ -404,20 +396,7 @@ if ((mode === "detail" || mode === "shortlist_small") && d.category === "SALES_L
 }
 
 // =========================================================
-// INTENT-AWARE SECTION AUGMENTATION
-// qa_intents → bơm thêm section vào allowlist
-// =========================================================
-if (Array.isArray(profile.model) && qa_intents.length) {
-  const extra = new Set(profile.model);
-  for (const intent of qa_intents) {
-    (INTENT_TO_SECTIONS[intent] || []).forEach(s => extra.add(s));
-  }
-  profile.model = [...extra];
-  profile.model_max_chars = Math.max(profile.model_max_chars || 3000, 4500);
-}
-
-// =========================================================
-// FETCH MD + TRIM
+// FETCH model MD + TRIM
 // =========================================================
 for (const f of files_used) {
   try {
@@ -426,18 +405,26 @@ for (const f of files_used) {
     });
     const raw = typeof data === 'string' ? data : JSON.stringify(data);
     let trimmed;
-    if (mode === "compare_internal" || mode === "compare_external") {
+    if (mode === "compare_external") {
+      // So sánh với đối thủ ngoài THACO → chỉ có 1 file model THACO,
+      // cần đủ chỗ cho Tóm tắt + Phiên bản 1 đầy đủ của Trang bị nổi bật.
       trimmed = extractCompareMd(raw);
-      if (trimmed.length > 2500) trimmed = trimmed.slice(0, 2500) + '\n...[đã rút gọn]';
+      if (trimmed.length > 4500) trimmed = trimmed.slice(0, 4500) + '\n...[đã rút gọn]';
     } else {
-      trimmed = trimMarkdown(raw, profile.model || ['tóm tắt'], { maxChars: profile.model_max_chars || 3000 });
+      // Bao gồm compare_internal — dùng allowlist từ PROFILES.compare_internal
+      // (tóm tắt, phiên bản, thông số, trang bị nổi bật, khuyến mãi)
+      trimmed = trimMarkdown(
+        raw,
+        profile.model || ['tóm tắt', 'phiên bản', 'khuyến mãi'],
+        { maxChars: profile.model_max_chars || 3000 }
+      );
     }
     bundle += `\n\n=== FILE: ${f} ===\n${trimmed}`;
   } catch (e) { /* skip 404 */ }
 }
 
 // =========================================================
-// LOAD FAQ FILTERED (chỉ SALES_LEAD modes)
+// LOAD FAQ FILTERED
 // =========================================================
 if (mode.startsWith("detail")) {
   const slug_a = fullSlug(model_slug, brand);
@@ -458,11 +445,14 @@ if (mode.startsWith("detail")) {
 }
 
 // =========================================================
-// ROLLING PRICE + LOAN CALC — chỉ khi sub_pricing_finance
+// ROLLING PRICE CALC — chạy khi sub_pricing_finance
+// → Tính bằng JS theo seat + brand thực, AI chỉ format
 // =========================================================
 if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mode.startsWith("shortlist_small"))) {
+  // Lấy danh sách xe + giá min + seat + brand để tính
   let targets = [];
 
+  // Cần load catalog để lấy đủ thông tin (seat, brand, price)
   let _catalog = [];
   try {
     const raw = await this.helpers.httpRequest({
@@ -475,22 +465,18 @@ if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mod
   if (mode.startsWith("detail")) {
     const slug_a = fullSlug(model_slug, brand);
     const m = _catalog.find(x => x.slug === slug_a);
-    if (m) {
-      let chosenPrice = m.price_min_vnd;
-      let chosenName = m.name;
-      if (version_query && m.versions && m.versions.length) {
-        const v = matchVersion(m.versions, version_query);
-        if (v) {
-          matched_version = v;
-          chosenPrice = v.price;
-          chosenName = `${m.name} — ${v.name}`;
-        }
-      }
-      targets.push({ name: chosenName, price: chosenPrice, seat: m.seat, brand: m.brand });
-    }
+    if (m) targets.push({
+      name: m.name,
+      price: m.price_min_vnd,
+      seat: m.seat,
+      brand: m.brand
+    });
   } else if (mode.startsWith("shortlist_small")) {
     targets = shortlist.slice(0, 2).map(m => ({
-      name: m.name, price: m.price_min_vnd, seat: m.seat, brand: m.brand
+      name: m.name,
+      price: m.price_min_vnd,
+      seat: m.seat,
+      brand: m.brand
     }));
   }
 
@@ -498,17 +484,11 @@ if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mod
     if (!t.price) continue;
     const calc = await calcRollingPrice.call(this, t.price, province, t.seat, t.brand);
     bundle += formatRollingPriceBundle(t.name, calc);
-
-    if (calc && !calc.error) {
-      const loan = await calcLoanInstallments.call(this, t.price, calc.registration_cost);
-      bundle += formatLoanBundle(t.name, loan);
-    }
-  }
-
-  if (version_query && !matched_version && mode.startsWith("detail")) {
-    bundle += `\n\n[CẢNH BÁO: Khách nhắc phiên bản "${version_query}" nhưng KHÔNG khớp version nào trong catalog. AI nên hỏi lại khách chọn từ danh sách phiên bản hiển thị trong "## Phiên bản & Giá" ở trên.]`;
   }
 }
+
+console.log('BUNDLE LENGTH =', bundle.length);
+console.log('BUNDLE TAIL =', bundle.slice(-300));
 
 return [{
   json: {
@@ -522,8 +502,7 @@ return [{
     sales_turn_count,
     should_capture_lead,
     province_used: province,
-    version_query,
-    matched_version,
+    price_sort,
     context_bundle: bundle,
     bundle_size: bundle.length
   }
