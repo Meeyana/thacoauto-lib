@@ -1,0 +1,73 @@
+{
+    "updated": "2026-04-28",
+    "brands": [
+        {
+            "slug": "mazda",
+            "name": "Mazda",
+            "file": "wiki/brands/mazda.md",
+            "country": "Nhật Bản",
+            "official_site": "https://www.mazda.com.vn",
+            "thaco_site": "https://thacoautotphcm.vn/mazda",
+            "fanpage": "https://www.facebook.com/MazdaVietnam",
+            "short_desc": "Thương hiệu xe du lịch Nhật Bản, lắp ráp tại nhà máy THACO MAZDA Chu Lai.",
+            "aliases": [
+                "mazda",
+                "mát-đa"
+            ]
+        },
+        {
+            "slug": "kia",
+            "name": "Kia",
+            "file": "wiki/brands/kia.md",
+            "country": "Hàn Quốc",
+            "official_site": "https://www.kia.com/vn",
+            "thaco_site": "https://thacoautotphcm.vn/kia",
+            "fanpage": "https://www.facebook.com/KiaVietnam",
+            "short_desc": "Thương hiệu xe Hàn Quốc, lắp ráp tại nhà máy THACO KIA Chu Lai, đa dạng SUV/MPV/sedan.",
+            "aliases": [
+                "kia"
+            ]
+        },
+        {
+            "slug": "peugeot",
+            "name": "Peugeot",
+            "file": "wiki/brands/peugeot.md",
+            "country": "Pháp",
+            "official_site": "https://www.peugeot.com.vn",
+            "thaco_site": "https://thacoautotphcm.vn/peugeot",
+            "fanpage": "https://www.facebook.com/PeugeotVietnam",
+            "short_desc": "Thương hiệu xe châu Âu của Pháp, mang phong cách thiết kế lion - sang trọng hiện đại.",
+            "aliases": [
+                "peugeot",
+                "pơ-giô"
+            ]
+        },
+        {
+            "slug": "bmw",
+            "name": "BMW",
+            "file": "wiki/brands/bmw.md",
+            "country": "Đức",
+            "official_site": "https://www.bmw.com.vn",
+            "thaco_site": "https://thacoautotphcm.vn/bmw",
+            "fanpage": "https://www.facebook.com/BMWVietnam",
+            "short_desc": "Thương hiệu xe sang Đức, THACO AUTO là nhà nhập khẩu & phân phối chính thức tại Việt Nam.",
+            "aliases": [
+                "bmw"
+            ]
+        },
+        {
+            "slug": "mini",
+            "name": "MINI",
+            "file": "wiki/brands/mini.md",
+            "country": "Anh",
+            "official_site": "https://www.mini.com.vn",
+            "thaco_site": "https://thacoautotphcm.vn/mini",
+            "fanpage": "https://www.facebook.com/MINIVietnam",
+            "short_desc": "Thương hiệu xe Anh thuộc tập đoàn BMW, biểu tượng phong cách cá tính trẻ trung.",
+            "aliases": [
+                "mini",
+                "mini cooper"
+            ]
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 // FILTER ENGINE + MARKDOWN TRIMMER + FAQ + COMPARISON + ROLLING PRICE + LOAN CALC + VERSION MATCH
+// + INTENT-AWARE SECTION AUGMENTATION (qa_intents → bơm section vào allowlist)
 // Paste vào n8n node: "Code in JavaScript" (sau Switch.SALES_LEAD)
 const d = $input.first().json;
 const base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';
@@ -19,7 +20,7 @@ const compare_with_model = (d.compare_with_model || "").trim();
 
 const sales_subcategory = (d.sales_subcategory || "consultation").toLowerCase().trim();
 const province = (d.province || "ho-chi-minh").toLowerCase().trim();
-const version_query = (d.version_query || "").toString().toLowerCase().trim();  // MỚI: tên phiên bản khách nhắc
+const version_query = (d.version_query || "").toString().toLowerCase().trim();
 
 const history = (d._prev?.history) || [];
 const sales_turn_count = history.filter(h => h.intent === 'SALES_LEAD').length;
@@ -73,15 +74,13 @@ function extractCompareMd(md) {
 }
 
 // =========================================================
-// HELPER: VERSION MATCHING (catalog.versions array)
-// → Khách nhắc "2.2D Signature 7S" → tìm version trùng
+// HELPER: VERSION MATCHING
 // =========================================================
 function matchVersion(versions, query) {
   if (!versions || !versions.length || !query) return null;
   const q = query.toLowerCase().trim().replace(/\s+/g, ' ');
   const qTokens = q.split(/[\s\-,]+/).filter(t => t.length >= 2);
 
-  // Score mỗi version
   const scored = versions.map(v => {
     const name = (v.name || '').toLowerCase();
     let score = 0;
@@ -89,7 +88,6 @@ function matchVersion(versions, query) {
     else if (name.includes(q)) score = 80;
     else if (q.includes(name)) score = 60;
     else {
-      // Token overlap: bao nhiêu token query khớp với name
       const nameTokens = new Set(name.split(/[\s\-,]+/).filter(t => t.length >= 2));
       const matchedTokens = qTokens.filter(t => nameTokens.has(t)).length;
       if (matchedTokens === qTokens.length && qTokens.length) score = 50;
@@ -103,7 +101,7 @@ function matchVersion(versions, query) {
 }
 
 // =========================================================
-// HELPER: TÍNH GIÁ LĂN BÁNH (rolling-price.json)
+// HELPER: TÍNH GIÁ LĂN BÁNH
 // =========================================================
 let _rollingPolicy = null;
 async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
@@ -136,7 +134,6 @@ async function calcRollingPrice(modelPrice, provinceArg, seatArg, brandArg) {
     const road_maintenance = p.fixed_fees_vnd.road_maintenance_yr;
 
     const total = modelPrice + reg_fee + plate + inspection + road_maintenance + tnds + service_fee + physical_ins;
-    // Chi phí đăng ký (không gồm giá xe + bảo hiểm vật chất tùy chọn) — dùng cho tính trả góp
     const registration_cost = reg_fee + plate + inspection + road_maintenance + tnds + service_fee;
 
     return {
@@ -177,7 +174,7 @@ function formatRollingPriceBundle(modelName, calc) {
 }
 
 // =========================================================
-// HELPER: TÍNH TRẢ GÓP (loan.json)
+// HELPER: TÍNH TRẢ GÓP
 // =========================================================
 let _loanPolicy = null;
 async function calcLoanInstallments(modelPrice, registrationCost) {
@@ -289,12 +286,25 @@ const PROFILES = {
   sub_close_deal: { model: ['tóm tắt'], faq_max_q: 0, model_max_chars: 800 }
 };
 
+// =========================================================
+// INTENT → SECTIONS MAP (augment allowlist từ qa_intents)
+// =========================================================
+const INTENT_TO_SECTIONS = {
+  NGOAI_THAT: ['màu sắc', 'ngoại thất', 'khuyến mãi'],
+  NOI_THAT:   ['nội thất', 'tiện nghi', 'màu sắc'],
+  AN_TOAN:    ['an toàn'],
+  VAN_HANH:   ['dẫn động', 'khung gầm', 'thông số'],
+  TIEU_HAO:   ['dẫn động', 'khung gầm'],
+  SO_SANH:    ['khác biệt', 'trang bị nổi bật'],
+  NHU_CAU:    ['tóm tắt', 'phiên bản', 'khuyến mãi']
+};
+
 let mode = "unknown";
 let files_used = [];
 let shortlist = [];
 let all_matches = [];
 let bundle = '';
-let matched_version = null;  // MỚI: phiên bản đích danh đã match (nếu có)
+let matched_version = null;
 
 function fullSlug(slug, brandHint) {
   if (!slug) return '';
@@ -303,7 +313,7 @@ function fullSlug(slug, brandHint) {
 }
 
 // =========================================================
-// MODE ROUTING
+// MODE ROUTING (SALES_LEAD)
 // =========================================================
 if (model_slug && compare_target) {
   mode = "compare_internal";
@@ -382,7 +392,7 @@ if (model_slug && compare_target) {
 }
 
 // =========================================================
-// PROFILE OVERRIDE THEO SUB-CATEGORY
+// PROFILE OVERRIDE THEO SUB-CATEGORY (chỉ cho SALES_LEAD)
 // =========================================================
 let profile = { ...(PROFILES[mode] || PROFILES.detail) };
 if ((mode === "detail" || mode === "shortlist_small") && d.category === "SALES_LEAD") {
@@ -394,7 +404,20 @@ if ((mode === "detail" || mode === "shortlist_small") && d.category === "SALES_L
 }
 
 // =========================================================
-// FETCH model MD + TRIM
+// INTENT-AWARE SECTION AUGMENTATION
+// qa_intents → bơm thêm section vào allowlist
+// =========================================================
+if (Array.isArray(profile.model) && qa_intents.length) {
+  const extra = new Set(profile.model);
+  for (const intent of qa_intents) {
+    (INTENT_TO_SECTIONS[intent] || []).forEach(s => extra.add(s));
+  }
+  profile.model = [...extra];
+  profile.model_max_chars = Math.max(profile.model_max_chars || 3000, 4500);
+}
+
+// =========================================================
+// FETCH MD + TRIM
 // =========================================================
 for (const f of files_used) {
   try {
@@ -407,14 +430,14 @@ for (const f of files_used) {
       trimmed = extractCompareMd(raw);
       if (trimmed.length > 2500) trimmed = trimmed.slice(0, 2500) + '\n...[đã rút gọn]';
     } else {
-      trimmed = trimMarkdown(raw, profile.model || ['tóm tắt', 'phiên bản', 'khuyến mãi'], { maxChars: profile.model_max_chars || 3000 });
+      trimmed = trimMarkdown(raw, profile.model || ['tóm tắt'], { maxChars: profile.model_max_chars || 3000 });
     }
     bundle += `\n\n=== FILE: ${f} ===\n${trimmed}`;
   } catch (e) { /* skip 404 */ }
 }
 
 // =========================================================
-// LOAD FAQ FILTERED
+// LOAD FAQ FILTERED (chỉ SALES_LEAD modes)
 // =========================================================
 if (mode.startsWith("detail")) {
   const slug_a = fullSlug(model_slug, brand);
@@ -435,8 +458,7 @@ if (mode.startsWith("detail")) {
 }
 
 // =========================================================
-// ROLLING PRICE + LOAN CALC — chạy khi sub_pricing_finance
-// → Match version cụ thể nếu khách nhắc; nếu không dùng phiên bản rẻ nhất
+// ROLLING PRICE + LOAN CALC — chỉ khi sub_pricing_finance
 // =========================================================
 if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mode.startsWith("shortlist_small"))) {
   let targets = [];
@@ -454,7 +476,6 @@ if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mod
     const slug_a = fullSlug(model_slug, brand);
     const m = _catalog.find(x => x.slug === slug_a);
     if (m) {
-      // Nếu khách nhắc version cụ thể → match từ versions array
       let chosenPrice = m.price_min_vnd;
       let chosenName = m.name;
       if (version_query && m.versions && m.versions.length) {
@@ -478,14 +499,12 @@ if (sales_subcategory === "pricing_finance" && (mode.startsWith("detail") || mod
     const calc = await calcRollingPrice.call(this, t.price, province, t.seat, t.brand);
     bundle += formatRollingPriceBundle(t.name, calc);
 
-    // Nếu rolling tính OK → tính trả góp dựa trên giá xe + chi phí đăng ký
     if (calc && !calc.error) {
       const loan = await calcLoanInstallments.call(this, t.price, calc.registration_cost);
       bundle += formatLoanBundle(t.name, loan);
     }
   }
 
-  // Nếu khách nhắc version nhưng không match được → cảnh báo
   if (version_query && !matched_version && mode.startsWith("detail")) {
     bundle += `\n\n[CẢNH BÁO: Khách nhắc phiên bản "${version_query}" nhưng KHÔNG khớp version nào trong catalog. AI nên hỏi lại khách chọn từ danh sách phiên bản hiển thị trong "## Phiên bản & Giá" ở trên.]`;
   }
