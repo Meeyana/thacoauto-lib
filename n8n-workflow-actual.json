@@ -2,31 +2,15 @@
     "nodes": [
         {
             "parameters": {
-                "public": true,
-                "initialMessages": "Chào mừng Anh/Chị đã ghé thăm website của THACO AUTO. Em xin tự giới thiệu em là trợ lý ảo của THACO AUTO. Anh/Chị cần hỗ trợ thông tin gì, em sẵn sàng hỗ trợ ngay ạ!",
-                "options": {}
-            },
-            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-            "typeVersion": 1.4,
-            "position": [
-                -1968,
-                1216
-            ],
-            "id": "6b65e469-7ea8-4c12-9aa8-0b415f643754",
-            "name": "When chat message received",
-            "webhookId": "5aefa0dc-4e5e-4a68-807d-c6c5e65fe663"
-        },
-        {
-            "parameters": {
                 "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response || \n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: p.category || null,\n      sales_subcategory: (p.sales_subcategory || \"consultation\").toLowerCase().trim(),\n      brand: (p.brand || \"\").toLowerCase().trim(),\n      model_slug: (p.model_slug || \"\").toLowerCase().trim(),\n      car_type: (p.car_type || \"\").toLowerCase().trim(),\n      seat_min: p.seat_min ? Number(p.seat_min) : null,\n      fuel: (p.fuel || \"\").toLowerCase().trim(),\n      budget_max: p.budget_max ? Number(p.budget_max) : null,\n      price_sort: (p.price_sort || \"\").toLowerCase().trim() || null,\n      use_case: p.use_case || null,\n      qa_intents: Array.isArray(p.qa_intents) ? p.qa_intents : [],\n      compare_with_brand: (p.compare_with_brand || \"\").toLowerCase().trim(),\n      compare_with_model: (p.compare_with_model || \"\").trim(),\n      compare_target: (p.compare_target || \"\").toLowerCase().trim(),\n      status: typeof p.status === \"boolean\" ? p.status : false\n    }\n  }];\n} catch(e) {\n  return [{ json: { category: \"ERROR_FORMAT\", raw_debug: rawText.substring(0,200), status: false }}];\n}"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1184,
-                1216
+                -1712,
+                1120
             ],
-            "id": "8dcd2653-89bd-4737-ae11-33cae1789bcf",
+            "id": "772381fe-b638-4889-b90e-0d7df5f3c101",
             "name": "xu_ly_category"
         },
         {
@@ -386,13 +370,13 @@
                 },
                 "options": {}
             },
-            "id": "ede4301d-aed1-4935-9500-76885d2a0dae",
+            "id": "508cd406-aedb-4307-ab0f-73df5cdea1c0",
             "name": "Route by Intent1",
             "type": "n8n-nodes-base.switch",
             "typeVersion": 3.2,
             "position": [
-                -448,
-                1040
+                -976,
+                944
             ]
         },
         {
@@ -402,10 +386,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                336,
-                592
+                -192,
+                496
             ],
-            "id": "e8c39f5f-0924-4e38-817b-f90c241f157e",
+            "id": "f9b54046-9747-4556-91e0-4e9103d2b194",
             "name": "Code in JavaScript"
         },
         {
@@ -419,10 +403,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -1472,
-                1184
+                -2000,
+                1088
             ],
-            "id": "579063f9-99a8-48a9-b0d5-40d614a2c94c",
+            "id": "39ef116c-e9b1-494e-b60a-355d3e1a191c",
             "name": "AI Agent"
         },
         {
@@ -434,10 +418,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -1504,
-                1392
+                -2032,
+                1296
             ],
-            "id": "818706eb-d1d7-42ef-a0e0-36c9f9235dd3",
+            "id": "a51f4479-4881-4325-ab57-14e0abfb17cb",
             "name": "Google Gemini Chat Model",
             "credentials": {
                 "googlePalmApi": {
@@ -453,59 +437,59 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -592,
-                1216
+                -1120,
+                1120
             ],
-            "id": "46fa2d93-52f3-4e1a-ba35-453aff63e273",
+            "id": "c45d0172-6dc5-4e5c-8fc2-2f0ab21d9fd7",
             "name": "Normalize Entities"
         },
         {
             "parameters": {
-                "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response ||\n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\nconst router = $('xu_ly_category').first().json;\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: router.category,\n      province: (p.province || \"\").toLowerCase().trim(),\n      showroom_name: (p.showroom_name || \"\").trim(),\n      brand: (p.brand || router.brand || \"\").toLowerCase().trim(),\n      status: true\n    }\n  }];\n} catch (e) {\n  return [{\n    json: {\n      category: router.category,\n      province: \"\", showroom_name: \"\", brand: router.brand || \"\",\n      status: false,\n      _error: e.message,\n      _raw_debug: rawText.substring(0, 200)\n    }\n  }];\n}\n"
+                "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response ||\n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\nconst router = $('xu_ly_category').first().json;\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n  return [{\n    json: {\n      category: router.category,\n      province: (p.province || \"\").toLowerCase().trim(),\n      showroom_name: (p.showroom_name || \"\").trim(),\n      brand: (p.brand || router.brand || \"\").toLowerCase().trim(),\n      user_location: (p.user_location || \"\").trim(),\n      status: true\n    }\n  }];\n} catch (e) {\n  return [{\n    json: {\n      category: router.category,\n      province: \"\", showroom_name: \"\", brand: router.brand || \"\",\n      user_location: \"\",\n      status: false,\n      _error: e.message,\n      _raw_debug: rawText.substring(0, 200)\n    }\n  }];\n}\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                464,
-                896
+                -64,
+                800
             ],
-            "id": "0aa83b94-fa05-47e5-9266-222348eec445",
+            "id": "6cd9f1c0-ed96-4938-849b-4021000bf296",
             "name": "xu_ly_location1"
         },
         {
             "parameters": {
-                "jsCode": "// DEALER LOOKUP — 5 mode:\n//  1. area_overview        → khách hỏi tên KHU VỰC (PMH, An Sương...) → liệt kê TẤT CẢ showroom + tổng quan brand\n//  2. specific_found       → khách hỏi đích danh 1 showroom → trả info chi tiết\n//  3. specific_not_found   → match 0 showroom\n//  4. province_link        → khách hỏi chung theo tỉnh → trả URL\n//  5. ask_province         → khách chưa nói gì → hỏi khu vực\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst province      = (d.province || \"\").toLowerCase().trim();\nconst showroom_name = (d.showroom_name || \"\").toLowerCase().trim();\nconst brand         = (d.brand || \"\").toLowerCase().trim();\n\nlet mode = \"ask_province\";\nlet bundle = '';\nlet matched_showrooms = [];\nlet province_url = null;\n\ntry {\n  // ============================================\n  // MODE: KHÁCH HỎI ĐÍCH DANH SHOWROOM hoặc KHU VỰC\n  // ============================================\n  if (showroom_name) {\n    const cat = await this.helpers.httpRequest({\n      method: 'GET',\n      url: base + 'wiki/dealers/catalog.json',\n      json: true,\n      returnFullResponse: false\n    });\n    const data = (typeof cat === 'string') ? JSON.parse(cat) : cat;\n\n    // Helper: chuẩn hoá string (bỏ dấu cách thừa, lowercase)\nfunction norm(s) {\n  return (s || \"\").toLowerCase().trim().replace(/\\s+/g, ' ');\n}\n\n// Helper: tách thành tokens (theo word boundary, giữ tiếng Việt có dấu)\nfunction tokens(s) {\n  return norm(s).split(/[\\s\\-,]+/).filter(Boolean);\n}\n\n// Helper: cho điểm match giữa title và query\nfunction scoreMatch(title, query) {\n  const t = norm(title);\n  const q = norm(query);\n  if (!t || !q) return 0;\n\n  // 100: exact match\n  if (t === q) return 100;\n\n  // 80: title chứa nguyên cụm query (bao quanh bởi khoảng trắng / đầu / cuối)\n  //     → đảm bảo \"phú mỹ hưng\" KHÔNG match title chỉ chứa \"phú mỹ\"\n  const qPattern = new RegExp(`(^|\\\\s)${q.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (qPattern.test(t)) return 80;\n\n  // 60: query chứa nguyên title (cho case khách gõ dài hơn title, vd \"showroom BMW Sala\" vs title \"BMW Sala\")\n  const tPattern = new RegExp(`(^|\\\\s)${t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (tPattern.test(q)) return 60;\n\n  // 40: tất cả token của query xuất hiện trong title (any order, exact word)\n  const qTok = tokens(q);\n  const tTokSet = new Set(tokens(t));\n  if (qTok.length && qTok.every(w => tTokSet.has(w))) return 40;\n\n  return 0;\n}\n\n// Score toàn bộ catalog\nconst scored = (data.showrooms || [])\n  .map(s => ({ s, score: scoreMatch(s.title, showroom_name) }))\n  .filter(x => x.score > 0)\n  .sort((a, b) => b.score - a.score);\n\n// CHỈ GIỮ điểm cao nhất → loại các match yếu hơn\nlet matches = [];\nif (scored.length) {\n  const bestScore = scored[0].score;\n  matches = scored.filter(x => x.score === bestScore).map(x => x.s);\n}\n\n\n    // Nếu khách có nói brand cụ thể → narrow xuống brand đó\n    if (brand && matches.length > 1) {\n      const filtered = matches.filter(s =>\n        (s.brand_slugs || []).some(b => b === brand || b.includes(brand))\n      );\n      // Chỉ apply filter nếu vẫn còn match (tránh ra rỗng)\n      if (filtered.length) matches = filtered;\n    }\n\n    matched_showrooms = matches;\n\n    if (matches.length === 0) {\n      mode = \"specific_not_found\";\n      bundle = `[KHÔNG tìm thấy showroom \"${d.showroom_name}\" trong hệ thống.\nGợi ý cho AI: xin lỗi khách, đề xuất gọi hotline 1900 56 5499.]`;\n\n    } else if (matches.length === 1) {\n      // 1 showroom đích danh → trả chi tiết đầy đủ\n      mode = \"specific_found\";\n      const f = matches[0];\n      bundle = `=== SHOWROOM: ${f.title} ===\n- Thương hiệu: ${f.brands.join(', ')}\n- 📍 Địa chỉ: ${f.address.full}\n- 📞 Bán hàng: ${f.phone_sale || '—'}\n- 📞 Dịch vụ: ${f.phone_service || '—'}\n- 🏷 Dịch vụ cung cấp: ${f.services.join(', ')}\n- 🗺 Maps: ${f.map_url || '—'}\n- 🌐 Website: ${f.website || '—'}`;\n\n    } else {\n      // Nhiều showroom cùng khu vực → tổng quan\n      mode = \"area_overview\";\n\n      // Tổng hợp brand của cả khu vực (unique)\n      const allBrands = [...new Set(matches.flatMap(s => s.brands || []))].sort();\n      // Tên khu vực: lấy phần chung trong title (vd \"Phú Mỹ Hưng\")\n      const areaName = d.showroom_name;\n      // Địa chỉ chung: lấy phường + tỉnh từ showroom đầu (thường giống nhau)\n      const sampleAddr = matches[0].address || {};\n      const ward = sampleAddr.ward ? `Phường ${sampleAddr.ward}` : '';\n      const city = sampleAddr.province || '';\n\n      bundle = `=== TỔNG QUAN KHU VỰC: ${areaName.toUpperCase()} ===\n- Vị trí: ${[ward, city].filter(Boolean).join(', ') || '—'}\n- Số showroom trong khu vực: ${matches.length}\n- Tất cả thương hiệu có mặt: ${allBrands.join(', ')}\n\n=== CHI TIẾT TỪNG SHOWROOM ===\n${matches.map(s => `\n**${s.title}**\n- Thương hiệu: ${s.brands.join(', ')}\n- 📍 ${s.address.full}\n- 📞 Bán hàng: ${s.phone_sale || '—'} | Dịch vụ: ${s.phone_service || '—'}\n- 🏷 ${s.services.join(', ')}\n- 🗺 ${s.map_url || '—'}`).join('\\n\\n---\\n')}`;\n    }\n\n  // ============================================\n  // MODE: KHÁCH HỎI CHUNG, CÓ TỈNH/THÀNH\n  // ============================================\n  } else if (province) {\n    const cat = await this.helpers.httpRequest({\n      method: 'GET',\n      url: base + 'wiki/dealers/catalog.json',\n      json: true,\n      returnFullResponse: false\n    });\n    const data = (typeof cat === 'string') ? JSON.parse(cat) : cat;\n    province_url = (data.province_urls || {})[province] || null;\n\n    if (province_url) {\n      mode = \"province_link\";\n      bundle = `=== KHÁCH HỎI CHUNG SHOWROOM TẠI: ${province} ===\nURL chính thức: ${province_url}\nBrand quan tâm: ${brand || 'tất cả'}`;\n    } else {\n      mode = \"province_no_link\";\n      bundle = `[Chưa có URL website cho tỉnh \"${province}\".\nGợi ý cho AI: xin lỗi và mời khách gọi hotline 1900 56 5499.]`;\n    }\n\n  // ============================================\n  // MODE: CHƯA CÓ THÔNG TIN — HỎI LẠI\n  // ============================================\n  } else {\n    mode = \"ask_province\";\n    bundle = `[Khách hỏi chung \"showroom\" nhưng chưa nói khu vực hay tên cụ thể.\nGợi ý cho AI: hỏi lịch sự \"Anh/Chị đang ở tỉnh/thành hoặc khu vực nào ạ?\"]`;\n  }\n\n} catch (e) {\n  bundle = `[LỖI: ${e.message}. Hướng dẫn khách gọi hotline 1900 56 5499.]`;\n  mode = \"error\";\n}\n\nreturn [{\n  json: {\n    ...d,\n    mode,\n    matched_showrooms,\n    matched_count: matched_showrooms.length,\n    province_url,\n    context_bundle: bundle\n  }\n}];\n"
+                "jsCode": "// DEALER LOOKUP — 6 mode:\n//  1. area_overview          → khách hỏi tên KHU VỰC → liệt kê TẤT CẢ showroom + tổng quan brand\n//  2. specific_found         → khách hỏi đích danh 1 showroom → trả info chi tiết\n//  3. specific_not_found     → match 0 showroom\n//  4. nearest_by_location    → khách hỏi \"gần nhất từ <vị trí>\" → haversine sort, top 3\n//  5. province_link          → khách hỏi chung theo tỉnh → trả URL\n//  6. ask_province           → khách chưa nói gì → hỏi khu vực\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst province      = (d.province || \"\").toLowerCase().trim();\nconst showroom_name = (d.showroom_name || \"\").toLowerCase().trim();\nconst brand         = (d.brand || \"\").toLowerCase().trim();\nconst user_location = (d.user_location || \"\").trim();\n\nlet mode = \"ask_province\";\nlet bundle = '';\nlet matched_showrooms = [];\nlet province_url = null;\nlet user_coords = null;\n\n// ---------- Helper dùng chung ----------\nasync function fetchCatalog() {\n  const cat = await this.helpers.httpRequest({\n    method: 'GET',\n    url: base + 'wiki/dealers/catalog.json',\n    json: true,\n    returnFullResponse: false\n  });\n  return (typeof cat === 'string') ? JSON.parse(cat) : cat;\n}\n\nfunction haversineKm(lat1, lon1, lat2, lon2) {\n  const R = 6371;\n  const toRad = x => x * Math.PI / 180;\n  const dLat = toRad(lat2 - lat1);\n  const dLon = toRad(lon2 - lon1);\n  const a = Math.sin(dLat/2)**2 +\n            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;\n  return 2 * R * Math.asin(Math.sqrt(a));\n}\n\nasync function geocodeUserLocation(addr) {\n  // Đảm bảo có hậu tố quốc gia để Nominatim chính xác\n  const q = /vietnam|việt nam/i.test(addr) ? addr : (addr + \", Việt Nam\");\n  try {\n    const res = await this.helpers.httpRequest({\n      method: 'GET',\n      url: 'https://nominatim.openstreetmap.org/search',\n      qs: { format: 'json', q, limit: 1 },\n      headers: { 'User-Agent': 'thacoauto-chatbot/1.0 (contact: phogotarot@gmail.com)' },\n      json: true,\n      returnFullResponse: false\n    });\n    const arr = (typeof res === 'string') ? JSON.parse(res) : res;\n    if (Array.isArray(arr) && arr.length) {\n      return {\n        lat: parseFloat(arr[0].lat),\n        lon: parseFloat(arr[0].lon),\n        display_name: arr[0].display_name || \"\"\n      };\n    }\n  } catch (e) {\n    // fall-through, sẽ trả null\n  }\n  return null;\n}\n\n// Helpers cho match showroom theo tên (giữ logic cũ)\nfunction norm(s) { return (s || \"\").toLowerCase().trim().replace(/\\s+/g, ' '); }\nfunction tokens(s) { return norm(s).split(/[\\s\\-,]+/).filter(Boolean); }\nfunction scoreMatch(title, query) {\n  const t = norm(title);\n  const q = norm(query);\n  if (!t || !q) return 0;\n  if (t === q) return 100;\n  const qPattern = new RegExp(`(^|\\\\s)${q.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (qPattern.test(t)) return 80;\n  const tPattern = new RegExp(`(^|\\\\s)${t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}(\\\\s|$)`);\n  if (tPattern.test(q)) return 60;\n  const qTok = tokens(q);\n  const tTokSet = new Set(tokens(t));\n  if (qTok.length && qTok.every(w => tTokSet.has(w))) return 40;\n  return 0;\n}\n\ntry {\n  // ============================================\n  // MODE: KHÁCH HỎI ĐÍCH DANH SHOWROOM hoặc KHU VỰC\n  // ============================================\n  if (showroom_name) {\n    const data = await fetchCatalog.call(this);\n\n    const scored = (data.showrooms || [])\n      .map(s => ({ s, score: scoreMatch(s.title, showroom_name) }))\n      .filter(x => x.score > 0)\n      .sort((a, b) => b.score - a.score);\n\n    let matches = [];\n    if (scored.length) {\n      const bestScore = scored[0].score;\n      matches = scored.filter(x => x.score === bestScore).map(x => x.s);\n    }\n\n    if (brand && matches.length > 1) {\n      const filtered = matches.filter(s =>\n        (s.brand_slugs || []).some(b => b === brand || b.includes(brand))\n      );\n      if (filtered.length) matches = filtered;\n    }\n\n    matched_showrooms = matches;\n\n    if (matches.length === 0) {\n      mode = \"specific_not_found\";\n      bundle = `[KHÔNG tìm thấy showroom \"${d.showroom_name}\" trong hệ thống.\\nGợi ý cho AI: xin lỗi khách, đề xuất gọi hotline 1900 56 5499.]`;\n    } else if (matches.length === 1) {\n      mode = \"specific_found\";\n      const f = matches[0];\n      bundle = `=== SHOWROOM: ${f.title} ===\n- Thương hiệu: ${f.brands.join(', ')}\n- 📍 Địa chỉ: ${f.address.full}\n- 📞 Bán hàng: ${f.phone_sale || '—'}\n- 📞 Dịch vụ: ${f.phone_service || '—'}\n- 🏷 Dịch vụ cung cấp: ${f.services.join(', ')}\n- 🗺 Maps: ${f.map_url || '—'}\n- 🌐 Website: ${f.website || '—'}`;\n    } else {\n      mode = \"area_overview\";\n      const allBrands = [...new Set(matches.flatMap(s => s.brands || []))].sort();\n      const areaName = d.showroom_name;\n      const sampleAddr = matches[0].address || {};\n      const ward = sampleAddr.ward ? `Phường ${sampleAddr.ward}` : '';\n      const city = sampleAddr.province || '';\n      bundle = `=== TỔNG QUAN KHU VỰC: ${areaName.toUpperCase()} ===\n- Vị trí: ${[ward, city].filter(Boolean).join(', ') || '—'}\n- Số showroom trong khu vực: ${matches.length}\n- Tất cả thương hiệu có mặt: ${allBrands.join(', ')}\n\n=== CHI TIẾT TỪNG SHOWROOM ===\n${matches.map(s => `\n**${s.title}**\n- Thương hiệu: ${s.brands.join(', ')}\n- 📍 ${s.address.full}\n- 📞 Bán hàng: ${s.phone_sale || '—'} | Dịch vụ: ${s.phone_service || '—'}\n- 🏷 ${s.services.join(', ')}\n- 🗺 ${s.map_url || '—'}`).join('\\n\\n---\\n')}`;\n    }\n\n  // ============================================\n  // MODE MỚI: KHÁCH HỎI \"GẦN NHẤT TỪ <VỊ TRÍ>\"\n  // ============================================\n  } else if (user_location) {\n    const data = await fetchCatalog.call(this);\n\n    // Geocode vị trí khách\n    user_coords = await geocodeUserLocation.call(this, user_location);\n\n    if (!user_coords) {\n      mode = \"nearest_no_geocode\";\n      bundle = `[Không xác định được toạ độ cho vị trí \"${user_location}\".\\nGợi ý cho AI: hỏi lại khách quận/phường cụ thể hơn, hoặc đề nghị gọi hotline 1900 56 5499.]`;\n    } else {\n      // Filter theo brand (nếu có) + chỉ showroom đã geocode\n      let candidates = (data.showrooms || []).filter(s =>\n        typeof s.lat === 'number' && typeof s.lon === 'number'\n      );\n      if (brand) {\n        candidates = candidates.filter(s =>\n          (s.brand_slugs || []).some(b => b === brand || b.includes(brand))\n        );\n      }\n\n      if (!candidates.length) {\n        mode = \"nearest_no_match\";\n        bundle = `[Không có showroom nào${brand ? ` của thương hiệu ${brand.toUpperCase()}` : ''} có toạ độ trong dữ liệu.\\nGợi ý cho AI: xin lỗi khách, gợi gọi hotline.]`;\n      } else {\n        const ranked = candidates\n          .map(s => ({ ...s, distance_km: haversineKm(user_coords.lat, user_coords.lon, s.lat, s.lon) }))\n          .sort((a, b) => a.distance_km - b.distance_km)\n          .slice(0, 3);\n\n        matched_showrooms = ranked;\n        mode = \"nearest_by_location\";\n\n        const brandLabel = brand ? brand.toUpperCase() : 'tất cả thương hiệu';\n        bundle = `=== SHOWROOM ${brandLabel} GẦN NHẤT TỪ \"${user_location}\" ===\nToạ độ khách: lat=${user_coords.lat.toFixed(5)}, lon=${user_coords.lon.toFixed(5)}\nTham chiếu OSM: ${user_coords.display_name}\n\nTop ${ranked.length} showroom gần nhất (theo đường chim bay):\n\n${ranked.map((s, i) => `\n**${i + 1}. ${s.title}** — cách ~${s.distance_km.toFixed(1)} km\n- Thương hiệu: ${s.brands.join(', ')}\n- 📍 ${s.address.full}\n- 📞 Bán hàng: ${s.phone_sale || '—'} | Dịch vụ: ${s.phone_service || '—'}\n- 🏷 ${(s.services || []).join(', ')}\n- 🗺 ${s.map_url || '—'}`).join('\\n\\n---\\n')}\n\nLưu ý: khoảng cách là đường chim bay (haversine), thực tế đi đường có thể dài hơn.`;\n      }\n    }\n\n  // ============================================\n  // MODE: KHÁCH HỎI CHUNG, CÓ TỈNH/THÀNH\n  // ============================================\n  } else if (province) {\n    const data = await fetchCatalog.call(this);\n    province_url = (data.province_urls || {})[province] || null;\n\n    if (province_url) {\n      mode = \"province_link\";\n      bundle = `=== KHÁCH HỎI CHUNG SHOWROOM TẠI: ${province} ===\nURL chính thức: ${province_url}\nBrand quan tâm: ${brand || 'tất cả'}`;\n    } else {\n      mode = \"province_no_link\";\n      bundle = `[Chưa có URL website cho tỉnh \"${province}\".\\nGợi ý cho AI: xin lỗi và mời khách gọi hotline 1900 56 5499.]`;\n    }\n\n  // ============================================\n  // MODE: CHƯA CÓ THÔNG TIN — HỎI LẠI\n  // ============================================\n  } else {\n    mode = \"ask_province\";\n    bundle = `[Khách hỏi chung \"showroom\" nhưng chưa nói khu vực hay tên cụ thể.\\nGợi ý cho AI: hỏi lịch sự \"Anh/Chị đang ở tỉnh/thành hoặc khu vực nào ạ?\"]`;\n  }\n\n} catch (e) {\n  bundle = `[LỖI: ${e.message}. Hướng dẫn khách gọi hotline 1900 56 5499.]`;\n  mode = \"error\";\n}\n\nreturn [{\n  json: {\n    ...d,\n    mode,\n    matched_showrooms,\n    matched_count: matched_showrooms.length,\n    province_url,\n    user_coords,\n    context_bundle: bundle\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                624,
-                896
+                96,
+                800
             ],
-            "id": "a9dc6768-ff3f-45e4-999f-b1e461bf4308",
+            "id": "43246618-cc49-486b-b8f3-6a752d26f2da",
             "name": "Code in Javescript 1"
         },
         {
             "parameters": {
                 "promptType": "define",
-                "text": "==### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [JSON]\n",
+                "text": "==### [TIN NHẮN KHÁCH]\n\"{{ $('Webhook').item.json.chatInput }}\"\n\n### [JSON]\n",
                 "options": {
-                    "systemMessage": "=## Vai trò: AI extract entity cho hệ thống tìm showroom THACO AUTO.\n## CHỈ trả về JSON thuần, KHÔNG markdown, KHÔNG giải thích.\n\n## Quy tắc trích xuất:\n\n1. province (tỉnh/thành — lowercase, dash, không dấu):\n   \"ho-chi-minh\" | \"ha-noi\" | \"da-nang\" | \"binh-duong\" | \"ba-ria-vung-tau\" | \"tay-ninh\" | \"can-tho\" | \"\"\n   - \"Sài Gòn\" / \"TP.HCM\" / \"HCM\" → \"ho-chi-minh\"\n   - \"HN\" / \"Thủ đô\" → \"ha-noi\"\n   - Để \"\" nếu khách không nhắc\n\n2. showroom_name (tên showroom đích danh khách hỏi — chuỗi text gốc):\n   - Khách nói \"BMW Sala\", \"Kia Phú Mỹ Hưng\", \"Mazda Trường Chinh\" → giữ nguyên\n   - Để \"\" nếu khách hỏi chung chung kiểu \"showroom Kia ở đâu\"\n\n3. brand (lowercase): \n   \"kia\" | \"mazda\" | \"peugeot\" | \"bmw\" | \"mini\" | \"thaco-truck\" | \"thaco-bus\" | \"\"\n\n## Định dạng Output BẮT BUỘC:\n{\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\"}\n\n## Ví dụ:\n- \"Showroom Kia ở Sài Gòn\" → {\"province\":\"ho-chi-minh\",\"showroom_name\":\"\",\"brand\":\"kia\"}\n- \"Cho em địa chỉ BMW Sala\" → {\"province\":\"\",\"showroom_name\":\"BMW Sala\",\"brand\":\"bmw\"}\n- \"Tôi muốn xem showroom\" → {\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\"}\n"
+                    "systemMessage": "=## Vai trò: AI extract entity cho hệ thống tìm showroom THACO AUTO.\n## CHỈ trả về JSON thuần, KHÔNG markdown, KHÔNG giải thích.\n\n## Quy tắc trích xuất:\n\n1. province (tỉnh/thành — lowercase, dash, không dấu):\n   \"ho-chi-minh\" | \"ha-noi\" | \"da-nang\" | \"binh-duong\" | \"ba-ria-vung-tau\" | \"tay-ninh\" | \"can-tho\" | \"\"\n   - \"Sài Gòn\" / \"TP.HCM\" / \"HCM\" → \"ho-chi-minh\"\n   - \"HN\" / \"Thủ đô\" → \"ha-noi\"\n   - Để \"\" nếu khách không nhắc\n\n2. showroom_name (tên showroom đích danh khách hỏi — chuỗi text gốc):\n   - Khách nói \"BMW Sala\", \"Kia Phú Mỹ Hưng\", \"Mazda Trường Chinh\" → giữ nguyên\n   - Để \"\" nếu khách hỏi chung chung kiểu \"showroom Kia ở đâu\"\n\n3. brand (lowercase):\n   \"kia\" | \"mazda\" | \"peugeot\" | \"bmw\" | \"mini\" | \"thaco-truck\" | \"thaco-bus\" | \"\"\n\n4. user_location (vị trí HIỆN TẠI của khách, để tìm showroom gần nhất — chuỗi text gốc, chỉ điền khi rõ ý \"gần nhất / gần đây / quanh đây / từ X đến đâu\"):\n   - Khách nói \"Nhà em ở quận 3, showroom Kia nào gần nhất?\" → \"Quận 3, Thành phố Hồ Chí Minh\"\n   - \"Em đang ở Thủ Đức\" → \"Thủ Đức, Thành phố Hồ Chí Minh\"\n   - \"Từ ngã tư Hàng Xanh tới đâu gần nhất\" → \"Ngã tư Hàng Xanh, Thành phố Hồ Chí Minh\"\n   - Tự thêm hậu tố tỉnh/thành nếu khách chỉ nói tên quận/phường (mặc định: Thành phố Hồ Chí Minh nếu không có manh mối khác).\n   - Để \"\" nếu khách chỉ hỏi địa chỉ 1 showroom cụ thể, KHÔNG hỏi \"gần nhất\".\n\n## Định dạng Output BẮT BUỘC:\n{\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\",\"user_location\":\"\"}\n\n## Ví dụ:\n- \"Showroom Kia ở Sài Gòn\" → {\"province\":\"ho-chi-minh\",\"showroom_name\":\"\",\"brand\":\"kia\",\"user_location\":\"\"}\n- \"Cho em địa chỉ BMW Sala\" → {\"province\":\"\",\"showroom_name\":\"BMW Sala\",\"brand\":\"bmw\",\"user_location\":\"\"}\n- \"Tôi muốn xem showroom\" → {\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"\",\"user_location\":\"\"}\n- \"Nhà em ở quận 3, showroom Kia nào gần nhất?\" → {\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"kia\",\"user_location\":\"Quận 3, Thành phố Hồ Chí Minh\"}\n- \"Em đang ở Bình Thạnh, gần showroom Mazda nào?\" → {\"province\":\"\",\"showroom_name\":\"\",\"brand\":\"mazda\",\"user_location\":\"Bình Thạnh, Thành phố Hồ Chí Minh\"}\n"
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -64,
-                736
+                -592,
+                640
             ],
-            "id": "b5d8c351-16e5-4590-8645-2717cd36d5df",
+            "id": "5c67260a-995e-4498-b01d-079e2bd265a6",
             "name": "AI Agent - Location Extractor"
         },
         {
             "parameters": {
                 "promptType": "define",
-                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được phép chào hỏi 1 lần.' : '⚠️ TURN TIẾP THEO (#' + (($('parse_session').first().json._prev.history || []).length + 1) + ') — TUYỆT ĐỐI KHÔNG chào lại.' }}\n- Sub-category: {{ $json.sales_subcategory }}\n- Số turn SALES_LEAD đã hỏi: {{ $json.sales_turn_count }} (should_capture_lead: {{ $json.should_capture_lead }})\n\n### [NGỮ CẢNH TURN TRƯỚC — dùng để hiểu nếu khách nói cụt/tiếp nối]\n- Câu hỏi gần nhất: \"{{ (($('parse_session').first().json._prev.history || []).slice(-1)[0]?.user) || '(chưa có)' }}\"\n- Intent turn trước: {{ (($('parse_session').first().json._prev.history || []).slice(-1)[0]?.intent) || '—' }}\n- AI vừa trả lời (đuôi 200 chars — phần gợi mở/CTA): \"{{ ($('parse_session').first().json._prev.last_ai_reply || '—') }}\"\n\n\nHãy dựa trên Persona để phản hồi:\n\n### [CÂU HỎI HIỆN TẠI]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode trả lời: {{ $json.mode }}\n- Thương hiệu: {{ $json.brand || \"Chung\" }}\n- Loại xe: {{ $json.car_type || \"—\" }}\n- Số chỗ tối thiểu: {{ $json.seat_min || \"—\" }}\n- Nhiên liệu: {{ $json.fuel || \"—\" }}\n- Ngân sách max: {{ $json.budget_max || \"—\" }}\n\n### [DỮ LIỆU TRI THỨC - CONTEXT_BUNDLE]\n{{ $json.context_bundle }}\n",
+                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được phép chào hỏi 1 lần.' : '⚠️ TURN TIẾP THEO (#' + (($('parse_session').first().json._prev.history || []).length + 1) + ') — TUYỆT ĐỐI KHÔNG chào lại.' }}\n- Sub-category: {{ $json.sales_subcategory }}\n- Số turn SALES_LEAD đã hỏi: {{ $json.sales_turn_count }} (should_capture_lead: {{ $json.should_capture_lead }})\n\n### [NGỮ CẢNH TURN TRƯỚC — dùng để hiểu nếu khách nói cụt/tiếp nối]\n- Câu hỏi gần nhất: \"{{ $('parse_session').item.json._prev.last_user_msg || '(chưa có)' }}\"\n- Intent turn trước: {{ (($('parse_session').first().json._prev.history || []).slice(-1)[0]?.intent) || '—' }}\n- AI vừa trả lời (đuôi 200 chars — phần gợi mở/CTA): \"{{ ($('parse_session').first().json._prev.last_ai_reply || '—') }}\"\n\n\nHãy dựa trên Persona để phản hồi:\n\n### [CÂU HỎI HIỆN TẠI]\n\"{{ $('When chat message received3').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode trả lời: {{ $json.mode }}\n- Thương hiệu: {{ $json.brand || \"Chung\" }}\n- Loại xe: {{ $json.car_type || \"—\" }}\n- Số chỗ tối thiểu: {{ $json.seat_min || \"—\" }}\n- Nhiên liệu: {{ $json.fuel || \"—\" }}\n- Ngân sách max: {{ $json.budget_max || \"—\" }}\n\n### [DỮ LIỆU TRI THỨC - CONTEXT_BUNDLE]\n{{ $json.context_bundle }}\n",
                 "options": {
                     "systemMessage": "=# ROLE\nChuyên viên tư vấn ảo THACO AUTO. Dùng [CONTEXT_BUNDLE] để trả lời chính xác.\n\n# XƯNG HÔ\n\"Em\" – \"Anh/Chị\".\n\n# 5 MODE (xem field \"mode\")\n\n▸ detail → 1 xe cụ thể: trả sâu giá/thông số/ưu điểm từ FILE.\n\n▸ shortlist_small / shortlist_big → nhiều xe khớp filter:\n   bullet ngắn (tên → loại / chỗ / nhiên liệu / giá), gợi 1-2 xe nổi bật, mời chọn 1 xe để tư vấn sâu.\n\n▸ compare_internal (so sánh 2 xe NỘI BỘ THACO) — TRUNG THỰC, không thiên vị:\n   **🚗 Xe A — [Tên]**\n   - Phân khúc / Chỗ / Động cơ / Giá từ / Điểm nổi bật\n   \n   **🚗 Xe B — [Tên]**  \n   - (cùng cấu trúc)\n   \n   **💡 Gợi ý:** Ưu tiên X → chọn A; ưu tiên Y → chọn B.\n   Cuối: mời lái thử cả 2.\n\n▸ compare_external (so THACO vs đối thủ ngoài) — TRÁNH chê đối thủ:\n   - KHÔNG ĐƯỢC ĐÀO SÂU THÔNG TIN XE CHI TIẾT CỦA ĐỐI THỦ, CHỈ TẬP TRUNG XE THUỘC THACO AUTO (được phép trả lời thông tin rất cơ bản của đối thủ)\n   - Mở: \"Cả [đối thủ] và [xe THACO] đều là lựa chọn tốt...\"\n   - **🌟 Điểm nổi bật của [xe THACO]:** 4-6 bullet kèm SỐ LIỆU/giải thưởng cụ thể từ FAQ\n   - KHÔNG dùng từ tiêu cực (kém/tệ/lỗi thời/thua xa)\n   - KHÔNG bịa thông số đối thủ\n\n   - Cuối: mời lái thử + hotline\n\n▸ ask_more → thiếu info: hỏi khéo, đưa CHỌN LỰA cụ thể (vd \"sedan thanh lịch hay SUV gầm cao?\"), không hỏi mở.\n\n# SUB-MODE của SALES_LEAD (xem field \"sales_subcategory\")\n\n▸ consultation (mặc định) → Tư vấn theo logic detail/shortlist/compare đã định.\n\n▸ pricing_finance → Giá lăn bánh & trả góp:\n  - Lấy giá NIÊM YẾT từ CONTEXT.\n  - Tính giá lăn bánh ước tính theo TEMPLATE trong CONTEXT (12% trước bạ + biển + bảo hiểm + đăng kiểm).\n  - Nếu khách hỏi trả góp → tính ví dụ 2-3 phương án (trả trước 20%/30%/50%, kỳ hạn 60/72/84 tháng).\n  - LUÔN nhắc: \"Đây là ước tính. Báo giá chính xác do showroom thực hiện sau khi tư vấn.\"\n  - Định dạng BULLET, đẩy lead capture SỚM (sau 1-2 turn vì khách đã quan tâm tài chính = sắp mua).\n\n▸ tech_specs → Thông số / Nội ngoại thất / ADAS:\n  - Trả lời SÂU theo CONTEXT (CONTEXT đã được mở rộng để chứa nhiều spec).\n  - Bullet đa cấp, có emoji highlight (⚙️ động cơ, 🛡️ an toàn, 🪑 nội thất, 🎨 ngoại thất, 📺 công nghệ).\n  - Tránh dump nguyên bảng — chọn 4-6 điểm quan trọng nhất theo qa_intents.\n  - KHÔNG ép lead capture (khách đang research, để khách tự đến).\n\n▸ close_deal → Chốt sale / Lái thử:\n  - BẮT BUỘC xin: Họ tên, SĐT, Mẫu xe quan tâm, Showroom thuận tiện, Ngày/giờ mong muốn.\n  - Nếu khách đã cho 1 vài thông tin → xác nhận lại + xin phần còn thiếu.\n  - Format BULLET dạng form điền:\n    - Họ tên: ___\n    - SĐT: ___\n    - ...\n  - Hứa: \"Chuyên viên Sale sẽ liên hệ trong 1-2h làm việc.\"\n  - Hotline: 1900 56 5499.\n\n# LEAD CAPTURE TRIGGER\nNếu User Message có \"should_capture_lead = true\" → ở CUỐI reply (sau CTA), thêm 1 câu khéo:\n\"Để em hỗ trợ chi tiết hơn, Anh/Chị có thể để lại SĐT — chuyên viên Sale sẽ liên hệ tư vấn cụ thể giá lăn bánh và chương trình hỗ trợ tốt nhất tại khu vực Anh/Chị nhé?\"\nKHÔNG ép buộc, chỉ là gợi ý lịch sự.\n\n# TONE theo BRAND\nKIA/MAZDA: thân thiện, hiện đại | BMW/PEUGEOT/MINI: sang trọng | TRUCK/BUS: tin cậy, thực tế.\n\n# QUY TẮC CỨNG\n1. **LUÔN dùng BULLET, KHÔNG dùng bảng markdown** (widget chatbot không render bảng).\n2. CHỈ dùng số trong CONTEXT, KHÔNG bịa.\n3. CONTEXT có \"[KHÔNG khớp]\" → xin lỗi + gợi nới 1 tiêu chí. CONTEXT trống → xin SĐT khách.\n4. Giá VNĐ giữ format \"999.000.000 ₫\".\n5. KHÔNG in wikilink [[...]].\n6. Cuối: 1 CTA cụ thể (lái thử / báo giá lăn bánh / ghé showroom).\n7. Độ dài: detail/shortlist/ask_more ≤ 200 từ; compare_internal ≤ 280 từ; compare_external ≤ 250 từ.\n8. Tuyệt đối không được chào hỏi lại nếu TURN TIẾP THEO lớn hơn 1\n\n# THUẬT NGỮ BMW/MINI\nKhi nhắc kiểu dáng BMW/MINI, dùng `body_style_display` từ CONTEXT thay \"SUV\":\n- SAV → \"SAV (Sports Activity Vehicle)\" lần đầu, sau viết tắt \"SAV\"\n- SAC → \"SAC (Sports Activity Coupe)\"\n- Estate → \"Estate\"\nVd: ❌ \"BMW X5 là SUV cao cấp\" ✅ \"BMW X5 là SAV (Sports Activity Vehicle) cao cấp\"\n"
                 }
@@ -513,27 +497,27 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                576,
-                592
+                48,
+                496
             ],
-            "id": "96f92bf8-0f85-45c5-9e98-44d88e62c0d0",
+            "id": "f1c81fbe-5fe2-4414-af2e-ccc95daccd9c",
             "name": "Message a model1"
         },
         {
             "parameters": {
                 "promptType": "define",
-                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được phép chào hỏi 1 lần.' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại.' }}\n\n### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode: {{ $json.mode }}\n- Tỉnh/Thành: {{ $json.province || \"—\" }}\n- Brand: {{ $json.brand || \"—\" }}\n- Showroom name khách nhắc: {{ $json.showroom_name || \"—\" }}\n- URL tỉnh (nếu có): {{ $json.province_url || \"—\" }}\n\n### [DỮ LIỆU]\n{{ $json.context_bundle }}\n",
+                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được phép chào hỏi 1 lần.' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại.' }}\n\n### [TIN NHẮN KHÁCH]\n\"{{ $('Webhook').item.json.chatInput }}\"\n\n### [THÔNG TIN HỆ THỐNG]\n- Mode: {{ $json.mode }}\n- Tỉnh/Thành: {{ $json.province || \"—\" }}\n- Brand: {{ $json.brand || \"—\" }}\n- Showroom name khách nhắc: {{ $json.showroom_name || \"—\" }}\n- URL tỉnh (nếu có): {{ $json.province_url || \"—\" }}\n\n### [DỮ LIỆU]\n{{ $json.context_bundle }}\n",
                 "options": {
-                    "systemMessage": "=# ROLE\nBạn là Tư vấn viên Hệ thống Mạng lưới THACO AUTO. Chuyên trả lời câu hỏi tìm showroom, đại lý.\n\n# TONE\n- Xưng \"Em\" - \"Anh/Chị\". Lịch sự, hữu ích, gọn gàng.\n- Tối đa 200 từ.\n\n# QUY TẮC PHẢN HỒI THEO 5 MODE TRẢ LỜI (xem field \"mode\")\n\n▸ mode = \"specific_found\":\n  Trả ĐẦY ĐỦ thông tin 1 showroom theo CONTEXT (tên, địa chỉ, hotline, dịch vụ, link Maps).\n  Cuối: mời khách đặt lịch xem xe / lái thử.\n\n▸ mode = \"area_overview\":   ← MỚI\n  Mở đầu: \"Dạ tại khu vực [areaName] có [N] showroom THACO AUTO ạ:\"\n  Liệt kê GỌN từng showroom (dạng bullet ngắn, KHÔNG full address):\n  - **Tên showroom** — Brand: ..., Hotline: ...\n  Sau đó tóm tắt: \"Tất cả các showroom đều cùng khu vực [địa chỉ rút gọn], tổng [N] thương hiệu: [list].\"\n  Hỏi khách: \"Anh/Chị quan tâm thương hiệu hoặc showroom nào ạ? Em sẽ gửi địa chỉ + Maps chi tiết.\"\n\n▸ mode = \"specific_not_found\":\n  Xin lỗi: \"Dạ em chưa tìm thấy showroom Anh/Chị nói trong hệ thống.\"\n  Mời gọi hotline 1900 56 5499.\n\n▸ mode = \"province_link\":\n  \"Dạ Anh/Chị có thể xem danh sách showroom THACO AUTO tại [tỉnh] qua link sau: [URL]\"\n  Nếu CONTEXT có brand → \"Vào trang lọc theo thương hiệu [brand] để tìm nhanh ạ.\"\n\n▸ mode = \"ask_province\" / \"province_no_link\" / \"error\":\n  Hỏi khéo \"Anh/Chị đang ở khu vực nào ạ?\" hoặc mời gọi hotline.\n\n# QUY TẮC CỨNG\n- KHÔNG bịa địa chỉ, hotline, link.\n- Mode area_overview: KHÔNG dump full address của tất cả 5 showroom (rườm rà), chỉ overview + tên + brand + hotline → để khách chọn rồi mới gửi chi tiết.\n- Tối đa 200 từ."
+                    "systemMessage": "=# ROLE\nBạn là Tư vấn viên Hệ thống Mạng lưới THACO AUTO. Chuyên trả lời câu hỏi tìm showroom, đại lý.\n\n# TONE\n- Xưng \"Em\" - \"Anh/Chị\". Lịch sự, hữu ích, gọn gàng.\n- Tối đa 220 từ.\n\n# QUY TẮC PHẢN HỒI THEO MODE (xem field \"mode\")\n\n▸ mode = \"specific_found\":\n  Trả ĐẦY ĐỦ thông tin 1 showroom theo CONTEXT (tên, địa chỉ, hotline, dịch vụ, link Maps).\n  Cuối: mời khách đặt lịch xem xe / lái thử.\n\n▸ mode = \"area_overview\":\n  Mở đầu: \"Dạ tại khu vực [areaName] có [N] showroom THACO AUTO ạ:\"\n  Liệt kê GỌN từng showroom (bullet ngắn, KHÔNG full address):\n  - **Tên showroom** — Brand: ..., Hotline: ...\n  Tóm tắt: \"Tất cả các showroom đều cùng khu vực [địa chỉ rút gọn], tổng [N] thương hiệu: [list].\"\n  Hỏi: \"Anh/Chị quan tâm thương hiệu hoặc showroom nào ạ? Em sẽ gửi địa chỉ + Maps chi tiết.\"\n\n▸ mode = \"nearest_by_location\":   ← MỚI\n  Mở đầu: \"Dạ từ vị trí Anh/Chị (đại loại [user_location]), em tìm được [N] showroom [BRAND nếu có] gần nhất ạ:\"\n  Liệt kê theo thứ tự khoảng cách (CHỈ DÙNG SỐ TRONG CONTEXT):\n  - **1. [Tên]** — cách ~[X] km\n    📍 [địa chỉ rút gọn — đường + phường]\n    📞 Bán hàng: [...] · 🗺 [Maps link]\n  - **2. [Tên]** — ...\n  - **3. [Tên]** — ...\n  Cuối: \"Khoảng cách trên là đường chim bay; thực tế đường đi có thể dài hơn ạ. Anh/Chị muốn em đặt lịch lái thử / hẹn xem xe ở showroom nào?\"\n  KHÔNG bịa số km. KHÔNG hứa thời gian di chuyển cụ thể.\n\n▸ mode = \"nearest_no_geocode\" / \"nearest_no_match\":\n  Xin lỗi: \"Em chưa định vị chính xác được vị trí Anh/Chị nói.\"\n  Hỏi lại quận/phường cụ thể, hoặc mời gọi hotline 1900 56 5499.\n\n▸ mode = \"specific_not_found\":\n  Xin lỗi: \"Dạ em chưa tìm thấy showroom Anh/Chị nói trong hệ thống.\"\n  Mời gọi hotline 1900 56 5499.\n\n▸ mode = \"province_link\":\n  \"Dạ Anh/Chị có thể xem danh sách showroom THACO AUTO tại [tỉnh] qua link sau: [URL]\"\n  Nếu CONTEXT có brand → \"Vào trang lọc theo thương hiệu [brand] để tìm nhanh ạ.\"\n\n▸ mode = \"ask_province\" / \"province_no_link\" / \"error\":\n  Hỏi khéo \"Anh/Chị đang ở khu vực nào ạ?\" hoặc mời gọi hotline.\n\n# QUY TẮC CỨNG\n- KHÔNG bịa địa chỉ, hotline, link, khoảng cách.\n- Mode area_overview: KHÔNG dump full address của tất cả 5 showroom (rườm rà), chỉ overview + tên + brand + hotline → để khách chọn rồi mới gửi chi tiết.\n- Mode nearest_by_location: GIỮ ĐÚNG thứ tự xa/gần trong CONTEXT, không tự đảo.\n- Tối đa 220 từ."
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                768,
-                896
+                240,
+                800
             ],
-            "id": "ec53622e-0583-4b7a-b79d-67894a7f6963",
+            "id": "e17698a0-c1ce-468c-b2e1-31a57b48e71c",
             "name": "Message a model"
         },
         {
@@ -543,10 +527,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                576,
-                736
+                48,
+                640
             ],
-            "id": "6450a538-ed31-4a21-a161-d231a4d1231f",
+            "id": "ad6f1c5c-9cd4-41e6-b036-934c8d8742ba",
             "name": "Google Gemini Chat Model1",
             "credentials": {
                 "googlePalmApi": {
@@ -562,10 +546,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -64,
-                880
+                -592,
+                784
             ],
-            "id": "fc8d29dd-73f2-457a-b7de-f10068b348c8",
+            "id": "ba7e4513-2b1c-4da5-b86b-8a97e0a7a1ed",
             "name": "Google Gemini Chat Model2",
             "credentials": {
                 "googlePalmApi": {
@@ -581,10 +565,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                768,
-                1056
+                240,
+                960
             ],
-            "id": "6dd899ef-8b83-4329-a49d-667ca0028d73",
+            "id": "7a952774-d4a8-46db-b5c6-c192ec43b271",
             "name": "Google Gemini Chat Model3",
             "credentials": {
                 "googlePalmApi": {
@@ -623,10 +607,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                -1792,
-                1216
+                -2320,
+                1120
             ],
-            "id": "de384f45-7bb2-409b-bbd9-ecd9ba909c26",
+            "id": "215ce1c1-13ac-4db0-948a-09d7d15e97c9",
             "name": "gs_read_session",
             "alwaysOutputData": true,
             "credentials": {
@@ -639,15 +623,15 @@
         },
         {
             "parameters": {
-                "jsCode": "const trigger = $('When chat message received').first().json;\nconst rows = $input.all();\n\nlet prev = {\n  history: [],\n  last_user_msg: '',\n  last_intent: '',\n  last_brand: '',\n  last_model: '',\n  last_ai_reply: ''\n};\n\nif (rows.length && rows[0].json && rows[0].json.sessionId) {\n  const r = rows[0].json;\n  let history = [];\n  try {\n    history = r.history_json ? JSON.parse(r.history_json) : [];\n    if (!Array.isArray(history)) history = [];\n  } catch(e) { history = []; }\n\n  prev = {\n    history,\n    last_user_msg: r.last_user_msg || '',\n    last_intent:   r.last_intent   || '',\n    last_brand:    r.last_brand    || '',\n    last_model:    r.last_model    || '',\n    last_ai_reply: r.last_ai_reply || ''\n  };\n}\n\nreturn [{ json: { ...trigger, _prev: prev } }];\n"
+                "jsCode": "const trigger = $('When chat message received3').first().json;\nconst rows = $input.all();\n\nlet prev = {\n  history: [],\n  last_user_msg: '',\n  last_intent: '',\n  last_brand: '',\n  last_model: '',\n  last_ai_reply: ''\n};\n\nif (rows.length && rows[0].json && rows[0].json.sessionId) {\n  const r = rows[0].json;\n  let history = [];\n  try {\n    history = r.history_json ? JSON.parse(r.history_json) : [];\n    if (!Array.isArray(history)) history = [];\n  } catch(e) { history = []; }\n\n  prev = {\n    history,\n    last_user_msg: r.last_user_msg || '',\n    last_intent:   r.last_intent   || '',\n    last_brand:    r.last_brand    || '',\n    last_model:    r.last_model    || '',\n    last_ai_reply: r.last_ai_reply || ''\n  };\n}\n\nreturn [{ json: { ...trigger, _prev: prev } }];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -1632,
-                1216
+                -2160,
+                1120
             ],
-            "id": "9ab70c30-f375-4184-a38d-f8b7db756339",
+            "id": "8c3ed675-91cf-457e-9ba8-81b26fdb2d96",
             "name": "parse_session"
         },
         {
@@ -671,8 +655,8 @@
                 "columns": {
                     "mappingMode": "defineBelow",
                     "value": {
-                        "sessionId": "={{ $('When chat message received').item.json.sessionId }}",
-                        "last_user_msg": "={{ $('When chat message received').item.json.chatInput }}",
+                        "sessionId": "={{ $('When chat message received3').item.json.sessionId }}",
+                        "last_user_msg": "={{ $('When chat message received3').item.json.chatInput }}",
                         "last_intent": "={{ $json.category }}",
                         "last_brand": "={{ $json.brand }}",
                         "last_model": "={{ $json.model_slug }}",
@@ -767,10 +751,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                -880,
-                1216
+                -1408,
+                1120
             ],
-            "id": "e44d91f3-a908-436a-977a-5d7db893980a",
+            "id": "41ec3abf-e9ef-439a-9d79-2b418bd978fa",
             "name": "gs_save_session",
             "credentials": {
                 "googleApi": {
@@ -786,23 +770,23 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -736,
-                1216
+                -1264,
+                1120
             ],
-            "id": "d965014c-aadf-4137-bc42-eef5bcb52bdd",
+            "id": "0033c0d3-869b-4da8-a6a4-d8a11eb559f5",
             "name": "restore_router"
         },
         {
             "parameters": {
-                "jsCode": "// Capture AI reply để lưu vào sheet\nconst reply = $input.first().json.output || '';\nreturn [{\n  json: {\n    output: reply,                              // giữ nguyên cho chat trigger\n    _ai_reply_short: reply.slice(-300)        // cap 300 chars để tránh bloat sheet\n  }\n}];\n"
+                "jsCode": "// capture_reply (cập nhật)\nconst item = $input.first().json;\nconst reply = item.output || item.text || item.response || '';\n\nreturn [{\n  json: {\n    output: reply,\n    _ai_reply_short: reply.slice(-300)\n  }\n}];"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                2272,
-                656
+                1952,
+                560
             ],
-            "id": "f24829f4-715c-48c9-91f5-ec3d09905ccc",
+            "id": "5ceceaf5-5911-4aee-8c92-6ca55f6b6894",
             "name": "capture_reply"
         },
         {
@@ -826,7 +810,7 @@
                 "columns": {
                     "mappingMode": "defineBelow",
                     "value": {
-                        "sessionId": "={{ $('When chat message received').item.json.sessionId }}",
+                        "sessionId": "={{ $('When chat message received3').item.json.sessionId }}",
                         "last_ai_reply": "={{ $json._ai_reply_short }}"
                     },
                     "matchingColumns": [
@@ -906,10 +890,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                2432,
-                656
+                2112,
+                560
             ],
-            "id": "c7ec5aa0-2a55-4498-859c-e8fbc7ee7cd7",
+            "id": "62447cac-0cfa-4b25-91c5-c7b479601c08",
             "name": "gs_update_reply",
             "credentials": {
                 "googleApi": {
@@ -920,34 +904,21 @@
         },
         {
             "parameters": {
-                "jsCode": "// Lấy reply gốc từ node capture_reply (cách 2 node phía trước)\n// vì gs_update_reply đã đổi shape output thành row của Google Sheets\nconst aiReply = $('capture_reply').first().json.output || '';\n\n// Emit lại theo format chat trigger hiểu\nreturn [{\n  json: {\n    output: aiReply\n  }\n}];\n"
+                "jsCode": "const router = $input.first().json;\nconst trigger = $('When chat message received3').first().json;\n\n// Lấy chatInput từ nhiều nguồn fallback\nconst userMsg =\n  trigger.chatInput ||\n  trigger.body?.message?.text ||                                    // Webhook raw\n  $('Webhook').first().json?.body?.message?.text ||                 // nếu node tên khác\n  '';\n\nconst sessionId = trigger.sessionId || trigger.body?.conversation?.id || 'default';\nconst prevHistory = ($('parse_session').first().json._prev?.history) || [];\n\nconst newTurn = {\n  ts: new Date().toISOString().slice(0, 19),\n  user: userMsg.slice(0, 150),\n  intent: router.category || '',\n  brand: router.brand || '',\n  model: router.model_slug || ''\n};\n\nconst newHistory = [...prevHistory, newTurn].slice(-10);\n\nreturn [{\n  json: {\n    ...router,\n    sessionId,\n    last_user_msg: newTurn.user,\n    last_intent: newTurn.intent,\n    last_brand: newTurn.brand,\n    last_model: newTurn.model,\n    history_json: JSON.stringify(newHistory)\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                2608,
-                656
+                -1552,
+                1120
             ],
-            "id": "73b25b9f-be5b-4280-ba95-dafa03e16af4",
-            "name": "format_chat_reply"
-        },
-        {
-            "parameters": {
-                "jsCode": "// Lưu memory + append turn vào rolling history (cap 10)\nconst router = $input.first().json;\nconst trigger = $('When chat message received').first().json;\nconst sessionId = trigger.sessionId || 'default';\n\n// Lấy history hiện có từ parse_session\nconst prevHistory = ($('parse_session').first().json._prev?.history) || [];\n\n// Tạo turn mới (gọn — chỉ 5 field cốt lõi)\nconst newTurn = {\n  ts: new Date().toISOString().slice(0, 19),  // bỏ ms cho gọn: \"2026-04-26T14:30:15\"\n  user: (trigger.chatInput || '').slice(0, 150),\n  intent: router.category || '',\n  brand: router.brand || '',\n  model: router.model_slug || ''\n};\n\n// Append + giữ 10 turn gần nhất\nconst newHistory = [...prevHistory, newTurn].slice(-10);\n\nreturn [{\n  json: {\n    ...router,\n    sessionId,\n    last_user_msg: newTurn.user,\n    last_intent: newTurn.intent,\n    last_brand: newTurn.brand,\n    last_model: newTurn.model,\n    history_json: JSON.stringify(newHistory)\n  }\n}];\n"
-            },
-            "type": "n8n-nodes-base.code",
-            "typeVersion": 2,
-            "position": [
-                -1024,
-                1216
-            ],
-            "id": "9cd94f6a-4e7e-4138-99fd-1a331aeb0f81",
+            "id": "5c4e6c38-c162-413f-a796-722e4f445058",
             "name": "save_sessions"
         },
         {
             "parameters": {
                 "promptType": "define",
-                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được chào' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại' }}\n\n### [CÂU HỎI CỤT/MƠ HỒ HIỆN TẠI]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [LỊCH SỬ HỘI THOẠI 10 TURN GẦN NHẤT]\n{{ ($('parse_session').first().json._prev.history || []).map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand || '—'}, model=${h.model || '—'}`).join('\\n') || '(chưa có lịch sử — đây có thể là câu hỏi đầu tiên cụt)' }}\n\n### [AI VỪA TRẢ LỜI Ở TURN NGAY TRƯỚC]\n\"{{ $('parse_session').first().json._prev.last_ai_reply || '—' }}\"\n\nHãy trả lời khách dựa trên 2 kịch bản trong System Prompt.\n",
+                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được chào' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại' }}\n\n### [CÂU HỎI CỤT/MƠ HỒ HIỆN TẠI]\n\"{{ $('Webhook').item.json.chatInput }}\"\n\n### [LỊCH SỬ HỘI THOẠI 10 TURN GẦN NHẤT]\n{{ ($('parse_session').first().json._prev.history || []).map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand || '—'}, model=${h.model || '—'}`).join('\\n') || '(chưa có lịch sử — đây có thể là câu hỏi đầu tiên cụt)' }}\n\n### [AI VỪA TRẢ LỜI Ở TURN NGAY TRƯỚC]\n\"{{ $('parse_session').first().json._prev.last_ai_reply || '—' }}\"\n\nHãy trả lời khách dựa trên 2 kịch bản trong System Prompt.\n",
                 "options": {
                     "systemMessage": "=# ROLE\nDisambiguator của THACO AUTO chatbot. Câu hỏi khách CỤT/MƠ HỒ đã được Router xếp AMBIGUOUS.\nNhiệm vụ: đọc LỊCH SỬ + AI VỪA TRẢ LỜI để hiểu khách thực sự muốn gì → trả lời trực tiếp HOẶC hỏi lại.\n\n# 2 KỊCH BẢN\n\n▸ NẾU đủ ngữ cảnh từ lịch sử → TRẢ LỜI TRỰC TIẾP:\n  - Vd: AI vừa nhắc \"Kia Sportage Signature 1.099 tỷ\" + khách hỏi \"có ADAS không?\"\n    → \"Sportage Signature trang bị FCA, BCA, LKA, BVM ạ...\"\n  - LẤY số liệu từ \"AI vừa trả lời\" nếu đã có. KHÔNG bịa thêm.\n  - Nếu cần thông tin chi tiết hơn (giá phiên bản khác, thông số sâu) → mời khách hỏi rõ tên xe để em tra cứu chi tiết: \"Anh/Chị muốn em báo giá chi tiết phiên bản nào ạ?\"\n\n▸ NẾU KHÔNG đủ context → HỎI KHÉO ĐỂ KHÁCH LÀM RÕ:\n  - Vd: khách hỏi \"cái đó giá bao nhiêu?\" mà lịch sử rỗng\n    → \"Dạ Anh/Chị có thể chia sẻ rõ hơn — Anh/Chị đang quan tâm xe nào ạ? Em hỗ trợ Kia, Mazda, Peugeot, BMW, MINI...\"\n  - Luôn đưa **CHỌN LỰA cụ thể** thay vì hỏi mở.\n\n# QUY TẮC CỨNG\n- TURN TIẾP THEO → KHÔNG chào lại (\"Dạ em chào\", \"Dạ vâng ạ\"...).\n- CHỈ dùng số liệu trong lịch sử/AI reply trước, KHÔNG BỊA.\n- KHÔNG in wikilink [[...]].\n- Xưng \"Em\" - \"Anh/Chị\".\n- Tối đa 100 từ — gọn, đi thẳng vào việc.\n- Cuối: 1 CTA cụ thể (mời khách nói rõ xe / mời báo giá / lái thử)."
                 }
@@ -955,10 +926,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                -32,
-                1280
+                -560,
+                1184
             ],
-            "id": "0afec007-6ea5-49b1-8680-ec26b3f9c2c6",
+            "id": "cc5c09f5-c833-4dbd-9306-8b5f95b09c01",
             "name": "AI Agent — Disambiguator"
         },
         {
@@ -968,10 +939,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                -64,
-                1440
+                -592,
+                1344
             ],
-            "id": "03358d4f-f5ea-444d-ac2a-8ab8bafe7b48",
+            "id": "75d68681-b5b0-4be9-9c30-0b0bcb493018",
             "name": "Google Gemini Chat Model4",
             "credentials": {
                 "googlePalmApi": {
@@ -987,10 +958,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                1136
+                -592,
+                1040
             ],
-            "id": "f2f8c9fd-7f8d-4e07-ad36-f396ad9cd935",
+            "id": "65223cf9-9b7a-40cc-a794-91b8da0c11c1",
             "name": "reply_out_of_scope"
         },
         {
@@ -1020,10 +991,10 @@
             "type": "n8n-nodes-base.if",
             "typeVersion": 2.3,
             "position": [
-                0,
-                480
+                -528,
+                384
             ],
-            "id": "2daf50c2-a9d8-42b1-982e-315e935ff716",
+            "id": "0e989d52-127b-4abb-8a8c-f25b02445518",
             "name": "IF sub_close_deal"
         },
         {
@@ -1047,7 +1018,7 @@
                     "values": [
                         {
                             "lookupColumn": "sessionId",
-                            "lookupValue": "={{ $('When chat message received').item.json.sessionId }}"
+                            "lookupValue": "={{ $('When chat message received3').item.json.sessionId }}"
                         }
                     ]
                 },
@@ -1056,10 +1027,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                352,
-                400
+                -176,
+                304
             ],
-            "id": "ebdf08ec-5b5c-4f8d-9b06-0c0e8780a9eb",
+            "id": "273ee238-5d4e-4a84-bf89-595a43507a7f",
             "name": "gs_read_lead_state",
             "alwaysOutputData": true,
             "credentials": {
@@ -1073,7 +1044,7 @@
         {
             "parameters": {
                 "promptType": "define",
-                "text": "=### CURRENT MESSAGE\n     \"{{ $('When chat message received').item.json.chatInput }}\"\n     \n     ### PARTIAL STATE (đã thu thập trước, có thể null toàn bộ nếu lần đầu)\n     {{ $json.lead_partial_json || '{}' }}\n     \n     ### HISTORY 3 TURN GẦN NHẤT\n     {{ ($('parse_session').first().json._prev.history || []).slice(-3).map(h => `User: \"${h.user}\"`).join('\\n') || '(chưa có)' }}\n     \n     EXTRACT JSON:",
+                "text": "=### CURRENT MESSAGE\n     \"{{ $('Webhook').item.json.chatInput }}\"\n     \n     ### PARTIAL STATE (đã thu thập trước, có thể null toàn bộ nếu lần đầu)\n     {{ $json.lead_partial_json || '{}' }}\n     \n     ### HISTORY 3 TURN GẦN NHẤT\n     {{ ($('parse_session').first().json._prev.history || []).slice(-3).map(h => `User: \"${h.user}\"`).join('\\n') || '(chưa có)' }}\n     \n     EXTRACT JSON:",
                 "options": {
                     "systemMessage": "=Bạn là extractor cho hệ thống đăng ký lái thử THACO AUTO.\n     Trích xuất 5 field từ tin nhắn khách + history + state đã có.\n     CHỈ trả JSON thuần (không markdown, không giải thích).\n     \n     - name: Họ tên khách (vd \"Nguyễn Văn Tuấn\" hoặc \"Tuấn\"). null nếu chưa rõ.\n     - phone: SĐT VN (10 số bắt đầu 0, hoặc +84xxxxxxxxx). null nếu chưa hoặc sai format.\n     - model_interest: Tên xe khách quan tâm (vd \"Sportage\", \"Kia K5\", \"BMW X5\", \"CX-5\"). null nếu chưa.\n     - showroom: Tên showroom HOẶC khu vực (vd \"Phú Mỹ Hưng\", \"Sala\", \"Thủ Thiêm\", \"An Sương\", \"Kia Quận 7\"). null nếu chưa.\n     - preferred_datetime: Text tự nhiên (vd \"thứ 7 sáng\", \"9h ngày 28/4\", \"cuối tuần này\"). null nếu chưa.\n     \n     QUY TẮC:\n     - Đọc PARTIAL STATE + HISTORY để giữ lại field đã extract trước đó.\n     - Nếu khách nói lại field cũ với giá trị mới → ưu tiên giá trị mới.\n     - KHÔNG bịa. Thiếu thì để null.\n     \n     Output BẮT BUỘC:\n     {\"name\":null,\"phone\":null,\"model_interest\":null,\"showroom\":null,\"preferred_datetime\":null}"
                 }
@@ -1081,10 +1052,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                592,
-                336
+                64,
+                240
             ],
-            "id": "1a49567e-5772-4c06-80cf-3b70f5b0e060",
+            "id": "105bdb16-e7e7-4255-b846-67507a526e79",
             "name": "AI Agent - Test Drive Extractor"
         },
         {
@@ -1094,10 +1065,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                576,
-                464
+                48,
+                368
             ],
-            "id": "7a70a031-62a6-4696-ac81-c7c6adda3969",
+            "id": "3952cee9-8a73-4e85-a918-d5992a9a801b",
             "name": "Google Gemini Chat Model5",
             "credentials": {
                 "googlePalmApi": {
@@ -1108,15 +1079,15 @@
         },
         {
             "parameters": {
-                "jsCode": "// merge_lead_state — Code node sau \"AI Agent — Test Drive Extractor\"\n// Parse JSON output → merge với state cũ từ sheet → check completeness\n// Output dùng cho IF is_complete + Sheets nodes phía sau.\n\nconst aiRaw = $input.first().json.output || '';\n\n// 1. Parse extractor JSON output (regex bóc {...} tránh markdown wrap)\nlet extracted = {};\ntry {\n  const m = aiRaw.match(/\\{[\\s\\S]*\\}/);\n  if (m) extracted = JSON.parse(m[0]);\n} catch (e) { /* ignore */ }\n\n// 2. Load prior partial state từ sheet (gs_read_lead_state)\nlet prior = {};\ntry {\n  const row = $('gs_read_lead_state').first().json;\n  if (row && row.lead_partial_json) {\n    prior = JSON.parse(row.lead_partial_json);\n  }\n} catch (e) { /* ignore — chưa có row */ }\n\n// 3. Helper validate phone VN\nfunction isValidVnPhone(p) {\n  if (!p) return false;\n  const cleaned = p.toString().replace(/[\\s\\-\\.]/g, '');\n  return /^(\\+84|84|0)[0-9]{9,10}$/.test(cleaned);\n}\n\n// 4. Merge: extracted ưu tiên hơn prior (vì AI có thể update)\n//    Nếu cả 2 đều null → giữ null\nconst merged = {\n  name: extracted.name || prior.name || null,\n  phone: extracted.phone || prior.phone || null,\n  model_interest: extracted.model_interest || prior.model_interest || null,\n  showroom: extracted.showroom || prior.showroom || null,\n  preferred_datetime: extracted.preferred_datetime || prior.preferred_datetime || null\n};\n\n// 5. Validate phone — nếu sai format thì reset (sẽ bị coi là missing)\nif (merged.phone && !isValidVnPhone(merged.phone)) {\n  merged.phone = null;\n}\n\n// 6. Check completeness\nconst missing = Object.entries(merged)\n  .filter(([k, v]) => !v)\n  .map(([k]) => k);\nconst isComplete = missing.length === 0;\n\n// 7. Lấy sessionId từ chat trigger\nconst sessionId = $('When chat message received').first().json.sessionId || 'default';\n\nreturn [{\n  json: {\n    sessionId,\n    lead_data: merged,\n    lead_partial_json: JSON.stringify(merged),\n    missing_fields: missing,\n    is_complete: isComplete,\n    _debug_extracted: extracted,\n    _debug_prior: prior\n  }\n}];\n"
+                "jsCode": "// merge_lead_state — Code node sau \"AI Agent — Test Drive Extractor\"\n// Parse JSON output → merge với state cũ từ sheet → check completeness\n// Output dùng cho IF is_complete + Sheets nodes phía sau.\n\nconst aiRaw = $input.first().json.output || '';\n\n// 1. Parse extractor JSON output (regex bóc {...} tránh markdown wrap)\nlet extracted = {};\ntry {\n  const m = aiRaw.match(/\\{[\\s\\S]*\\}/);\n  if (m) extracted = JSON.parse(m[0]);\n} catch (e) { /* ignore */ }\n\n// 2. Load prior partial state từ sheet (gs_read_lead_state)\nlet prior = {};\ntry {\n  const row = $('gs_read_lead_state').first().json;\n  if (row && row.lead_partial_json) {\n    prior = JSON.parse(row.lead_partial_json);\n  }\n} catch (e) { /* ignore — chưa có row */ }\n\n// 3. Helper validate phone VN\nfunction isValidVnPhone(p) {\n  if (!p) return false;\n  const cleaned = p.toString().replace(/[\\s\\-\\.]/g, '');\n  return /^(\\+84|84|0)[0-9]{9,10}$/.test(cleaned);\n}\n\n// 4. Merge: extracted ưu tiên hơn prior (vì AI có thể update)\n//    Nếu cả 2 đều null → giữ null\nconst merged = {\n  name: extracted.name || prior.name || null,\n  phone: extracted.phone || prior.phone || null,\n  model_interest: extracted.model_interest || prior.model_interest || null,\n  showroom: extracted.showroom || prior.showroom || null,\n  preferred_datetime: extracted.preferred_datetime || prior.preferred_datetime || null\n};\n\n// 5. Validate phone — nếu sai format thì reset (sẽ bị coi là missing)\nif (merged.phone && !isValidVnPhone(merged.phone)) {\n  merged.phone = null;\n}\n\n// 6. Check completeness\nconst missing = Object.entries(merged)\n  .filter(([k, v]) => !v)\n  .map(([k]) => k);\nconst isComplete = missing.length === 0;\n\n// 7. Lấy sessionId từ chat trigger\nconst sessionId = $('Webhook').first().json.sessionId || 'default';\n\nreturn [{\n  json: {\n    sessionId,\n    lead_data: merged,\n    lead_partial_json: JSON.stringify(merged),\n    missing_fields: missing,\n    is_complete: isComplete,\n    _debug_extracted: extracted,\n    _debug_prior: prior\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                896,
-                336
+                368,
+                240
             ],
-            "id": "e4ea094e-c258-46bb-8f60-667f4430b536",
+            "id": "c359806e-4709-4587-a4ef-24e88ab9ae91",
             "name": "merge_lead_state"
         },
         {
@@ -1146,10 +1117,10 @@
             "type": "n8n-nodes-base.if",
             "typeVersion": 2.3,
             "position": [
-                1104,
-                336
+                576,
+                240
             ],
-            "id": "0d4e0d5e-7f13-4b50-9f98-c3b108b6c5e9",
+            "id": "fe20cf8f-5374-4982-8a8d-0ab4a5720f4a",
             "name": "IF is_complete"
         },
         {
@@ -1180,7 +1151,7 @@
                         "model_interest": "={{ $json.lead_data.model_interest }}",
                         "showroom": "={{ $json.lead_data.showroom }}",
                         "preferred_datetime": "={{ $json.lead_data.preferred_datetime }}",
-                        "source_message": "={{ $('When chat message received').item.json.chatInput }}",
+                        "source_message": "={{ $('When chat message received3').item.json.chatInput }}",
                         "status": "new"
                     },
                     "matchingColumns": [],
@@ -1275,10 +1246,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                1312,
-                240
+                784,
+                144
             ],
-            "id": "ce2a0af4-2c50-4787-b4d0-8035ba4262a6",
+            "id": "673527d5-06e5-4e6a-85b8-f74c3d1cd030",
             "name": "gs_append_test_drive",
             "credentials": {
                 "googleApi": {
@@ -1294,10 +1265,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                1520,
-                240
+                992,
+                144
             ],
-            "id": "2d728cdd-f45c-48b1-995c-fb0495389189",
+            "id": "db4ddc6f-839f-440b-adcc-dd284de49573",
             "name": "reply_complete"
         },
         {
@@ -1419,10 +1390,10 @@
             "type": "n8n-nodes-base.googleSheets",
             "typeVersion": 4.7,
             "position": [
-                1312,
-                432
+                784,
+                336
             ],
-            "id": "0837f278-702e-4f9f-9da5-255cb2a906d5",
+            "id": "47aa03c2-7722-40cf-9c1c-de1979926cf8",
             "name": "gs_update_partial_state",
             "credentials": {
                 "googleApi": {
@@ -1442,10 +1413,10 @@
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                1520,
-                432
+                992,
+                336
             ],
-            "id": "e1551c81-a38e-4351-a1af-e6b4aab516d5",
+            "id": "4e60a630-be9a-42be-a8de-44f5c8a80207",
             "name": "AI Agent - reply_ask_missing"
         },
         {
@@ -1455,10 +1426,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                1520,
-                592
+                992,
+                496
             ],
-            "id": "130712b2-10bf-4728-930c-335f3c753b53",
+            "id": "389dc9ab-90bb-45e0-9de5-cd8cbdf626ea",
             "name": "Google Gemini Chat Model6",
             "credentials": {
                 "googlePalmApi": {
@@ -1469,54 +1440,54 @@
         },
         {
             "parameters": {
-                "jsCode": "// Lấy câu chat của người dùng (chuyển thành chữ thường để dễ xét từ khóa)\nconst userMsg = ($('When chat message received').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI (Bạn có thể phẩy và thêm vô số câu mới vào từng mảng [ ])\nconst replyPool = {\n  \n  // Nhóm TẠM BIỆT\n  goodbye: [\n    \"Dạ THACO AUTO chào tạm biệt Anh/Chị. Chúc Anh/Chị một ngày tốt lành! Khi nào cần thêm thông tin gì về xe, Anh/Chị cứ nhắn lại cho em nhé.\",\n    \"Dạ vâng, hẹn gặp lại Anh/Chị ạ! Chúc Anh/Chị sức khoẻ và thành công.\",\n    \"Dạ tạm biệt Anh/Chị. Nếu cần tư vấn thêm về xe THACO AUTO, em luôn sẵn sàng hỗ trợ 24/7 ở đây ạ!\"\n  ],\n  \n  // Nhóm CẢM ƠN\n  thanks: [\n    \"Dạ không có gì ạ! Rất vui vì đã hỗ trợ được thông tin cho Anh/Chị. Anh/Chị còn cần em tư vấn thêm dòng xe nào khác không ạ?\",\n    \"Dạ vâng, niềm vui của em là được hỗ trợ Anh/Chị ạ. Nếu cần xem thêm xe nào, Anh/Chị cứ bảo em nhé!\",\n    \"Dạ em cảm ơn Anh/Chị đã quan tâm đến THACO AUTO. Chúc Anh/Chị sớm chọn được chiếc xe ưng ý ạ!\"\n  ],\n  \n  // Nhóm HỎI DANH TÍNH\n  identity: [\n    \"Dạ em là Trợ lý tư vấn ảo của THACO AUTO. Em được lập trình để hỗ trợ Anh/Chị tìm hiểu thông số, xem giá lăn bánh các dòng xe (Kia, Mazda, Peugeot, BMW...) và tìm kiếm showroom ạ.\",\n    \"Dạ em là chatbot tư vấn trực tuyến của hệ thống THACO AUTO ạ. Em có thể trả lời nhanh các câu hỏi về xe, giá cả và đặt lịch lái thử giúp Anh/Chị.\",\n    \"Dạ em là AI hỗ trợ tư vấn xe của THACO. Dù là AI nhưng em đã được cung cấp đầy đủ dữ liệu nội bộ chuẩn xác nhất để hỗ trợ Anh/Chị ạ!\"\n  ],\n  \n  // Nhóm CHÀO HỎI (Mặc định)\n  hello: [\n    \"Dạ em chào Anh/Chị ạ. Em là trợ lý tư vấn ảo của THACO AUTO. Em có thể hỗ trợ Anh/Chị thông tin về các dòng xe du lịch cũng như xe tải/bus ạ.\",\n    \"Dạ chào Anh/Chị! Em là tư vấn viên THACO AUTO. Anh/Chị đang quan tâm đến dòng xe nào hay cần hỗ trợ thông tin gì ạ?\",\n    \"Dạ xin chào Anh/Chị! Anh/Chị cần em hỗ trợ báo giá lăn bánh hay xem thông số của mẫu xe nào ạ?\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu trong mảng\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU\nif (userMsg.match(/(tạm biệt|bye|chào nhé|hẹn gặp lại|ngủ ngon)/)) {\n  reply = pickRandom(replyPool.goodbye);\n} \nelse if (userMsg.match(/(cảm ơn|cám ơn|thank|tks|thanks)/)) {\n  reply = pickRandom(replyPool.thanks);\n} \nelse if (userMsg.match(/(bạn là ai|mày là ai|là bot|bot à|ai tư vấn|tên gì)/)) {\n  reply = pickRandom(replyPool.identity);\n} \nelse {\n  reply = pickRandom(replyPool.hello); // Nếu không có từ khóa trên thì lấy mặc định là lời chào\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];"
+                "jsCode": "// Lấy câu chat của người dùng (chuyển thành chữ thường để dễ xét từ khóa)\nconst userMsg = ($('Webhook').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI (Bạn có thể phẩy và thêm vô số câu mới vào từng mảng [ ])\nconst replyPool = {\n  \n  // Nhóm TẠM BIỆT\n  goodbye: [\n    \"Dạ THACO AUTO chào tạm biệt Anh/Chị. Chúc Anh/Chị một ngày tốt lành! Khi nào cần thêm thông tin gì về xe, Anh/Chị cứ nhắn lại cho em nhé.\",\n    \"Dạ vâng, hẹn gặp lại Anh/Chị ạ! Chúc Anh/Chị sức khoẻ và thành công.\",\n    \"Dạ tạm biệt Anh/Chị. Nếu cần tư vấn thêm về xe THACO AUTO, em luôn sẵn sàng hỗ trợ 24/7 ở đây ạ!\"\n  ],\n  \n  // Nhóm CẢM ƠN\n  thanks: [\n    \"Dạ không có gì ạ! Rất vui vì đã hỗ trợ được thông tin cho Anh/Chị. Anh/Chị còn cần em tư vấn thêm dòng xe nào khác không ạ?\",\n    \"Dạ vâng, niềm vui của em là được hỗ trợ Anh/Chị ạ. Nếu cần xem thêm xe nào, Anh/Chị cứ bảo em nhé!\",\n    \"Dạ em cảm ơn Anh/Chị đã quan tâm đến THACO AUTO. Chúc Anh/Chị sớm chọn được chiếc xe ưng ý ạ!\"\n  ],\n  \n  // Nhóm HỎI DANH TÍNH\n  identity: [\n    \"Dạ em là Trợ lý tư vấn ảo của THACO AUTO. Em được lập trình để hỗ trợ Anh/Chị tìm hiểu thông số, xem giá lăn bánh các dòng xe (Kia, Mazda, Peugeot, BMW...) và tìm kiếm showroom ạ.\",\n    \"Dạ em là chatbot tư vấn trực tuyến của hệ thống THACO AUTO ạ. Em có thể trả lời nhanh các câu hỏi về xe, giá cả và đặt lịch lái thử giúp Anh/Chị.\",\n    \"Dạ em là AI hỗ trợ tư vấn xe của THACO. Dù là AI nhưng em đã được cung cấp đầy đủ dữ liệu nội bộ chuẩn xác nhất để hỗ trợ Anh/Chị ạ!\"\n  ],\n  \n  // Nhóm CHÀO HỎI (Mặc định)\n  hello: [\n    \"Dạ em chào Anh/Chị ạ. Em là trợ lý tư vấn ảo của THACO AUTO. Em có thể hỗ trợ Anh/Chị thông tin về các dòng xe du lịch cũng như xe tải/bus ạ.\",\n    \"Dạ chào Anh/Chị! Em là tư vấn viên THACO AUTO. Anh/Chị đang quan tâm đến dòng xe nào hay cần hỗ trợ thông tin gì ạ?\",\n    \"Dạ xin chào Anh/Chị! Anh/Chị cần em hỗ trợ báo giá lăn bánh hay xem thông số của mẫu xe nào ạ?\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu trong mảng\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU\nif (userMsg.match(/(tạm biệt|bye|chào nhé|hẹn gặp lại|ngủ ngon)/)) {\n  reply = pickRandom(replyPool.goodbye);\n} \nelse if (userMsg.match(/(cảm ơn|cám ơn|thank|tks|thanks)/)) {\n  reply = pickRandom(replyPool.thanks);\n} \nelse if (userMsg.match(/(bạn là ai|mày là ai|là bot|bot à|ai tư vấn|tên gì)/)) {\n  reply = pickRandom(replyPool.identity);\n} \nelse {\n  reply = pickRandom(replyPool.hello); // Nếu không có từ khóa trên thì lấy mặc định là lời chào\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                0,
-                0
+                -528,
+                -96
             ],
-            "id": "92cbb9a5-b73a-46a2-9b45-336d36ff5113",
+            "id": "c41f4ac4-5d7f-44e7-b354-5a4f538dc45c",
             "name": "reply_greeting"
         },
         {
             "parameters": {
-                "jsCode": "// Lấy câu chat của người dùng để xét từ khóa\nconst userMsg = ($('When chat message received').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI CHO CÁC TRƯỜNG HỢP NHẠY CẢM\nconst replyPool = {\n  \n  // Nhóm TỤC TĨU, CHỬI THỀ, XÚC PHẠM\n  profanity: [\n    \"Dạ mong Anh/Chị thông cảm, em là trợ lý tư vấn xe của THACO AUTO nên xin phép từ chối phản hồi các ngôn từ chưa phù hợp ạ.\",\n    \"Dạ, THACO AUTO luôn mong muốn hỗ trợ Anh/Chị tốt nhất. Mong Anh/Chị giữ ngôn từ chuẩn mực để em có thể tiếp tục tư vấn ạ.\",\n    \"Dạ xin lỗi Anh/Chị, hệ thống của em không thể xử lý các câu hỏi chứa từ ngữ nhạy cảm hoặc thiếu lịch sự ạ.\"\n  ],\n  \n  // Nhóm CHÍNH TRỊ, TÔN GIÁO, XÃ HỘI\n  politics: [\n    \"Dạ em là trợ lý chuyên biệt về lĩnh vực ô tô của THACO AUTO, nên em xin phép không thảo luận về các chủ đề chính trị, tôn giáo hay các vấn đề xã hội ạ.\",\n    \"Dạ nội dung này nằm ngoài phạm vi hiểu biết của em. Em chỉ có thể tư vấn các thông tin liên quan đến xe hơi thôi ạ.\",\n    \"Dạ rất xin lỗi, nguyên tắc hoạt động của em là không trao đổi về các chủ đề ngoài ngành ô tô và dịch vụ của THACO AUTO ạ.\"\n  ],\n  \n  // MẶC ĐỊNH (Router đẩy sang SAFETY_GUARD nhưng không khớp các từ khóa cụ thể ở trên)\n  default: [\n    \"Dạ xin lỗi Anh/Chị, nội dung này vi phạm nguyên tắc hỗ trợ của hệ thống nên em xin phép không phản hồi ạ.\",\n    \"Dạ em không được phép trao đổi về chủ đề này. Nếu Anh/Chị có nhu cầu tìm hiểu thông tin về xe, em luôn sẵn lòng hỗ trợ ạ!\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU THEO TỪ KHÓA\n// 1. Check nhóm chửi thề/xúc phạm (Bạn có thể bổ sung thêm từ vào trong ngoặc)\nif (userMsg.match(/(đụ|đĩ|lồn|cặc|chó|ngu|cút|địt|điên|mẹ mày)/)) {\n  reply = pickRandom(replyPool.profanity);\n} \n// 2. Check nhóm chính trị/nhạy cảm\nelse if (userMsg.match(/(chính trị|đảng|nhà nước|tôn giáo|phản động|biểu tình|chiến tranh)/)) {\n  reply = pickRandom(replyPool.politics);\n} \n// 3. Fallback mặc định\nelse {\n  reply = pickRandom(replyPool.default);\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];\n"
+                "jsCode": "// Lấy câu chat của người dùng để xét từ khóa\nconst userMsg = ($('Webhook').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI CHO CÁC TRƯỜNG HỢP NHẠY CẢM\nconst replyPool = {\n  \n  // Nhóm TỤC TĨU, CHỬI THỀ, XÚC PHẠM\n  profanity: [\n    \"Dạ mong Anh/Chị thông cảm, em là trợ lý tư vấn xe của THACO AUTO nên xin phép từ chối phản hồi các ngôn từ chưa phù hợp ạ.\",\n    \"Dạ, THACO AUTO luôn mong muốn hỗ trợ Anh/Chị tốt nhất. Mong Anh/Chị giữ ngôn từ chuẩn mực để em có thể tiếp tục tư vấn ạ.\",\n    \"Dạ xin lỗi Anh/Chị, hệ thống của em không thể xử lý các câu hỏi chứa từ ngữ nhạy cảm hoặc thiếu lịch sự ạ.\"\n  ],\n  \n  // Nhóm CHÍNH TRỊ, TÔN GIÁO, XÃ HỘI\n  politics: [\n    \"Dạ em là trợ lý chuyên biệt về lĩnh vực ô tô của THACO AUTO, nên em xin phép không thảo luận về các chủ đề chính trị, tôn giáo hay các vấn đề xã hội ạ.\",\n    \"Dạ nội dung này nằm ngoài phạm vi hiểu biết của em. Em chỉ có thể tư vấn các thông tin liên quan đến xe hơi thôi ạ.\",\n    \"Dạ rất xin lỗi, nguyên tắc hoạt động của em là không trao đổi về các chủ đề ngoài ngành ô tô và dịch vụ của THACO AUTO ạ.\"\n  ],\n  \n  // MẶC ĐỊNH (Router đẩy sang SAFETY_GUARD nhưng không khớp các từ khóa cụ thể ở trên)\n  default: [\n    \"Dạ xin lỗi Anh/Chị, nội dung này vi phạm nguyên tắc hỗ trợ của hệ thống nên em xin phép không phản hồi ạ.\",\n    \"Dạ em không được phép trao đổi về chủ đề này. Nếu Anh/Chị có nhu cầu tìm hiểu thông tin về xe, em luôn sẵn lòng hỗ trợ ạ!\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU THEO TỪ KHÓA\n// 1. Check nhóm chửi thề/xúc phạm (Bạn có thể bổ sung thêm từ vào trong ngoặc)\nif (userMsg.match(/(đụ|đĩ|lồn|cặc|chó|ngu|cút|địt|điên|mẹ mày)/)) {\n  reply = pickRandom(replyPool.profanity);\n} \n// 2. Check nhóm chính trị/nhạy cảm\nelse if (userMsg.match(/(chính trị|đảng|nhà nước|tôn giáo|phản động|biểu tình|chiến tranh)/)) {\n  reply = pickRandom(replyPool.politics);\n} \n// 3. Fallback mặc định\nelse {\n  reply = pickRandom(replyPool.default);\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                0,
-                240
+                -528,
+                144
             ],
-            "id": "2c228524-8de0-4e8a-afd0-7b473cab0061",
+            "id": "ce242554-495e-4c08-806c-3bab345c7473",
             "name": "safety_guard_reply"
         },
         {
             "parameters": {
-                "jsCode": "// Lấy câu chat của người dùng\nconst userMsg = ($('When chat message received').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI XỬ LÝ KHIẾU NẠI\nconst replyPool = {\n  \n  // Nhóm phàn nàn về THÁI ĐỘ NHÂN VIÊN\n  attitude: [\n    \"Dạ THACO AUTO thành thật xin lỗi nếu thái độ phục vụ của nhân viên làm Anh/Chị phiền lòng. Xin Anh/Chị vui lòng để lại số điện thoại hoặc gọi ngay Hotline CSKH 1900 56 5499 để bộ phận quản lý tiếp nhận và chấn chỉnh ngay lập tức ạ.\",\n    \"Dạ em rất tiếc về trải nghiệm không vui của Anh/Chị. Để xử lý triệt để vấn đề về thái độ phục vụ, Anh/Chị vui lòng cung cấp số điện thoại hoặc liên hệ Hotline 1900 56 5499 để quản lý chi nhánh trực tiếp giải quyết giúp em nhé!\"\n  ],\n  \n  // Nhóm phàn nàn về SẢN PHẨM / CHẤT LƯỢNG DỊCH VỤ (xe lỗi, sửa lâu...)\n  service_product: [\n    \"Dạ THACO AUTO rất xin lỗi vì sự cố Anh/Chị đang gặp phải với chiếc xe/dịch vụ của mình. Để được hỗ trợ kỹ thuật và giải quyết gấp, xin Anh/Chị vui lòng để lại số điện thoại hoặc gọi Hotline CSKH 1900 56 5499 ạ.\",\n    \"Dạ em đã ghi nhận phản ánh của Anh/Chị về chất lượng dịch vụ. Anh/Chị vui lòng gọi Hotline 1900 56 5499 hoặc để lại SĐT tại đây để chuyên viên CSKH liên hệ xử lý ngay cho mình ạ.\"\n  ],\n  \n  // MẶC ĐỊNH (Không xác định rõ là lỗi gì nhưng khách đang khó chịu)\n  default: [\n    \"Dạ THACO AUTO chân thành xin lỗi vì trải nghiệm chưa tốt của Anh/Chị. Xin Anh/Chị vui lòng để lại số điện thoại, hoặc liên hệ trực tiếp Hotline CSKH 1900 56 5499 để bộ phận chuyên trách tiếp nhận và giải quyết thỏa đáng ạ.\",\n    \"Dạ em rất tiếc về vấn đề Anh/Chị đang gặp phải. Bộ phận Chăm sóc khách hàng của THACO AUTO (Hotline 1900 56 5499) luôn sẵn sàng lắng nghe và giải quyết sự cố, Anh/Chị có thể để lại SĐT để em báo nhân viên gọi lại hỗ trợ ngay ạ.\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU THEO TỪ KHÓA\n// 1. Nhóm thái độ nhân viên\nif (userMsg.match(/(thái độ|nhân viên|bảo vệ|tư vấn|sale|phục vụ|chảnh|coi thường|bỏ bê)/)) {\n  reply = pickRandom(replyPool.attitude);\n} \n// 2. Nhóm xe lỗi / dịch vụ xưởng chậm chạp\nelse if (userMsg.match(/(hư|lỗi|hỏng|bảo hành|sửa|dịch vụ tệ|chậm|chất lượng|kêu|ồn|bảo dưỡng)/)) {\n  reply = pickRandom(replyPool.service_product);\n} \n// 3. Fallback mặc định\nelse {\n  reply = pickRandom(replyPool.default);\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];\n"
+                "jsCode": "// Lấy câu chat của người dùng\nconst userMsg = ($('Webhook').first().json.chatInput || \"\").toLowerCase();\n\n// KHO CÂU TRẢ LỜI XỬ LÝ KHIẾU NẠI\nconst replyPool = {\n  \n  // Nhóm phàn nàn về THÁI ĐỘ NHÂN VIÊN\n  attitude: [\n    \"Dạ THACO AUTO thành thật xin lỗi nếu thái độ phục vụ của nhân viên làm Anh/Chị phiền lòng. Xin Anh/Chị vui lòng để lại số điện thoại hoặc gọi ngay Hotline CSKH 1900 56 5499 để bộ phận quản lý tiếp nhận và chấn chỉnh ngay lập tức ạ.\",\n    \"Dạ em rất tiếc về trải nghiệm không vui của Anh/Chị. Để xử lý triệt để vấn đề về thái độ phục vụ, Anh/Chị vui lòng cung cấp số điện thoại hoặc liên hệ Hotline 1900 56 5499 để quản lý chi nhánh trực tiếp giải quyết giúp em nhé!\"\n  ],\n  \n  // Nhóm phàn nàn về SẢN PHẨM / CHẤT LƯỢNG DỊCH VỤ (xe lỗi, sửa lâu...)\n  service_product: [\n    \"Dạ THACO AUTO rất xin lỗi vì sự cố Anh/Chị đang gặp phải với chiếc xe/dịch vụ của mình. Để được hỗ trợ kỹ thuật và giải quyết gấp, xin Anh/Chị vui lòng để lại số điện thoại hoặc gọi Hotline CSKH 1900 56 5499 ạ.\",\n    \"Dạ em đã ghi nhận phản ánh của Anh/Chị về chất lượng dịch vụ. Anh/Chị vui lòng gọi Hotline 1900 56 5499 hoặc để lại SĐT tại đây để chuyên viên CSKH liên hệ xử lý ngay cho mình ạ.\"\n  ],\n  \n  // MẶC ĐỊNH (Không xác định rõ là lỗi gì nhưng khách đang khó chịu)\n  default: [\n    \"Dạ THACO AUTO chân thành xin lỗi vì trải nghiệm chưa tốt của Anh/Chị. Xin Anh/Chị vui lòng để lại số điện thoại, hoặc liên hệ trực tiếp Hotline CSKH 1900 56 5499 để bộ phận chuyên trách tiếp nhận và giải quyết thỏa đáng ạ.\",\n    \"Dạ em rất tiếc về vấn đề Anh/Chị đang gặp phải. Bộ phận Chăm sóc khách hàng của THACO AUTO (Hotline 1900 56 5499) luôn sẵn sàng lắng nghe và giải quyết sự cố, Anh/Chị có thể để lại SĐT để em báo nhân viên gọi lại hỗ trợ ngay ạ.\"\n  ]\n};\n\n// Hàm chọn ngẫu nhiên 1 câu\nfunction pickRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet reply = \"\";\n\n// PHÂN LOẠI VÀ CHỌN CÂU THEO TỪ KHÓA\n// 1. Nhóm thái độ nhân viên\nif (userMsg.match(/(thái độ|nhân viên|bảo vệ|tư vấn|sale|phục vụ|chảnh|coi thường|bỏ bê)/)) {\n  reply = pickRandom(replyPool.attitude);\n} \n// 2. Nhóm xe lỗi / dịch vụ xưởng chậm chạp\nelse if (userMsg.match(/(hư|lỗi|hỏng|bảo hành|sửa|dịch vụ tệ|chậm|chất lượng|kêu|ồn|bảo dưỡng)/)) {\n  reply = pickRandom(replyPool.service_product);\n} \n// 3. Fallback mặc định\nelse {\n  reply = pickRandom(replyPool.default);\n}\n\n// Trả kết quả ra luồng\nreturn [{ json: { output: reply } }];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                1024
+                -592,
+                928
             ],
-            "id": "e51e9b77-024f-48c5-8576-9e2534067528",
+            "id": "7dde46b4-d59e-447d-b1d6-0c5c78cbf6e1",
             "name": "complaint_reply"
         },
         {
             "parameters": {
-                "jsCode": "// HANDOFF: THU CŨ ĐỔI MỚI\n// Paste vào n8n node Code mới sau Switch.TRADE_IN\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst model_slug = (d.model_slug || \"\").toLowerCase().trim();\n\nlet bundle = '';\nconst files_used = ['wiki/services/trade-in.md'];\n\n// Fetch file knowledge gốc\ntry {\n  const data = await this.helpers.httpRequest({\n    method: 'GET',\n    url: base + 'wiki/services/trade-in.md',\n    returnFullResponse: false\n  });\n  const raw = typeof data === 'string' ? data : JSON.stringify(data);\n  const cleaned = raw.replace(/^---[\\s\\S]*?---\\s*/m, '').trim();\n  bundle += `=== FILE: wiki/services/trade-in.md ===\\n${cleaned}\\n\\n`;\n} catch (e) { /* skip 404 */ }\n\nbundle += `=== HƯỚNG DẪN AI ===\nXe khách muốn lên đời (nếu có): ${model_slug || '(chưa khai)'}\n\n- Xác nhận đúng dịch vụ thu cũ đổi mới của THACO AUTO.\n- ĐÍNH KÈM link: https://usedcars.thacoauto.vn\n- Đề xuất 3 cách: (1) website định giá online, (2) hotline 1900 56 5499, (3) tới showroom.\n- KHÔNG tự định giá xe cũ — chỉ điều hướng.\n- Nếu khách có model muốn lên đời → gợi ý xem trang xe đó song song.`;\n\nreturn [{\n  json: {\n    ...d,\n    mode: 'trade_in',\n    files_used,\n    context_bundle: bundle,\n    bundle_size: bundle.length\n  }\n}];\n"
+                "jsCode": "// HANDOFF: THU CŨ ĐỔI MỚI\n// Paste vào n8n node Code mới sau Switch.TRADE_IN\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst model_slug = (d.model_slug || \"\").toLowerCase().trim();\n\nlet bundle = '';\nconst files_used = ['wiki/services/trade-in.md'];\n\n// Fetch file knowledge gốc\ntry {\n  const data = await this.helpers.httpRequest({\n    method: 'GET',\n    url: base + 'wiki/services/trade-in.md',\n    returnFullResponse: false\n  });\n  const raw = typeof data === 'string' ? data : JSON.stringify(data);\n  const cleaned = raw.replace(/^---[\\s\\S]*?---\\s*/m, '').trim();\n  bundle += `=== FILE: wiki/services/trade-in.md ===\\n${cleaned}\\n\\n`;\n} catch (e) { /* skip 404 */ }\n\nbundle += `=== HƯỚNG DẪN AI ===\nXe khách muốn lên đời (nếu có): ${model_slug || '(chưa khai)'}\n\n- Xác nhận đúng dịch vụ thu cũ đổi mới của THACO AUTO.\n- ĐÍNH KÈM link: https://usedcars.thacoauto.vn\n- Đề xuất 3 cách: (1) website định giá online, (2) hotline 1900 545 591, (3) tới showroom.\n- KHÔNG tự định giá xe cũ — chỉ điều hướng.\n- Nếu khách có model muốn lên đời → gợi ý xem trang xe đó song song.`;\n\nreturn [{\n  json: {\n    ...d,\n    mode: 'trade_in',\n    files_used,\n    context_bundle: bundle,\n    bundle_size: bundle.length\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                1600
+                -592,
+                1504
             ],
-            "id": "9c9e4244-2fcc-4769-8914-bb444b8dcdd1",
+            "id": "e66d6a61-f95b-487a-9b67-46507393ac79",
             "name": "trade_in_code"
         },
         {
@@ -1526,10 +1497,10 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                1760
+                -592,
+                1664
             ],
-            "id": "c17d63b3-9e2c-4ed3-8fcb-fbaa24f8bfa8",
+            "id": "e69bde0c-6122-4bce-a467-a398e464b86f",
             "name": "brand_info_logic"
         },
         {
@@ -1539,40 +1510,40 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                1904
+                -384,
+                1808
             ],
-            "id": "140401d8-8bd5-404d-9d0b-e7fee3508761",
+            "id": "f8404bec-76d8-44ae-94fc-3d70f81f0d15",
             "name": "recruitment_code"
         },
         {
             "parameters": {
-                "jsCode": "// URGENT CONSULT — cho hotline + xin SĐT khách\n// Paste vào n8n node Code mới sau Switch.URGENT_CONSULT\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst brand = (d.brand || \"\").toLowerCase().trim();\nconst model_slug = (d.model_slug || \"\").toLowerCase().trim();\n\nlet bundle = '';\nconst files_used = ['wiki/services/urgent-consult.md'];\n\ntry {\n  const data = await this.helpers.httpRequest({\n    method: 'GET',\n    url: base + 'wiki/services/urgent-consult.md',\n    returnFullResponse: false\n  });\n  const raw = typeof data === 'string' ? data : JSON.stringify(data);\n  const cleaned = raw.replace(/^---[\\s\\S]*?---\\s*/m, '').trim();\n  bundle += `=== FILE: wiki/services/urgent-consult.md ===\\n${cleaned}\\n\\n`;\n} catch (e) { /* skip 404 */ }\n\nbundle += `=== KHÁCH CẦN TƯ VẤN NGAY ===\nBrand quan tâm: ${brand || '(chưa khai)'}\nModel quan tâm: ${model_slug || '(chưa khai)'}\n\n=== HƯỚNG DẪN AI (PHẢI làm đủ 3 việc) ===\n1. Cho ngay hotline: **1900 56 5499** (8:00 - 21:00 hàng ngày).\n2. ĐỒNG THỜI xin SĐT khách + xe quan tâm + tỉnh/thành để chuyên viên gọi lại trong 15 phút.\n3. Tone gấp + cam kết: \"chuyên viên Sale sẽ liên hệ trong 15 phút\".\n\nMẫu phản hồi:\n\"Dạ Anh/Chị gọi ngay hotline **1900 56 5499** để được tư vấn ạ 📞\nHoặc Anh/Chị cho em xin **số điện thoại + xe đang quan tâm**, chuyên viên Sale sẽ gọi lại trong 15 phút.\"`;\n\n// Nếu khách đã cho SĐT trong tin nhắn → set cờ capture lead\nconst has_phone = /(\\b0\\d{9}\\b|\\b84\\d{9}\\b)/.test(d.chatInput || '');\n\nreturn [{\n  json: {\n    ...d,\n    mode: 'urgent_consult',\n    files_used,\n    should_capture_lead: has_phone,\n    context_bundle: bundle,\n    bundle_size: bundle.length\n  }\n}];\n"
+                "jsCode": "// URGENT CONSULT — cho hotline + xin SĐT khách\n// Paste vào n8n node Code mới sau Switch.URGENT_CONSULT\nconst d = $input.first().json;\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\n\nconst brand = (d.brand || \"\").toLowerCase().trim();\nconst model_slug = (d.model_slug || \"\").toLowerCase().trim();\n\nlet bundle = '';\nconst files_used = ['wiki/services/urgent-consult.md'];\n\ntry {\n  const data = await this.helpers.httpRequest({\n    method: 'GET',\n    url: base + 'wiki/services/urgent-consult.md',\n    returnFullResponse: false\n  });\n  const raw = typeof data === 'string' ? data : JSON.stringify(data);\n  const cleaned = raw.replace(/^---[\\s\\S]*?---\\s*/m, '').trim();\n  bundle += `=== FILE: wiki/services/urgent-consult.md ===\\n${cleaned}\\n\\n`;\n} catch (e) { /* skip 404 */ }\n\nbundle += `=== KHÁCH CẦN TƯ VẤN NGAY ===\nBrand quan tâm: ${brand || '(chưa khai)'}\nModel quan tâm: ${model_slug || '(chưa khai)'}\n\n=== HƯỚNG DẪN AI (PHẢI làm đủ 3 việc) ===\n1. Cho ngay hotline: **1900 545 591** (8:00 - 21:00 hàng ngày).\n2. ĐỒNG THỜI xin SĐT khách + xe quan tâm + tỉnh/thành để chuyên viên gọi lại trong 15 phút.\n3. Tone gấp + cam kết: \"chuyên viên Sale sẽ liên hệ trong 15 phút\".\n\nMẫu phản hồi:\n\"Dạ Anh/Chị gọi ngay hotline **1900 545 591** để được tư vấn ạ 📞\nHoặc Anh/Chị cho em xin **số điện thoại + xe đang quan tâm**, chuyên viên Sale sẽ gọi lại trong 15 phút.\"`;\n\n// Nếu khách đã cho SĐT trong tin nhắn → set cờ capture lead\nconst has_phone = /(\\b0\\d{9}\\b|\\b84\\d{9}\\b)/.test(d.chatInput || '');\n\nreturn [{\n  json: {\n    ...d,\n    mode: 'urgent_consult',\n    files_used,\n    should_capture_lead: has_phone,\n    context_bundle: bundle,\n    bundle_size: bundle.length\n  }\n}];\n"
             },
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -64,
-                2064
+                -384,
+                1968
             ],
-            "id": "9fa14fff-d984-41fb-ab2a-1a7741f03820",
+            "id": "593504f3-c895-499f-8d5a-b93aa361acbe",
             "name": "urgent_consult_code"
         },
         {
             "parameters": {
                 "promptType": "define",
-                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được chào' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại' }}\n\n### [LỊCH SỬ HỘI THOẠI 10 TURN GẦN NHẤT]\n{{ ($('parse_session').first().json._prev.history || []).map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand || '—'}, model=${h.model || '—'}`).join('\\n') || '(chưa có lịch sử — đây có thể là câu hỏi đầu tiên cụt)' }}\n\n### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received').item.json.chatInput }}\"\n\n### [MODE]\n{{ $json.mode }}\n\n### [CONTEXT BUNDLE]\n{{ $json.context_bundle }}",
+                "text": "=### [TRẠNG THÁI HỘI THOẠI]\n{{ ($('parse_session').first().json._prev.history || []).length === 0 ? '👋 TURN ĐẦU — được chào' : '⚠️ TURN TIẾP THEO — TUYỆT ĐỐI KHÔNG chào lại' }}\n\n### [LỊCH SỬ HỘI THOẠI 10 TURN GẦN NHẤT]\n{{ ($('parse_session').first().json._prev.history || []).map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand || '—'}, model=${h.model || '—'}`).join('\\n') || '(chưa có lịch sử — đây có thể là câu hỏi đầu tiên cụt)' }}\n\n### [TIN NHẮN KHÁCH]\n\"{{ $('When chat message received3').item.json.chatInput }}\"\n\n### [MODE]\n{{ $json.mode }}\n\n### [CONTEXT BUNDLE]\n{{ $json.context_bundle }}",
                 "options": {
-                    "systemMessage": "=## Vai trò: AI tư vấn THACO AUTO — chế độ HANDOFF / KNOWLEDGE LOOKUP.\n\n## Nhiệm vụ\nDựa hoàn toàn vào CONTEXT BUNDLE để trả lời ngắn gọn, đúng tone theo MODE.\n\n## Tone & Format theo MODE\n\n### MODE = trade_in (Thu cũ đổi mới)\n- Tone: nhiệt tình, gợi mở.\n- BẮT BUỘC: kèm link https://usedcars.thacoauto.vn nguyên văn.\n- Đề xuất 3 cách tiếp cận: web / hotline 1900 545 591 / showroom.\n- KHÔNG tự định giá xe cũ.\n- Độ dài: 4-7 dòng + emoji 🚗 hoặc 💰.\n\n### MODE = brand_info (Hỏi thông tin thương hiệu)\n- Tone: chuyên nghiệp, ngắn gọn.\n- Trả lời ĐÚNG câu hỏi của khách (nước nào / web / fanpage).\n- URL phải đưa NGUYÊN VĂN từ metadata, không rút gọn.\n- Độ dài: 2-5 dòng.\n\n### MODE = recruitment (Tuyển dụng)\n- Tone: thân thiện, khích lệ.\n- BẮT BUỘC: kèm link https://tuyendung.thaco.com.vn/tieng-viet\n- Liệt kê các nhóm vị trí (công nhân, chuyên viên, kỹ sư, quản lý, lãnh đạo).\n- Nhắc: tuyển cho TOÀN TẬP ĐOÀN (THACO AUTO, INDUSTRIES, AGRI, THADICO, THISO, THILOGI).\n- Độ dài: 5-8 dòng + emoji 💼 hoặc 📩.\n\n### MODE = urgent_consult (Cần tư vấn ngay)\n- Tone: gấp, cam kết.\n- BẮT BUỘC làm đủ 2 việc:\n  1. Cho hotline **1900 545 591**.\n  2. Xin SĐT khách + xe quan tâm để chuyên viên gọi lại trong 15 phút.\n- Độ dài: 3-5 dòng + emoji 📞.\n\n## Quy tắc chung\n- Xưng \"em\", gọi khách \"Anh/Chị\".\n- KHÔNG bịa thông tin ngoài CONTEXT BUNDLE.\n- KHÔNG trả lời câu hỏi ngoài phạm vi (vd hỏi giá xe → chỉ trả \"đây là dịch vụ X, để tư vấn xe mời Anh/Chị hỏi tên xe cụ thể\").\n- KHÔNG đính kèm thông tin của intent khác (vd MODE=trade_in thì không nói về tuyển dụng)."
+                    "systemMessage": "=## Vai trò: AI tư vấn THACO AUTO — chế độ HANDOFF / KNOWLEDGE LOOKUP.\n\n## Nhiệm vụ\nDựa hoàn toàn vào CONTEXT BUNDLE để trả lời ngắn gọn, đúng tone theo MODE.\n\n## Tone & Format theo MODE\n\n### MODE = trade_in (Thu cũ đổi mới)\n- Tone: nhiệt tình, gợi mở.\n- BẮT BUỘC: kèm link https://usedcars.thacoauto.vn nguyên văn.\n- Đề xuất 3 cách tiếp cận: web / hotline 1900 545 591 / showroom.\n- KHÔNG tự định giá xe cũ.\n- Độ dài: 4-7 dòng + emoji 🚗 hoặc 💰.\n\n### MODE = brand_info (Hỏi thông tin thương hiệu)\n- Tone: chuyên nghiệp, ngắn gọn.\n- Trả lời ĐÚNG câu hỏi của khách (nước nào / web / fanpage).\n- URL phải đưa NGUYÊN VĂN từ metadata, không rút gọn.\n- Độ dài: 2-5 dòng.\n\n### MODE = recruitment (Tuyển dụng)\n- Tone: thân thiện, khích lệ.\n- BẮT BUỘC: kèm link https://tuyendung.thaco.com.vn/tieng-viet\n- Liệt kê các nhóm vị trí (công nhân, chuyên viên, kỹ sư, quản lý, lãnh đạo).\n- Xưng hô: Tập đoàn thành viên THACO AUTO thuộc THACO Groups\n- Độ dài: 5-8 dòng + emoji 💼 hoặc 📩.\n\n### MODE = urgent_consult (Cần tư vấn ngay)\n- Tone: gấp, cam kết.\n- BẮT BUỘC làm đủ 2 việc:\n  1. Cho hotline **1900 545 591**.\n  2. Xin SĐT khách + xe quan tâm để chuyên viên gọi lại trong 15 phút.\n- Độ dài: 3-5 dòng + emoji 📞.\n\n## Quy tắc chung\n- Xưng \"em\", gọi khách \"Anh/Chị\".\n- KHÔNG bịa thông tin ngoài CONTEXT BUNDLE.\n- KHÔNG trả lời câu hỏi ngoài phạm vi (vd hỏi giá xe → chỉ trả \"đây là dịch vụ X, để tư vấn xe mời Anh/Chị hỏi tên xe cụ thể\").\n- KHÔNG đính kèm thông tin của intent khác (vd MODE=trade_in thì không nói về tuyển dụng)."
                 }
             },
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 3.1,
             "position": [
-                560,
-                1776
+                240,
+                1680
             ],
-            "id": "2f92e34b-e657-4925-a998-9178fc809616",
+            "id": "6519861c-61ed-415f-ba0e-b53565119807",
             "name": "AI Agent-Hand off reply"
         },
         {
@@ -1582,10 +1553,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
             "typeVersion": 1,
             "position": [
-                560,
-                1936
+                240,
+                1840
             ],
-            "id": "162d92e0-f0bc-4839-a22d-38b9bfd5267a",
+            "id": "2be2297d-3abe-4f89-9996-4ee9a20c9ce3",
             "name": "Google Gemini Chat Model7",
             "credentials": {
                 "googlePalmApi": {
@@ -1601,25 +1572,41 @@
             "type": "n8n-nodes-base.code",
             "typeVersion": 2,
             "position": [
-                -80,
-                2224
+                -608,
+                2128
             ],
-            "id": "d26dbd23-70a1-44cb-b430-89b187d270a0",
+            "id": "7a2b019a-10ce-47ae-9b2a-74eddd2b2e1a",
             "name": "company_contact_code"
+        },
+        {
+            "parameters": {
+                "jsCode": "// format_subiz_reply — chuẩn hoá output về JSON Subiz\nconst aiReply = $('capture_reply').first().json.output || '';\n\n// Tách markdown link ảnh nếu có (vd: ![alt](https://...png))\nconst attachments = [];\nconst imgRegex = /https?:\\/\\/[^\\s\\)]+\\.(png|jpg|jpeg|gif|webp)/gi;\nconst matches = [...aiReply.matchAll(imgRegex)];\nfor (const m of matches) {\n  const ext = m[1].toLowerCase().replace('jpg', 'jpeg');\n  attachments.push({\n    type: 'file',\n    mimetype: `image/${ext}`,\n    url: m[0]\n  });\n}\n\n// Loại URL ảnh khỏi text (tránh hiển thị 2 lần) — tuỳ chọn\nconst cleanText = aiReply.trim();\n\n// Tách link non-image thành message thứ 2 (giống demo Subiz pricing)\nconst urlRegex = /(https?:\\/\\/[^\\s]+)/g;\nconst urls = (cleanText.match(urlRegex) || [])\n  .filter(u => !imgRegex.test(u));\n\nconst messages = [\n  {\n    format: 'plaintext',\n    text: cleanText,\n    ...(attachments.length ? { attachments } : {})\n  }\n];\n\n// Nếu muốn tách link ra message riêng (Subiz render preview đẹp hơn):\n// for (const u of urls) {\n//   messages.push({ format: 'plaintext', text: u });\n// }\n\nreturn [{\n  json: {\n    messages\n  }\n}];\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                2288,
+                560
+            ],
+            "id": "93feef47-9385-4ec2-9c96-dc823e57e152",
+            "name": "format_subiz_reply"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+            "typeVersion": 1.4,
+            "position": [
+                -2592,
+                1120
+            ],
+            "id": "a9f24571-1585-4e45-8567-eadd8ddfdfa3",
+            "name": "When chat message received3",
+            "webhookId": "7994ed8f-f13f-41b2-ae84-20d7be611414"
         }
     ],
     "connections": {
-        "When chat message received": {
-            "main": [
-                [
-                    {
-                        "node": "gs_read_session",
-                        "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
         "xu_ly_category": {
             "main": [
                 [
@@ -1809,6 +1796,17 @@
                 ]
             ]
         },
+        "Message a model": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
         "Google Gemini Chat Model1": {
             "ai_languageModel": [
                 [
@@ -1901,7 +1899,7 @@
             "main": [
                 [
                     {
-                        "node": "format_chat_reply",
+                        "node": "format_subiz_reply",
                         "type": "main",
                         "index": 0
                     }
@@ -1936,6 +1934,17 @@
                     {
                         "node": "AI Agent — Disambiguator",
                         "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "reply_out_of_scope": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
                         "index": 0
                     }
                 ]
@@ -2032,11 +2041,33 @@
                 ]
             ]
         },
+        "reply_complete": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
         "gs_update_partial_state": {
             "main": [
                 [
                     {
                         "node": "AI Agent - reply_ask_missing",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Agent - reply_ask_missing": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
                         "type": "main",
                         "index": 0
                     }
@@ -2049,6 +2080,17 @@
                     {
                         "node": "AI Agent - reply_ask_missing",
                         "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "complaint_reply": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
                         "index": 0
                     }
                 ]
@@ -2098,6 +2140,17 @@
                 ]
             ]
         },
+        "AI Agent-Hand off reply": {
+            "main": [
+                [
+                    {
+                        "node": "capture_reply",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
         "Google Gemini Chat Model7": {
             "ai_languageModel": [
                 [
@@ -2119,9 +2172,33 @@
                     }
                 ]
             ]
+        },
+        "format_subiz_reply": {
+            "main": [
+                []
+            ]
+        },
+        "When chat message received3": {
+            "main": [
+                [
+                    {
+                        "node": "gs_read_session",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
         }
     },
-    "pinData": {},
+    "pinData": {
+        "When chat message received3": [
+            {
+                "sessionId": "792090de6fa94173992b96cd7d058164",
+                "action": "sendMessage",
+                "chatInput": "Nhà tôi ở quận 3 thì đến showroom nào gần nhất?"
+            }
+        ]
+    },
     "meta": {
         "instanceId": "07c1c7ec2cda95a2b0ca5f954d25b4243bbf78131f2b02a8a5d44c777d7f6dfd"
     }

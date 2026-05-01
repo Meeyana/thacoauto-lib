@@ -52,7 +52,9 @@
       "Đông Hòa",
       "Đông Hưng Thuận",
       "Đức Nhuận"
-    ]
+    ],
+    "geocoded": 66,
+    "geocoded_unique_addresses": 44
   },
   "province_urls": {
     "ho-chi-minh": "https://thacoautotphcm.vn/showrooms"
@@ -86,7 +88,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/DhDyud8NQ9BJxM4n7",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Sala",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-1-565x375.webp",
+      "lat": 10.7731593,
+      "lon": 106.723831,
+      "geocode_display_name": "Cửa Hàng BMW Motorrad Sala, 12, Mai Chí Thọ, Khu phố 34, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 72806, Việt Nam"
     },
     {
       "id": "mini-sala",
@@ -114,7 +119,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/SW9KWno1Sah4Xkm1A",
       "website": "https://thacoautotphcm.vn/showrooms/MINI Sala",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/thaco-showroom-10-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/thaco-showroom-10-565x375.webp",
+      "lat": 10.7731593,
+      "lon": 106.723831,
+      "geocode_display_name": "Cửa Hàng BMW Motorrad Sala, 12, Mai Chí Thọ, Khu phố 34, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 72806, Việt Nam"
     },
     {
       "id": "bmw-motorrad-sala",
@@ -142,7 +150,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/gd4EayM1qxXG1udw6",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Motorrad Sala",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-22-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-22-565x375.webp",
+      "lat": 10.7731593,
+      "lon": 106.723831,
+      "geocode_display_name": "Cửa Hàng BMW Motorrad Sala, 12, Mai Chí Thọ, Khu phố 34, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 72806, Việt Nam"
     },
     {
       "id": "kia-sala",
@@ -172,7 +183,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/ovi8QJRNWYi9emPF8",
       "website": "https://thacoautotphcm.vn/showrooms/kia-sala",
-      "image": "https://thacoautotphcm.vn/storage/kiasala-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/kiasala-1-565x375.webp",
+      "lat": 10.8025936,
+      "lon": 106.744579,
+      "geocode_display_name": "Đường sắt đô thị số 1 Thành phố Hồ Chí Minh (Phân đoạn Bến Thành - Suối Tiên), Song Hành Võ Nguyên Giáp, Khu phố 6, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 71108, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-sala",
@@ -200,7 +214,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/L9K8jRQktRLD5pE36",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-sala",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-sala-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-sala-565x375.webp",
+      "lat": 10.8025936,
+      "lon": 106.744579,
+      "geocode_display_name": "Đường sắt đô thị số 1 Thành phố Hồ Chí Minh (Phân đoạn Bến Thành - Suối Tiên), Song Hành Võ Nguyên Giáp, Khu phố 6, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 71108, Việt Nam [via fallback]"
     },
     {
       "id": "peugeot-sala",
@@ -232,7 +249,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/TrdBZxdqHEvg86Ev7",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-sala",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/dsc06159-1-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/dsc06159-1-1-565x375.webp",
+      "lat": 10.8025936,
+      "lon": 106.744579,
+      "geocode_display_name": "Đường sắt đô thị số 1 Thành phố Hồ Chí Minh (Phân đoạn Bến Thành - Suối Tiên), Song Hành Võ Nguyên Giáp, Khu phố 6, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 71108, Việt Nam [via fallback]"
     },
     {
       "id": "kia-phu-my-hung",
@@ -262,7 +282,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/7h4xnfWECuj8cGKh6",
       "website": "https://thacoautotphcm.vn/showrooms/KIA Phú Mỹ Hưng",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-pmh-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-pmh-1-565x375.webp",
+      "lat": 10.7411061,
+      "lon": 106.7213432,
+      "geocode_display_name": "Cửa Hàng BMW Phũ Mỹ Hưng, 314, Nguyễn Văn Linh, Khu phố 62, Phường Tân Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 72911, Việt Nam"
     },
     {
       "id": "mazda-phu-my-hung",
@@ -292,7 +315,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/ubL6MHvUAadoXf6GA",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Phú Mỹ Hưng",
-      "image": "https://thacoautotphcm.vn/storage/00-cong-ty-tinh-thanh/thaco-auto-phu-my-hung/img-7202-2-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/00-cong-ty-tinh-thanh/thaco-auto-phu-my-hung/img-7202-2-565x375.webp",
+      "lat": 10.7411061,
+      "lon": 106.7213432,
+      "geocode_display_name": "Cửa Hàng BMW Phũ Mỹ Hưng, 314, Nguyễn Văn Linh, Khu phố 62, Phường Tân Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 72911, Việt Nam"
     },
     {
       "id": "bmw-phu-my-hung",
@@ -322,7 +348,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/UoaY3Np9J4NsBWd56",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Phú Mỹ Hưng",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/bmw-pmh-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/bmw-pmh-565x375.webp",
+      "lat": 10.7411061,
+      "lon": 106.7213432,
+      "geocode_display_name": "Cửa Hàng BMW Phũ Mỹ Hưng, 314, Nguyễn Văn Linh, Khu phố 62, Phường Tân Thuận, Thành phố Hồ Chí Minh, 72911, Việt Nam"
     },
     {
       "id": "peugeot-phu-my-hung",
@@ -352,7 +381,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/yryqdXgtycvF9cTt5",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-phu-my-hung",
-      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm-1/peu-edit-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm-1/peu-edit-565x375.webp",
+      "lat": 10.7450542,
+      "lon": 106.7219504,
+      "geocode_display_name": "Nguyễn Văn Linh, Khu phố 33, Phường Tân Thuận, Thành phố Hồ Chí Minh, 72911, Việt Nam"
     },
     {
       "id": "tai-bus-phu-my-hung",
@@ -390,7 +422,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/rrCNujqYgwTXzuzM6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my-hung",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-pmh-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-pmh-565x375.webp",
+      "lat": 10.7411061,
+      "lon": 106.7213432,
+      "geocode_display_name": "Cửa Hàng BMW Phũ Mỹ Hưng, 314, Nguyễn Văn Linh, Khu phố 62, Phường Tân Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 72911, Việt Nam"
     },
     {
       "id": "kia-tan-son-nhat",
@@ -420,7 +455,10 @@
       "phone_cskh": "(028)36200940",
       "map_url": "https://maps.app.goo.gl/nGgJR2spTBeDrAYi6",
       "website": "https://thacoautotphcm.vn/showrooms/kiatansonnhat",
-      "image": "https://thacoautotphcm.vn/storage/1-30-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/1-30-565x375.webp",
+      "lat": 10.8091194,
+      "lon": 106.6741552,
+      "geocode_display_name": "Hoàng Minh Giám, Phường Đức Nhuận, Thủ Đức, Thành phố Hồ Chí Minh, 71409, Việt Nam"
     },
     {
       "id": "mazda-tan-son-nhat",
@@ -450,7 +488,10 @@
       "phone_cskh": "(028)36200940",
       "map_url": "https://maps.app.goo.gl/cXtnp7dNN3tjzmxJ9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-son-nhat",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tsn-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tsn-565x375.webp",
+      "lat": 10.8091194,
+      "lon": 106.6741552,
+      "geocode_display_name": "Hoàng Minh Giám, Phường Đức Nhuận, Thủ Đức, Thành phố Hồ Chí Minh, 71409, Việt Nam"
     },
     {
       "id": "bmw-nguyen-van-troi",
@@ -478,7 +519,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-nguyen-van-troi",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-4-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-4-565x375.webp",
+      "lat": 10.7964547,
+      "lon": 106.6748301,
+      "geocode_display_name": "Công ty cổ phần Ô tô Trường Hải, 80, Nguyễn Văn Trỗi, Khu phố 4, Phường Phú Nhuận, Thủ Đức, Thành phố Hồ Chí Minh, 72217, Việt Nam"
     },
     {
       "id": "mini-nguyen-van-troi",
@@ -506,7 +550,10 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://miniphunhuan.vn",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-21-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-21-565x375.webp",
+      "lat": 10.7964547,
+      "lon": 106.6748301,
+      "geocode_display_name": "Công ty cổ phần Ô tô Trường Hải, 80, Nguyễn Văn Trỗi, Khu phố 4, Phường Phú Nhuận, Thủ Đức, Thành phố Hồ Chí Minh, 72217, Việt Nam"
     },
     {
       "id": "bmw-motorrad-nguyen-van-troi",
@@ -534,7 +581,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
       "website": "https://thacoautotphcm.vn/",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-30-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-30-565x375.webp",
+      "lat": 10.796762,
+      "lon": 106.673502,
+      "geocode_display_name": "Nguyễn Văn Trỗi, Khu phố 8, Phường Phú Nhuận, Thủ Đức, Thành phố Hồ Chí Minh, 72217, Việt Nam"
     },
     {
       "id": "peugeot-phan-ang-luu",
@@ -566,7 +616,10 @@
       "phone_cskh": "(028)37425566",
       "map_url": "https://maps.app.goo.gl/QAgyGE82kuT4WVLp6",
       "website": "https://www.peugeotphunhuan.vn/",
-      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-1-8-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-1-8-565x375.webp",
+      "lat": 10.8034054,
+      "lon": 106.6877845,
+      "geocode_display_name": "Trường Trung học cơ sở Châu Văn Liêm, 93, Phan Đăng Lưu, Khu phố 23, Phường Cầu Kiệu, Thủ Đức, Thành phố Hồ Chí Minh, 72317, Việt Nam"
     },
     {
       "id": "mazda-truong-chinh",
@@ -594,7 +647,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/vMsPRoHcQMfgudCp9",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Trường Chinh",
-      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+      "lat": 10.8305883,
+      "lon": 106.6229563,
+      "geocode_display_name": "Trường Chinh, Khu phố 27, Phường Đông Hưng Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 71509, Việt Nam [via fallback]"
     },
     {
       "id": "kia-truong-chinh",
@@ -624,7 +680,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/VtHZm7K2hdWou9Rk9",
       "website": "https://thacoautotphcm.vn/showrooms/kia-truong-chinh",
-      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+      "lat": 10.8305883,
+      "lon": 106.6229563,
+      "geocode_display_name": "Trường Chinh, Khu phố 27, Phường Đông Hưng Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 71509, Việt Nam [via fallback]"
     },
     {
       "id": "peugeot-truong-chinh",
@@ -656,7 +715,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/FQ5PgpmdeULmxdsu9",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-truong-chinh",
-      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
+      "lat": 10.8169663,
+      "lon": 106.6316994,
+      "geocode_display_name": "Trường Chinh, Khu phố 9, Phường Tây Thạnh, Thủ Đức, Thành phố Hồ Chí Minh, 71509, Việt Nam"
     },
     {
       "id": "bmw-truong-chinh",
@@ -686,7 +748,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/RYJzNhi83Cz9219B9",
       "website": "https://thacoautotphcm.vn/danh-sach-xe/xe-du-lich?brand_id=4",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/ngoai-that/do-man/sr-tc-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/ngoai-that/do-man/sr-tc-565x375.webp",
+      "lat": 10.8161843,
+      "lon": 106.631826,
+      "geocode_display_name": "Trường Chinh, Khu phố 9, Phường Tây Thạnh, Thủ Đức, Thành phố Hồ Chí Minh, 71509, Việt Nam [via fallback]"
     },
     {
       "id": "kia-binh-tan",
@@ -716,7 +781,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/8FbThrxqHYfrtr9m6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-binh-tan",
-      "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0800-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0800-565x375.webp",
+      "lat": 10.7196922,
+      "lon": 106.6077324,
+      "geocode_display_name": "73, Võ Văn Kiệt, Khu phố 78, Phường An Lạc, Tân Túc, Thành phố Hồ Chí Minh, 71959, Việt Nam [via fallback]"
     },
     {
       "id": "peugeot-binh-tan",
@@ -748,7 +816,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/c9WDrE152yenE4fT8",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-tan",
-      "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0805-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0805-565x375.webp",
+      "lat": 10.7192446,
+      "lon": 106.606554,
+      "geocode_display_name": "Peugeot Bình Tân, 75, Võ Văn Kiệt, Khu phố 78, Phường An Lạc, Tân Túc, Thành phố Hồ Chí Minh, 71959, Việt Nam [via fallback]"
     },
     {
       "id": "bmw-binh-tan",
@@ -777,7 +848,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/g4wPR7W6ZeoED2NE6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-tan",
-      "image": "https://thacoautotphcm.vn/storage/binh-tan/bit-4-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/binh-tan/bit-4-565x375.webp",
+      "lat": 10.7435024,
+      "lon": 106.6212751,
+      "geocode_display_name": "Đường Kinh Dương Vương, Khu phố 38, Phường An Lạc, Thủ Đức, Thành phố Hồ Chí Minh, 73118, Việt Nam"
     },
     {
       "id": "mazda-binh-trieu",
@@ -805,7 +879,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/mCUy7aUtQJs7peGx7",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-trieu",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-bt-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-bt-565x375.webp",
+      "lat": 10.8678981,
+      "lon": 106.7199972,
+      "geocode_display_name": "Quốc lộ 13, Khu phố 4, Phường Hiệp Bình, Thủ Đức, Thành phố Hồ Chí Minh, 70000, Việt Nam"
     },
     {
       "id": "kia-binh-trieu",
@@ -834,7 +911,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/ZT9nRKsMaq1kEuDZ7",
       "website": null,
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-binh-trieu-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-binh-trieu-1-565x375.webp",
+      "lat": 10.8678981,
+      "lon": 106.7199972,
+      "geocode_display_name": "Quốc lộ 13, Khu phố 4, Phường Hiệp Bình, Thủ Đức, Thành phố Hồ Chí Minh, 70000, Việt Nam"
     },
     {
       "id": "tai-bus-binh-trieu",
@@ -876,7 +956,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/6w7yaBsY5JuCix1V8",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-trieu",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/showroom-tai-bus-binh-trieu-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/showroom-tai-bus-binh-trieu-565x375.webp",
+      "lat": 10.8584448,
+      "lon": 106.7234351,
+      "geocode_display_name": "Quốc lộ 13, Khu phố 12, Phường Hiệp Bình, Thủ Đức, Thành phố Hồ Chí Minh, 70000, Việt Nam"
     },
     {
       "id": "kia-go-vap",
@@ -906,7 +989,10 @@
       "phone_cskh": "02838952874",
       "map_url": "https://maps.app.goo.gl/chYhAXzUytrzKpwEA",
       "website": "https://thacoautotphcm.vn/showrooms/kia-go-vap",
-      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/56c81173101fd041890e-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/56c81173101fd041890e-1-565x375.webp",
+      "lat": 10.8376883,
+      "lon": 106.6754235,
+      "geocode_display_name": "189, Đường Nguyễn Oanh, Phường Gò Vấp, Thủ Đức, Thành phố Hồ Chí Minh, 71400, Việt Nam"
     },
     {
       "id": "mazda-go-vap",
@@ -936,7 +1022,10 @@
       "phone_cskh": "02838952874",
       "map_url": "https://maps.app.goo.gl/c5QrttdJatz8nzTz6",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-go-vap",
-      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/z4431323361801-79f86727d263745b307b58478f7da3c1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/z4431323361801-79f86727d263745b307b58478f7da3c1-565x375.webp",
+      "lat": 10.8376883,
+      "lon": 106.6754235,
+      "geocode_display_name": "189, Đường Nguyễn Oanh, Phường Gò Vấp, Thủ Đức, Thành phố Hồ Chí Minh, 71400, Việt Nam"
     },
     {
       "id": "peugeot-phan-huy-ich",
@@ -966,7 +1055,10 @@
       "phone_cskh": "0283 742 5566",
       "map_url": "https://maps.app.goo.gl/evHoVP9gTi8K6sXV9",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-phan-huy-ich",
-      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-2-8-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-2-8-565x375.webp",
+      "lat": 10.837183,
+      "lon": 106.6362137,
+      "geocode_display_name": "Phan Huy Ích, Phường An Hội Tây, Thủ Đức, Thành phố Hồ Chí Minh, 71427, Việt Nam"
     },
     {
       "id": "kia-phan-huy-ich",
@@ -994,7 +1086,10 @@
       "phone_cskh": "02838952874",
       "map_url": "https://maps.app.goo.gl/2YCe2f8CNcyibF4k6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-phan-huy-ich",
-      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/kiaphanhuyich-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/kiaphanhuyich-565x375.webp",
+      "lat": 10.837183,
+      "lon": 106.6362137,
+      "geocode_display_name": "Phan Huy Ích, Phường An Hội Tây, Thủ Đức, Thành phố Hồ Chí Minh, 71427, Việt Nam"
     },
     {
       "id": "mazda-phan-huy-ich",
@@ -1022,7 +1117,10 @@
       "phone_cskh": "02838952874",
       "map_url": "https://maps.app.goo.gl/SFn5WFv3wwJbNDMz9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-phan-huy-ich",
-      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/mazdaphanhuyich-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/mazdaphanhuyich-565x375.webp",
+      "lat": 10.837183,
+      "lon": 106.6362137,
+      "geocode_display_name": "Phan Huy Ích, Phường An Hội Tây, Thủ Đức, Thành phố Hồ Chí Minh, 71427, Việt Nam"
     },
     {
       "id": "mazda-ben-luc",
@@ -1186,7 +1284,10 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-an",
-      "image": "https://thacoautotphcm.vn/storage/z6898492036825-1e7aafacb83258ba616cf891250c6332-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/z6898492036825-1e7aafacb83258ba616cf891250c6332-1-565x375.webp",
+      "lat": 10.5344838,
+      "lon": 106.393674,
+      "geocode_display_name": "Quốc lộ 1 - Đường tránh Thành phố Tân An, Tân An, Phường Long An, Tỉnh Tây Ninh, Việt Nam [via fallback]"
     },
     {
       "id": "kia-tan-an",
@@ -1258,7 +1359,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/f5Grpggq1EZ86aqK6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-go-dau",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/z4886246274348-6a153005f73852385c8bcd36e2464949-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/z4886246274348-6a153005f73852385c8bcd36e2464949-565x375.webp",
+      "lat": 11.0826817,
+      "lon": 106.2661035,
+      "geocode_display_name": "Vòng xoay Gò Dầu, Phường Gò Dầu, Tỉnh Tây Ninh, Việt Nam [via fallback]"
     },
     {
       "id": "kia-go-dau",
@@ -1288,7 +1392,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/N58PszA2shbyngNv7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-go-dau",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/kia-godau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/kia-godau-565x375.webp",
+      "lat": 11.0826817,
+      "lon": 106.2661035,
+      "geocode_display_name": "Vòng xoay Gò Dầu, Phường Gò Dầu, Tỉnh Tây Ninh, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-go-dau",
@@ -1318,7 +1425,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/G8rFi1BwveiQfi9h9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-go-dauf",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/mazda-go-dau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/mazda-go-dau-565x375.webp",
+      "lat": 11.0826817,
+      "lon": 106.2661035,
+      "geocode_display_name": "Vòng xoay Gò Dầu, Phường Gò Dầu, Tỉnh Tây Ninh, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-tay-ninh",
@@ -1348,7 +1458,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/9kiRhmTpJQPd62zE9",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Tây Ninh",
-      "image": "https://thacoautotphcm.vn/storage/tay-ninh/z4885233648836-f4f56646fb6fb95f2be224cbf2c8020a-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/tay-ninh/z4885233648836-f4f56646fb6fb95f2be224cbf2c8020a-565x375.webp",
+      "lat": 11.3597477,
+      "lon": 106.1153347,
+      "geocode_display_name": "Trần Phú, Phường Bình Minh, Tỉnh Tây Ninh, Việt Nam"
     },
     {
       "id": "tai-bus-tay-ninh",
@@ -1390,7 +1503,10 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/tai-bus-tay-ninh",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/ban-giao-xe-bus-thaco-auto-tay-ninh-min-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/ban-giao-xe-bus-thaco-auto-tay-ninh-min-565x375.webp",
+      "lat": 11.3597477,
+      "lon": 106.1153347,
+      "geocode_display_name": "Trần Phú, Phường Bình Minh, Tỉnh Tây Ninh, Việt Nam"
     },
     {
       "id": "kia-tay-ninh",
@@ -1420,7 +1536,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/3B8Nh8efbGvMCGye8",
       "website": "https://thacoautotphcm.vn/showrooms/kia-tay-ninh",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tay-ninh-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tay-ninh-565x375.webp",
+      "lat": 11.3597477,
+      "lon": 106.1153347,
+      "geocode_display_name": "Trần Phú, Phường Bình Minh, Tỉnh Tây Ninh, Việt Nam"
     },
     {
       "id": "kia-ba-ria",
@@ -1450,7 +1569,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/J5gK1B4rvgWnm2ASA",
       "website": "https://thacoautotphcm.vn/showrooms/kia-ba-ria",
-      "image": "https://thacoautotphcm.vn/storage/kia-ba-ria-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/kia-ba-ria-565x375.webp",
+      "lat": 10.4898799,
+      "lon": 107.1819104,
+      "geocode_display_name": "Trung tâm Lưu trữ lịch sử Thành phố Hồ Chí Minh (cơ sở 3), 3, Phạm Văn Đồng, Khu phố 2, Phường Bà Rịa, Thành phố Hồ Chí Minh, 78107, Việt Nam"
     },
     {
       "id": "mazda-ba-ria",
@@ -1478,7 +1600,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/cNuuwNsPasnXcFpq7",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-peugeot-ba-ria",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/z5777787307468-e5445b7ec650e49be0c5b95e6ba4f0ff-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/z5777787307468-e5445b7ec650e49be0c5b95e6ba4f0ff-565x375.webp",
+      "lat": 10.4898799,
+      "lon": 107.1819104,
+      "geocode_display_name": "Trung tâm Lưu trữ lịch sử Thành phố Hồ Chí Minh (cơ sở 3), 3, Phạm Văn Đồng, Khu phố 2, Phường Bà Rịa, Thành phố Hồ Chí Minh, 78107, Việt Nam"
     },
     {
       "id": "peugeot-ba-ria",
@@ -1510,7 +1635,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/W1BLn5bdYGAn5jGc7",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-ba-ria",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/peugeot-ba-ria-2-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/peugeot-ba-ria-2-565x375.webp",
+      "lat": 10.4898799,
+      "lon": 107.1819104,
+      "geocode_display_name": "Trung tâm Lưu trữ lịch sử Thành phố Hồ Chí Minh (cơ sở 3), 3, Phạm Văn Đồng, Khu phố 2, Phường Bà Rịa, Thành phố Hồ Chí Minh, 78107, Việt Nam"
     },
     {
       "id": "kia-phu-my",
@@ -1538,7 +1666,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/tKUcD6Tg86hPPVTJ7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-phu-my",
-      "image": "https://thacoautotphcm.vn/storage/vung-tau/kia-phu-my/z5722641734943-3e090ee7e623b5c6454370e5fbc8deae-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/vung-tau/kia-phu-my/z5722641734943-3e090ee7e623b5c6454370e5fbc8deae-565x375.webp",
+      "lat": 11.0108143,
+      "lon": 106.7461796,
+      "geocode_display_name": "Đường cao tốc Thành phố Hồ Chí Minh – Thủ Dầu Một – Chơn Thành, Khu phố Phước Thái, Khánh Lộc, Phường Tân Khánh, Tân Uyên, Thành phố Hồ Chí Minh, Việt Nam"
     },
     {
       "id": "mazda-phu-my",
@@ -1566,7 +1697,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/CFL3uhVub7McRuuQ6",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-phu-my",
-      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-phu-my/z5722644514445-ab95b2142bbbf8eef3b1545bfa6abe30-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-phu-my/z5722644514445-ab95b2142bbbf8eef3b1545bfa6abe30-565x375.webp",
+      "lat": 11.0108143,
+      "lon": 106.7461796,
+      "geocode_display_name": "Đường cao tốc Thành phố Hồ Chí Minh – Thủ Dầu Một – Chơn Thành, Khu phố Phước Thái, Khánh Lộc, Phường Tân Khánh, Tân Uyên, Thành phố Hồ Chí Minh, Việt Nam"
     },
     {
       "id": "tai-bus-phu-my",
@@ -1610,7 +1744,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/73zETPRBQXYz8Zmo6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-phu-my-1-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-phu-my-1-565x375.webp",
+      "lat": 11.0108143,
+      "lon": 106.7461796,
+      "geocode_display_name": "Đường cao tốc Thành phố Hồ Chí Minh – Thủ Dầu Một – Chơn Thành, Khu phố Phước Thái, Khánh Lộc, Phường Tân Khánh, Tân Uyên, Thành phố Hồ Chí Minh, Việt Nam"
     },
     {
       "id": "kia-vung-tau",
@@ -1638,7 +1775,10 @@
       "phone_cskh": "0938 508 145",
       "map_url": "https://maps.app.goo.gl/y3kWbcuj8Koi1URQ7",
       "website": "https://kiavungtau.com.vn",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-vung-tau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-vung-tau-565x375.webp",
+      "lat": 10.3730844,
+      "lon": 107.1002882,
+      "geocode_display_name": "Đường 2 Tháng 9, Khu phố 8, Phường Tam Thắng, Thành phố Hồ Chí Minh, 76666, Việt Nam"
     },
     {
       "id": "mazda-vung-tau",
@@ -1666,7 +1806,10 @@
       "phone_cskh": "0938 508 145",
       "map_url": null,
       "website": "https://mazdavungtau.vn",
-      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-vung-tau/mazda-vung-tau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-vung-tau/mazda-vung-tau-565x375.webp",
+      "lat": 10.3730844,
+      "lon": 107.1002882,
+      "geocode_display_name": "Đường 2 Tháng 9, Khu phố 8, Phường Tam Thắng, Thành phố Hồ Chí Minh, 76666, Việt Nam"
     },
     {
       "id": "bmw-vung-tau",
@@ -1694,7 +1837,10 @@
       "phone_cskh": "0938508145",
       "map_url": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-vung-tau",
-      "image": "https://thacoautotphcm.vn/storage/new-cx-3/bmw-ba-ria-vung-tau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/new-cx-3/bmw-ba-ria-vung-tau-565x375.webp",
+      "lat": 10.3675229,
+      "lon": 107.101416,
+      "geocode_display_name": "Trụ sở KP9 P. Tam Thắng, Hẻm 456 Đường 2/9, Khu phố 9, Phường Tam Thắng, Thành phố Hồ Chí Minh, 76666, Việt Nam"
     },
     {
       "id": "peugeot-vung-tau",
@@ -1726,7 +1872,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
       "website": "https://thacoautotphcm.vn/",
-      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/peu-vung-tau-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/peu-vung-tau-565x375.webp",
+      "lat": 10.3675229,
+      "lon": 107.101416,
+      "geocode_display_name": "Trụ sở KP9 P. Tam Thắng, Hẻm 456 Đường 2/9, Khu phố 9, Phường Tam Thắng, Thành phố Hồ Chí Minh, 76666, Việt Nam"
     },
     {
       "id": "kia-binh-duong",
@@ -1756,7 +1905,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/LLjV2kZZ7sZpRRc48",
       "website": "https://thacoautotphcm.vn/showrooms/kia-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/bmw-7-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-7-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-binh-duong",
@@ -1786,7 +1938,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/tWDNcT5Eebw55MHr9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/bmw-5-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-5-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "peugeot-binh-duong",
@@ -1818,7 +1973,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/ztPpLRp6sCcuPxb37",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/bmw-10-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-10-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "bmw-motorrad-binh-duong",
@@ -1846,7 +2004,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/HiVSwMTnqzcWGm6R9",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-motorrad-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/z7164241754283-d8a9b237f40bc0f7b5f58f85b200995b-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/z7164241754283-d8a9b237f40bc0f7b5f58f85b200995b-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "mini-binh-duong",
@@ -1876,7 +2037,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/H987ju4pBbQ2amBY8",
       "website": "https://thacoautotphcm.vn/showrooms/mini-binh-duong-1",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/mini-binh-duong-2-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/mini-binh-duong-2-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-binh-duong",
@@ -1920,7 +2084,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/Cz97s8CsAVagvLP57",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-bd-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-bd-565x375.webp",
+      "lat": 10.8812946,
+      "lon": 106.6985084,
+      "geocode_display_name": "Đại lộ Bình Dương, Khu phố Tây, Phường Lái Thiêu, Thành phố Hồ Chí Minh, 71514, Việt Nam [via fallback]"
     },
     {
       "id": "bmw-binh-duong",
@@ -1950,7 +2117,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/jwhLJMd2jxawtAmC6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-duong",
-      "image": "https://thacoautotphcm.vn/storage/bmw-13-2-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/bmw-13-2-565x375.webp",
+      "lat": 10.9638339,
+      "lon": 106.6888937,
+      "geocode_display_name": "Đại lộ Bình Dương, Phú Hòa 6, Phường Thuận Giao, Phường Phú Lợi, Thành phố Hồ Chí Minh, 75212, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-di-an",
@@ -2068,7 +2238,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/FiXQXbbxVZ63DoKz6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-tan-uyen",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-uyen-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-uyen-565x375.webp",
+      "lat": 11.0504062,
+      "lon": 106.7097007,
+      "geocode_display_name": "Nguyễn Văn Linh, Phú Tân 2, Phường Bình Dương, Thành phố Hồ Chí Minh, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-tan-uyen",
@@ -2096,7 +2269,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/1STdEHU4FTh6BiAY9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-uyen",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-uyen-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-uyen-565x375.webp",
+      "lat": 10.705404,
+      "lon": 106.6373396,
+      "geocode_display_name": "Nguyễn Văn Linh, Ấp 62, Xã Bình Hưng, Thành phố Hồ Chí Minh, 71812, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-tan-uyen",
@@ -2140,7 +2316,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/je5F5BztGHPGPzJk8",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-uyen",
-      "image": null
+      "image": null,
+      "lat": 11.0504062,
+      "lon": 106.7097007,
+      "geocode_display_name": "Nguyễn Văn Linh, Phú Tân 2, Phường Bình Dương, Thành phố Hồ Chí Minh, Việt Nam [via fallback]"
     },
     {
       "id": "kia-thu-dau-mot",
@@ -2168,7 +2347,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-thu-dau-mot",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
+      "lat": 11.0166156,
+      "lon": 106.6478859,
+      "geocode_display_name": "Đại lộ Bình Dương, Khu phố Hiệp An 9, Định Hòa 1, Phường Chánh Hiệp, Thành phố Hồ Chí Minh, 75111, Việt Nam"
     },
     {
       "id": "mazda-thu-dau-mot",
@@ -2198,7 +2380,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/v2dkb4Ec6KSJGRDn9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-thu-dau-mot",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
+      "lat": 11.0166156,
+      "lon": 106.6478859,
+      "geocode_display_name": "Đại lộ Bình Dương, Khu phố Hiệp An 9, Định Hòa 1, Phường Chánh Hiệp, Thành phố Hồ Chí Minh, 75111, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-thu-dau-mot",
@@ -2242,7 +2427,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-thu-dau-mot",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-thu-dau-mot-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-thu-dau-mot-565x375.webp",
+      "lat": 11.0166156,
+      "lon": 106.6478859,
+      "geocode_display_name": "Đại lộ Bình Dương, Khu phố Hiệp An 9, Định Hòa 1, Phường Chánh Hiệp, Thành phố Hồ Chí Minh, 75111, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-an-lac",
@@ -2284,7 +2472,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/Q4i4E6wDwjnNz1e26",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-lac",
-      "image": "https://thacoautotphcm.vn/storage/binh-tan/2025-02-27-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/binh-tan/2025-02-27-565x375.webp",
+      "lat": 10.720436,
+      "lon": 106.5983155,
+      "geocode_display_name": "Bãi xe Công ty Phương Trang, Xã Tân Nhựt, Thành phố Hồ Chí Minh, Việt Nam [via fallback]"
     },
     {
       "id": "tai-bus-an-suong",
@@ -2314,7 +2505,10 @@
       "phone_cskh": null,
       "map_url": "https://maps.app.goo.gl/BvQ9SgHLniexr2t7A",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-suong",
-      "image": "https://thacoautotphcm.vn/storage/z6736970035451-7a73d491d678e5eb182cdb0e6a408116-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/z6736970035451-7a73d491d678e5eb182cdb0e6a408116-565x375.webp",
+      "lat": 10.835914,
+      "lon": 106.6221978,
+      "geocode_display_name": "Phường Đông Hưng Thuận, Thủ Đức, Thành phố Hồ Chí Minh, 71509, Việt Nam [via fallback]"
     },
     {
       "id": "mazda-thao-ien",
@@ -2344,7 +2538,10 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/showrooms/mazda-thao-dien",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-thao-dien-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-thao-dien-565x375.webp",
+      "lat": 10.8073843,
+      "lon": 106.7308879,
+      "geocode_display_name": "Quốc Hương, Khu phố 10, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 71107, Việt Nam"
     },
     {
       "id": "kia-thao-ien",
@@ -2374,7 +2571,10 @@
       "phone_cskh": null,
       "map_url": "https://share.google/uwBC27GQHe4lQYIYd",
       "website": "https://thacoautotphcm.vn/showrooms/kia-thao-dien",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/kia-thao-dien-565x375.webp"
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/kia-thao-dien-565x375.webp",
+      "lat": 10.8073843,
+      "lon": 106.7308879,
+      "geocode_display_name": "Quốc Hương, Khu phố 10, Phường An Khánh, Thủ Đức, Thành phố Hồ Chí Minh, 71107, Việt Nam [via fallback]"
     }
   ]
 }
