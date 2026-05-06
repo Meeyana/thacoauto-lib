@@ -4,7 +4,7 @@ type: model-index
 total_models: 46
 total_brands: 5
 generated: true
-updated: 2026-04-27
+updated: 2026-05-06
 ---
 
 > ⚠️ Trang này được **tự động sinh**. **KHÔNG sửa tay**.

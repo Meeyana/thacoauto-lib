@@ -164,6 +164,8 @@ def render_model(json_path: Path, brand: str):
         md.append(f"brochure: {car['brochure']}")
     if car.get("image"):
         md.append(f"image: {car['image']}")
+    if car.get("url"):
+        md.append(f"detail_url: {car['url']}")
     md.append("generated: true")
     md.append(f"generated_from: {json_path.relative_to(ROOT).as_posix()}")
     md.append(f"updated: {today}")
@@ -191,6 +193,8 @@ def render_model(json_path: Path, brand: str):
     md.append(f"- **Số phiên bản:** {len(versions)}")
     if car.get("brochure"):
         md.append(f"- **Brochure:** [Tải PDF]({car['brochure']})")
+    if car.get("url"):
+        md.append(f"- **🔗 Xem chi tiết xe:** [{car['url']}]({car['url']})")
     md.append("")
 
     md.append("## Phiên bản & Giá")
@@ -296,6 +300,7 @@ def render_model(json_path: Path, brand: str):
         "faq_url": f"wiki/faq/{slug}-qa.md" if faq_file.exists() else None,
         "image": car.get("image"),
         "brochure": car.get("brochure"),
+        "detail_url": car.get("url"),  # Link landing page xem xe chi tiết (external)
     }
     return slug, name, pmin, brand, catalog_entry
 

@@ -11,9 +11,10 @@ price_max_vnd: 649000000
 version_count: 2
 brochure: https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-k3-v28062023.pdf
 image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-04.webp
+detail_url: https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3
 generated: true
 generated_from: raw/models/kia/kia-k3.json
-updated: 2026-04-27
+updated: 2026-05-06
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-k3.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.
@@ -30,6 +31,7 @@ updated: 2026-04-27
 - **Giá cao nhất:** 649.000.000 ₫
 - **Số phiên bản:** 2
 - **Brochure:** [Tải PDF](https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-k3-v28062023.pdf)
+- **🔗 Xem chi tiết xe:** [https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3](https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3)
 
 ## Phiên bản & Giá
 
