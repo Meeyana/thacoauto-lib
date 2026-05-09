@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/brochure/kia/brochure-seltos-v7-0606
 image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-08.webp
 generated: true
 generated_from: raw/models/kia/kia-seltos.json
-updated: 2026-05-06
+updated: 2026-05-09
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-seltos.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

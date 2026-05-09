@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-06",
+  "updated": "2026-05-09",
   "total": 46,
   "models": [
     {
@@ -615,6 +615,34 @@
       "detail_url": null
     },
     {
+      "slug": "kia-morning-all-new",
+      "name": "KIA NEW MORNING",
+      "brand": "kia",
+      "car_type": "Hatchback",
+      "body_style_display": null,
+      "seat": "5",
+      "fuel": "Xăng",
+      "price_min_vnd": 439000000,
+      "price_max_vnd": 469000000,
+      "version_count": 2,
+      "versions": [
+        {
+          "name": "Kia New Morning AT",
+          "price": 439000000
+        },
+        {
+          "name": "Kia New Morning GT-Line",
+          "price": 469000000
+        }
+      ],
+      "status": "dang-ban",
+      "url": "wiki/models/kia-morning-all-new.md",
+      "faq_url": null,
+      "image": "https://thacoautotphcm.vn/storage/new-morning/kia.webp",
+      "brochure": "",
+      "detail_url": null
+    },
+    {
       "slug": "kia-morning",
       "name": "KIA MORNING",
       "brand": "kia",
@@ -636,34 +664,6 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/newmorning-trang-1.webp",
       "brochure": "https://thacoautotphcm.vn/storage/brochure-morning.pdf",
-      "detail_url": null
-    },
-    {
-      "slug": "kia-new-morning",
-      "name": "KIA NEW MORNING",
-      "brand": "kia",
-      "car_type": "Hatchback",
-      "body_style_display": null,
-      "seat": "5",
-      "fuel": "Xăng",
-      "price_min_vnd": 439000000,
-      "price_max_vnd": 469000000,
-      "version_count": 2,
-      "versions": [
-        {
-          "name": "Kia New Morning AT",
-          "price": 439000000
-        },
-        {
-          "name": "Kia New Morning GT-Line",
-          "price": 469000000
-        }
-      ],
-      "status": "dang-ban",
-      "url": "wiki/models/kia-new-morning.md",
-      "faq_url": null,
-      "image": "https://thacoautotphcm.vn/storage/new-morning/kia.webp",
-      "brochure": "",
       "detail_url": null
     },
     {

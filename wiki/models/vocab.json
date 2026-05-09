@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-06",
+  "updated": "2026-05-09",
   "_note": "Canonical values rút từ catalog.json. Synonyms từ tools/vocab_synonyms.json. Dùng cho normalize entity AI extract trong n8n.",
   "brand": {
     "canonical": [
@@ -350,7 +350,7 @@
     "kia-k3",
     "kia-k5",
     "kia-morning",
-    "kia-new-morning",
+    "kia-morning-all-new",
     "kia-seltos",
     "kia-soluto",
     "kia-sonet",

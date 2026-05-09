@@ -14,7 +14,7 @@ image: https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-04.webp
 detail_url: https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3
 generated: true
 generated_from: raw/models/kia/kia-k3.json
-updated: 2026-05-06
+updated: 2026-05-09
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-k3.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

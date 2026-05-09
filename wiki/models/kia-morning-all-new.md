@@ -11,11 +11,11 @@ price_max_vnd: 469000000
 version_count: 2
 image: https://thacoautotphcm.vn/storage/new-morning/kia.webp
 generated: true
-generated_from: raw/models/kia/kia-new-morning.json
-updated: 2026-05-06
+generated_from: raw/models/kia/kia-morning-all-new.json
+updated: 2026-05-09
 ---
 
-> ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-new-morning.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.
+> ⚠️ Trang này được **tự động sinh** từ `raw/models/kia/kia-morning-all-new.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.
 
 # KIA NEW MORNING
 

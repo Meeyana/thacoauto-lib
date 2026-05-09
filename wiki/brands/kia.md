@@ -26,7 +26,7 @@ _Tự động sinh từ `tools/sync_models.py` — 12 model._
 |---|---|
 | [[models/kia-morning\|KIA MORNING]] | 325.000.000 ₫ |
 | [[models/kia-soluto\|KIA SOLUTO]] | 345.000.000 ₫ |
-| [[models/kia-new-morning\|KIA NEW MORNING]] | 439.000.000 ₫ |
+| [[models/kia-morning-all-new\|KIA NEW MORNING]] | 439.000.000 ₫ |
 | [[models/kia-sonet\|KIA NEW SONET]] | 489.000.000 ₫ |
 | [[models/kia-carens\|KIA CARENS]] | 579.000.000 ₫ |
 | [[models/kia-seltos\|KIA NEW SELTOS]] | 579.000.000 ₫ |

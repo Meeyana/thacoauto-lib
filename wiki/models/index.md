@@ -4,7 +4,7 @@ type: model-index
 total_models: 46
 total_brands: 5
 generated: true
-updated: 2026-05-06
+updated: 2026-05-09
 ---
 
 > ⚠️ Trang này được **tự động sinh**. **KHÔNG sửa tay**.
@@ -40,7 +40,7 @@ updated: 2026-05-06
 |---|---|
 | [[models/kia-morning\|KIA MORNING]] | 325.000.000 ₫ |
 | [[models/kia-soluto\|KIA SOLUTO]] | 345.000.000 ₫ |
-| [[models/kia-new-morning\|KIA NEW MORNING]] | 439.000.000 ₫ |
+| [[models/kia-morning-all-new\|KIA NEW MORNING]] | 439.000.000 ₫ |
 | [[models/kia-sonet\|KIA NEW SONET]] | 489.000.000 ₫ |
 | [[models/kia-carens\|KIA CARENS]] | 579.000.000 ₫ |
 | [[models/kia-seltos\|KIA NEW SELTOS]] | 579.000.000 ₫ |
@@ -113,7 +113,7 @@ updated: 2026-05-06
 | [[models/kia-carnival\|KIA NEW CARNIVAL]] | Kia | D-SUV | 8 | Dầu | 1.299.000.000 ₫ |
 | [[models/kia-k5\|KIA K5]] | Kia | D-Sedan | 5 | Xăng | 769.000.000 ₫ |
 | [[models/kia-morning\|KIA MORNING]] | Kia | Hatchback | 5 | Xăng | 325.000.000 ₫ |
-| [[models/kia-new-morning\|KIA NEW MORNING]] | Kia | Hatchback | 5 | Xăng | 439.000.000 ₫ |
+| [[models/kia-morning-all-new\|KIA NEW MORNING]] | Kia | Hatchback | 5 | Xăng | 439.000.000 ₫ |
 | [[models/kia-soluto\|KIA SOLUTO]] | Kia | Sedan | 5 | Xăng | 345.000.000 ₫ |
 | [[models/kia-k3\|KIA K3]] | Kia | Sedan | 5 | Xăng | 584.000.000 ₫ |
 | [[models/mazda-cx-3\|NEW MAZDA CX-3]] | Mazda | B-SUV | 5 | Xăng | 549.000.000 ₫ |

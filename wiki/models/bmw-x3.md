@@ -13,7 +13,7 @@ brochure: https://thacoautotphcm.vn/storage/bmw/copy-of-bmw-x3-specs-card-ctbh.p
 image: https://thacoautotphcm.vn/storage/da-thuong-hieu/den-1.webp
 generated: true
 generated_from: raw/models/bmw/bmw-x3.json
-updated: 2026-05-06
+updated: 2026-05-09
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/bmw/bmw-x3.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.
