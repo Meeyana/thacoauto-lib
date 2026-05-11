@@ -2,15 +2,15 @@
   "nodes": [
     {
       "parameters": {
-        "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response || \n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\n// === PRE-DETECT: khách rớt SĐT / tự giới thiệu tên giữa chat ===\n// Mục đích: chặn việc LLM hiểu nhầm sang URGENT_CONSULT khi khách CUNG CẤP\n// thông tin của mình. Trường hợp này phải dồn về SALES_LEAD/close_deal để\n// chạy nhánh Test Drive Extractor (đã hỗ trợ partial state).\nlet _chatMsg = '';\nlet _lastIntent = '';\ntry { _chatMsg = ($('When chat message received3').first().json.chatInput || '').toString(); } catch(e) {}\ntry { _lastIntent = ($('parse_session').first().json._prev?.last_intent) || ''; } catch(e) {}\n\nconst _cleaned = _chatMsg.replace(/[\\s\\-\\.()]/g, '');\nconst _hasPhone = /(?:\\+?84|0)[0-9]{9,10}/.test(_cleaned);\n// Detect khách CÓ Ý cho SĐT nhưng SAI ĐỊNH DẠNG (vd \"sđt 09012\" — chỉ 5 số sau số 0)\nconst _phoneIntent = /\\b(s[đd]t|s[ốo]\\s*[đd]i[ệe]n\\s*tho[ạa]i|li[êe]n\\s*(h[ệe]|l[ạa]c)\\s*(qua|theo|v[ớo]i|b[ằa]ng)|g[ọo]i\\s*(em|m[ìi]nh|t[ôo]i|anh|ch[ịi])\\s*qua|phone\\s*number)/i.test(_chatMsg);\n// Phone giống dạng số VN nhưng độ dài SAI (4-8 digit sau prefix 0 hoặc 84)\nconst _phoneNumberLoose = /(?:\\+?84|0)\\d{4,8}(?!\\d)/.test(_cleaned);\nconst _phoneFormatInvalid = (_phoneIntent || _phoneNumberLoose) && !_hasPhone;\nconst _hasSelfIntro = /(?:\\b(?:em|anh|ch[ịi]|t[ôo]i|m[ìi]nh)\\s+t[êe]n\\b|\\bt[êe]n\\s+(?:em|anh|ch[ịi]|t[ôo]i|m[ìi]nh|l[àa])\\b|\\b(?:em|m[ìi]nh|t[ôo]i)\\s+l[àa]\\s+[A-ZÀ-Ỹa-zà-ỹ]+|\\bg[ọo]i\\s+(?:em|m[ìi]nh)\\s+l[àa]\\b)/i.test(_chatMsg);\n// Chỉ override khi đang trong ngữ cảnh sale-related, tránh đè lên SAFETY_GUARD/COMPLAINT\nconst _salesCtxIntents = ['SALES_LEAD','SERVICE_APPOINTMENT','NETWORK_LOCATION','BRAND_INFO','URGENT_CONSULT','AMBIGUOUS','GREETING',''];\nconst _inSalesCtx = _salesCtxIntents.includes(_lastIntent);\n\n// === LEAD CONTINUATION: nếu đã có lead với phone nhưng chưa complete ===\n// → các turn tiếp theo (khách trả lời tên xe / showroom / lịch) phải tiếp tục đi vào\n//   Test Drive Extractor để bồi field còn thiếu, KHÔNG được route sang consultation/disambiguator.\nlet _leadHasPhone = false;\nlet _leadComplete = false;\ntry {\n  const _prev = $('parse_session').first().json._prev || {};\n  _leadHasPhone = !!_prev.lead_has_phone;\n  _leadComplete = !!_prev.lead_complete;\n} catch(e) {}\nconst _leadInProgress = _leadHasPhone && !_leadComplete;\n\n// === PHÂN BIỆT context của phone drop ===\n// Có sales history (đã hỏi xe ở turn trước) → đăng ký lái thử CHỦ ĐỘNG → close_deal hợp lý.\n// Cold drop turn đầu (chưa từng hỏi gì về xe) → consultation soft, hỏi xe quan tâm trước.\nlet _hasSalesHistoryInPast = false;\ntry {\n  const _hist = $('parse_session').first().json._prev?.history || [];\n  _hasSalesHistoryInPast = _hist.some(h => (h.intent || '').toUpperCase() === 'SALES_LEAD');\n} catch (e) {}\nconst _hasSalesHistory = _lastIntent === 'SALES_LEAD' || _hasSalesHistoryInPast || _leadInProgress;\nconst _shouldForceClose = (_hasPhone || _hasSelfIntro) && _hasSalesHistory;\nconst _phoneColdDrop = (_hasPhone || _hasSelfIntro) && !_hasSalesHistory && _inSalesCtx;\n// ⚠️ KHÔNG dùng _leadInProgress để ép close_deal — đã có phone không có nghĩa khách muốn lái thử.\n// Tôn trọng phán đoán của LLM (consultation/pricing/tech_specs/close_deal). Chỉ override khi:\n//   - Khách RỚT contact mới ở turn này (_hasPhone || _hasSelfIntro) + đang trong sales context.\n//   - LLM có thể tự đoán close_deal nếu khách nói lái thử/đặt cọc/mua.\nconst _shouldForceLead = _shouldForceClose;\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n\n  // === OVERRIDE: ép category khi phát hiện contact của khách ===\n  let _category = p.category || null;\n  let _sub = (p.sales_subcategory || \"consultation\").toLowerCase().trim();\n  let _override = false;\n  if (_shouldForceLead) {\n    _category = 'SALES_LEAD';\n    _sub = 'close_deal';\n    _override = true;\n  } else if (_phoneColdDrop) {\n    // Khách rớt SĐT TURN ĐẦU chưa có context → soft consultation, KHÔNG form-fill rập khuôn.\n    _category = 'SALES_LEAD';\n    _sub = 'consultation';\n    _override = true;\n  }\n\n  return [{\n    json: {\n      category: _category,\n      sales_subcategory: _sub,\n      brand: (p.brand || \"\").toLowerCase().trim(),\n      model_slug: (p.model_slug || \"\").toLowerCase().trim(),\n      car_type: (p.car_type || \"\").toLowerCase().trim(),\n      seat_min: p.seat_min ? Number(p.seat_min) : null,\n      fuel: (p.fuel || \"\").toLowerCase().trim(),\n      budget_max: p.budget_max ? Number(p.budget_max) : null,\n      price_sort: (p.price_sort || \"\").toLowerCase().trim() || null,\n      use_case: p.use_case || null,\n      qa_intents: Array.isArray(p.qa_intents) ? p.qa_intents : [],\n      compare_with_brand: (p.compare_with_brand || \"\").toLowerCase().trim(),\n      compare_with_model: (p.compare_with_model || \"\").trim(),\n      compare_target: (p.compare_target || \"\").toLowerCase().trim(),\n      status: typeof p.status === \"boolean\" ? p.status : false,\n      _contact_override: _override,\n      _has_phone: _hasPhone,\n      _has_self_intro: _hasSelfIntro,\n      _lead_in_progress: _leadInProgress,\n      _has_sales_history: _hasSalesHistory,\n      _phone_cold_drop: _phoneColdDrop,\n      _phone_format_invalid: _phoneFormatInvalid\n    }\n  }];\n} catch(e) {\n  // Ngay cả khi LLM lỗi format, nếu khách đã rớt contact / đang có lead chưa complete thì vẫn cứu vào lead flow\n  if (_shouldForceLead) {\n    return [{ json: { category: 'SALES_LEAD', sales_subcategory: 'close_deal', status: true, _contact_override: true, _has_phone: _hasPhone, _has_self_intro: _hasSelfIntro, _lead_in_progress: _leadInProgress, _has_sales_history: _hasSalesHistory, _phone_cold_drop: false, raw_debug: rawText.substring(0,200) }}];\n  }\n  if (_phoneColdDrop) {\n    return [{ json: { category: 'SALES_LEAD', sales_subcategory: 'consultation', status: true, _contact_override: true, _has_phone: _hasPhone, _has_self_intro: _hasSelfIntro, _lead_in_progress: false, _has_sales_history: false, _phone_cold_drop: true, raw_debug: rawText.substring(0,200) }}];\n  }\n  return [{ json: { category: \"ERROR_FORMAT\", raw_debug: rawText.substring(0,200), status: false }}];\n}"
+        "jsCode": "const input = items[0].json;\nlet rawText = input.output || input.text || input.response || \n              (input.content?.parts?.[0]?.text) || (input.message?.content) || \"\";\n\n// === PRE-DETECT: khách rớt SĐT / tự giới thiệu tên giữa chat ===\n// Mục đích: chặn việc LLM hiểu nhầm sang URGENT_CONSULT khi khách CUNG CẤP\n// thông tin của mình. Trường hợp này phải dồn về SALES_LEAD/close_deal để\n// chạy nhánh Test Drive Extractor (đã hỗ trợ partial state).\nlet _chatMsg = '';\nlet _lastIntent = '';\ntry { _chatMsg = ($('When chat message received3').first().json.chatInput || '').toString(); } catch(e) {}\ntry { _lastIntent = ($('parse_session').first().json._prev?.last_intent) || ''; } catch(e) {}\n\nconst _cleaned = _chatMsg.replace(/[\\s\\-\\.()]/g, '');\nconst _hasPhone = /(?:\\+?84|0)[0-9]{9,10}/.test(_cleaned);\n// Detect khách CÓ Ý cho SĐT nhưng SAI ĐỊNH DẠNG (vd \"sđt 09012\" — chỉ 5 số sau số 0)\nconst _phoneIntent = /\\b(s[đd]t|s[ốo]\\s*[đd]i[ệe]n\\s*tho[ạa]i|li[êe]n\\s*(h[ệe]|l[ạa]c)\\s*(qua|theo|v[ớo]i|b[ằa]ng)|g[ọo]i\\s*(em|m[ìi]nh|t[ôo]i|anh|ch[ịi])\\s*qua|phone\\s*number)/i.test(_chatMsg);\n// Phone giống dạng số VN nhưng độ dài SAI (4-8 digit sau prefix 0 hoặc 84)\nconst _phoneNumberLoose = /(?:\\+?84|0)\\d{4,8}(?!\\d)/.test(_cleaned);\nconst _phoneFormatInvalid = (_phoneIntent || _phoneNumberLoose) && !_hasPhone;\nconst _hasSelfIntro = /(?:\\b(?:em|anh|ch[ịi]|t[ôo]i|m[ìi]nh)\\s+t[êe]n\\b|\\bt[êe]n\\s+(?:em|anh|ch[ịi]|t[ôo]i|m[ìi]nh|l[àa])\\b|\\b(?:em|m[ìi]nh|t[ôo]i)\\s+l[àa]\\s+[A-ZÀ-Ỹa-zà-ỹ]+|\\bg[ọo]i\\s+(?:em|m[ìi]nh)\\s+l[àa]\\b)/i.test(_chatMsg);\n// Chỉ override khi đang trong ngữ cảnh sale-related, tránh đè lên SAFETY_GUARD/COMPLAINT\nconst _salesCtxIntents = ['SALES_LEAD','SERVICE_APPOINTMENT','NETWORK_LOCATION','BRAND_INFO','URGENT_CONSULT','AMBIGUOUS','GREETING',''];\nconst _inSalesCtx = _salesCtxIntents.includes(_lastIntent);\n\n// === LEAD CONTINUATION: nếu đã có lead với phone nhưng chưa complete ===\n// → các turn tiếp theo (khách trả lời tên xe / showroom / lịch) phải tiếp tục đi vào\n//   Test Drive Extractor để bồi field còn thiếu, KHÔNG được route sang consultation/disambiguator.\nlet _leadHasPhone = false;\nlet _leadComplete = false;\ntry {\n  const _prev = $('parse_session').first().json._prev || {};\n  _leadHasPhone = !!_prev.lead_has_phone;\n  _leadComplete = !!_prev.lead_complete;\n} catch(e) {}\nconst _leadInProgress = _leadHasPhone && !_leadComplete;\n\n// === PHÂN BIỆT context của phone drop ===\n// Có sales history (đã hỏi xe ở turn trước) → đăng ký lái thử CHỦ ĐỘNG → close_deal hợp lý.\n// Cold drop turn đầu (chưa từng hỏi gì về xe) → consultation soft, hỏi xe quan tâm trước.\nlet _hasSalesHistoryInPast = false;\ntry {\n  const _hist = $('parse_session').first().json._prev?.history || [];\n  _hasSalesHistoryInPast = _hist.some(h => (h.intent || '').toUpperCase() === 'SALES_LEAD');\n} catch (e) {}\nconst _hasSalesHistory = _lastIntent === 'SALES_LEAD' || _hasSalesHistoryInPast || _leadInProgress;\nconst _shouldForceClose = (_hasPhone || _hasSelfIntro) && _hasSalesHistory;\nconst _phoneColdDrop = (_hasPhone || _hasSelfIntro) && !_hasSalesHistory && _inSalesCtx;\n// ⚠️ KHÔNG dùng _leadInProgress để ép close_deal — đã có phone không có nghĩa khách muốn lái thử.\n// Tôn trọng phán đoán của LLM (consultation/pricing/tech_specs/close_deal). Chỉ override khi:\n//   - Khách RỚT contact mới ở turn này (_hasPhone || _hasSelfIntro) + đang trong sales context.\n//   - LLM có thể tự đoán close_deal nếu khách nói lái thử/đặt cọc/mua.\nconst _shouldForceLead = _shouldForceClose;\n\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error(\"Không tìm thấy JSON\");\n  const p = JSON.parse(jsonMatch[0]);\n\n  // === MULTI-INTENT: nếu AI trả intents[] array ===\n  if (p.intents && Array.isArray(p.intents) && p.intents.length >= 2) {\n    return [{\n      json: {\n        _multi: true,\n        _intents: p.intents,\n        _shared: p.shared || {},\n        category: 'MULTI',\n        sales_subcategory: '',\n        brand: (p.shared?.brand || p.intents[0]?.brand || '').toLowerCase(),\n        model_slug: (p.shared?.model_slug || p.intents[0]?.model_slug || '').toLowerCase(),\n        car_type: '', seat_min: null, fuel: '', budget_max: null,\n        price_sort: null, use_case: null, qa_intents: [],\n        compare_with_brand: '', compare_with_model: '', compare_target: '',\n        status: true,\n        _contact_override: false, _has_phone: _hasPhone,\n        _has_self_intro: _hasSelfIntro, _lead_in_progress: false,\n        _has_sales_history: false, _phone_cold_drop: false,\n        _phone_format_invalid: _phoneFormatInvalid\n      }\n    }];\n  }\n\n  // === OVERRIDE: ép category khi phát hiện contact của khách ===\n  let _category = p.category || null;\n  let _sub = (p.sales_subcategory || \"consultation\").toLowerCase().trim();\n  let _override = false;\n  if (_shouldForceLead) {\n    _category = 'SALES_LEAD';\n    _sub = 'close_deal';\n    _override = true;\n  } else if (_phoneColdDrop) {\n    // Khách rớt SĐT TURN ĐẦU chưa có context → soft consultation, KHÔNG form-fill rập khuôn.\n    _category = 'SALES_LEAD';\n    _sub = 'consultation';\n    _override = true;\n  }\n\n  return [{\n    json: {\n      category: _category,\n      sales_subcategory: _sub,\n      brand: (p.brand || \"\").toLowerCase().trim(),\n      model_slug: (p.model_slug || \"\").toLowerCase().trim(),\n      car_type: (p.car_type || \"\").toLowerCase().trim(),\n      seat_min: p.seat_min ? Number(p.seat_min) : null,\n      fuel: (p.fuel || \"\").toLowerCase().trim(),\n      budget_max: p.budget_max ? Number(p.budget_max) : null,\n      price_sort: (p.price_sort || \"\").toLowerCase().trim() || null,\n      use_case: p.use_case || null,\n      qa_intents: Array.isArray(p.qa_intents) ? p.qa_intents : [],\n      compare_with_brand: (p.compare_with_brand || \"\").toLowerCase().trim(),\n      compare_with_model: (p.compare_with_model || \"\").trim(),\n      compare_target: (p.compare_target || \"\").toLowerCase().trim(),\n      status: typeof p.status === \"boolean\" ? p.status : false,\n      _contact_override: _override,\n      _has_phone: _hasPhone,\n      _has_self_intro: _hasSelfIntro,\n      _lead_in_progress: _leadInProgress,\n      _has_sales_history: _hasSalesHistory,\n      _phone_cold_drop: _phoneColdDrop,\n      _phone_format_invalid: _phoneFormatInvalid,\n      _multi: false\n    }\n  }];\n} catch(e) {\n  // Ngay cả khi LLM lỗi format, nếu khách đã rớt contact / đang có lead chưa complete thì vẫn cứu vào lead flow\n  if (_shouldForceLead) {\n    return [{ json: { category: 'SALES_LEAD', sales_subcategory: 'close_deal', status: true, _contact_override: true, _has_phone: _hasPhone, _has_self_intro: _hasSelfIntro, _lead_in_progress: _leadInProgress, _has_sales_history: _hasSalesHistory, _phone_cold_drop: false, _multi: false, raw_debug: rawText.substring(0,200) }}];\n  }\n  if (_phoneColdDrop) {\n    return [{ json: { category: 'SALES_LEAD', sales_subcategory: 'consultation', status: true, _contact_override: true, _has_phone: _hasPhone, _has_self_intro: _hasSelfIntro, _lead_in_progress: false, _has_sales_history: false, _phone_cold_drop: true, _multi: false, raw_debug: rawText.substring(0,200) }}];\n  }\n  return [{ json: { category: \"ERROR_FORMAT\", _multi: false, raw_debug: rawText.substring(0,200), status: false }}];\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2752,
-        6576
+        -1312,
+        21728
       ],
-      "id": "d0474440-c2cd-42be-9c6a-4cd25d36dc60",
+      "id": "9e7d2c5b-450c-43ca-8197-e07c897f799a",
       "name": "xu_ly_category"
     },
     {
@@ -370,13 +370,13 @@
         },
         "options": {}
       },
-      "id": "df5e3d64-e194-4e2a-b71d-49edc1c11f31",
+      "id": "43b4b3b6-a6c9-4b2b-9167-9f8bc1194abd",
       "name": "Route by Intent1",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1872,
-        6384
+        -432,
+        21536
       ]
     },
     {
@@ -386,10 +386,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1216,
-        5344
+        224,
+        20496
       ],
-      "id": "2d027d21-c634-4b64-99b5-f9a39c007211",
+      "id": "4df00549-68d8-4891-835c-0b402a17fcdb",
       "name": "Code in JavaScript"
     },
     {
@@ -403,10 +403,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -2992,
-        6736
+        -1520,
+        21952
       ],
-      "id": "9cae7665-43c3-4758-94a1-db40bf30af76",
+      "id": "cc4cd34f-36b6-46b5-8357-5e4498a1ccd0",
       "name": "AI Agent",
       "retryOnFail": true
     },
@@ -420,10 +420,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -2992,
-        6912
+        -1552,
+        22064
       ],
-      "id": "f4d86797-5d0c-45d1-84c0-bb2615633a31",
+      "id": "b3fb2468-e682-4371-9d78-866a7e5ccdfa",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -439,10 +439,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2016,
-        6560
+        -576,
+        21712
       ],
-      "id": "b5f328a0-4f96-4237-a215-acbac35caba8",
+      "id": "64e1c53e-d54c-42d7-98d9-6e4a4d321494",
       "name": "Normalize Entities"
     },
     {
@@ -452,10 +452,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -992,
-        6256
+        448,
+        21408
       ],
-      "id": "dac73996-2db5-4bab-86de-0e67e68ffd15",
+      "id": "a7f82161-9438-4a1d-a64b-0d468e10ab4c",
       "name": "xu_ly_location1"
     },
     {
@@ -465,10 +465,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -800,
-        6256
+        640,
+        21408
       ],
-      "id": "777bd3d6-dcae-4db6-8c56-fe77d6a2e172",
+      "id": "03c7faa3-f5d0-4146-94a0-db82066231f3",
       "name": "Code in Javescript 1"
     },
     {
@@ -482,10 +482,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -1488,
-        6080
+        -48,
+        21232
       ],
-      "id": "5fc21fa2-cbe8-4adc-8bfb-b38e8ba2b6d5",
+      "id": "f61708fe-ceda-4e1a-a8a7-8e8d779181a0",
       "name": "AI Agent - Location Extractor",
       "retryOnFail": true
     },
@@ -500,10 +500,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -816,
-        5936
+        624,
+        21088
       ],
-      "id": "362da076-b2bb-4a65-8232-313c30eb5ea0",
+      "id": "f47fb06f-925b-4009-94a2-b5ecd89a9ff5",
       "name": "reply_single_car",
       "retryOnFail": true
     },
@@ -620,10 +620,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1056,
-        5680
+        384,
+        20832
       ],
-      "id": "01340321-119a-4382-afe3-765ae391c52d",
+      "id": "4b7e2836-405b-4cc2-a9b7-28fe85a46c5d",
       "name": "Route by Sales Mode"
     },
     {
@@ -637,10 +637,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -704,
-        5152
+        736,
+        20304
       ],
-      "id": "349b1303-f8e3-4a6a-9bbd-3237f5219411",
+      "id": "d164a439-6fdc-416a-afd5-f734f0a1584b",
       "name": "reply_pricing",
       "retryOnFail": true
     },
@@ -655,10 +655,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -736,
-        5472
+        704,
+        20624
       ],
-      "id": "c8acdef3-5832-44dc-94da-c87acdbd87f7",
+      "id": "4e942ef3-225a-4930-ab31-e2245b5ef79a",
       "name": "reply_tech_specs",
       "retryOnFail": true
     },
@@ -673,10 +673,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -464,
-        5648
+        976,
+        20800
       ],
-      "id": "ee5d3596-cb2c-4594-92b5-d07938dd53ca",
+      "id": "3f264fcb-bd70-4c73-a984-09a988d5ee8a",
       "name": "reply_compare_external",
       "retryOnFail": true
     },
@@ -691,10 +691,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -320,
-        5984
+        1120,
+        21136
       ],
-      "id": "4192ab9d-3546-486d-93eb-c8fbf99c22fc",
+      "id": "b3f378fc-3084-487a-b87e-fd2f7c4c9d69",
       "name": "reply_shortlist",
       "retryOnFail": true
     },
@@ -709,10 +709,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -624,
-        6256
+        816,
+        21408
       ],
-      "id": "7a1225bc-669f-4b3a-a3a6-de411da83ecd",
+      "id": "41faad56-db5f-4949-ac4c-d6deb7cf5497",
       "name": "Message a model",
       "retryOnFail": true
     },
@@ -724,10 +724,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -816,
-        6112
+        624,
+        21264
       ],
-      "id": "78ada3a0-9377-4de8-a456-25d3e6365233",
+      "id": "6560f1df-5b83-41b4-80ff-28b01b3b6103",
       "name": "Google Gemini Chat Model1",
       "credentials": {
         "googlePalmApi": {
@@ -744,10 +744,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -704,
-        5328
+        736,
+        20480
       ],
-      "id": "06c9e57b-0b1b-4c95-b019-9fe3a8ddaa30",
+      "id": "f217014e-a72d-4d5e-ac43-00daaf496a74",
       "name": "Gemini_pricing",
       "credentials": {
         "googlePalmApi": {
@@ -764,10 +764,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -752,
-        5632
+        688,
+        20784
       ],
-      "id": "e331b71e-7956-46c3-bf2b-b78bda464c8c",
+      "id": "067b58af-4448-4a2e-944b-0f55d9f241ba",
       "name": "Gemini_tech_specs",
       "credentials": {
         "googlePalmApi": {
@@ -784,10 +784,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -480,
-        5808
+        960,
+        20960
       ],
-      "id": "3b30d190-43bb-4e3e-8727-89539d0bd2bf",
+      "id": "9e496d65-1944-4242-81e3-62be613b8d3d",
       "name": "Gemini_compare_external",
       "credentials": {
         "googlePalmApi": {
@@ -804,10 +804,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -336,
-        6160
+        1104,
+        21312
       ],
-      "id": "e6e06c68-5cad-4028-8f86-daa24c49b8cb",
+      "id": "3c4ff3db-bef3-452e-b62c-91fd57533ead",
       "name": "Gemini_shortlist",
       "credentials": {
         "googlePalmApi": {
@@ -823,10 +823,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1488,
-        6224
+        -48,
+        21376
       ],
-      "id": "512e3278-8f69-416a-bbc1-fc03c62a3d75",
+      "id": "c2b98d94-1a00-4ac8-8b89-44cd2cd31fbb",
       "name": "Google Gemini Chat Model2",
       "credentials": {
         "googlePalmApi": {
@@ -843,10 +843,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -656,
-        6400
+        784,
+        21552
       ],
-      "id": "089c32ad-92fe-4e6d-a51e-68dc54d26113",
+      "id": "81418ec6-ab24-4d69-9b47-b04df2d6e359",
       "name": "Google Gemini Chat Model3",
       "credentials": {
         "googlePalmApi": {
@@ -885,10 +885,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -4208,
-        6544
+        -2768,
+        21696
       ],
-      "id": "b45624d2-84d3-4821-b6f0-461cdebe379e",
+      "id": "4c527aee-266a-42c9-9de2-53a8e83c740b",
       "name": "gs_read_session",
       "alwaysOutputData": true,
       "credentials": {
@@ -929,10 +929,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -4016,
-        6544
+        -2576,
+        21696
       ],
-      "id": "8ad6c749-2250-46c1-849e-c2bc7cc87f25",
+      "id": "790d0af7-e8ef-4e4e-8ff8-cc8166fbed57",
       "name": "gs_read_test_drive_state",
       "alwaysOutputData": true,
       "credentials": {
@@ -950,10 +950,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3856,
-        6544
+        -2416,
+        21696
       ],
-      "id": "7e5b704a-eb43-45bc-a6c7-cbbacc59e94f",
+      "id": "0b5f0072-c821-47ff-b27e-2d1e3fb1e7cb",
       "name": "parse_session"
     },
     {
@@ -963,10 +963,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3696,
-        6544
+        -2256,
+        21696
       ],
-      "id": "0954573a-ba3d-49cc-869e-dd95fd846b78",
+      "id": "2965bfdc-7b26-4dfb-bdb6-f330a13b16f1",
       "name": "abuse_guard"
     },
     {
@@ -997,10 +997,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -3520,
-        6560
+        -2080,
+        21712
       ],
-      "id": "4528703d-fd5a-4c15-83b7-9b11b38aa860",
+      "id": "83598baf-35ae-4413-8b4b-459e77afa8a2",
       "name": "is_abuse"
     },
     {
@@ -1010,23 +1010,23 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3200,
-        6352
+        -1760,
+        21504
       ],
-      "id": "b753bb47-9f73-46e5-a110-dfc21f1a4a1b",
+      "id": "7a60ba55-3a23-4140-a2a1-521f91d8c65a",
       "name": "silent_reply"
     },
     {
       "parameters": {
-        "jsCode": "// keyword_router — Pre-classify bằng regex TRƯỚC khi gọi AI Agent.\n// Match keyword rõ ràng → output JSON giả lập giống AI Agent output → bypass AI = 0 token.\n// Không match → _keyword_matched = false → fallback AI Agent.\n\nconst trigger = $('When chat message received3').first().json;\nconst chatInput = (trigger.chatInput || '').toString();\nconst msg = chatInput.toLowerCase().trim();\nconst d = $input.first().json;\n\n// === FETCH CATALOG — validate slug tồn tại trong thư viện ===\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\nlet VALID_SLUGS = new Set();\ntry {\n  const raw = await this.helpers.httpRequest({ method: 'GET', url: base + 'wiki/models/catalog.json', json: true, returnFullResponse: false });\n  const catalog = (typeof raw === 'string') ? JSON.parse(raw) : raw;\n  (catalog.models || []).forEach(m => VALID_SLUGS.add(m.slug));\n} catch (e) { /* nếu fetch fail → skip validation, mọi slug đều pass */ }\n\n// === HARDCODED MODEL MAP: tên phổ biến → slug ===\nconst MODEL_MAP = {\n  // Kia\n  'morning': 'kia-morning', 'new morning': 'kia-morning-all-new',\n  'sonet': 'kia-sonet', 'seltos': 'kia-seltos', 'soluto': 'kia-soluto',\n  'k3': 'kia-k3', 'k5': 'kia-k5',\n  'sportage': 'kia-sportage', 'sorento': 'kia-sorento',\n  'sorento hybrid': 'kia-sorento-hybrid',\n  'carnival': 'kia-carnival', 'carens': 'kia-carens',\n  'new carnival': 'kia-carnival',\n  // Mazda\n  'mazda2': 'mazda-2', 'mazda 2': 'mazda-2',\n  'mazda 2 sport': 'mazda-2-sport', 'mazda2 sport': 'mazda-2-sport',\n  'mazda3': 'mazda-3', 'mazda 3': 'mazda-3',\n  'mazda 3 sport': 'mazda-3-sport', 'mazda3 sport': 'mazda-3-sport',\n  'cx-3': 'mazda-cx-3', 'cx3': 'mazda-cx-3', 'cx 3': 'mazda-cx-3',\n  'cx-5': 'mazda-cx-5', 'cx5': 'mazda-cx-5', 'cx 5': 'mazda-cx-5',\n  'cx-8': 'mazda-cx-8', 'cx8': 'mazda-cx-8', 'cx 8': 'mazda-cx-8',\n  'cx-30': 'mazda-cx-30', 'cx30': 'mazda-cx-30', 'cx 30': 'mazda-cx-30',\n  'cx-90': 'mazda-cx-90', 'cx90': 'mazda-cx-90', 'cx 90': 'mazda-cx-90',\n  'mx-5': 'mazda-mx-5', 'mx5': 'mazda-mx-5',\n  // Peugeot\n  '2008': 'peugeot-2008', '3008': 'peugeot-3008',\n  '5008': 'peugeot-5008', '408': 'peugeot-408',\n  // BMW\n  'x3': 'bmw-x3', 'x4': 'bmw-x4', 'x5': 'bmw-x5', 'x6': 'bmw-x6', 'x7': 'bmw-x7',\n  'x3 all new': 'bmw-x3-all-new', 'x3 mới': 'bmw-x3-all-new',\n  'ix3': 'bmw-ix3',\n  'z4': 'bmw-z4',\n  '3 series': 'bmw-3-series', '4 series': 'bmw-4-series',\n  '5 series': 'bmw-5-series', '5 series all new': 'bmw-5-series-all-new',\n  '7 series': 'bmw-7-series',\n  '320i': 'bmw-3-series', '330i': 'bmw-3-series',\n  '430i': 'bmw-4-series',\n  '520i': 'bmw-5-series', '530i': 'bmw-5-series',\n  '730li': 'bmw-7-series',\n  'i4': 'bmw-i4', 'i7': 'bmw-i7',\n  '520': 'bmw-5-series', '530': 'bmw-5-series',\n  '320': 'bmw-3-series', '330': 'bmw-3-series',\n  '430': 'bmw-4-series',\n  '730': 'bmw-7-series',\n  // MINI\n  'mini 3 door': 'mini-3-door', 'mini 3 cửa': 'mini-3-door',\n  'mini 5 door': 'mini-5-door', 'mini 5 cửa': 'mini-5-door',\n  'cooper': 'mini-3-door',\n  'countryman': 'mini-countryman', 'clubman': 'mini-clubman',\n  'mini convertible': 'mini-convertible', 'mini mui trần': 'mini-convertible'\n};\n\n// === PATTERN-BASED BRAND INFERENCE ===\n// Khi MODEL_MAP miss nhưng tên xe có pattern đặc trưng → suy ra brand + build slug.\n// Slug sẽ được validate sau bằng VALID_SLUGS.\nconst BRAND_PATTERNS = [\n  { rx: /\\b[cm]x[- ]?(\\d+)\\b/i, brand: 'mazda', slugFn: (m) => {\n    const raw = m[0].toLowerCase().replace(/\\s+/g, '-');\n    return 'mazda-' + raw.replace(/^(cx|mx)(\\d)/, '$1-$2');\n  }},\n  { rx: /\\bbt[- ]?(\\d+)\\b/i,        brand: 'mazda', slugFn: (m) => 'mazda-bt-' + m[1] },\n  { rx: /\\bmazda[- ]?(\\d+)\\b/i,     brand: 'mazda', slugFn: (m) => 'mazda-' + m[1] },\n  { rx: /\\bx(\\d)\\b/i,              brand: 'bmw',   slugFn: (m) => 'bmw-x' + m[1] },\n  { rx: /\\b(\\d) ?series\\b/i,       brand: 'bmw',   slugFn: (m) => 'bmw-' + m[1] + '-series' },\n  { rx: /\\b([1-8])(\\d{2})i?\\b/i,    brand: 'bmw',   slugFn: (m) => 'bmw-' + m[1] + '-series' },\n  { rx: /\\bi(\\d)\\b/i,              brand: 'bmw',   slugFn: (m) => 'bmw-i' + m[1] },\n  { rx: /\\b([2-5]008|[2-5]08)\\b/i, brand: 'peugeot', slugFn: (m) => 'peugeot-' + m[1] },\n  { rx: /\\bk(\\d)\\b/i,              brand: 'kia',   slugFn: (m) => 'kia-k' + m[1] },\n  { rx: /\\bev(\\d)\\b/i,             brand: 'kia',   slugFn: (m) => 'kia-ev' + m[1] },\n];\n\n// === BRAND DETECTION ===\nconst BRAND_REGEX = {\n  'kia': /\\b(kia|ki a)\\b/i,\n  'mazda': /\\b(mazda|maz da)\\b/i,\n  'peugeot': /\\b(peugeot|pê giô|peugot|peugeout)\\b/i,\n  'bmw': /\\b(bmw|b m w|bê em vê)\\b/i,\n  'mini': /\\b(mini cooper|mini)\\b/i\n};\n\nfunction detectBrand(text) {\n  for (const [brand, rx] of Object.entries(BRAND_REGEX)) {\n    if (rx.test(text)) return brand;\n  }\n  return '';\n}\n\nfunction detectModel(text, brand) {\n  const t = text.toLowerCase();\n  // Step 1: MODEL_MAP (exact match, longest key first)\n  const sorted = Object.entries(MODEL_MAP).sort((a, b) => b[0].length - a[0].length);\n  for (const [name, slug] of sorted) {\n    const escaped = name.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n    const rx = new RegExp('(?:^|[\\\\s,\\\\.!?\\'\\\\\"()])' + escaped + '(?:[\\\\s,\\\\.!?\\'\\\\\"()]|$)', 'i');\n    if (rx.test(' ' + t + ' ')) {\n      const inferredBrand = brand || slug.split('-')[0];\n      // VALIDATE: slug phải tồn tại trong catalog\n      if (VALID_SLUGS.size === 0 || VALID_SLUGS.has(slug)) {\n        return { model_slug: slug, brand: inferredBrand };\n      } else {\n        // Slug không tồn tại trong thư viện → chỉ giữ brand, bỏ slug\n        console.log('[KEYWORD_ROUTER] Slug NOT in catalog:', slug);\n        return { model_slug: '', brand: inferredBrand };\n      }\n    }\n  }\n  // Step 2: PATTERN FALLBACK\n  for (const pat of BRAND_PATTERNS) {\n    const m = t.match(pat.rx);\n    if (m) {\n      const inferredBrand = brand || pat.brand;\n      if (brand && brand !== pat.brand) continue;\n      const slug = pat.slugFn(m);\n      // VALIDATE: slug phải tồn tại trong catalog\n      if (VALID_SLUGS.size === 0 || VALID_SLUGS.has(slug)) {\n        return { model_slug: slug, brand: pat.brand };\n      } else {\n        console.log('[KEYWORD_ROUTER] Pattern slug NOT in catalog:', slug);\n        return { model_slug: '', brand: pat.brand };\n      }\n    }\n  }\n  return { model_slug: '', brand };\n}\n\n// === CATEGORY KEYWORD RULES ===\nlet category = null;\nlet sales_subcategory = 'consultation';\nlet qa_intents = [];\n\nif (/\\b(đ[ếe]o|đ[ụu] m[ẹe]|v[ãa]i (l[ồo]n|c[ặa]c)|đ[ồo] ngu|m[ẹe] m[àa]y|cc|clgt|vcl|wtf|f[uư]ck|shit|damn|bitch|con (chó|đ[ĩi])|ngu (v[ãa]i|thế)|khốn nạn|mất dạy)\\b/i.test(msg)) {\n  category = 'SAFETY_GUARD';\n}\nelse if (/\\b(tuyển dụng|ứng tuyển|xin việc|gửi cv|tìm việc|vị trí tuyển|hiring|apply|job)\\b/i.test(msg)) {\n  category = 'RECRUITMENT';\n}\nelse if (/\\b(khiếu nại|phàn nàn|than phiền|thái độ (nhân viên|sale|tư vấn)|dịch vụ (tệ|kém|tồi)|e-?survey|đánh giá (xấu|tệ|kém))\\b/i.test(msg)) {\n  category = 'CRITICAL_COMPLAINT';\n}\nelse if (/\\b(thu cũ|đổi mới|bán xe cũ|lên đời|đổi xe|trade[- ]?in|thu mua)\\b/i.test(msg)) {\n  category = 'TRADE_IN';\n}\nelse if (/\\b(cho (em|tôi|mình|anh|chị) (số|sdt|số điện thoại) (sale|tư vấn|nhân viên)|kết nối (nhân viên|tư vấn)|nói chuyện (với )?(người thật|nhân viên|sale)|gọi (cho )?(em|tôi) (ngay|đi|với)|muốn gặp (sale|tư vấn|nhân viên))\\b/i.test(msg)) {\n  category = 'URGENT_CONSULT';\n}\nelse if (/\\b(văn phòng|trụ sở|email (công ty|cskh|thaco)|hotline (tổng đài|thaco|công ty)|fanpage (chính thức|thaco)|liên hệ (công ty|thaco auto))\\b/i.test(msg)) {\n  category = 'COMPANY_CONTACT';\n}\nelse if (/\\b(bảo dưỡng|đặt lịch (dịch vụ|sửa|bảo)|sửa chữa|phụ tùng|dịch vụ xưởng|xưởng dịch vụ|lịch (bảo dưỡng|bảo hành)|chi phí (bảo dưỡng|sửa chữa))\\b/i.test(msg)) {\n  category = 'SERVICE_APPOINTMENT';\n}\nelse if (/\\b(chính sách (bảo hành|đổi trả|trả góp)|thủ tục (đăng ký|đăng kiểm|sang tên)|quy định (pháp lý|bảo hiểm)|điều khoản|bảo hành (xe|chính hãng))\\b/i.test(msg) && !/\\b(giá|bao nhiêu|tư vấn|mua)\\b/i.test(msg)) {\n  category = 'POLICY_LEGAL';\n}\nelse if (/\\b(showroom|đại lý|chi nhánh|gần (đây|nhất|nhà)|địa chỉ (showroom|đại lý)|tìm (showroom|đại lý))\\b/i.test(msg)) {\n  category = 'NETWORK_LOCATION';\n}\nelse if (/\\b(thông tin (hãng|thương hiệu|brand)|lịch sử (hãng|thương hiệu)|xuất xứ|website (kia|mazda|peugeot|bmw|mini)|fanpage)\\b/i.test(msg)\n  && !/\\b(giá|mua|tư vấn|lái thử|đặt)\\b/i.test(msg)) {\n  category = 'BRAND_INFO';\n}\nelse if (/^\\s*(chào|hello|hi|hey|xin chào|alo|a lô|chào bạn|tạm biệt|bye|cảm ơn|thank|bạn là ai|bot à|em là ai)\\s*[.!?]*\\s*$/i.test(msg)\n  || /^\\s*(chào (anh|chị|em|bạn|shop)|good (morning|afternoon|evening))\\s*[.!?]*\\s*$/i.test(msg)) {\n  category = 'GREETING';\n}\nelse if (/\\b(tư vấn|muốn mua|quan tâm|hỏi (về )?xe|giá (xe|bao nhiêu|là|khoảng)|lăn bánh|trả góp|báo giá|đăng ký lái thử|lái thử|đặt cọc|mua xe|đặt xe|khuyến mãi|ưu đãi|e-?catalog|thông số|trang bị|nội thất|ngoại thất|động cơ|ADAS|an toàn|hộp số|so sánh|phiên bản|màu (sắc|xe|nào)|có sẵn|giao ngay|tồn kho|giá rẻ|giá đắt|xe (nào|gì) (phù hợp|tốt|hay)|nên mua|đáng mua)\\b/i.test(msg)) {\n  category = 'SALES_LEAD';\n  if (/\\b(giá|bao nhiêu|lăn bánh|trả góp|báo giá|khuyến mãi|ưu đãi|chiết khấu|phí trước bạ|vay|lãi suất)\\b/i.test(msg)) {\n    sales_subcategory = 'pricing_finance';\n  } else if (/\\b(thông số|trang bị|nội thất|ngoại thất|động cơ|ADAS|hộp số|túi khí|camera|an toàn|kích thước|mã lực|torque|cách âm)\\b/i.test(msg)) {\n    sales_subcategory = 'tech_specs';\n    qa_intents = [];\n    if (/\\b(nội thất|ghế|màn hình|điều hòa|cửa sổ trời|âm thanh)\\b/i.test(msg)) qa_intents.push('NOI_THAT');\n    if (/\\b(ngoại thất|form|gầm|mâm|đèn|kích thước|màu)\\b/i.test(msg)) qa_intents.push('NGOAI_THAT');\n    if (/\\b(an toàn|ADAS|túi khí|camera|phanh|cảnh báo)\\b/i.test(msg)) qa_intents.push('AN_TOAN');\n    if (/\\b(động cơ|hộp số|mã lực|torque|cách âm|vận hành|cảm giác lái)\\b/i.test(msg)) qa_intents.push('VAN_HANH');\n  } else if (/\\b(lái thử|đặt cọc|đặt xe|đăng ký lái thử)\\b/i.test(msg)) {\n    sales_subcategory = 'close_deal';\n  } else if (/\\b(so sánh|vs|khác nhau|nên chọn|đáng mua hơn)\\b/i.test(msg)) {\n    sales_subcategory = 'consultation';\n    qa_intents.push('SO_SANH');\n  } else {\n    sales_subcategory = 'consultation';\n  }\n}\nelse {\n  const brandHit = detectBrand(msg);\n  const { model_slug } = detectModel(msg, brandHit);\n  if (model_slug) {\n    category = 'SALES_LEAD';\n    sales_subcategory = 'consultation';\n  }\n}\n\n// === BUILD OUTPUT ===\n// Luôn extract entities bất kể category match hay không\nlet brand = detectBrand(msg);\nconst modelResult = detectModel(msg, brand);\nif (modelResult.brand && !brand) brand = modelResult.brand;\nconst model_slug_raw = modelResult.model_slug;\n\n// === ALL-NEW UPGRADE: nếu khách hỏi \"đời mới nhất\" → thử slug-all-new ===\nlet model_slug = model_slug_raw;\nconst IS_NEW_INTENT = /\\b(đời mới|mới nhất|all[- ]?new|thế hệ mới|phiên bản mới|version mới|new model|facelift|nâng cấp)\\b/i.test(msg);\nif (IS_NEW_INTENT && model_slug_raw) {\n  const allNewSlug = model_slug_raw + '-all-new';\n  if (VALID_SLUGS.has(allNewSlug)) {\n    model_slug = allNewSlug;\n    console.log('[KEYWORD_ROUTER] Upgraded to all-new:', allNewSlug);\n  } else {\n    console.log('[KEYWORD_ROUTER] No all-new variant for:', model_slug_raw, '→ keeping original');\n  }\n}\n\n// Compare detection\nlet compare_target = '';\nlet compare_with_brand = '';\nlet compare_with_model = '';\nif (/\\b(so sánh|vs|với|và|hay)\\b/i.test(msg) && model_slug) {\n  const remaining = msg.replace(new RegExp(model_slug.split('-').pop(), 'i'), '');\n  const secondResult = detectModel(remaining, '');\n  if (secondResult.model_slug && secondResult.model_slug !== model_slug) {\n    const THACO_BRANDS = ['kia', 'mazda', 'peugeot', 'bmw', 'mini'];\n    const secondBrand = secondResult.model_slug.split('-')[0];\n    if (THACO_BRANDS.includes(secondBrand)) compare_target = secondResult.model_slug;\n    else { compare_with_brand = secondBrand; compare_with_model = secondResult.model_slug; }\n  }\n  const extMatch = msg.match(/\\b(toyota|honda|hyundai|ford|vinfast|nissan|mitsubishi|mg|chevrolet|suzuki|volvo|mercedes|audi|lexus)\\b/i);\n  if (extMatch && !compare_with_brand) {\n    compare_with_brand = extMatch[1].toLowerCase();\n    const afterBrand = msg.substring(msg.toLowerCase().indexOf(compare_with_brand) + compare_with_brand.length).trim();\n    const mw = afterBrand.match(/^\\s*([A-Za-z0-9\\-]+)/);\n    if (mw) compare_with_model = mw[1];\n  }\n}\n\nlet car_type = '';\nif (/\\b(suv|gầm cao|xe gầm cao)\\b/i.test(msg)) car_type = 'suv';\nelse if (/\\b(sedan)\\b/i.test(msg)) car_type = 'sedan';\nelse if (/\\b(hatchback|hatch)\\b/i.test(msg)) car_type = 'hatchback';\n\nlet seat_min = null;\nconst seatMatch = msg.match(/\\b(\\d+)\\s*chỗ/);\nif (seatMatch) seat_min = parseInt(seatMatch[1]);\n\nlet fuel = '';\nif (/\\b(máy dầu|diesel|dầu)\\b/i.test(msg)) fuel = 'dầu';\nelse if (/\\b(hybrid|lai điện)\\b/i.test(msg)) fuel = 'hybrid';\nelse if (/\\b(điện|ev|electric)\\b/i.test(msg)) fuel = 'ev';\nelse if (/\\b(xăng|petrol)\\b/i.test(msg)) fuel = 'xăng';\n\nlet budget_max = null;\n// Pattern 1: \"7xx\", \"8xx\" → 700/800 triệu (shorthand phổ biến)\nconst xxMatch = msg.match(/(dưới|khoảng|tầm|budget|ngân sách|trong|từ)?\\s*(\\d)xx\\s*(tỷ|tỉ|triệu|tr)?/i);\n// Pattern 2: standard \"800 triệu\", \"1.2 tỷ\"\nconst budgetMatch = msg.match(/(dưới|khoảng|tầm|budget|ngân sách|trong|từ)?\\s*(\\d+(?:[.,]\\d+)?)\\s*(tỷ|tỉ|triệu|tr)/i);\nif (xxMatch) {\n  let num = parseInt(xxMatch[2]) * 100 * 1000000;\n  if (xxMatch[3] && /tỷ|tỉ/i.test(xxMatch[3])) num = parseInt(xxMatch[2]) * 100 * 1000000000;\n  if (/tầm|khoảng/i.test(xxMatch[1] || '')) num *= 1.1;\n  budget_max = Math.round(num);\n} else if (budgetMatch) {\n  let num = parseFloat(budgetMatch[2].replace(',', '.'));\n  const unit = budgetMatch[3].toLowerCase();\n  if (unit === 'tỷ' || unit === 'tỉ') num *= 1000000000;\n  else num *= 1000000;\n  if (/tầm|khoảng/i.test(budgetMatch[1] || '')) num *= 1.1;\n  budget_max = Math.round(num);\n}\n\nlet price_sort = null;\nif (/\\b(rẻ nhất|thấp nhất|rẻ|giá thấp)\\b/i.test(msg)) price_sort = 'asc';\nelse if (/\\b(đắt nhất|mắc nhất|cao nhất|giá cao)\\b/i.test(msg)) price_sort = 'desc';\n\n// Build pre_extracted object\nconst pre = {\n  category: category || '',\n  sales_subcategory: (category === 'SALES_LEAD') ? sales_subcategory : '',\n  brand: brand || '', model_slug: model_slug || '',\n  car_type, seat_min, fuel, budget_max,\n  use_case: null, qa_intents,\n  compare_with_brand, compare_with_model, compare_target,\n  price_sort, status: true\n};\n\n// Determine missing fields\nconst ALL_FIELDS = ['category','sales_subcategory','brand','model_slug','car_type','seat_min','fuel','budget_max','use_case','qa_intents','compare_with_brand','compare_with_model','compare_target','price_sort'];\nconst missing = ALL_FIELDS.filter(f => {\n  const v = pre[f];\n  if (v === null || v === '' || v === undefined) return true;\n  if (Array.isArray(v) && v.length === 0) return true;\n  return false;\n});\n\n// Determine confidence\nlet confidence = 'none';\nif (category) {\n  // SALES_LEAD cần model_slug để là \"full\"; không có model → partial\n  if (category === 'SALES_LEAD' && !model_slug) {\n    confidence = 'partial';\n  } else {\n    const coreFound = [brand, model_slug, sales_subcategory].filter(x => x).length;\n    confidence = coreFound >= 2 ? 'full' : 'partial';\n  }\n} else if (brand || model_slug) {\n  confidence = 'partial';\n}\n\nconsole.log('[KEYWORD_ROUTER]', confidence, '| cat:', category, '| brand:', brand, '| model:', model_slug, '| missing:', missing.length);\n\nreturn [{ json: {\n  ...d,\n  _confidence: confidence,\n  _pre_extracted: pre,\n  _missing_fields: missing\n}}];\n"
+        "jsCode": "// keyword_router — Pre-classify bằng regex TRƯỚC khi gọi AI Agent.\n// Match keyword rõ ràng → output JSON giả lập giống AI Agent output → bypass AI = 0 token.\n// Không match → _keyword_matched = false → fallback AI Agent.\n\nconst trigger = $('When chat message received3').first().json;\nconst chatInput = (trigger.chatInput || '').toString();\nconst msg = chatInput.toLowerCase().trim();\nconst d = $input.first().json;\n\n// === FETCH CATALOG — validate slug tồn tại trong thư viện ===\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\nlet VALID_SLUGS = new Set();\ntry {\n  const raw = await this.helpers.httpRequest({ method: 'GET', url: base + 'wiki/models/catalog.json', json: true, returnFullResponse: false });\n  const catalog = (typeof raw === 'string') ? JSON.parse(raw) : raw;\n  (catalog.models || []).forEach(m => VALID_SLUGS.add(m.slug));\n} catch (e) { /* nếu fetch fail → skip validation, mọi slug đều pass */ }\n\n// === HARDCODED MODEL MAP: tên phổ biến → slug ===\nconst MODEL_MAP = {\n  // Kia\n  'morning': 'kia-morning', 'new morning': 'kia-morning-all-new',\n  'sonet': 'kia-sonet', 'seltos': 'kia-seltos', 'soluto': 'kia-soluto',\n  'k3': 'kia-k3', 'k5': 'kia-k5',\n  'sportage': 'kia-sportage', 'sorento': 'kia-sorento',\n  'sorento hybrid': 'kia-sorento-hybrid',\n  'carnival': 'kia-carnival', 'carens': 'kia-carens',\n  'new carnival': 'kia-carnival',\n  // Mazda\n  'mazda2': 'mazda-2', 'mazda 2': 'mazda-2',\n  'mazda 2 sport': 'mazda-2-sport', 'mazda2 sport': 'mazda-2-sport',\n  'mazda3': 'mazda-3', 'mazda 3': 'mazda-3',\n  'mazda 3 sport': 'mazda-3-sport', 'mazda3 sport': 'mazda-3-sport',\n  'cx-3': 'mazda-cx-3', 'cx3': 'mazda-cx-3', 'cx 3': 'mazda-cx-3',\n  'cx-5': 'mazda-cx-5', 'cx5': 'mazda-cx-5', 'cx 5': 'mazda-cx-5',\n  'cx-8': 'mazda-cx-8', 'cx8': 'mazda-cx-8', 'cx 8': 'mazda-cx-8',\n  'cx-30': 'mazda-cx-30', 'cx30': 'mazda-cx-30', 'cx 30': 'mazda-cx-30',\n  'cx-90': 'mazda-cx-90', 'cx90': 'mazda-cx-90', 'cx 90': 'mazda-cx-90',\n  'mx-5': 'mazda-mx-5', 'mx5': 'mazda-mx-5',\n  // Peugeot\n  '2008': 'peugeot-2008', '3008': 'peugeot-3008',\n  '5008': 'peugeot-5008', '408': 'peugeot-408',\n  // BMW\n  'x3': 'bmw-x3', 'x4': 'bmw-x4', 'x5': 'bmw-x5', 'x6': 'bmw-x6', 'x7': 'bmw-x7',\n  'x3 all new': 'bmw-x3-all-new', 'x3 mới': 'bmw-x3-all-new',\n  'ix3': 'bmw-ix3',\n  'z4': 'bmw-z4',\n  '3 series': 'bmw-3-series', '4 series': 'bmw-4-series',\n  '5 series': 'bmw-5-series', '5 series all new': 'bmw-5-series-all-new',\n  '7 series': 'bmw-7-series',\n  '320i': 'bmw-3-series', '330i': 'bmw-3-series',\n  '430i': 'bmw-4-series',\n  '520i': 'bmw-5-series', '530i': 'bmw-5-series',\n  '730li': 'bmw-7-series',\n  'i4': 'bmw-i4', 'i7': 'bmw-i7',\n  '520': 'bmw-5-series', '530': 'bmw-5-series',\n  '320': 'bmw-3-series', '330': 'bmw-3-series',\n  '430': 'bmw-4-series',\n  '730': 'bmw-7-series',\n  // MINI\n  'mini 3 door': 'mini-3-door', 'mini 3 cửa': 'mini-3-door',\n  'mini 5 door': 'mini-5-door', 'mini 5 cửa': 'mini-5-door',\n  'cooper': 'mini-3-door',\n  'countryman': 'mini-countryman', 'clubman': 'mini-clubman',\n  'mini convertible': 'mini-convertible', 'mini mui trần': 'mini-convertible'\n};\n\n// === PATTERN-BASED BRAND INFERENCE ===\n// Khi MODEL_MAP miss nhưng tên xe có pattern đặc trưng → suy ra brand + build slug.\n// Slug sẽ được validate sau bằng VALID_SLUGS.\nconst BRAND_PATTERNS = [\n  { rx: /\\b[cm]x[- ]?(\\d+)\\b/i, brand: 'mazda', slugFn: (m) => {\n    const raw = m[0].toLowerCase().replace(/\\s+/g, '-');\n    return 'mazda-' + raw.replace(/^(cx|mx)(\\d)/, '$1-$2');\n  }},\n  { rx: /\\bbt[- ]?(\\d+)\\b/i,        brand: 'mazda', slugFn: (m) => 'mazda-bt-' + m[1] },\n  { rx: /\\bmazda[- ]?(\\d+)\\b/i,     brand: 'mazda', slugFn: (m) => 'mazda-' + m[1] },\n  { rx: /\\bx(\\d)\\b/i,              brand: 'bmw',   slugFn: (m) => 'bmw-x' + m[1] },\n  { rx: /\\b(\\d) ?series\\b/i,       brand: 'bmw',   slugFn: (m) => 'bmw-' + m[1] + '-series' },\n  { rx: /\\b([1-8])(\\d{2})i?\\b/i,    brand: 'bmw',   slugFn: (m) => 'bmw-' + m[1] + '-series' },\n  { rx: /\\bi(\\d)\\b/i,              brand: 'bmw',   slugFn: (m) => 'bmw-i' + m[1] },\n  { rx: /\\b([2-5]008|[2-5]08)\\b/i, brand: 'peugeot', slugFn: (m) => 'peugeot-' + m[1] },\n  { rx: /\\bk(\\d)\\b/i,              brand: 'kia',   slugFn: (m) => 'kia-k' + m[1] },\n  { rx: /\\bev(\\d)\\b/i,             brand: 'kia',   slugFn: (m) => 'kia-ev' + m[1] },\n];\n\n// === BRAND DETECTION ===\nconst BRAND_REGEX = {\n  'kia': /\\b(kia|ki a)\\b/i,\n  'mazda': /\\b(mazda|maz da)\\b/i,\n  'peugeot': /\\b(peugeot|pê giô|peugot|peugeout)\\b/i,\n  'bmw': /\\b(bmw|b m w|bê em vê)\\b/i,\n  'mini': /\\b(mini cooper|mini)\\b/i\n};\n\nfunction detectBrand(text) {\n  for (const [brand, rx] of Object.entries(BRAND_REGEX)) {\n    if (rx.test(text)) return brand;\n  }\n  return '';\n}\n\nfunction detectModel(text, brand) {\n  const t = text.toLowerCase();\n  // Step 1: MODEL_MAP (exact match, longest key first)\n  const sorted = Object.entries(MODEL_MAP).sort((a, b) => b[0].length - a[0].length);\n  for (const [name, slug] of sorted) {\n    const escaped = name.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n    const rx = new RegExp('(?:^|[\\\\s,\\\\.!?\\'\\\\\"()])' + escaped + '(?:[\\\\s,\\\\.!?\\'\\\\\"()]|$)', 'i');\n    if (rx.test(' ' + t + ' ')) {\n      const inferredBrand = brand || slug.split('-')[0];\n      // VALIDATE: slug phải tồn tại trong catalog\n      if (VALID_SLUGS.size === 0 || VALID_SLUGS.has(slug)) {\n        return { model_slug: slug, brand: inferredBrand };\n      } else {\n        // Slug không tồn tại trong thư viện → chỉ giữ brand, bỏ slug\n        console.log('[KEYWORD_ROUTER] Slug NOT in catalog:', slug);\n        return { model_slug: '', brand: inferredBrand };\n      }\n    }\n  }\n  // Step 2: PATTERN FALLBACK\n  for (const pat of BRAND_PATTERNS) {\n    const m = t.match(pat.rx);\n    if (m) {\n      const inferredBrand = brand || pat.brand;\n      if (brand && brand !== pat.brand) continue;\n      const slug = pat.slugFn(m);\n      // VALIDATE: slug phải tồn tại trong catalog\n      if (VALID_SLUGS.size === 0 || VALID_SLUGS.has(slug)) {\n        return { model_slug: slug, brand: pat.brand };\n      } else {\n        console.log('[KEYWORD_ROUTER] Pattern slug NOT in catalog:', slug);\n        return { model_slug: '', brand: pat.brand };\n      }\n    }\n  }\n  return { model_slug: '', brand };\n}\n\n// === CATEGORY KEYWORD RULES (Signal Scanning + Conflict Detection) ===\n// Thay vì if/else first-match-wins, scan TẤT CẢ categories rồi resolve conflict.\n\nconst signals = {};\nlet sales_subcategory = 'consultation';\nlet qa_intents = [];\n\n// --- Scan từng category độc lập ---\n// --- SAFETY_GUARD: danh sách từ tục / xúc phạm (bao gồm self-censored) ---\nconst PROFANITY_LIST = [\n  'đ[ếeê*._x]{0,2}o',          // đếo, đéo, đ*o, đ.o\n  'đ[ụu*._]{0,2} ?m[ẹe]',      // đụ mẹ, đ* mẹ\n  'đ[ấa*._]{0,2}t ?m[ẹe]?',    // đ*t mẹ, đất\n  'v[ãa]i ?(l[ồo]n|c[ặa]c)',   // vãi lồn, vãi cặc\n  'đ[ồo] ?ngu',                 // đồ ngu\n  'm[ẹe] ?m[àa]y',              // mẹ mày\n  'con ?(chó|đ[ĩi])',           // con chó, con đĩ\n  'ngu ?(v[ãa]i|thế)',          // ngu vãi, ngu thế\n  'khốn ?nạn',                  // khốn nạn\n  'mất ?dạy',                   // mất dạy\n  'cục ?phân',                  // cục phân\n  'ngu ?s[ĩi]',                 // ngu sĩ\n  'óc ?ch[oó]',                 // óc chó\n  'f[uư*]c?k',                  // fuck, f*ck, fck\n  'shit',                       // shit\n  'damn',                       // damn\n  'bitch',                      // bitch\n  'đm', 'dm', 'đkm',           // viết tắt: đm, dm, đkm\n  'cc', 'clgt', 'vcl', 'wtf',  // viết tắt: cc, clgt, vcl, wtf\n];\nconst PROFANITY_REGEX = new RegExp('(^|\\\\s)(' + PROFANITY_LIST.join('|') + ')(\\\\s|$|[.,!?])', 'i');\nif (PROFANITY_REGEX.test(msg)) {\n  signals.SAFETY_GUARD = true;\n}\n\nif (/\\b(tuyển dụng|ứng tuyển|xin việc|gửi cv|tìm việc|vị trí tuyển|hiring|apply|job)\\b/i.test(msg)) {\n  signals.RECRUITMENT = true;\n}\n\nif (/\\b(khiếu nại|phàn nàn|than phiền|thái độ (nhân viên|sale|tư vấn)|(nhân viên|sale|tư vấn) thái độ|dịch vụ (tệ|kém|tồi)|(tệ|kém|tồi) (quá|lắm|luôn)|e-?survey|đánh giá (xấu|tệ|kém)|thái độ.{0,10}(tệ|kém|tồi|xấu))\\b/i.test(msg)) {\n  signals.CRITICAL_COMPLAINT = true;\n}\n\nif (/\\b(thu cũ|đổi mới|bán xe cũ|lên đời|đổi xe|trade[- ]?in|thu mua)\\b/i.test(msg)) {\n  signals.TRADE_IN = true;\n}\n\nif (/\\b(cho (em|tôi|mình|anh|chị) (số|sdt|số điện thoại) (sale|tư vấn|nhân viên)|kết nối (nhân viên|tư vấn)|nói chuyện (với )?(người thật|nhân viên|sale)|gọi (cho )?(em|tôi) (ngay|đi|với)|muốn gặp (sale|tư vấn|nhân viên))\\b/i.test(msg)) {\n  signals.URGENT_CONSULT = true;\n}\n\nif (/\\b(văn phòng|trụ sở|email (công ty|cskh|thaco)|hotline (tổng đài|thaco|công ty)|fanpage (chính thức|thaco)|liên hệ (công ty|thaco auto))\\b/i.test(msg)) {\n  signals.COMPANY_CONTACT = true;\n}\n\nif (/\\b(bảo dưỡng|đặt lịch (dịch vụ|sửa|bảo)|sửa chữa|phụ tùng|dịch vụ xưởng|xưởng dịch vụ|lịch (bảo dưỡng|bảo hành)|chi phí (bảo dưỡng|sửa chữa))\\b/i.test(msg)) {\n  signals.SERVICE_APPOINTMENT = true;\n}\n\nif (/\\b(chính sách (bảo hành|đổi trả|trả góp)|thủ tục (đăng ký|đăng kiểm|sang tên)|quy định (pháp lý|bảo hiểm)|điều khoản|bảo hành (xe|chính hãng))\\b/i.test(msg)\n  && !/\\b(giá|bao nhiêu|tư vấn|mua)\\b/i.test(msg)) {\n  signals.POLICY_LEGAL = true;\n}\n\nif (/\\b(showroom|đại lý|chi nhánh|gần (đây|nhất|nhà)|địa chỉ (showroom|đại lý)|tìm (showroom|đại lý))\\b/i.test(msg)) {\n  signals.NETWORK_LOCATION = true;\n}\n\nif (/\\b(thông tin (hãng|thương hiệu|brand)|lịch sử (hãng|thương hiệu)|xuất xứ|website (kia|mazda|peugeot|bmw|mini)|fanpage)\\b/i.test(msg)\n  && !/\\b(giá|mua|tư vấn|lái thử|đặt)\\b/i.test(msg)) {\n  signals.BRAND_INFO = true;\n}\n\n// GREETING: chỉ match nếu toàn bộ tin nhắn là greeting (regex ^...$)\nif (/^\\s*(chào|hello|hi|hey|xin chào|alo|a lô|chào bạn|tạm biệt|bye|cảm ơn|thank|bạn là ai|bot à|em là ai)\\s*[.!?]*\\s*$/i.test(msg)\n  || /^\\s*(chào (anh|chị|em|bạn|shop)|good (morning|afternoon|evening))\\s*[.!?]*\\s*$/i.test(msg)) {\n  signals.GREETING = true;\n}\n\nif (/\\b(tư vấn|muốn mua|quan tâm|hỏi (về )?xe|giá (xe|bao nhiêu|là|khoảng)|lăn bánh|trả góp|báo giá|đăng ký lái thử|lái thử|đặt cọc|mua xe|đặt xe|khuyến mãi|ưu đãi|e-?catalog|thông số|trang bị|nội thất|ngoại thất|động cơ|ADAS|an toàn|hộp số|so sánh|phiên bản|màu (sắc|xe|nào)|có sẵn|giao ngay|tồn kho|giá rẻ|giá đắt|xe (nào|gì) (phù hợp|tốt|hay)|nên mua|đáng mua)\\b/i.test(msg)\n  || (/(^|\\s)giá(\\s|$)/i.test(msg) && !/(^|\\s)đánh giá/i.test(msg))) {\n  signals.SALES_LEAD = true;\n}\n\n// CUSTOMER_SERVICE: khách ĐÃ MUA xe + có vấn đề hậu mãi\nif (/\\b(đã mua|có mua|mua rồi|mua xong|mình mua|tôi mua|em mua|mới mua)\\b/i.test(msg)\n  && /\\b(nhưng|mà|tuy nhiên|vấn đề|không nhận|không được|chưa nhận|thắc mắc|hỏi về|chương trình|ứng dụng|app|thông báo|quà tặng|tặng|hứa|cam kết|nhân viên (bảo|nói|trả lời))\\b/i.test(msg)) {\n  signals.CUSTOMER_SERVICE = true;\n}\n\n// --- Quá khứ mua xe → loại bỏ SALES_LEAD ---\nconst isPastPurchase = /\\b(đã mua|có mua|mua rồi|mua xong|mình mua xe|tôi mua xe|em mua xe|mới mua)\\b/i.test(msg);\nif (isPastPurchase && signals.SALES_LEAD) {\n  delete signals.SALES_LEAD;\n  console.log('[KEYWORD_ROUTER] Suppressed SALES_LEAD — past purchase detected');\n}\n\n// --- Post-scan boost: model + giá keyword → ensure SALES_LEAD ---\n{\n  const brandHit = detectBrand(msg);\n  const { model_slug: ms } = detectModel(msg, brandHit);\n  if (ms && !signals.SALES_LEAD && /(^|\\s)(giá|bao nhiêu|bn|bnh|bao nhiu)(\\s|$|[.,!?])/i.test(msg)) {\n    signals.SALES_LEAD = true;\n    console.log('[KEYWORD_ROUTER] Boosted SALES_LEAD — model detected + price keyword');\n  }\n}\n\n// --- RESOLVE: Signal Conflict Detection ---\nlet category = null;\nconst matchedCats = Object.keys(signals);\n\nif (signals.SAFETY_GUARD) {\n  // SAFETY_GUARD luôn thắng — bất kể có conflict hay không\n  category = 'SAFETY_GUARD';\n} else if (matchedCats.length === 1) {\n  // Chỉ 1 category match → dùng nó\n  category = matchedCats[0];\n} else if (matchedCats.length >= 2) {\n  // 2+ categories match → CONFLICT → để AI quyết định\n  console.log('[KEYWORD_ROUTER] CONFLICT detected:', matchedCats.join(' vs '), '→ delegating to AI');\n  category = null; // → confidence: none → AI full prompt\n} else {\n  // 0 match → fallback: check nếu có brand/model → SALES_LEAD\n  const brandHit = detectBrand(msg);\n  const { model_slug: ms } = detectModel(msg, brandHit);\n  if (ms) {\n    category = 'SALES_LEAD';\n    sales_subcategory = 'consultation';\n  }\n}\n\n// --- Extract sales_subcategory nếu SALES_LEAD được chọn ---\nif (category === 'SALES_LEAD') {\n  if (/\\b(giá|bao nhiêu|lăn bánh|trả góp|báo giá|khuyến mãi|ưu đãi|chiết khấu|phí trước bạ|vay|lãi suất)\\b/i.test(msg)) {\n    sales_subcategory = 'pricing_finance';\n  } else if (/\\b(thông số|trang bị|nội thất|ngoại thất|động cơ|ADAS|hộp số|túi khí|camera|an toàn|kích thước|mã lực|torque|cách âm)\\b/i.test(msg)) {\n    sales_subcategory = 'tech_specs';\n    qa_intents = [];\n    if (/\\b(nội thất|ghế|màn hình|điều hòa|cửa sổ trời|âm thanh)\\b/i.test(msg)) qa_intents.push('NOI_THAT');\n    if (/\\b(ngoại thất|form|gầm|mâm|đèn|kích thước|màu)\\b/i.test(msg)) qa_intents.push('NGOAI_THAT');\n    if (/\\b(an toàn|ADAS|túi khí|camera|phanh|cảnh báo)\\b/i.test(msg)) qa_intents.push('AN_TOAN');\n    if (/\\b(động cơ|hộp số|mã lực|torque|cách âm|vận hành|cảm giác lái)\\b/i.test(msg)) qa_intents.push('VAN_HANH');\n  } else if (/\\b(lái thử|đặt cọc|đặt xe|đăng ký lái thử)\\b/i.test(msg)) {\n    sales_subcategory = 'close_deal';\n  } else if (/\\b(so sánh|vs|khác nhau|nên chọn|đáng mua hơn)\\b/i.test(msg)) {\n    sales_subcategory = 'consultation';\n    qa_intents.push('SO_SANH');\n  } else {\n    sales_subcategory = 'consultation';\n  }\n}\n\n// Log signal info for debugging\nconsole.log('[KEYWORD_ROUTER] Signals:', matchedCats.join(',') || 'none', '| Resolved:', category || 'CONFLICT→AI');\n\n// === BUILD OUTPUT ===\n// Luôn extract entities bất kể category match hay không\nlet brand = detectBrand(msg);\nconst modelResult = detectModel(msg, brand);\nif (modelResult.brand && !brand) brand = modelResult.brand;\nconst model_slug_raw = modelResult.model_slug;\n\n// === ALL-NEW UPGRADE: nếu khách hỏi \"đời mới nhất\" → thử slug-all-new ===\nlet model_slug = model_slug_raw;\nconst IS_NEW_INTENT = /\\b(đời mới|mới nhất|all[- ]?new|thế hệ mới|phiên bản mới|version mới|new model|facelift|nâng cấp)\\b/i.test(msg);\nif (IS_NEW_INTENT && model_slug_raw) {\n  const allNewSlug = model_slug_raw + '-all-new';\n  if (VALID_SLUGS.has(allNewSlug)) {\n    model_slug = allNewSlug;\n    console.log('[KEYWORD_ROUTER] Upgraded to all-new:', allNewSlug);\n  } else {\n    console.log('[KEYWORD_ROUTER] No all-new variant for:', model_slug_raw, '→ keeping original');\n  }\n}\n\n// Compare detection\nlet compare_target = '';\nlet compare_with_brand = '';\nlet compare_with_model = '';\nif (/\\b(so sánh|vs|với|và|hay)\\b/i.test(msg) && model_slug) {\n  const remaining = msg.replace(new RegExp(model_slug.split('-').pop(), 'i'), '');\n  const secondResult = detectModel(remaining, '');\n  if (secondResult.model_slug && secondResult.model_slug !== model_slug) {\n    const THACO_BRANDS = ['kia', 'mazda', 'peugeot', 'bmw', 'mini'];\n    const secondBrand = secondResult.model_slug.split('-')[0];\n    if (THACO_BRANDS.includes(secondBrand)) compare_target = secondResult.model_slug;\n    else { compare_with_brand = secondBrand; compare_with_model = secondResult.model_slug; }\n  }\n  const extMatch = msg.match(/\\b(toyota|honda|hyundai|ford|vinfast|nissan|mitsubishi|mg|chevrolet|suzuki|volvo|mercedes|audi|lexus)\\b/i);\n  if (extMatch && !compare_with_brand) {\n    compare_with_brand = extMatch[1].toLowerCase();\n    const afterBrand = msg.substring(msg.toLowerCase().indexOf(compare_with_brand) + compare_with_brand.length).trim();\n    const mw = afterBrand.match(/^\\s*([A-Za-z0-9\\-]+)/);\n    if (mw) compare_with_model = mw[1];\n  }\n}\n\nlet car_type = '';\nif (/\\b(suv|gầm cao|xe gầm cao)\\b/i.test(msg)) car_type = 'suv';\nelse if (/\\b(sedan)\\b/i.test(msg)) car_type = 'sedan';\nelse if (/\\b(hatchback|hatch)\\b/i.test(msg)) car_type = 'hatchback';\n\nlet seat_min = null;\nconst seatMatch = msg.match(/\\b(\\d+)\\s*chỗ/);\nif (seatMatch) seat_min = parseInt(seatMatch[1]);\n\nlet fuel = '';\nif (/\\b(máy dầu|diesel|dầu)\\b/i.test(msg)) fuel = 'dầu';\nelse if (/\\b(hybrid|lai điện)\\b/i.test(msg)) fuel = 'hybrid';\nelse if (/\\b(điện|ev|electric)\\b/i.test(msg)) fuel = 'ev';\nelse if (/\\b(xăng|petrol)\\b/i.test(msg)) fuel = 'xăng';\n\nlet budget_max = null;\n// Pattern 1: \"7xx\", \"8xx\" → 700/800 triệu (shorthand phổ biến)\nconst xxMatch = msg.match(/(dưới|khoảng|tầm|budget|ngân sách|trong|từ)?\\s*(\\d)xx\\s*(tỷ|tỉ|triệu|tr)?/i);\n// Pattern 2: standard \"800 triệu\", \"1.2 tỷ\"\nconst budgetMatch = msg.match(/(dưới|khoảng|tầm|budget|ngân sách|trong|từ)?\\s*(\\d+(?:[.,]\\d+)?)\\s*(tỷ|tỉ|triệu|tr)/i);\nif (xxMatch) {\n  let num = parseInt(xxMatch[2]) * 100 * 1000000;\n  if (xxMatch[3] && /tỷ|tỉ/i.test(xxMatch[3])) num = parseInt(xxMatch[2]) * 100 * 1000000000;\n  if (/tầm|khoảng/i.test(xxMatch[1] || '')) num *= 1.1;\n  budget_max = Math.round(num);\n} else if (budgetMatch) {\n  let num = parseFloat(budgetMatch[2].replace(',', '.'));\n  const unit = budgetMatch[3].toLowerCase();\n  if (unit === 'tỷ' || unit === 'tỉ') num *= 1000000000;\n  else num *= 1000000;\n  if (/tầm|khoảng/i.test(budgetMatch[1] || '')) num *= 1.1;\n  budget_max = Math.round(num);\n}\n\nlet price_sort = null;\nif (/\\b(rẻ nhất|thấp nhất|rẻ|giá thấp)\\b/i.test(msg)) price_sort = 'asc';\nelse if (/\\b(đắt nhất|mắc nhất|cao nhất|giá cao)\\b/i.test(msg)) price_sort = 'desc';\n\n// Build pre_extracted object\nconst pre = {\n  category: category || '',\n  sales_subcategory: (category === 'SALES_LEAD') ? sales_subcategory : '',\n  brand: brand || '', model_slug: model_slug || '',\n  car_type, seat_min, fuel, budget_max,\n  use_case: null, qa_intents,\n  compare_with_brand, compare_with_model, compare_target,\n  price_sort, status: true\n};\n\n// Determine missing fields\nconst ALL_FIELDS = ['category','sales_subcategory','brand','model_slug','car_type','seat_min','fuel','budget_max','use_case','qa_intents','compare_with_brand','compare_with_model','compare_target','price_sort'];\nconst missing = ALL_FIELDS.filter(f => {\n  const v = pre[f];\n  if (v === null || v === '' || v === undefined) return true;\n  if (Array.isArray(v) && v.length === 0) return true;\n  return false;\n});\n\n// Determine confidence\nlet confidence = 'none';\nif (category) {\n  // SALES_LEAD cần model_slug để là \"full\"; không có model → partial\n  if (category === 'SALES_LEAD' && !model_slug) {\n    confidence = 'partial';\n  } else {\n    const coreFound = [brand, model_slug, sales_subcategory].filter(x => x).length;\n    confidence = coreFound >= 2 ? 'full' : 'partial';\n  }\n} else if (brand || model_slug) {\n  confidence = 'partial';\n}\n\n// OVERRIDE: conflict detected → force 'none' để build_agent_prompt dùng multi-intent prompt\nif (matchedCats.length >= 2 && !category) {\n  confidence = 'none';\n  console.log('[KEYWORD_ROUTER] Forced confidence=none — multi-intent conflict');\n}\n\nconsole.log('[KEYWORD_ROUTER]', confidence, '| cat:', category, '| brand:', brand, '| model:', model_slug, '| missing:', missing.length);\n\nreturn [{ json: {\n  ...d,\n  _confidence: confidence,\n  _pre_extracted: pre,\n  _missing_fields: missing,\n  _conflict_signals: matchedCats || []\n}}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3312,
-        6576
+        -1872,
+        21728
       ],
-      "id": "64113da9-e904-42c5-8a1d-a1c47caa88a1",
+      "id": "77591175-e18c-47e0-a151-94a33398033f",
       "name": "keyword_router"
     },
     {
@@ -1146,10 +1146,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -2304,
-        6560
+        -864,
+        21712
       ],
-      "id": "d584459f-857e-49e8-93bc-f8597e1e4984",
+      "id": "ea2cc4e4-0575-482d-8301-5820c62d5725",
       "name": "gs_save_session",
       "credentials": {
         "googleApi": {
@@ -1165,10 +1165,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2160,
-        6560
+        -720,
+        21712
       ],
-      "id": "befe797b-376f-40d6-8f2f-2e8f4ddeb042",
+      "id": "3e567fe0-48dd-49c5-b44f-82adde13c30d",
       "name": "restore_router"
     },
     {
@@ -1178,10 +1178,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1056,
-        6000
+        2496,
+        21152
       ],
-      "id": "132c7c70-6f51-4d38-bdb9-9ce9d78360a3",
+      "id": "64b77e99-13b1-4fb2-954b-d140f0efa5ed",
       "name": "capture_reply"
     },
     {
@@ -1212,10 +1212,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1040,
-        6304
+        2480,
+        21456
       ],
-      "id": "cf1d4058-916e-4b55-923c-04107494e64d",
+      "id": "09789385-dc1a-4f7d-bea8-fbdc031d2044",
       "name": "IF phone_to_save"
     },
     {
@@ -1340,10 +1340,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1360,
-        6000
+        2800,
+        21152
       ],
-      "id": "6e0cb84c-d67c-460f-ba56-1196f33560cd",
+      "id": "2dbd23f2-abc3-44a5-a0ab-58f82b49f921",
       "name": "gs_save_phone_partial",
       "credentials": {
         "googleApi": {
@@ -1453,10 +1453,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        2080,
-        5984
+        3520,
+        21136
       ],
-      "id": "0c9ea6f6-f0b7-4529-9bb1-86cf58b89b19",
+      "id": "1a68c31b-9365-4190-8862-1fa146a75c0b",
       "name": "gs_update_reply",
       "credentials": {
         "googleApi": {
@@ -1472,10 +1472,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2464,
-        6560
+        -1024,
+        21712
       ],
-      "id": "2b492548-4afc-4d20-b392-64a0051af247",
+      "id": "4f8465e9-57e2-4288-acf9-5b09148005fa",
       "name": "save_sessions"
     },
     {
@@ -1489,10 +1489,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -1456,
-        6624
+        -16,
+        21776
       ],
-      "id": "1997584b-8a17-4af8-960f-6bf02f1a1db2",
+      "id": "322ef4d3-1155-45d8-82ea-4d99ac5a42b7",
       "name": "AI Agent — Disambiguator",
       "retryOnFail": true
     },
@@ -1504,10 +1504,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1488,
-        6784
+        -48,
+        21936
       ],
-      "id": "5689b9ed-e29c-4263-859d-46721823b840",
+      "id": "891419f8-e8b9-4556-9547-c3b132e765e6",
       "name": "Google Gemini Chat Model4",
       "credentials": {
         "googlePalmApi": {
@@ -1523,10 +1523,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1488,
-        6480
+        -48,
+        21632
       ],
-      "id": "d79d5fad-dbae-4e7b-80e3-0054b7e8a8b6",
+      "id": "88ead694-312e-4488-8d40-c041d74ae605",
       "name": "reply_out_of_scope"
     },
     {
@@ -1556,10 +1556,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1440,
-        5040
+        0,
+        20192
       ],
-      "id": "4e6f05f0-93cf-48f0-a99a-21517f1395d2",
+      "id": "7c980d37-0b9c-47fd-ae3f-9a28ea865401",
       "name": "IF sub_close_deal"
     },
     {
@@ -1592,10 +1592,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -1248,
-        5008
+        192,
+        20160
       ],
-      "id": "2b5edf27-e507-4c5c-91d2-fb3b8fe42ad8",
+      "id": "8dcc7c36-6f06-4eb5-a87f-d4dcc2dcd579",
       "name": "gs_read_lead_state",
       "alwaysOutputData": true,
       "credentials": {
@@ -1617,10 +1617,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -992,
-        4816
+        448,
+        19968
       ],
-      "id": "447e472a-12ea-4ac9-89d7-c585a292e51e",
+      "id": "7cda1832-0665-4972-a03f-b9739c33df9f",
       "name": "AI Agent - Test Drive Extractor",
       "retryOnFail": true
     },
@@ -1632,10 +1632,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -992,
-        5008
+        448,
+        20160
       ],
-      "id": "084db1ae-450a-4566-819a-881594a215dc",
+      "id": "35c4daaf-c02f-42d9-be7d-543831bcec62",
       "name": "Google Gemini Chat Model5",
       "credentials": {
         "googlePalmApi": {
@@ -1651,10 +1651,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -592,
-        4816
+        848,
+        19968
       ],
-      "id": "66ed8019-ca6e-4a43-8bce-906ebbb91017",
+      "id": "0eb935d2-83d9-4eac-8cfb-3939d4b681a9",
       "name": "merge_lead_state"
     },
     {
@@ -1684,10 +1684,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -400,
-        4848
+        1040,
+        20000
       ],
-      "id": "4ee685c7-7b89-457e-9d9a-ae4efc95a32a",
+      "id": "dce45492-f410-4752-a3a5-2bc01193aeba",
       "name": "IF is_complete"
     },
     {
@@ -1816,10 +1816,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -80,
-        4864
+        1360,
+        20016
       ],
-      "id": "a2254730-2cba-40c1-98ab-f7ad3b70eb77",
+      "id": "2a04da44-058d-4e77-ae6c-e38d3b579578",
       "name": "gs_append_test_drive",
       "credentials": {
         "googleApi": {
@@ -1835,10 +1835,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        464,
-        4848
+        1904,
+        20000
       ],
-      "id": "dc8d3e0d-ea4c-443b-97be-6fd1b3832195",
+      "id": "cb32a31a-7388-4581-8475-4f86fbe7ac88",
       "name": "reply_complete"
     },
     {
@@ -1960,10 +1960,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        352,
-        5008
+        1792,
+        20160
       ],
-      "id": "08851e0b-bdef-4932-9619-b4b7e9aae55f",
+      "id": "ee4eafd2-b5f6-432e-9efd-731a779a2d5c",
       "name": "gs_update_partial_state",
       "credentials": {
         "googleApi": {
@@ -1983,10 +1983,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        656,
-        5024
+        2096,
+        20176
       ],
-      "id": "00304140-efa3-46d1-9e83-bdd7feb8418e",
+      "id": "67cb0d13-e518-454b-b227-9cb972fb68b6",
       "name": "AI Agent - reply_ask_missing",
       "retryOnFail": true
     },
@@ -1997,10 +1997,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        656,
-        5200
+        2096,
+        20352
       ],
-      "id": "ee23183b-c9eb-481a-a233-b33651ec1dab",
+      "id": "2a9e04e5-26e8-4ce1-88ea-c3c15d3f94d2",
       "name": "Google Gemini Chat Model6",
       "retryOnFail": true,
       "credentials": {
@@ -2017,10 +2017,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1424,
-        3664
+        16,
+        18816
       ],
-      "id": "b9b83d18-696c-4353-bb69-10221be279eb",
+      "id": "511b14ec-a799-4d47-ad65-99f4fffa3269",
       "name": "reply_greeting"
     },
     {
@@ -2030,10 +2030,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1408,
-        4128
+        32,
+        19280
       ],
-      "id": "15eef079-b796-4808-8be0-b7defba6be4e",
+      "id": "1cf75e1d-74aa-4309-98d7-584f1bca827a",
       "name": "safety_guard_reply"
     },
     {
@@ -2043,10 +2043,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1488,
-        6352
+        -48,
+        21504
       ],
-      "id": "3e880f4d-22b9-4ef1-a079-cbe1b86022c5",
+      "id": "f721704e-c776-430d-b9e2-236a46466d8b",
       "name": "complaint_reply"
     },
     {
@@ -2056,10 +2056,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1488,
-        6944
+        -48,
+        22096
       ],
-      "id": "b5d198d2-3982-4796-8bb7-67f4c88a29d1",
+      "id": "fca9513b-3784-488a-8b41-3ab69742677b",
       "name": "trade_in_code"
     },
     {
@@ -2069,10 +2069,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1488,
-        7104
+        -48,
+        22256
       ],
-      "id": "9a612f62-ef3f-4aa8-85fb-0c06a65b3ec9",
+      "id": "8ab71fae-1fd5-47b6-84b5-10bd8b48b6b9",
       "name": "brand_info_logic"
     },
     {
@@ -2082,10 +2082,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1280,
-        7248
+        160,
+        22400
       ],
-      "id": "e54cb184-f57f-4f94-b087-bbc33fb22958",
+      "id": "12c9257c-d078-4482-a7ba-c27e9f8b05da",
       "name": "recruitment_code"
     },
     {
@@ -2095,10 +2095,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1280,
-        7408
+        160,
+        22560
       ],
-      "id": "30df1097-77ef-464c-9d20-dc37bcc77c27",
+      "id": "4be2c825-5ff3-4d4c-8c01-a622abb4b793",
       "name": "urgent_consult_code"
     },
     {
@@ -2108,10 +2108,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1280,
-        7568
+        160,
+        22720
       ],
-      "id": "3788f468-7922-487c-a0b7-5a77602d697c",
+      "id": "79c93872-80ef-4f1c-a5ef-8c158237c544",
       "name": "service_appointment_code"
     },
     {
@@ -2121,10 +2121,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1280,
-        7728
+        160,
+        22880
       ],
-      "id": "5a86b172-fa8b-4ac2-9511-92f3a053ba46",
+      "id": "9035371a-61a1-4771-8a02-ebf02cfff800",
       "name": "policy_legal_code"
     },
     {
@@ -2138,10 +2138,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -656,
-        7120
+        784,
+        22272
       ],
-      "id": "ccc0ffd9-55c3-498d-ac30-8619e78695e3",
+      "id": "160fe06a-615f-4612-8805-916d94074dc0",
       "name": "AI Agent-Hand off reply"
     },
     {
@@ -2152,10 +2152,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -656,
-        7280
+        784,
+        22432
       ],
-      "id": "a07f5472-5fc8-45b6-8f51-a60ba093fdaa",
+      "id": "4316a4b0-bba9-4294-8707-aa5a2fce6e0d",
       "name": "Google Gemini Chat Model7",
       "retryOnFail": true,
       "credentials": {
@@ -2172,10 +2172,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1552,
-        7568
+        -112,
+        22720
       ],
-      "id": "55cadb3c-da97-40fd-bcda-664faf31d8d1",
+      "id": "d7fa0f57-6ead-4653-9150-45c1dc8173b7",
       "name": "company_contact_code"
     },
     {
@@ -2185,10 +2185,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1664,
-        6016
+        3104,
+        21168
       ],
-      "id": "8494635b-e3d2-4e30-b9a6-951962eb6709",
+      "id": "71979fd7-0dd3-4bcc-bc0f-b8560dce8739",
       "name": "build_qa_log"
     },
     {
@@ -2458,10 +2458,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1888,
-        6000
+        3328,
+        21152
       ],
-      "id": "875765d6-d915-4f3d-b85e-be189510393c",
+      "id": "4f9d8fe0-da6a-4e7a-a7da-05f9f78834cf",
       "name": "gs_append_qa_log",
       "credentials": {
         "googleApi": {
@@ -2497,10 +2497,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        128,
-        4848
+        1568,
+        20000
       ],
-      "id": "9e1a8a3b-bd61-4c8c-9a92-b3afc38465b7",
+      "id": "707a47c5-c6fa-4841-b0a4-993aec97f75e",
       "name": "IF is_complete_after_save"
     },
     {
@@ -2510,10 +2510,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2688,
-        6032
+        4128,
+        21184
       ],
-      "id": "7a36de10-fdeb-45c3-8bd5-149f7cf87af1",
+      "id": "242ed300-7083-4aab-8d73-af73bee6243f",
       "name": "test repsonse"
     },
     {
@@ -2523,10 +2523,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2336,
-        6048
+        3776,
+        21200
       ],
-      "id": "0a36c9d6-017a-4c64-a58b-aa80dcfc2c9a",
+      "id": "b3ea588b-50d7-4f36-b40b-a974c11b822e",
       "name": "strip_markdown_for_subiz"
     },
     {
@@ -2536,25 +2536,106 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        -4560,
-        6480
+        -3120,
+        21632
       ],
-      "id": "015c40b9-43f6-419b-8a3f-ddfdada47e7f",
+      "id": "e9c088d5-ea6f-49ec-b10c-0b56894e7bbf",
       "name": "When chat message received3",
       "webhookId": "6ded22bb-f8e0-4210-9410-4a2bda5a4c73"
     },
     {
       "parameters": {
-        "jsCode": "// build_agent_prompt — Generate dynamic system prompt based on keyword_router confidence\nconst d = $input.first().json;\nconst conf = d._confidence || 'none';\nconst pre = d._pre_extracted || {};\nconst missing = d._missing_fields || [];\nconst trigger = $('When chat message received3').first().json;\nconst chatInput = (trigger.chatInput || '').toString();\nconst history = d._prev?.history || [];\nconst lastReply = d._prev?.last_ai_reply || '—';\n\nconst historyBlock = history.map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand||'—'}, model=${h.model||'—'}`).join('\\n') || '(chưa có lịch sử)';\n\n// === FIELD-SPECIFIC RULES — chỉ gửi rules cho fields thiếu ===\nconst FIELD_RULES = {\n  category: `- category: Phân loại 1 trong: SALES_LEAD | GREETING | SAFETY_GUARD | SERVICE_APPOINTMENT | NETWORK_LOCATION | CRITICAL_COMPLAINT | POLICY_LEGAL | OUT_OF_SCOPE | AMBIGUOUS | TRADE_IN | BRAND_INFO | RECRUITMENT | URGENT_CONSULT | COMPANY_CONTACT\n  SALES_LEAD: Hỏi giá, thông số, khuyến mãi, so sánh xe, đăng ký lái thử, đặt cọc.\n  GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot.\n  SAFETY_GUARD: Chửi thề, xúc phạm, quấy rối.\n  AMBIGUOUS: Câu hỏi cụt/mơ hồ → đối chiếu lịch sử.`,\n\n  sales_subcategory: `- sales_subcategory (chỉ khi SALES_LEAD):\n  consultation: Tư vấn chọn xe, so sánh, tình trạng xe (có sẵn, giao ngay, tồn kho).\n  pricing_finance: Giá lăn bánh, trả góp, vay, lãi suất, khuyến mãi, chiết khấu, phí trước bạ.\n  tech_specs: Thông số, nội/ngoại thất, động cơ, hộp số, ADAS, an toàn.\n  close_deal: Đặt lịch lái thử, đặt cọc, mua xe. ⚠️ Khách CUNG CẤP SĐT/tên → close_deal KHÔNG phải URGENT_CONSULT.`,\n\n  brand: `- brand: Tên thương hiệu lowercase. kia | mazda | peugeot | bmw | mini. Nếu không có → \"\"`,\n\n  model_slug: `- model_slug: Tên xe cụ thể → lowercase-dash slug.\n  VD: \"Sportage\" → \"kia-sportage\", \"CX-5\" → \"mazda-cx-5\", \"3008\" → \"peugeot-3008\"\n  BMW: 320i/320 → \"bmw-3-series\", 520i/520 → \"bmw-5-series\", 730li → \"bmw-7-series\", X5 → \"bmw-x5\"\n  Đời mới nhất → thêm \"-all-new\" (vd: \"bmw-x3-all-new\", \"bmw-5-series-all-new\")\n  Nếu không nhắc xe cụ thể → \"\"`,\n\n  car_type: `- car_type: sedan | hatchback | suv | mpv | pickup. \"xe gầm cao\" → suv. \"xe gia đình\" → mpv. Nếu không có → \"\"`,\n\n  seat_min: `- seat_min: Số chỗ tối thiểu (số nguyên: 4/5/7/8/9). \"xe 7 chỗ\" → 7. Nếu không có → null`,\n\n  fuel: `- fuel: xăng | dầu | hybrid | phev | ev. \"máy dầu\" → dầu, \"lai điện\" → hybrid. Nếu không có → \"\"`,\n\n  budget_max: `- budget_max: Ngân sách tối đa VNĐ. \"dưới 800 triệu\" → 800000000. \"tầm 1 tỷ\" → 1100000000 (cộng 10%). Nếu không có → null`,\n\n  use_case: `- use_case: gia_dinh | do_thi | di_tinh | kinh_doanh | khang_dinh_vi_the | tech_eco | null`,\n\n  qa_intents: `- qa_intents: Mảng intent cho Q&A filter (chọn 1-3 hoặc []):\n  SO_SANH | VAN_HANH | TIEU_HAO | NGOAI_THAT | NOI_THAT | AN_TOAN | NHU_CAU`,\n\n  compare_with_brand: `- compare_with_brand: Hãng NGOÀI THACO khi so sánh. toyota | honda | hyundai | ford | vinfast... Nếu không có → \"\"`,\n\n  compare_with_model: `- compare_with_model: Tên xe so sánh (giữ nguyên text). \"Camry\", \"CR-V\", \"Tucson\"... Nếu không có → \"\"`,\n\n  compare_target: `- compare_target: model_slug NỘI BỘ THACO khi so sánh. VD khách \"So sánh Sportage và CX-5\" → compare_target=\"mazda-cx-5\". Nếu không có → \"\"`,\n\n  price_sort: `- price_sort: \"asc\" (rẻ nhất/thấp nhất) | \"desc\" (đắt nhất/cao nhất) | null`\n};\n\nlet systemPrompt = '';\nlet userPrompt = '';\n\nif (conf === 'full') {\n  // Level 1: AI chỉ validate — nhưng vẫn kèm rules cho fields trống\n  const emptyFields = missing.filter(f => FIELD_RULES[f]);\n  const extraRules = emptyFields.length > 0\n    ? '\\n\\nNếu phát hiện thêm thông tin từ tin nhắn, hãy bổ sung:\\n' + emptyFields.map(f => FIELD_RULES[f]).join('\\n')\n    : '';\n\n  systemPrompt = `Bạn là AI Validator cho hệ thống THACO AUTO.\nKiểm tra JSON intent extraction bên dưới. Nếu đúng → trả về nguyên. Nếu sai → sửa và trả về.\nCHỈ trả JSON, KHÔNG giải thích, KHÔNG markdown.${extraRules}\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n  userPrompt = `### Pre-extracted:\n${JSON.stringify(pre)}\n\n### Tin nhắn: \"${chatInput}\"\n### Lịch sử: ${historyBlock}\n### AI vừa trả lời: \"${lastReply}\"\n\nXác nhận hoặc sửa JSON trên.`;\n\n} else if (conf === 'partial') {\n  // Level 2: AI chỉ extract fields thiếu — kèm RULES CHI TIẾT cho từng field thiếu\n  const preStr = Object.entries(pre).filter(([k,v]) => v && !(Array.isArray(v) && v.length===0)).map(([k,v]) => `${k}=${JSON.stringify(v)}`).join(', ');\n  const missingRules = missing.filter(f => FIELD_RULES[f]).map(f => FIELD_RULES[f]).join('\\n');\n\n  systemPrompt = `Bạn là AI Router cho THACO AUTO. Một số thông tin đã được trích xuất tự động.\nGIỮ NGUYÊN các field đã có, chỉ extract thêm fields còn thiếu.\n\nĐã có: ${preStr}\nCần extract thêm: ${missing.join(', ')}\n\n## Quy tắc trích xuất cho fields thiếu:\n${missingRules}\n\nCHỈ trả JSON, KHÔNG giải thích.\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n  userPrompt = `### Tin nhắn: \"${chatInput}\"\n### Lịch sử: ${historyBlock}\n### AI vừa trả lời: \"${lastReply}\"\n\nHoàn thiện JSON với fields còn thiếu, giữ nguyên fields đã có.`;\n\n} else {\n  // Level 3: Full prompt — tất cả rules\n  const allRules = Object.values(FIELD_RULES).join('\\n');\n\n  systemPrompt = `## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất entity.\n\n## Quy tắc trích xuất:\n${allRules}\n\nCHỈ trả JSON, KHÔNG giải thích, KHÔNG markdown.\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n  userPrompt = `### [TIN NHẮN NGƯỜI DÙNG]\n\"${chatInput}\"\n\n### [LỊCH SỬ 10 TURN GẦN NHẤT]\n${historyBlock}\n\n### [AI VỪA TRẢ LỜI Ở TURN TRƯỚC]\n\"${lastReply}\"\n\nHướng dẫn:\n- Khách nói cụt \"thế bản đó\"... → đọc lịch sử/AI reply để suy ra.\n- Nếu khách nói chủ đề rõ ràng → bỏ qua lịch sử cũ.`;\n}\n\nconsole.log('[BUILD_PROMPT] confidence:', conf, '| system prompt length:', systemPrompt.length, '| missing rules:', missing.filter(f => FIELD_RULES[f]).length);\n\nreturn [{ json: {\n  ...d,\n  _system_prompt: systemPrompt,\n  _user_prompt: userPrompt,\n  chatInput: chatInput\n}}];\n"
+        "jsCode": "// build_agent_prompt — Generate dynamic system prompt based on keyword_router confidence\nconst d = $input.first().json;\nconst conf = d._confidence || 'none';\nconst conflictSignals = d._conflict_signals || [];\nconst pre = d._pre_extracted || {};\nconst missing = d._missing_fields || [];\nconst trigger = $('When chat message received3').first().json;\nconst chatInput = (trigger.chatInput || '').toString();\nconst history = d._prev?.history || [];\nconst lastReply = d._prev?.last_ai_reply || '—';\n\nconst historyBlock = history.map((h, i) => `[${i+1}] User: \"${h.user}\" → intent=${h.intent}, brand=${h.brand||'—'}, model=${h.model||'—'}`).join('\\n') || '(chưa có lịch sử)';\n\n// === FIELD-SPECIFIC RULES — chỉ gửi rules cho fields thiếu ===\n// === VALID CATEGORIES — AI KHÔNG ĐƯỢC bịa category ngoài danh sách này ===\nconst VALID_CATEGORIES = 'SALES_LEAD | GREETING | SAFETY_GUARD | SERVICE_APPOINTMENT | NETWORK_LOCATION | CRITICAL_COMPLAINT | POLICY_LEGAL | OUT_OF_SCOPE | AMBIGUOUS | TRADE_IN | BRAND_INFO | RECRUITMENT | URGENT_CONSULT | COMPANY_CONTACT | CUSTOMER_SERVICE';\nconst STRICT_RULE = '⚠️ TUYỆT ĐỐI chỉ dùng 1 trong các category trên. KHÔNG ĐƯỢC bịa category mới (vd: MIXED, MULTI, OTHER...). Nếu tin nhắn có nhiều ý → chọn category phản ánh Ý CHÍNH/MỤC ĐÍCH CHÍNH của khách.';\n\nconst FIELD_RULES = {\n  category: `- category: Phân loại 1 trong: SALES_LEAD | GREETING | SAFETY_GUARD | SERVICE_APPOINTMENT | NETWORK_LOCATION | CRITICAL_COMPLAINT | POLICY_LEGAL | OUT_OF_SCOPE | AMBIGUOUS | TRADE_IN | BRAND_INFO | RECRUITMENT | URGENT_CONSULT | COMPANY_CONTACT | CUSTOMER_SERVICE\n  SALES_LEAD: Hỏi giá, thông số, khuyến mãi, so sánh xe, đăng ký lái thử, đặt cọc.\n  GREETING: Chào hỏi, tạm biệt, hỏi danh tính bot.\n  SAFETY_GUARD: Chửi thề, xúc phạm, quấy rối.\n  AMBIGUOUS: Câu hỏi cụt/mơ hồ → đối chiếu lịch sử.\n  CUSTOMER_SERVICE: Khách ĐÃ MUA xe, có thắc mắc hậu mãi (quà tặng, app, chương trình KM đã hứa, nhân viên không biết...). KHÁC CRITICAL_COMPLAINT (không gay gắt) và SALES_LEAD (không mua mới).`,\n\n  sales_subcategory: `- sales_subcategory (chỉ khi SALES_LEAD):\n  consultation: Tư vấn chọn xe, so sánh, tình trạng xe (có sẵn, giao ngay, tồn kho).\n  pricing_finance: Giá lăn bánh, trả góp, vay, lãi suất, khuyến mãi, chiết khấu, phí trước bạ.\n  tech_specs: Thông số, nội/ngoại thất, động cơ, hộp số, ADAS, an toàn.\n  close_deal: Đặt lịch lái thử, đặt cọc, mua xe. ⚠️ Khách CUNG CẤP SĐT/tên → close_deal KHÔNG phải URGENT_CONSULT.`,\n\n  brand: `- brand: Tên thương hiệu lowercase. kia | mazda | peugeot | bmw | mini. Nếu không có → \"\"`,\n\n  model_slug: `- model_slug: Tên xe cụ thể → lowercase-dash slug.\n  VD: \"Sportage\" → \"kia-sportage\", \"CX-5\" → \"mazda-cx-5\", \"3008\" → \"peugeot-3008\"\n  BMW: 320i/320 → \"bmw-3-series\", 520i/520 → \"bmw-5-series\", 730li → \"bmw-7-series\", X5 → \"bmw-x5\"\n  Đời mới nhất → thêm \"-all-new\" (vd: \"bmw-x3-all-new\", \"bmw-5-series-all-new\")\n  Nếu không nhắc xe cụ thể → \"\"`,\n\n  car_type: `- car_type: sedan | hatchback | suv | mpv | pickup. \"xe gầm cao\" → suv. \"xe gia đình\" → mpv. Nếu không có → \"\"`,\n\n  seat_min: `- seat_min: Số chỗ tối thiểu (số nguyên: 4/5/7/8/9). \"xe 7 chỗ\" → 7. Nếu không có → null`,\n\n  fuel: `- fuel: xăng | dầu | hybrid | phev | ev. \"máy dầu\" → dầu, \"lai điện\" → hybrid. Nếu không có → \"\"`,\n\n  budget_max: `- budget_max: Ngân sách tối đa VNĐ. \"dưới 800 triệu\" → 800000000. \"tầm 1 tỷ\" → 1100000000 (cộng 10%). Nếu không có → null`,\n\n  use_case: `- use_case: gia_dinh | do_thi | di_tinh | kinh_doanh | khang_dinh_vi_the | tech_eco | null`,\n\n  qa_intents: `- qa_intents: Mảng intent cho Q&A filter (chọn 1-3 hoặc []):\n  SO_SANH | VAN_HANH | TIEU_HAO | NGOAI_THAT | NOI_THAT | AN_TOAN | NHU_CAU`,\n\n  compare_with_brand: `- compare_with_brand: Hãng NGOÀI THACO khi so sánh. toyota | honda | hyundai | ford | vinfast... Nếu không có → \"\"`,\n\n  compare_with_model: `- compare_with_model: Tên xe so sánh (giữ nguyên text). \"Camry\", \"CR-V\", \"Tucson\"... Nếu không có → \"\"`,\n\n  compare_target: `- compare_target: model_slug NỘI BỘ THACO khi so sánh. VD khách \"So sánh Sportage và CX-5\" → compare_target=\"mazda-cx-5\". Nếu không có → \"\"`,\n\n  price_sort: `- price_sort: \"asc\" (rẻ nhất/thấp nhất) | \"desc\" (đắt nhất/cao nhất) | null`\n};\n\nlet systemPrompt = '';\nlet userPrompt = '';\n\nif (conf === 'full') {\n  // Level 1: AI chỉ validate — nhưng vẫn kèm rules cho fields trống\n  const emptyFields = missing.filter(f => FIELD_RULES[f]);\n  const extraRules = emptyFields.length > 0\n    ? '\\n\\nNếu phát hiện thêm thông tin từ tin nhắn, hãy bổ sung:\\n' + emptyFields.map(f => FIELD_RULES[f]).join('\\n')\n    : '';\n\n  systemPrompt = `Bạn là AI Validator cho hệ thống THACO AUTO.\n${STRICT_RULE}\nKiểm tra JSON intent extraction bên dưới. Nếu đúng → trả về nguyên. Nếu sai → sửa và trả về.\nCHỈ trả JSON, KHÔNG giải thích, KHÔNG markdown.${extraRules}\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n  userPrompt = `### Pre-extracted:\n${JSON.stringify(pre)}\n\n### Tin nhắn: \"${chatInput}\"\n### Lịch sử: ${historyBlock}\n### AI vừa trả lời: \"${lastReply}\"\n\nXác nhận hoặc sửa JSON trên.`;\n\n} else if (conf === 'partial') {\n  // Level 2: AI chỉ extract fields thiếu — kèm RULES CHI TIẾT cho từng field thiếu\n  const preStr = Object.entries(pre).filter(([k,v]) => v && !(Array.isArray(v) && v.length===0)).map(([k,v]) => `${k}=${JSON.stringify(v)}`).join(', ');\n  const missingRules = missing.filter(f => FIELD_RULES[f]).map(f => FIELD_RULES[f]).join('\\n');\n\n  systemPrompt = `Bạn là AI Router cho THACO AUTO. Một số thông tin đã được trích xuất tự động.\n${STRICT_RULE}\nGIỮ NGUYÊN các field đã có, chỉ extract thêm fields còn thiếu.\n\nĐã có: ${preStr}\nCần extract thêm: ${missing.join(', ')}\n\n## Quy tắc trích xuất cho fields thiếu:\n${missingRules}\n\nCHỈ trả JSON, KHÔNG giải thích.\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n  userPrompt = `### Tin nhắn: \"${chatInput}\"\n### Lịch sử: ${historyBlock}\n### AI vừa trả lời: \"${lastReply}\"\n\nHoàn thiện JSON với fields còn thiếu, giữ nguyên fields đã có.`;\n\n} else {\n  const allRules = Object.values(FIELD_RULES).join('\\n');\n\n  if (conflictSignals.length >= 2) {\n    // === MULTI-INTENT MODE: tin nhắn có 2+ intent khác nhau ===\n    systemPrompt = `## Vai trò: AI Router & Multi-Intent Splitter cho THACO AUTO.\n## Nhiệm vụ: Tin nhắn có NHIỀU Ý (hệ thống phát hiện: ${conflictSignals.join(' + ')}). Tách thành NHIỀU intents riêng biệt.\n\n## Category hợp lệ:\n${VALID_CATEGORIES}\n${STRICT_RULE}\n\n## Quy tắc entity cho mỗi intent:\n${allRules}\n\n## FORMAT OUTPUT — JSON object chứa mảng intents:\n{\n  \"intents\": [\n    {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null},\n    {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"\",\"seat_min\":null,\"fuel\":\"\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null}\n  ],\n  \"shared\": {\"brand\":\"...\",\"model_slug\":\"...\"},\n  \"status\": true\n}\n\n⚠️ Mỗi intent trong mảng là 1 MỤC ĐÍCH RIÊNG BIỆT. Entities dùng chung (brand, model_slug) đặt trong \"shared\".\nCHỈ trả JSON, KHÔNG giải thích.`;\n\n    userPrompt = `### [TIN NHẮN]\n\"${chatInput}\"\n### [LỊCH SỬ]\n${historyBlock}\n### [AI VỪA TRẢ LỜI]\n\"${lastReply}\"`;\n\n  } else {\n    // === SINGLE-INTENT MODE: full extraction bình thường ===\n    systemPrompt = `## Vai trò: AI Router & Entity Extractor cho hệ thống THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI).\n## Nhiệm vụ: Phân tích [TIN NHẮN] và [LỊCH SỬ] để phân loại Category và trích xuất entity.\n\n## Category hợp lệ (CHỈ CHỌN 1):\n${VALID_CATEGORIES}\n${STRICT_RULE}\n\n## Quy tắc trích xuất:\n${allRules}\n\nCHỈ trả JSON, KHÔNG giải thích, KHÔNG markdown.\nĐịnh dạng: {\"category\":\"...\",\"sales_subcategory\":\"...\",\"brand\":\"...\",\"model_slug\":\"...\",\"car_type\":\"...\",\"seat_min\":null,\"fuel\":\"...\",\"budget_max\":null,\"use_case\":null,\"qa_intents\":[],\"compare_with_brand\":\"\",\"compare_with_model\":\"\",\"compare_target\":\"\",\"price_sort\":null,\"status\":true}`;\n\n    userPrompt = `### [TIN NHẮN NGƯỜI DÙNG]\n\"${chatInput}\"\n### [LỊCH SỬ 10 TURN GẦN NHẤT]\n${historyBlock}\n### [AI VỪA TRẢ LỜI Ở TURN TRƯỚC]\n\"${lastReply}\"\nHướng dẫn:\n- Khách nói cụt → đọc lịch sử.\n- Chủ đề rõ ràng → bỏ qua lịch sử cũ.`;\n  }\n}\n\nconsole.log('[BUILD_PROMPT] confidence:', conf, '| system prompt length:', systemPrompt.length, '| missing rules:', missing.filter(f => FIELD_RULES[f]).length);\n\nreturn [{ json: {\n  ...d,\n  _system_prompt: systemPrompt,\n  _user_prompt: userPrompt,\n  chatInput: chatInput\n}}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3072,
-        6576
+        -1632,
+        21728
       ],
-      "id": "bap-1778257509450",
+      "id": "0cdc7dd0-d084-4ea5-9631-ad536d8accdd",
       "name": "build_agent_prompt"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": ""
+          },
+          "conditions": [
+            {
+              "id": "4cd6ae53-7a48-4946-b4f9-0ceee90b9c08",
+              "leftValue": "={{ $json._multi }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -640,
+        21712
+      ],
+      "id": "e97aa274-344d-4d61-9936-badb9386ff03",
+      "name": "IF is_multi_intent"
+    },
+    {
+      "parameters": {
+        "jsCode": "// build_multi_context — Loop qua intents[], fetch data mỗi intent, build prompt cho Reply Synthesizer\n// Replicate đầy đủ logic từ các nhánh hiện có (SALES_LEAD data, NETWORK_LOCATION dealer lookup...)\nconst d = $input.first().json;\nconst intents = d._intents || [];\nconst shared = d._shared || {};\nconst trigger = $('When chat message received3').first().json;\nconst chatInput = (trigger.chatInput || '').toString();\nconst base = 'https://raw.githubusercontent.com/Meeyana/thacoauto-lib/main/';\nconst FALLBACK_URL = 'https://thacoautotphcm.vn/showrooms';\n\n// === UTILITY FUNCTIONS ===\nfunction norm(s) { return (s || '').toLowerCase().trim().replace(/\\s+/g, ' '); }\nfunction tokens(s) { return norm(s).split(/[\\s\\-,]+/).filter(Boolean); }\nfunction scoreMatch(title, query) {\n  const t = norm(title); const q = norm(query);\n  if (!t || !q) return 0;\n  if (t === q) return 100;\n  const qP = new RegExp('(^|\\\\s)' + q.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + '(\\\\s|$)');\n  if (qP.test(t)) return 80;\n  const qTok = tokens(q);\n  const tTokSet = new Set(tokens(t));\n  if (qTok.length && qTok.every(w => tTokSet.has(w))) return 40;\n  return 0;\n}\nfunction haversineKm(lat1, lon1, lat2, lon2) {\n  const R = 6371;\n  const toRad = x => x * Math.PI / 180;\n  const dLat = toRad(lat2 - lat1);\n  const dLon = toRad(lon2 - lon1);\n  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;\n  return 2 * R * Math.asin(Math.sqrt(a));\n}\nasync function geocode(addr) {\n  const q = /vietnam|việt nam/i.test(addr) ? addr : (addr + ', Việt Nam');\n  try {\n    const res = await this.helpers.httpRequest({ method:'GET', url:'https://nominatim.openstreetmap.org/search',\n      qs:{format:'json',q,limit:1}, headers:{'User-Agent':'thacoauto-chatbot/1.0'}, json:true });\n    const arr = (typeof res==='string') ? JSON.parse(res) : res;\n    if (Array.isArray(arr) && arr.length) return { lat:parseFloat(arr[0].lat), lon:parseFloat(arr[0].lon), display_name:arr[0].display_name||'' };\n  } catch(e){}\n  return null;\n}\nconst PASSENGER_BRANDS = ['kia','mazda','peugeot','bmw','mini'];\nfunction brandMatches(showroom, b) {\n  if (!b) return true;\n  const slugs = showroom.brand_slugs || [];\n  if (!slugs.includes(b)) return false;\n  if (PASSENGER_BRANDS.includes(b) && showroom.type_showroom && showroom.type_showroom !== 'oto') return false;\n  return true;\n}\n\nconst bundles = [];\n\nfor (let i = 0; i < intents.length; i++) {\n  const intent = intents[i];\n  const cat = (intent.category || '').toUpperCase();\n  const sub = (intent.sales_subcategory || '').toLowerCase();\n  const slug = intent.model_slug || shared.model_slug || '';\n  const brand = intent.brand || shared.brand || '';\n  let bundle = '';\n\n  try {\n    // ==============================\n    // SALES_LEAD — fetch wiki model\n    // ==============================\n    if (cat === 'SALES_LEAD' && slug) {\n      const md = await this.helpers.httpRequest({ method:'GET', url: base + 'wiki/models/' + slug + '.md' });\n      let wikiContent = md.substring(0, 3000);\n      if (sub === 'pricing_finance' || sub === 'pricing') {\n        bundle = '[YÊU CẦU BÁO GIÁ — ' + slug + ']\\n' + wikiContent;\n      } else if (sub === 'tech_specs') {\n        bundle = '[YÊU CẦU THÔNG SỐ KỸ THUẬT — ' + slug + ']\\n' + wikiContent;\n      } else {\n        bundle = '[TƯ VẤN XE — ' + slug + ']\\n' + wikiContent;\n      }\n    } else if (cat === 'SALES_LEAD' && !slug && brand) {\n      try {\n        const catalog = await this.helpers.httpRequest({ method:'GET', url: base + 'wiki/models/catalog.json', json:true });\n        const cat2 = (typeof catalog==='string') ? JSON.parse(catalog) : catalog;\n        const models = (cat2.models || []).filter(m => m.brand === brand);\n        bundle = '[DANH SÁCH XE ' + brand.toUpperCase() + ']\\n' + models.map(m => '- ' + m.name + ' (' + m.slug + '): ' + (m.price_range || '')).join('\\n');\n      } catch(e) { bundle = '[Brand: ' + brand + ']'; }\n\n    // ==============================\n    // NETWORK_LOCATION — full dealer lookup (replicate Code in Javescript 1)\n    // ==============================\n    } else if (cat === 'NETWORK_LOCATION') {\n      const dealerBrand = brand || shared.brand || '';\n      const userLoc = intent.user_location || '';\n      const showroomName = intent.showroom_name || '';\n      const province = intent.province || '';\n      const MAX_DISTANCE_KM = 150;\n\n      // Fetch dealer catalog\n      let dealerData = { showrooms: [], province_urls: {} };\n      try {\n        const raw = await this.helpers.httpRequest({ method:'GET', url: base + 'wiki/dealers/catalog.json', json:true });\n        dealerData = (typeof raw === 'string') ? JSON.parse(raw) : raw;\n      } catch(e) {}\n\n      // Determine mode + build bundle (same logic as Code in Javescript 1)\n      if (showroomName) {\n        // Specific showroom search\n        const scored = (dealerData.showrooms || [])\n          .map(s => ({ s, score: scoreMatch(s.title, showroomName) }))\n          .filter(x => x.score > 0).sort((a,b) => b.score - a.score);\n        let matches = scored.length ? scored.filter(x => x.score === scored[0].score).map(x => x.s) : [];\n        if (dealerBrand && matches.length > 1) matches = matches.filter(s => brandMatches(s, dealerBrand)) || matches;\n\n        if (!matches.length) {\n          bundle = '[SHOWROOM] Không tìm thấy showroom \"' + showroomName + '\". URL tra cứu: ' + FALLBACK_URL + ' | Hotline: 1900 545 591';\n        } else if (matches.length === 1) {\n          const f = matches[0];\n          bundle = '=== SHOWROOM: ' + f.title + ' ===\\n' +\n            '- Thương hiệu: ' + f.brands.join(', ') + '\\n' +\n            '- Địa chỉ: ' + f.address.full + '\\n' +\n            '- Bán hàng: ' + (f.phone_sale||'—') + '\\n' +\n            '- Dịch vụ: ' + (f.phone_service||'—') + '\\n' +\n            '- Dịch vụ cung cấp: ' + f.services.join(', ') + '\\n' +\n            '- Maps: ' + (f.map_url||'—') + '\\n' +\n            '- Website: ' + (f.website||'—');\n        } else {\n          bundle = '=== KHU VỰC: ' + showroomName.toUpperCase() + ' (' + matches.length + ' showroom) ===\\n' +\n            matches.map(s => '- ' + s.title + ' | ' + s.brands.join(', ') + ' | ' + (s.phone_sale||'—') + ' | Maps: ' + (s.map_url||'—')).join('\\n');\n        }\n\n      } else if (userLoc) {\n        // Nearest by location with geocoding\n        const coords = await geocode.call(this, userLoc);\n        if (!coords) {\n          bundle = '[SHOWROOM GẦN NHẤT] Không xác định được vị trí \"' + userLoc + '\". URL tra cứu: ' + FALLBACK_URL + ' | Hotline: 1900 545 591';\n        } else {\n          let candidates = (dealerData.showrooms || []).filter(s => typeof s.lat==='number' && typeof s.lon==='number');\n          if (dealerBrand) candidates = candidates.filter(s => brandMatches(s, dealerBrand));\n          const ranked = candidates.map(s => ({ ...s, distance_km: haversineKm(coords.lat, coords.lon, s.lat, s.lon) }))\n            .sort((a,b) => a.distance_km - b.distance_km);\n          const inRange = ranked.filter(s => s.distance_km <= MAX_DISTANCE_KM).slice(0, 3);\n\n          if (!inRange.length) {\n            bundle = '[SHOWROOM] Khu vực \"' + userLoc + '\" chưa có showroom' + (dealerBrand ? ' ' + dealerBrand.toUpperCase() : '') + ' trong phạm vi ' + MAX_DISTANCE_KM + 'km.\\n' +\n              'URL tra cứu toàn quốc: ' + FALLBACK_URL + ' | Hotline: 1900 545 591';\n          } else {\n            const brandLabel = dealerBrand ? dealerBrand.toUpperCase() : 'THACO AUTO';\n            bundle = '=== SHOWROOM ' + brandLabel + ' GẦN NHẤT TỪ \"' + userLoc + '\" ===\\n' +\n              'Toạ độ: ' + coords.lat.toFixed(5) + ', ' + coords.lon.toFixed(5) + '\\n\\n' +\n              inRange.map((s,j) => (j+1) + '. ' + s.title + ' — cách ~' + s.distance_km.toFixed(1) + ' km\\n' +\n                '   Địa chỉ: ' + s.address.full + '\\n' +\n                '   Bán hàng: ' + (s.phone_sale||'—') + ' | Dịch vụ: ' + (s.phone_service||'—') + '\\n' +\n                '   Maps: ' + (s.map_url||'—')).join('\\n\\n');\n          }\n        }\n\n      } else if (province) {\n        // Province link\n        const provUrl = (dealerData.province_urls || {})[province] || null;\n        if (provUrl) {\n          bundle = '=== SHOWROOM TẠI ' + province.toUpperCase() + ' ===\\nURL chính thức: ' + provUrl + '\\nBrand quan tâm: ' + (dealerBrand || 'tất cả');\n        } else {\n          bundle = '[SHOWROOM] Chưa có URL riêng cho tỉnh \"' + province + '\". URL tra cứu: ' + FALLBACK_URL + ' | Hotline: 1900 545 591';\n        }\n\n      } else {\n        // Chưa biết khu vực → hỏi + cung cấp fallback URL\n        bundle = '[SHOWROOM] Khách hỏi showroom nhưng chưa nói khu vực cụ thể.\\n' +\n          'Hướng dẫn: hỏi khách ở tỉnh/thành nào, hoặc gửi URL tra cứu: ' + FALLBACK_URL + '\\n' +\n          'Hotline hỗ trợ: 1900 545 591';\n      }\n\n    // ==============================\n    // SERVICE_APPOINTMENT\n    // ==============================\n    } else if (cat === 'SERVICE_APPOINTMENT') {\n      bundle = '[DỊCH VỤ BẢO DƯỠNG]\\n' +\n        'Quý khách đặt lịch bảo dưỡng/sửa chữa qua:\\n' +\n        '1. Ứng dụng THACO AUTO Services (iOS/Android)\\n' +\n        '2. Hotline: 1900 636 247\\n' +\n        '3. Liên hệ trực tiếp showroom gần nhất';\n\n    } else if (cat === 'TRADE_IN') {\n      try {\n        const ti = await this.helpers.httpRequest({ method:'GET', url: base + 'wiki/services/trade-in.md' });\n        bundle = '[THU CŨ ĐỔI MỚI]\\n' + ti.substring(0, 1500);\n      } catch(e) { bundle = '[TRADE-IN] Chương trình Thu cũ Đổi mới — liên hệ showroom gần nhất hoặc hotline 1900 636 247.'; }\n\n    } else if (cat === 'GREETING') {\n      bundle = '[CHÀO HỎI]';\n\n    } else if (cat === 'CUSTOMER_SERVICE') {\n      bundle = '[CHĂM SÓC KHÁCH HÀNG]\\nGhi nhận thắc mắc. Vui lòng cung cấp thêm chi tiết (showroom mua xe, thời gian, mã đơn) để hỗ trợ nhanh.\\nHotline CSKH: 1900 636 247';\n\n    } else if (cat === 'POLICY_LEGAL') {\n      bundle = '[CHÍNH SÁCH]\\nThông tin bảo hành chính hãng, trả góp, thủ tục đăng ký — liên hệ showroom hoặc hotline 1900 636 247.';\n\n    } else if (cat === 'COMPANY_CONTACT') {\n      bundle = '[LIÊN HỆ CÔNG TY]\\nTHACO AUTO — Hotline: 1900 636 247\\nWebsite: https://thacoauto.vn\\nFanpage: https://facebook.com/thacoauto';\n\n    } else {\n      bundle = '[' + cat + '] Thông tin sẽ được cung cấp bởi nhân viên tư vấn. Hotline: 1900 636 247';\n    }\n  } catch(e) {\n    bundle = '[' + cat + '] Lỗi fetch: ' + e.message + '. Hotline hỗ trợ: 1900 636 247';\n  }\n\n  bundles.push({\n    id: 'i' + (i + 1),\n    category: cat,\n    sub: sub,\n    slug: slug,\n    brand: brand || shared.brand || '',\n    context_bundle: bundle\n  });\n}\n\n// Build synthesizer prompts\nconst bundleText = bundles.map((b, i) => {\n  return '[BUNDLE ' + (i+1) + ' — ' + b.category + (b.sub ? '/' + b.sub : '') + (b.slug ? ' ' + b.slug : '') + ']\\n' + b.context_bundle;\n}).join('\\n\\n---\\n\\n');\n\nconst synthSystem = 'Bạn là tư vấn viên chuyên nghiệp THACO AUTO (Kia, Mazda, Peugeot, BMW, MINI).\\n' +\n  'Xưng \"Em\" - \"Anh/Chị\". Lịch sự, hữu ích, gọn gàng.\\n\\n' +\n  'Khách hỏi câu KÉP gồm ' + bundles.length + ' ý.\\n\\n' +\n  'QUY TẮC:\\n' +\n  '1. Đánh số (1), (2)... phân tách các vế\\n' +\n  '2. KHÔNG lặp xưng hô giữa các vế\\n' +\n  '3. Mỗi vế dùng ĐÚNG bundle dữ liệu tương ứng\\n' +\n  '4. KHÔNG bịa địa chỉ, hotline, link, khoảng cách — chỉ dùng data trong bundle\\n' +\n  '5. Nếu bundle showroom có URL → BẮT BUỘC đính kèm\\n' +\n  '6. Nếu bundle showroom thiếu info vị trí → hỏi khách ở khu vực nào\\n' +\n  '7. KHÔNG dùng markdown (**, ##, -, *)\\n' +\n  '8. Tối đa 300 từ\\n\\n' +\n  'DỮ LIỆU:\\n' + bundleText;\n\nconsole.log('[BUILD_MULTI] intents:', bundles.length, '| categories:', bundles.map(b=>b.category).join('+'), '| bundle chars:', bundleText.length);\n\n// === SESSION CONTEXT — giống các AI Agent khác ===\nlet turnCount = 0;\nlet lastUserMsg = '';\nlet lastAiReply = '';\nlet historyBlock = '';\nlet isFirstTurn = true;\ntry {\n  const prev = $('parse_session').first().json._prev || {};\n  const history = prev.history || [];\n  turnCount = history.length;\n  isFirstTurn = turnCount === 0;\n  lastUserMsg = prev.last_user_msg || '';\n  lastAiReply = prev.last_ai_reply || '';\n  // Build history block (last 5 turns)\n  const recentHistory = history.slice(-5);\n  historyBlock = recentHistory.map(h => \n    '[' + (h.intent || '?') + '] Q: ' + (h.user_msg || '').substring(0, 80) + ' → A: ' + (h.ai_reply || '').substring(0, 80)\n  ).join('\\n');\n} catch(e) {\n  console.log('[BUILD_MULTI] parse_session not available:', e.message);\n}\n\nconst turnStatus = isFirstTurn\n  ? '👋 TURN ĐẦU — được phép chào hỏi 1 lần.'\n  : '⚠️ TURN TIẾP THEO (#' + (turnCount + 1) + ') — TUYỆT ĐỐI KHÔNG chào lại.';\n\n// Build user prompt (giống format của reply_pricing, Message a model, etc.)\nconst userPrompt = '### [TRẠNG THÁI HỘI THOẠI]\\n' + turnStatus + '\\n\\n' +\n  '### [TIN NHẮN KHÁCH]\\n\"' + chatInput + '\"\\n\\n' +\n  '### [NGỮ CẢNH TURN TRƯỚC]\\n' +\n  '- Câu hỏi gần nhất: \"' + (lastUserMsg || '(chưa có)') + '\"\\n' +\n  '- AI vừa trả lời: \"' + (lastAiReply ? lastAiReply.substring(0, 200) : '(chưa có)') + '\"\\n\\n' +\n  '### [LỊCH SỬ 5 TURN GẦN NHẤT]\\n' + (historyBlock || '(chưa có lịch sử)');\n\nconsole.log('[BUILD_MULTI] turn:', turnCount, '| isFirst:', isFirstTurn, '| intents:', bundles.length);\n\nreturn [{ json: {\n  ...d,\n  _synth_system_prompt: synthSystem,\n  _synth_user_prompt: userPrompt,\n  _bundles: bundles,\n  _reply_mode: 'multi',\n  _turn_count: turnCount,\n  _is_first_turn: isFirstTurn,\n  chatInput: chatInput\n}}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        22200
+      ],
+      "id": "e48e9014-72e6-475b-9b1b-bf6874e56ff0",
+      "name": "build_multi_context"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json._synth_system_prompt }}"
+        },
+        "text": "={{ $json._synth_user_prompt }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        200,
+        22200
+      ],
+      "id": "f7df9c1d-9b0b-4a48-b05e-d41eae22c326",
+      "name": "Reply Synthesizer",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        200,
+        22400
+      ],
+      "id": "525a41b2-f6f6-44e4-a47d-1f88f244be77",
+      "name": "Gemini_synthesizer",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "V1JU1t07NI9Vchoz",
+          "name": "Google Gemini(PaLM) Api thaco auto"
+        }
+      }
     }
   ],
   "connections": {
@@ -2673,7 +2754,13 @@
     },
     "Code in JavaScript": {
       "main": [
-        []
+        [
+          {
+            "node": "Route by Sales Mode",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "AI Agent": {
@@ -3012,7 +3099,7 @@
       "main": [
         [
           {
-            "node": "Normalize Entities",
+            "node": "IF is_multi_intent",
             "type": "main",
             "index": 0
           }
@@ -3421,11 +3508,6 @@
         ]
       ]
     },
-    "test repsonse": {
-      "main": [
-        []
-      ]
-    },
     "strip_markdown_for_subiz": {
       "main": [
         [
@@ -3454,6 +3536,57 @@
           {
             "node": "AI Agent",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF is_multi_intent": {
+      "main": [
+        [
+          {
+            "node": "build_multi_context",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Normalize Entities",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "build_multi_context": {
+      "main": [
+        [
+          {
+            "node": "Reply Synthesizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Synthesizer": {
+      "main": [
+        [
+          {
+            "node": "capture_reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini_synthesizer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Reply Synthesizer",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
