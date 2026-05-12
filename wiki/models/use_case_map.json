@@ -1,0 +1,73 @@
+{
+  "_schema": {
+    "description": "Đánh dấu use_case cho từng xe. Mỗi xe có thể thuộc NHIỀU use_case.",
+    "valid_use_cases": [
+      "gia_dinh",
+      "do_thi",
+      "di_tinh",
+      "kinh_doanh",
+      "khang_dinh_vi_the",
+      "tech_eco"
+    ],
+    "notes": {
+      "gia_dinh": "Xe phù hợp gia đình: rộng rãi, an toàn, tiện nghi, 5-7-8 chỗ",
+      "do_thi": "Xe đô thị: nhỏ gọn, tiết kiệm, dễ đi trong thành phố",
+      "di_tinh": "Xe đường dài: thoải mái, gầm cao, bền bỉ, tiết kiệm xăng",
+      "kinh_doanh": "Xe kinh doanh: dịch vụ, grab, taxi, xe tập lái, chi phí thấp",
+      "khang_dinh_vi_the": "Xe sang, thể thao, khẳng định đẳng cấp",
+      "tech_eco": "Xe công nghệ, tiết kiệm nhiên liệu: hybrid, điện, PHEV"
+    }
+  },
+  "models": [
+    { "slug": "bmw-3-series",        "use_case": ["khang_dinh_vi_the", "do_thi"] },
+    { "slug": "bmw-4-series",        "use_case": ["khang_dinh_vi_the"] },
+    { "slug": "bmw-5-series-all-new", "use_case": ["khang_dinh_vi_the", "di_tinh"] },
+    { "slug": "bmw-5-series",        "use_case": ["khang_dinh_vi_the", "di_tinh"] },
+    { "slug": "bmw-7-series",        "use_case": ["khang_dinh_vi_the"] },
+    { "slug": "bmw-i4",              "use_case": ["khang_dinh_vi_the", "tech_eco"] },
+    { "slug": "bmw-i7",              "use_case": ["khang_dinh_vi_the", "tech_eco"] },
+    { "slug": "bmw-ix3",             "use_case": ["khang_dinh_vi_the", "tech_eco", "gia_dinh"] },
+    { "slug": "bmw-x3-all-new",      "use_case": ["khang_dinh_vi_the", "gia_dinh"] },
+    { "slug": "bmw-x3",              "use_case": ["khang_dinh_vi_the", "gia_dinh"] },
+    { "slug": "bmw-x4",              "use_case": ["khang_dinh_vi_the"] },
+    { "slug": "bmw-x5",              "use_case": ["khang_dinh_vi_the", "gia_dinh", "di_tinh"] },
+    { "slug": "bmw-x6",              "use_case": ["khang_dinh_vi_the"] },
+    { "slug": "bmw-x7",              "use_case": ["khang_dinh_vi_the", "gia_dinh"] },
+    { "slug": "bmw-z4",              "use_case": ["khang_dinh_vi_the"] },
+
+    { "slug": "kia-carens",          "use_case": ["gia_dinh", "di_tinh"] },
+    { "slug": "kia-carnival",        "use_case": ["gia_dinh", "di_tinh", "kinh_doanh"] },
+    { "slug": "kia-k3",              "use_case": ["do_thi", "gia_dinh"] },
+    { "slug": "kia-k5",              "use_case": ["do_thi", "gia_dinh", "di_tinh"] },
+    { "slug": "kia-morning-all-new", "use_case": ["do_thi", "kinh_doanh"] },
+    { "slug": "kia-morning",         "use_case": ["do_thi", "kinh_doanh"] },
+    { "slug": "kia-seltos",          "use_case": ["do_thi", "gia_dinh"] },
+    { "slug": "kia-soluto",          "use_case": ["do_thi", "kinh_doanh"] },
+    { "slug": "kia-sonet",           "use_case": ["do_thi"] },
+    { "slug": "kia-sorento-hybrid",  "use_case": ["gia_dinh", "di_tinh", "tech_eco"] },
+    { "slug": "kia-sorento",         "use_case": ["gia_dinh", "di_tinh"] },
+    { "slug": "kia-sportage",        "use_case": ["gia_dinh", "do_thi", "di_tinh"] },
+
+    { "slug": "mazda-2-sport",       "use_case": ["do_thi"] },
+    { "slug": "mazda-2",             "use_case": ["do_thi"] },
+    { "slug": "mazda-3-sport",       "use_case": ["do_thi", "khang_dinh_vi_the"] },
+    { "slug": "mazda-3",             "use_case": ["do_thi", "gia_dinh"] },
+    { "slug": "mazda-cx-3",          "use_case": ["do_thi"] },
+    { "slug": "mazda-cx-30",         "use_case": ["do_thi", "gia_dinh"] },
+    { "slug": "mazda-cx-5",          "use_case": ["gia_dinh", "do_thi", "di_tinh"] },
+    { "slug": "mazda-cx-8",          "use_case": ["gia_dinh", "di_tinh"] },
+    { "slug": "mazda-cx-90",         "use_case": ["gia_dinh", "di_tinh", "khang_dinh_vi_the", "tech_eco"] },
+    { "slug": "mazda-mx-5",          "use_case": ["khang_dinh_vi_the"] },
+
+    { "slug": "mini-3-door",         "use_case": ["do_thi", "khang_dinh_vi_the"] },
+    { "slug": "mini-5-door",         "use_case": ["do_thi", "khang_dinh_vi_the"] },
+    { "slug": "mini-clubman",        "use_case": ["do_thi", "khang_dinh_vi_the"] },
+    { "slug": "mini-convertible",    "use_case": ["khang_dinh_vi_the"] },
+    { "slug": "mini-countryman",     "use_case": ["do_thi", "khang_dinh_vi_the", "gia_dinh"] },
+
+    { "slug": "peugeot-2008",        "use_case": ["do_thi", "gia_dinh"] },
+    { "slug": "peugeot-3008",        "use_case": ["gia_dinh", "do_thi", "di_tinh"] },
+    { "slug": "peugeot-408",         "use_case": ["do_thi", "khang_dinh_vi_the"] },
+    { "slug": "peugeot-5008",        "use_case": ["gia_dinh", "di_tinh"] }
+  ]
+}

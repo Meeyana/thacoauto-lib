@@ -44,7 +44,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/the-new-3/bmw-the-new-3-320i-m-sport.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "do_thi"
+      ]
     },
     {
       "slug": "bmw-4-series",
@@ -80,7 +84,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw-anh-dai-dien/bmw-4-series.webp",
       "brochure": "https://thacoautotphcm.vn/storage/bmw/ban-sao-cua-430i-convertible-m-sport-ctbh-speccard-view-1.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "bmw-5-series-all-new",
@@ -112,7 +119,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/bmw-all-new-5-series/bmw-5-series-new.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "di_tinh"
+      ]
     },
     {
       "slug": "bmw-5-series",
@@ -144,7 +155,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-5-series.webp",
       "brochure": "https://thacoautotphcm.vn/storage/bmw/view.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "di_tinh"
+      ]
     },
     {
       "slug": "bmw-7-series",
@@ -188,7 +203,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-7-series.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "bmw-i4",
@@ -216,7 +234,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-i4.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "tech_eco"
+      ]
     },
     {
       "slug": "bmw-i7",
@@ -240,7 +262,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-i7.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "tech_eco"
+      ]
     },
     {
       "slug": "bmw-ix3",
@@ -264,7 +290,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/bmw-i-series/bmw-i3/bmw-i3.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "tech_eco",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "bmw-x3-all-new",
@@ -304,7 +335,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/bmw-x3-all-new.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "bmw-x3",
@@ -328,7 +363,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/den-1.webp",
       "brochure": "https://thacoautotphcm.vn/storage/bmw/copy-of-bmw-x3-specs-card-ctbh.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "bmw-x4",
@@ -356,7 +395,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-x4.webp",
       "brochure": "https://thacoautotphcm.vn/storage/bmw/copy-of-bmw-x4-speccard-ctbh-view.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "bmw-x5",
@@ -384,7 +426,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-x5.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "gia_dinh",
+        "di_tinh"
+      ]
     },
     {
       "slug": "bmw-x6",
@@ -408,7 +455,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-x6.webp",
       "brochure": "https://thacoautotphcm.vn/storage/bmw/copy-of-bmw-x6-lci-speccard-ctbh-view.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "bmw-x7",
@@ -444,7 +494,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-x7.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "bmw-z4",
@@ -468,7 +522,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/bmw/hinh-dai-dien/bmw-z4.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "kia-carens",
@@ -508,7 +565,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-03.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-carens-1.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh"
+      ]
     },
     {
       "slug": "kia-carnival",
@@ -552,7 +613,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-carnival/new-carnival.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-new-carnival-1.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh",
+        "kinh_doanh"
+      ]
     },
     {
       "slug": "kia-k3",
@@ -580,7 +646,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-04.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-k3-v28062023.pdf",
-      "detail_url": "https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3"
+      "detail_url": "https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3",
+      "use_case": [
+        "do_thi",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "kia-k5",
@@ -612,7 +682,12 @@
       "faq_url": "wiki/faq/kia-k5-qa.md",
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-05.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-catalogue-k5-28062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "gia_dinh",
+        "di_tinh"
+      ]
     },
     {
       "slug": "kia-morning-all-new",
@@ -640,7 +715,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/new-morning/kia.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "kinh_doanh"
+      ]
     },
     {
       "slug": "kia-morning",
@@ -664,7 +743,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/newmorning-trang-1.webp",
       "brochure": "https://thacoautotphcm.vn/storage/brochure-morning.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "kinh_doanh"
+      ]
     },
     {
       "slug": "kia-seltos",
@@ -708,7 +791,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-08.webp",
       "brochure": "https://thacoautotphcm.vn/storage/brochure/kia/brochure-seltos-v7-0606.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "kia-soluto",
@@ -740,7 +827,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-13.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/brochure-soluto-11072023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "kinh_doanh"
+      ]
     },
     {
       "slug": "kia-sonet",
@@ -776,7 +867,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-01.webp",
       "brochure": "https://thacoautotphcm.vn/storage/brochure/kia/e-brochure-kia-new-sonet.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi"
+      ]
     },
     {
       "slug": "kia-sorento-hybrid",
@@ -804,7 +898,12 @@
       "faq_url": "wiki/faq/kia-sorento-hybrid-qa.md",
       "image": "https://thacoautotphcm.vn/storage/kia/360/sorento-hybrid/3f92c6fc-a4f3-4fbe-84cc-3cd32e03ef42.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/e-brochure-sorento-hev-phev-v1201222-s.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh",
+        "tech_eco"
+      ]
     },
     {
       "slug": "kia-sorento",
@@ -856,7 +955,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/hinh-san-pham/new-sorento/new-sorento-02.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia-new-sorento/e-brochure-v6-1509-copy.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh"
+      ]
     },
     {
       "slug": "kia-sportage",
@@ -916,7 +1019,12 @@
       "faq_url": "wiki/faq/kia-sportage-qa.md",
       "image": "https://thacoautotphcm.vn/storage/icon-xe-kia/hinh-san-pham-kia-12.webp",
       "brochure": "https://thacoautotphcm.vn/storage/kia/brochure/brochure-sportage.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "do_thi",
+        "di_tinh"
+      ]
     },
     {
       "slug": "mazda-2-sport",
@@ -940,7 +1048,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2-sport.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda2-sport-v5-05062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi"
+      ]
     },
     {
       "slug": "mazda-2",
@@ -976,7 +1087,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-2.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/catalog/e-brochure-mazda2-sedan-v5-06-03-2023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi"
+      ]
     },
     {
       "slug": "mazda-3-sport",
@@ -1004,7 +1118,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-3-sport.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda3-sport-v5-05062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mazda-3",
@@ -1036,7 +1154,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-3.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda3-sedan-v5-05062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "mazda-cx-3",
@@ -1072,7 +1194,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-3/new-cx-3.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi"
+      ]
     },
     {
       "slug": "mazda-cx-30",
@@ -1100,7 +1225,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/cx-30-dmlm-dgdblac-25d-d2b-ext-360-24-transparentpng-0004.webp",
       "brochure": "https://thacoautotphcm.vn/storage/e-brochure-mazda-cx-30-290325.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "mazda-cx-5",
@@ -1144,7 +1273,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/hinh-dai-dien/new-mazda-cx-5-1.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-5-final.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "do_thi",
+        "di_tinh"
+      ]
     },
     {
       "slug": "mazda-cx-8",
@@ -1176,7 +1310,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/new-mazda-cx-8/anh-xe/mazda-cx-8.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-8-v3-05062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh"
+      ]
     },
     {
       "slug": "mazda-cx-90",
@@ -1200,7 +1338,13 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/cx90.webp",
       "brochure": "https://thacoautotphcm.vn/storage/mazda/brochure/e-brochure-mazda-cx-8-v3-05062023.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh",
+        "khang_dinh_vi_the",
+        "tech_eco"
+      ]
     },
     {
       "slug": "mazda-mx-5",
@@ -1228,7 +1372,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/mazda/360/mazda-mx-5/46v-nk5/mx-5-nel3-nh7wlab-46v-nk5-ext-360-72-transparentpng-0011.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mini-3-door",
@@ -1264,7 +1411,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/mini-3-cua-min.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mini-5-door",
@@ -1288,7 +1439,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/mini-5-cua-min.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mini-clubman",
@@ -1312,7 +1467,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/hinh-san-pham-mini-mini-clubman.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mini-convertible",
@@ -1336,7 +1495,10 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/mini-mui-tran-min.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "mini-countryman",
@@ -1368,7 +1530,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/hinh-anh-final/mini-ctm-u25-min.webp",
       "brochure": "",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "peugeot-2008",
@@ -1400,7 +1567,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-new-2008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/7-peugeot-new-2008-e-salekit.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "gia_dinh"
+      ]
     },
     {
       "slug": "peugeot-3008",
@@ -1432,7 +1603,12 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-3008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/10-peugeot-3008-new-logo-e-salekit.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "do_thi",
+        "di_tinh"
+      ]
     },
     {
       "slug": "peugeot-408",
@@ -1464,7 +1640,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-408-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/peugeot/brochure/e-brochure-peugeot-408.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "do_thi",
+        "khang_dinh_vi_the"
+      ]
     },
     {
       "slug": "peugeot-5008",
@@ -1492,7 +1672,11 @@
       "faq_url": null,
       "image": "https://thacoautotphcm.vn/storage/peugeot/lineup/new-25-03-25/ban-sao-cua-900x563px-2-5008-gt.webp",
       "brochure": "https://thacoautotphcm.vn/storage/traveller/1-peugeot-5008-new-logo-e-salekit.pdf",
-      "detail_url": null
+      "detail_url": null,
+      "use_case": [
+        "gia_dinh",
+        "di_tinh"
+      ]
     }
   ]
 }
