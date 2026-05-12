@@ -649,7 +649,8 @@
       "detail_url": "https://kiavietnam.com.vn/chi-tiet-san-pham/the-new-k3",
       "use_case": [
         "do_thi",
-        "gia_dinh"
+        "gia_dinh",
+        "kinh_doanh"
       ]
     },
     {
@@ -794,7 +795,8 @@
       "detail_url": null,
       "use_case": [
         "do_thi",
-        "gia_dinh"
+        "gia_dinh",
+        "kinh_doanh"
       ]
     },
     {
@@ -1157,7 +1159,8 @@
       "detail_url": null,
       "use_case": [
         "do_thi",
-        "gia_dinh"
+        "gia_dinh",
+        "kinh_doanh"
       ]
     },
     {
