@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Thaco Bus, Thaco Truck]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -32,6 +32,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 131 QL1, Ấp Chánh, xã Mỹ Yên, tỉnh Tây Ninh
 - **Hotline bán hàng:** 0909511319
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/fVAPrKwEHU9kHARG7)
+- 📌 Toạ độ: 10.6356563, 106.5250113
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-mazda-ben-luc)
 
 ### Tải - Bus Bến Lức
@@ -45,6 +46,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938907983
 - **Hotline dịch vụ & phụ tùng:** 0938907983
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/vXUrZPouVtc83KKE7)
+- 📌 Toạ độ: 10.6356658, 106.5249507
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-ben-luc-2)
 
 ### Kia Bến Lức
@@ -57,6 +59,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 131 QL1, Ấp Chánh, xã Mỹ Yên, tỉnh Tây Ninh
 - **Hotline bán hàng:** 0909511319
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/fVAPrKwEHU9kHARG7)
+- 📌 Toạ độ: 10.6356563, 106.5250113
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-ben-luc-1)
 
 ## Liên kết

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-09",
+  "updated": "2026-05-15",
   "total": 74,
   "source_files": [
     "raw/hochiminh-listshowroom.json"
@@ -52,7 +52,9 @@
       "Đông Hòa",
       "Đông Hưng Thuận",
       "Đức Nhuận"
-    ]
+    ],
+    "geocoded": 68,
+    "geocoded_unique_urls": 62
   },
   "province_urls": {
     "ho-chi-minh": "https://thacoautotphcm.vn/showrooms"
@@ -87,8 +89,9 @@
       "map_url": "https://maps.app.goo.gl/DhDyud8NQ9BJxM4n7",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Sala",
       "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-1-565x375.webp",
-      "lat": 10.7731593,
-      "lon": 106.723831
+      "lat": 10.7730533,
+      "lon": 106.7235886,
+      "coord_source": "marker"
     },
     {
       "id": "mini-sala",
@@ -117,8 +120,9 @@
       "map_url": "https://maps.app.goo.gl/SW9KWno1Sah4Xkm1A",
       "website": "https://thacoautotphcm.vn/showrooms/MINI Sala",
       "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/thaco-showroom-10-565x375.webp",
-      "lat": 10.7731593,
-      "lon": 106.723831
+      "lat": 10.7726472,
+      "lon": 106.7234435,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-motorrad-sala",
@@ -147,8 +151,9 @@
       "map_url": "https://maps.app.goo.gl/gd4EayM1qxXG1udw6",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Motorrad Sala",
       "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/bmw-sala-22-565x375.webp",
-      "lat": 10.7731593,
-      "lon": 106.723831
+      "lat": 10.7729766,
+      "lon": 106.7239588,
+      "coord_source": "marker"
     },
     {
       "id": "kia-sala",
@@ -179,8 +184,9 @@
       "map_url": "https://maps.app.goo.gl/ovi8QJRNWYi9emPF8",
       "website": "https://thacoautotphcm.vn/showrooms/kia-sala",
       "image": "https://thacoautotphcm.vn/storage/kiasala-1-565x375.webp",
-      "lat": 10.773159,
-      "lon": 106.723831
+      "lat": 10.7715616,
+      "lon": 106.7222772,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-sala",
@@ -209,8 +215,9 @@
       "map_url": "https://maps.app.goo.gl/L9K8jRQktRLD5pE36",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-sala",
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-sala-565x375.webp",
-      "lat": 10.773159,
-      "lon": 106.723831
+      "lat": 10.7721095,
+      "lon": 106.7221739,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-sala",
@@ -243,8 +250,9 @@
       "map_url": "https://maps.app.goo.gl/TrdBZxdqHEvg86Ev7",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-sala",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/dsc06159-1-1-565x375.webp",
-      "lat": 10.773159,
-      "lon": 106.723831
+      "lat": 10.7719766,
+      "lon": 106.7219927,
+      "coord_source": "marker"
     },
     {
       "id": "kia-phu-my-hung",
@@ -275,8 +283,9 @@
       "map_url": "https://maps.app.goo.gl/7h4xnfWECuj8cGKh6",
       "website": "https://thacoautotphcm.vn/showrooms/KIA Phú Mỹ Hưng",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-pmh-1-565x375.webp",
-      "lat": 10.7411061,
-      "lon": 106.7213432
+      "lat": 10.7412856,
+      "lon": 106.7212647,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-phu-my-hung",
@@ -307,8 +316,9 @@
       "map_url": "https://maps.app.goo.gl/ubL6MHvUAadoXf6GA",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Phú Mỹ Hưng",
       "image": "https://thacoautotphcm.vn/storage/00-cong-ty-tinh-thanh/thaco-auto-phu-my-hung/img-7202-2-565x375.webp",
-      "lat": 10.7411061,
-      "lon": 106.7213432
+      "lat": 10.7413043,
+      "lon": 106.7213288,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-phu-my-hung",
@@ -339,8 +349,9 @@
       "map_url": "https://maps.app.goo.gl/UoaY3Np9J4NsBWd56",
       "website": "https://thacoautotphcm.vn/showrooms/BMW Phú Mỹ Hưng",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/bmw-pmh-565x375.webp",
-      "lat": 10.7411061,
-      "lon": 106.7213432
+      "lat": 10.741383,
+      "lon": 106.721047,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-phu-my-hung",
@@ -371,8 +382,9 @@
       "map_url": "https://maps.app.goo.gl/yryqdXgtycvF9cTt5",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-phu-my-hung",
       "image": "https://thacoautotphcm.vn/storage/peugeot-hcm-1/peu-edit-565x375.webp",
-      "lat": 10.7527133,
-      "lon": 106.7269691
+      "lat": 10.7400553,
+      "lon": 106.7212064,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-phu-my-hung",
@@ -411,8 +423,9 @@
       "map_url": "https://maps.app.goo.gl/rrCNujqYgwTXzuzM6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my-hung",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-pmh-565x375.webp",
-      "lat": 10.7411061,
-      "lon": 106.7213432
+      "lat": 10.7413834,
+      "lon": 106.7210472,
+      "coord_source": "marker"
     },
     {
       "id": "kia-tan-son-nhat",
@@ -443,8 +456,9 @@
       "map_url": "https://maps.app.goo.gl/nGgJR2spTBeDrAYi6",
       "website": "https://thacoautotphcm.vn/showrooms/kiatansonnhat",
       "image": "https://thacoautotphcm.vn/storage/1-30-565x375.webp",
-      "lat": 10.8091194,
-      "lon": 106.6741552
+      "lat": 10.8093475,
+      "lon": 106.6748131,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-tan-son-nhat",
@@ -475,8 +489,9 @@
       "map_url": "https://maps.app.goo.gl/cXtnp7dNN3tjzmxJ9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-son-nhat",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tsn-565x375.webp",
-      "lat": 10.8091194,
-      "lon": 106.6741552
+      "lat": 10.8092114,
+      "lon": 106.6747577,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-nguyen-van-troi",
@@ -505,8 +520,9 @@
       "map_url": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-nguyen-van-troi",
       "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-4-565x375.webp",
-      "lat": 10.7964547,
-      "lon": 106.6748301
+      "lat": 10.7964581,
+      "lon": 106.6748641,
+      "coord_source": "marker"
     },
     {
       "id": "mini-nguyen-van-troi",
@@ -534,9 +550,7 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://miniphunhuan.vn",
-      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-21-565x375.webp",
-      "lat": 10.7964547,
-      "lon": 106.6748301
+      "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-21-565x375.webp"
     },
     {
       "id": "bmw-motorrad-nguyen-van-troi",
@@ -565,8 +579,9 @@
       "map_url": "https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6",
       "website": "https://thacoautotphcm.vn/",
       "image": "https://thacoautotphcm.vn/storage/bmw-hcm-1/tong-quan-sr/nvt-30-565x375.webp",
-      "lat": 10.7982726,
-      "lon": 106.6710917
+      "lat": 10.7964581,
+      "lon": 106.6748641,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-phan-ang-luu",
@@ -599,8 +614,9 @@
       "map_url": "https://maps.app.goo.gl/QAgyGE82kuT4WVLp6",
       "website": "https://www.peugeotphunhuan.vn/",
       "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-1-8-565x375.webp",
-      "lat": 10.8034054,
-      "lon": 106.6877845
+      "lat": 10.8012816,
+      "lon": 106.6802063,
+      "coord_source": "camera"
     },
     {
       "id": "mazda-truong-chinh",
@@ -629,8 +645,9 @@
       "map_url": "https://maps.app.goo.gl/vMsPRoHcQMfgudCp9",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Trường Chinh",
       "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
-      "lat": 10.8140961,
-      "lon": 106.6321691
+      "lat": 10.8142452,
+      "lon": 106.6322961,
+      "coord_source": "marker"
     },
     {
       "id": "kia-truong-chinh",
@@ -661,8 +678,9 @@
       "map_url": "https://maps.app.goo.gl/VtHZm7K2hdWou9Rk9",
       "website": "https://thacoautotphcm.vn/showrooms/kia-truong-chinh",
       "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
-      "lat": 10.8140961,
-      "lon": 106.6321691
+      "lat": 10.8125086,
+      "lon": 106.6299593,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-truong-chinh",
@@ -695,8 +713,9 @@
       "map_url": "https://maps.app.goo.gl/FQ5PgpmdeULmxdsu9",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-truong-chinh",
       "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/sr-tc-565x375.webp",
-      "lat": 10.8092514,
-      "lon": 106.6339817
+      "lat": 10.8142316,
+      "lon": 106.6321909,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-truong-chinh",
@@ -727,8 +746,9 @@
       "map_url": "https://maps.app.goo.gl/RYJzNhi83Cz9219B9",
       "website": "https://thacoautotphcm.vn/danh-sach-xe/xe-du-lich?brand_id=4",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda/cx-90/ngoai-that/do-man/sr-tc-565x375.webp",
-      "lat": 10.811,
-      "lon": 106.632
+      "lat": 10.8137907,
+      "lon": 106.632344,
+      "coord_source": "marker"
     },
     {
       "id": "kia-binh-tan",
@@ -759,8 +779,9 @@
       "map_url": "https://maps.app.goo.gl/8FbThrxqHYfrtr9m6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-binh-tan",
       "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0800-565x375.webp",
-      "lat": 10.7196922,
-      "lon": 106.6077324
+      "lat": 10.7198514,
+      "lon": 106.607977,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-binh-tan",
@@ -793,8 +814,9 @@
       "map_url": "https://maps.app.goo.gl/c9WDrE152yenE4fT8",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-tan",
       "image": "https://thacoautotphcm.vn/storage/binh-tan/dji-0805-565x375.webp",
-      "lat": 10.7192446,
-      "lon": 106.606554
+      "lat": 10.7194171,
+      "lon": 106.6065776,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-binh-tan",
@@ -824,8 +846,9 @@
       "map_url": "https://maps.app.goo.gl/g4wPR7W6ZeoED2NE6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-tan",
       "image": "https://thacoautotphcm.vn/storage/binh-tan/bit-4-565x375.webp",
-      "lat": 10.7435024,
-      "lon": 106.6212751
+      "lat": 10.7436129,
+      "lon": 106.62172,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-binh-trieu",
@@ -854,8 +877,9 @@
       "map_url": "https://maps.app.goo.gl/mCUy7aUtQJs7peGx7",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-trieu",
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-bt-565x375.webp",
-      "lat": 10.8678981,
-      "lon": 106.7199972
+      "lat": 10.8306178,
+      "lon": 106.7135551,
+      "coord_source": "marker"
     },
     {
       "id": "kia-binh-trieu",
@@ -885,8 +909,9 @@
       "map_url": "https://maps.app.goo.gl/ZT9nRKsMaq1kEuDZ7",
       "website": null,
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-binh-trieu-1-565x375.webp",
-      "lat": 10.8678981,
-      "lon": 106.7199972
+      "lat": 10.8325129,
+      "lon": 106.7136246,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-binh-trieu",
@@ -929,8 +954,9 @@
       "map_url": "https://maps.app.goo.gl/6w7yaBsY5JuCix1V8",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-trieu",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/showroom-tai-bus-binh-trieu-565x375.webp",
-      "lat": 10.8504199,
-      "lon": 106.7193149
+      "lat": 10.8481159,
+      "lon": 106.7187627,
+      "coord_source": "marker"
     },
     {
       "id": "kia-go-vap",
@@ -961,8 +987,9 @@
       "map_url": "https://maps.app.goo.gl/chYhAXzUytrzKpwEA",
       "website": "https://thacoautotphcm.vn/showrooms/kia-go-vap",
       "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/56c81173101fd041890e-1-565x375.webp",
-      "lat": 10.8383548,
-      "lon": 106.6751339
+      "lat": 10.8347549,
+      "lon": 106.6755965,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-go-vap",
@@ -993,8 +1020,9 @@
       "map_url": "https://maps.app.goo.gl/c5QrttdJatz8nzTz6",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-go-vap",
       "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/z4431323361801-79f86727d263745b307b58478f7da3c1-565x375.webp",
-      "lat": 10.8383548,
-      "lon": 106.6751339
+      "lat": 10.8344593,
+      "lon": 106.6755828,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-phan-huy-ich",
@@ -1025,8 +1053,9 @@
       "map_url": "https://maps.app.goo.gl/evHoVP9gTi8K6sXV9",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-phan-huy-ich",
       "image": "https://thacoautotphcm.vn/storage/peugeot-hcm/asset-2-8-565x375.webp",
-      "lat": 10.837183,
-      "lon": 106.6362137
+      "lat": 10.8403971,
+      "lon": 106.6375482,
+      "coord_source": "marker"
     },
     {
       "id": "kia-phan-huy-ich",
@@ -1055,8 +1084,9 @@
       "map_url": "https://maps.app.goo.gl/2YCe2f8CNcyibF4k6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-phan-huy-ich",
       "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/kiaphanhuyich-565x375.webp",
-      "lat": 10.837183,
-      "lon": 106.6362137
+      "lat": 10.842696,
+      "lon": 106.6377606,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-phan-huy-ich",
@@ -1085,8 +1115,9 @@
       "map_url": "https://maps.app.goo.gl/SFn5WFv3wwJbNDMz9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-phan-huy-ich",
       "image": "https://thacoautotphcm.vn/storage/go-vap-hcm/mazdaphanhuyich-565x375.webp",
-      "lat": 10.837183,
-      "lon": 106.6362137
+      "lat": 10.8427439,
+      "lon": 106.6377728,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-ben-luc",
@@ -1115,8 +1146,9 @@
       "map_url": "https://maps.app.goo.gl/fVAPrKwEHU9kHARG7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-mazda-ben-luc",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-ben-luc-565x375.webp",
-      "lat": 10.645,
-      "lon": 106.48
+      "lat": 10.6356563,
+      "lon": 106.5250113,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-ben-luc",
@@ -1155,8 +1187,9 @@
       "map_url": "https://maps.app.goo.gl/vXUrZPouVtc83KKE7",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-ben-luc-2",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/z7449630565089-9bf8ccde4e0e0f4ccd7450ff91581e40-565x375.webp",
-      "lat": 10.645,
-      "lon": 106.48
+      "lat": 10.6356658,
+      "lon": 106.5249507,
+      "coord_source": "marker"
     },
     {
       "id": "kia-ben-luc",
@@ -1187,8 +1220,9 @@
       "map_url": "https://maps.app.goo.gl/fVAPrKwEHU9kHARG7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-ben-luc-1",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-ben-luc-565x375.webp",
-      "lat": 10.645,
-      "lon": 106.48
+      "lat": 10.6356563,
+      "lon": 106.5250113,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-tan-an",
@@ -1217,8 +1251,9 @@
       "map_url": "https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-an",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-an-1-565x375.webp",
-      "lat": 10.54,
-      "lon": 106.41
+      "lat": 10.5461485,
+      "lon": 106.4006659,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-tan-an",
@@ -1258,9 +1293,7 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-an",
-      "image": "https://thacoautotphcm.vn/storage/z6898492036825-1e7aafacb83258ba616cf891250c6332-1-565x375.webp",
-      "lat": 10.54,
-      "lon": 106.41
+      "image": "https://thacoautotphcm.vn/storage/z6898492036825-1e7aafacb83258ba616cf891250c6332-1-565x375.webp"
     },
     {
       "id": "kia-tan-an",
@@ -1291,8 +1324,9 @@
       "map_url": "https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8",
       "website": "https://thacoautotphcm.vn/showrooms/kia-tan-an",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-an-1-565x375.webp",
-      "lat": 10.54,
-      "lon": 106.41
+      "lat": 10.5461485,
+      "lon": 106.4006659,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-go-dau",
@@ -1335,8 +1369,9 @@
       "map_url": "https://maps.app.goo.gl/f5Grpggq1EZ86aqK6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-go-dau",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/z4886246274348-6a153005f73852385c8bcd36e2464949-565x375.webp",
-      "lat": 11.2,
-      "lon": 106.26
+      "lat": 11.0834262,
+      "lon": 106.2668997,
+      "coord_source": "marker"
     },
     {
       "id": "kia-go-dau",
@@ -1367,8 +1402,9 @@
       "map_url": "https://maps.app.goo.gl/N58PszA2shbyngNv7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-go-dau",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/kia-godau-565x375.webp",
-      "lat": 11.2,
-      "lon": 106.26
+      "lat": 11.0829613,
+      "lon": 106.267139,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-go-dau",
@@ -1399,8 +1435,9 @@
       "map_url": "https://maps.app.goo.gl/G8rFi1BwveiQfi9h9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-go-dauf",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/mazda-go-dau-565x375.webp",
-      "lat": 11.2,
-      "lon": 106.26
+      "lat": 11.083076,
+      "lon": 106.2666761,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-tay-ninh",
@@ -1431,8 +1468,9 @@
       "map_url": "https://maps.app.goo.gl/9kiRhmTpJQPd62zE9",
       "website": "https://thacoautotphcm.vn/showrooms/Mazda Tây Ninh",
       "image": "https://thacoautotphcm.vn/storage/tay-ninh/z4885233648836-f4f56646fb6fb95f2be224cbf2c8020a-565x375.webp",
-      "lat": 11.3597477,
-      "lon": 106.1153347
+      "lat": 11.3463046,
+      "lon": 106.108973,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-tay-ninh",
@@ -1474,9 +1512,7 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/tai-bus-tay-ninh",
-      "image": "https://thacoautotphcm.vn/storage/km-hcm/ban-giao-xe-bus-thaco-auto-tay-ninh-min-565x375.webp",
-      "lat": 11.3597477,
-      "lon": 106.1153347
+      "image": "https://thacoautotphcm.vn/storage/km-hcm/ban-giao-xe-bus-thaco-auto-tay-ninh-min-565x375.webp"
     },
     {
       "id": "kia-tay-ninh",
@@ -1507,8 +1543,9 @@
       "map_url": "https://maps.app.goo.gl/3B8Nh8efbGvMCGye8",
       "website": "https://thacoautotphcm.vn/showrooms/kia-tay-ninh",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tay-ninh-565x375.webp",
-      "lat": 11.3597477,
-      "lon": 106.1153347
+      "lat": 11.0829613,
+      "lon": 106.267139,
+      "coord_source": "marker"
     },
     {
       "id": "kia-ba-ria",
@@ -1539,8 +1576,9 @@
       "map_url": "https://maps.app.goo.gl/J5gK1B4rvgWnm2ASA",
       "website": "https://thacoautotphcm.vn/showrooms/kia-ba-ria",
       "image": "https://thacoautotphcm.vn/storage/kia-ba-ria-565x375.webp",
-      "lat": 10.4854632,
-      "lon": 107.1947594
+      "lat": 10.4886495,
+      "lon": 107.1722841,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-ba-ria",
@@ -1569,8 +1607,9 @@
       "map_url": "https://maps.app.goo.gl/cNuuwNsPasnXcFpq7",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-peugeot-ba-ria",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/z5777787307468-e5445b7ec650e49be0c5b95e6ba4f0ff-565x375.webp",
-      "lat": 10.4854632,
-      "lon": 107.1947594
+      "lat": 10.4885165,
+      "lon": 107.1724108,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-ba-ria",
@@ -1603,8 +1642,9 @@
       "map_url": "https://maps.app.goo.gl/W1BLn5bdYGAn5jGc7",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-ba-ria",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/peugeot-ba-ria-2-565x375.webp",
-      "lat": 10.4854632,
-      "lon": 107.1947594
+      "lat": 10.4884335,
+      "lon": 107.1725647,
+      "coord_source": "marker"
     },
     {
       "id": "kia-phu-my",
@@ -1633,8 +1673,9 @@
       "map_url": "https://maps.app.goo.gl/tKUcD6Tg86hPPVTJ7",
       "website": "https://thacoautotphcm.vn/showrooms/kia-phu-my",
       "image": "https://thacoautotphcm.vn/storage/vung-tau/kia-phu-my/z5722641734943-3e090ee7e623b5c6454370e5fbc8deae-565x375.webp",
-      "lat": 10.5442609,
-      "lon": 107.0320776
+      "lat": 10.5558883,
+      "lon": 107.0657257,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-phu-my",
@@ -1663,8 +1704,9 @@
       "map_url": "https://maps.app.goo.gl/CFL3uhVub7McRuuQ6",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-phu-my",
       "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-phu-my/z5722644514445-ab95b2142bbbf8eef3b1545bfa6abe30-565x375.webp",
-      "lat": 10.5442609,
-      "lon": 107.0320776
+      "lat": 10.5556786,
+      "lon": 107.0657931,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-phu-my",
@@ -1709,8 +1751,9 @@
       "map_url": "https://maps.app.goo.gl/73zETPRBQXYz8Zmo6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-phu-my",
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-phu-my-1-565x375.webp",
-      "lat": 10.5442609,
-      "lon": 107.0320776
+      "lat": 10.555568,
+      "lon": 107.0658793,
+      "coord_source": "marker"
     },
     {
       "id": "kia-vung-tau",
@@ -1739,8 +1782,9 @@
       "map_url": "https://maps.app.goo.gl/y3kWbcuj8Koi1URQ7",
       "website": "https://kiavungtau.com.vn",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-vung-tau-565x375.webp",
-      "lat": 10.372803,
-      "lon": 107.1004876
+      "lat": 10.358297,
+      "lon": 107.0903864,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-vung-tau",
@@ -1768,9 +1812,7 @@
       "phone_cskh": "0938 508 145",
       "map_url": null,
       "website": "https://mazdavungtau.vn",
-      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-vung-tau/mazda-vung-tau-565x375.webp",
-      "lat": 10.372803,
-      "lon": 107.1004876
+      "image": "https://thacoautotphcm.vn/storage/vung-tau/mazda-vung-tau/mazda-vung-tau-565x375.webp"
     },
     {
       "id": "bmw-vung-tau",
@@ -1799,8 +1841,9 @@
       "map_url": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-vung-tau",
       "image": "https://thacoautotphcm.vn/storage/new-cx-3/bmw-ba-ria-vung-tau-565x375.webp",
-      "lat": 10.3675229,
-      "lon": 107.101416
+      "lat": 10.358156,
+      "lon": 107.0902062,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-vung-tau",
@@ -1833,8 +1876,9 @@
       "map_url": "https://maps.app.goo.gl/gCushEQ89WvEGshR9",
       "website": "https://thacoautotphcm.vn/",
       "image": "https://thacoautotphcm.vn/storage/thaco-auto-hcm/peu-vung-tau-565x375.webp",
-      "lat": 10.3675229,
-      "lon": 107.101416
+      "lat": 10.358156,
+      "lon": 107.0902062,
+      "coord_source": "marker"
     },
     {
       "id": "kia-binh-duong",
@@ -1865,8 +1909,9 @@
       "map_url": "https://maps.app.goo.gl/LLjV2kZZ7sZpRRc48",
       "website": "https://thacoautotphcm.vn/showrooms/kia-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/bmw-7-565x375.webp",
-      "lat": 10.9365188,
-      "lon": 106.7096716
+      "lat": 10.9374161,
+      "lon": 106.7100968,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-binh-duong",
@@ -1897,8 +1942,9 @@
       "map_url": "https://maps.app.goo.gl/tWDNcT5Eebw55MHr9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/bmw-5-565x375.webp",
-      "lat": 10.9365188,
-      "lon": 106.7096716
+      "lat": 10.9378458,
+      "lon": 106.7099648,
+      "coord_source": "marker"
     },
     {
       "id": "peugeot-binh-duong",
@@ -1931,8 +1977,9 @@
       "map_url": "https://maps.app.goo.gl/ztPpLRp6sCcuPxb37",
       "website": "https://thacoautotphcm.vn/showrooms/peugeot-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/bmw-10-565x375.webp",
-      "lat": 10.9365188,
-      "lon": 106.7096716
+      "lat": 10.938641,
+      "lon": 106.7098359,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-motorrad-binh-duong",
@@ -1961,8 +2008,9 @@
       "map_url": "https://maps.app.goo.gl/HiVSwMTnqzcWGm6R9",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-motorrad-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/z7164241754283-d8a9b237f40bc0f7b5f58f85b200995b-565x375.webp",
-      "lat": 10.9365188,
-      "lon": 106.7096716
+      "lat": 10.9383838,
+      "lon": 106.7097879,
+      "coord_source": "marker"
     },
     {
       "id": "mini-binh-duong",
@@ -1993,8 +2041,9 @@
       "map_url": "https://maps.app.goo.gl/H987ju4pBbQ2amBY8",
       "website": "https://thacoautotphcm.vn/showrooms/mini-binh-duong-1",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mini-binh-duong-2-565x375.webp",
-      "lat": 10.9533831,
-      "lon": 106.7040477
+      "lat": 10.9382673,
+      "lon": 106.7099392,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-binh-duong",
@@ -2039,8 +2088,9 @@
       "map_url": "https://maps.app.goo.gl/Cz97s8CsAVagvLP57",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-bd-565x375.webp",
-      "lat": 10.8812946,
-      "lon": 106.6985084
+      "lat": 10.9180087,
+      "lon": 106.7129855,
+      "coord_source": "marker"
     },
     {
       "id": "bmw-binh-duong",
@@ -2071,8 +2121,9 @@
       "map_url": "https://maps.app.goo.gl/jwhLJMd2jxawtAmC6",
       "website": "https://thacoautotphcm.vn/showrooms/bmw-binh-duong",
       "image": "https://thacoautotphcm.vn/storage/bmw-13-2-565x375.webp",
-      "lat": 10.9533831,
-      "lon": 106.7040477
+      "lat": 10.9378471,
+      "lon": 106.7099654,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-di-an",
@@ -2105,8 +2156,9 @@
       "map_url": "https://maps.app.goo.gl/yWz2GmVGJ4XeE3GQA",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-di-an",
       "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/sr-da-1-565x375.webp",
-      "lat": 10.8857496,
-      "lon": 106.8172892
+      "lat": 10.8859413,
+      "lon": 106.8173227,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-di-an",
@@ -2135,8 +2187,9 @@
       "map_url": "https://maps.app.goo.gl/Q3DjoabLRndKmNaSA",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-di-an",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/screenshot-1761643334-565x375.webp",
-      "lat": 10.8857496,
-      "lon": 106.8172892
+      "lat": 10.8859413,
+      "lon": 106.8173227,
+      "coord_source": "marker"
     },
     {
       "id": "kia-di-an",
@@ -2165,8 +2218,9 @@
       "map_url": "https://maps.app.goo.gl/Q3DjoabLRndKmNaSA",
       "website": "https://thacoautotphcm.vn/showrooms/kia-di-an",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/screenshot-1761643334-565x375.webp",
-      "lat": 10.8857496,
-      "lon": 106.8172892
+      "lat": 10.8859413,
+      "lon": 106.8173227,
+      "coord_source": "marker"
     },
     {
       "id": "kia-tan-uyen",
@@ -2197,8 +2251,9 @@
       "map_url": "https://maps.app.goo.gl/FiXQXbbxVZ63DoKz6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-tan-uyen",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/kia-tan-uyen-565x375.webp",
-      "lat": 11.0504062,
-      "lon": 106.7097007
+      "lat": 11.0417474,
+      "lon": 106.7212494,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-tan-uyen",
@@ -2227,8 +2282,9 @@
       "map_url": "https://maps.app.goo.gl/1STdEHU4FTh6BiAY9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-tan-uyen",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/mazda-tan-uyen-565x375.webp",
-      "lat": 11.0504062,
-      "lon": 106.7097007
+      "lat": 11.0418943,
+      "lon": 106.7214629,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-tan-uyen",
@@ -2273,8 +2329,9 @@
       "map_url": "https://maps.app.goo.gl/je5F5BztGHPGPzJk8",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-tan-uyen",
       "image": null,
-      "lat": 11.0504062,
-      "lon": 106.7097007
+      "lat": 11.0417474,
+      "lon": 106.7212494,
+      "coord_source": "marker"
     },
     {
       "id": "kia-thu-dau-mot",
@@ -2303,8 +2360,9 @@
       "map_url": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
       "website": "https://thacoautotphcm.vn/showrooms/kia-thu-dau-mot",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
-      "lat": 11.0166156,
-      "lon": 106.6478859
+      "lat": 11.0256358,
+      "lon": 106.6485342,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-thu-dau-mot",
@@ -2335,8 +2393,9 @@
       "map_url": "https://maps.app.goo.gl/v2dkb4Ec6KSJGRDn9",
       "website": "https://thacoautotphcm.vn/showrooms/mazda-thu-dau-mot",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/thu-dau-mot-565x375.webp",
-      "lat": 11.0065941,
-      "lon": 106.64517
+      "lat": 11.0253843,
+      "lon": 106.6488865,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-thu-dau-mot",
@@ -2381,8 +2440,9 @@
       "map_url": "https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-thu-dau-mot",
       "image": "https://thacoautotphcm.vn/storage/km-hcm/tai-bus-thu-dau-mot-565x375.webp",
-      "lat": 11.0065941,
-      "lon": 106.64517
+      "lat": 11.0256358,
+      "lon": 106.6485342,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-an-lac",
@@ -2425,8 +2485,9 @@
       "map_url": "https://maps.app.goo.gl/Q4i4E6wDwjnNz1e26",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-lac",
       "image": "https://thacoautotphcm.vn/storage/binh-tan/2025-02-27-565x375.webp",
-      "lat": 10.705,
-      "lon": 106.59
+      "lat": 10.7140274,
+      "lon": 106.6001529,
+      "coord_source": "marker"
     },
     {
       "id": "tai-bus-an-suong",
@@ -2457,8 +2518,9 @@
       "map_url": "https://maps.app.goo.gl/BvQ9SgHLniexr2t7A",
       "website": "https://thacoautotphcm.vn/showrooms/tai-bus-an-suong",
       "image": "https://thacoautotphcm.vn/storage/z6736970035451-7a73d491d678e5eb182cdb0e6a408116-565x375.webp",
-      "lat": 10.859,
-      "lon": 106.624
+      "lat": 10.8334429,
+      "lon": 106.6068216,
+      "coord_source": "marker"
     },
     {
       "id": "mazda-thao-ien",
@@ -2488,9 +2550,7 @@
       "phone_cskh": null,
       "map_url": null,
       "website": "https://thacoautotphcm.vn/showrooms/mazda-thao-dien",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-thao-dien-565x375.webp",
-      "lat": 10.8027757,
-      "lon": 106.7324496
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/mazda-thao-dien-565x375.webp"
     },
     {
       "id": "kia-thao-ien",
@@ -2520,9 +2580,7 @@
       "phone_cskh": null,
       "map_url": "https://share.google/uwBC27GQHe4lQYIYd",
       "website": "https://thacoautotphcm.vn/showrooms/kia-thao-dien",
-      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/kia-thao-dien-565x375.webp",
-      "lat": 10.802776,
-      "lon": 106.73245
+      "image": "https://thacoautotphcm.vn/storage/da-thuong-hieu/kia-thao-dien-565x375.webp"
     }
   ]
 }

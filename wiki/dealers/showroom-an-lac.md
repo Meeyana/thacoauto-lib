@@ -7,7 +7,7 @@ showroom_count: 1
 brands: [Iveco Daily, KIA Frontier, Mercedes-Benz Bus, Mitsubishi Fuso, Sinotruk, Sơ mi rơ móc, Thaco Bus, Thaco Truck]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -32,6 +32,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 36C11, Quốc lộ 1A, Xã Tân Nhựt, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0938809629
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Q4i4E6wDwjnNz1e26)
+- 📌 Toạ độ: 10.7140274, 106.6001529
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-an-lac)
 
 ## Liên kết

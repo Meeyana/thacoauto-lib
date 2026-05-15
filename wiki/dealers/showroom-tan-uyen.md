@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Sinotruk, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938887165
 - **Hotline dịch vụ & phụ tùng:** 0938807962
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/FiXQXbbxVZ63DoKz6)
+- 📌 Toạ độ: 11.0417474, 106.7212494
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-tan-uyen)
 
 ### Mazda Tân Uyên
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0933806012
 - **Hotline dịch vụ & phụ tùng:** 0938807962
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/1STdEHU4FTh6BiAY9)
+- 📌 Toạ độ: 11.0418943, 106.7214629
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-tan-uyen)
 
 ### Tải - Bus Tân Uyên
@@ -56,6 +58,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 60 Nguyễn Văn Linh, Khu phố Tân Long, Phường Tân Hiệp, Thành phố Hồ Chí Minh.
 - **Hotline bán hàng:** 0938807962
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/je5F5BztGHPGPzJk8)
+- 📌 Toạ độ: 11.0417474, 106.7212494
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-tan-uyen)
 
 ## Liên kết

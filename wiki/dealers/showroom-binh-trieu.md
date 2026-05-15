@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938805800
 - **Hotline dịch vụ & phụ tùng:** 0933805882
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/mCUy7aUtQJs7peGx7)
+- 📌 Toạ độ: 10.8306178, 106.7135551
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-binh-trieu)
 
 ### Kia Bình Triệu
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938807040
 - **Hotline dịch vụ & phụ tùng:** 0938806011
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/ZT9nRKsMaq1kEuDZ7)
+- 📌 Toạ độ: 10.8325129, 106.7136246
 
 ### Tải - Bus Bình Triệu
 
@@ -58,6 +60,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938809515
 - **Hotline dịch vụ & phụ tùng:** 0938908447
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/6w7yaBsY5JuCix1V8)
+- 📌 Toạ độ: 10.8481159, 106.7187627
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-binh-trieu)
 
 ## Liên kết

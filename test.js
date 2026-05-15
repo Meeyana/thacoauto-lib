@@ -1,0 +1,1 @@
+console.log(\'SUV cỡ C\'.match(/suv\\s+(?:cỡ|hạng)\\s+([a-e])/i));

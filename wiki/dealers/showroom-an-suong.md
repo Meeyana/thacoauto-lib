@@ -7,7 +7,7 @@ showroom_count: 1
 brands: [Thaco Bus, Thaco Truck]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938805105
 - **Hotline dịch vụ & phụ tùng:** 0933805334
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/BvQ9SgHLniexr2t7A)
+- 📌 Toạ độ: 10.8334429, 106.6068216
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-an-suong)
 
 ## Liên kết

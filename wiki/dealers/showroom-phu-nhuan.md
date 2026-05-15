@@ -7,7 +7,7 @@ showroom_count: 6
 brands: [BMW, BMW Motorrad, KIA, MAZDA, MINI, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -34,6 +34,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938805059
 - **Hotline CSKH:** (028)36200940
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/nGgJR2spTBeDrAYi6)
+- 📌 Toạ độ: 10.8093475, 106.6748131
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kiatansonnhat)
 
 ### Mazda Tân Sơn Nhất
@@ -48,6 +49,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0909503103
 - **Hotline CSKH:** (028)36200940
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/cXtnp7dNN3tjzmxJ9)
+- 📌 Toạ độ: 10.8092114, 106.6747577
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-tan-son-nhat)
 
 ### BMW Nguyễn Văn Trỗi
@@ -60,6 +62,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 80 Nguyễn Văn Trỗi, Phường Phú Nhuận, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0938 889 572
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6)
+- 📌 Toạ độ: 10.7964581, 106.6748641
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/bmw-nguyen-van-troi)
 
 ### MINI Nguyễn Văn Trỗi
@@ -84,6 +87,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938 099 971
 - **Hotline dịch vụ & phụ tùng:** Đang cập nhật
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/8byPYKMfdZ5h4AQT6)
+- 📌 Toạ độ: 10.7964581, 106.6748641
 - 🌐 [Website](https://thacoautotphcm.vn/)
 
 ### Peugeot Phan Đăng Lưu
@@ -98,6 +102,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938807817
 - **Hotline CSKH:** (028)37425566
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/QAgyGE82kuT4WVLp6)
+- 📌 Toạ độ: 10.8012816, 106.6802063
 - 🌐 [Website](https://www.peugeotphunhuan.vn/)
 
 ## Liên kết

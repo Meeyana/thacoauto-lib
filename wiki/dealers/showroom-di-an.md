@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [KIA, KIA Frontier, MAZDA, Mitsubishi Fuso, Thaco Truck]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901803238
 - **Hotline dịch vụ & phụ tùng:** 0938 801 261
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/yWz2GmVGJ4XeE3GQA)
+- 📌 Toạ độ: 10.8859413, 106.8173227
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-di-an)
 
 ### Mazda Dĩ An
@@ -45,6 +46,7 @@ updated: 2026-05-09
 - **Địa chỉ:** Số 40C, Xa Lộ Hà Nội, Khu Phố Hiệp Thắng, Phường Đông Hòa, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901803238
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Q3DjoabLRndKmNaSA)
+- 📌 Toạ độ: 10.8859413, 106.8173227
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-di-an)
 
 ### Kia Dĩ An
@@ -57,6 +59,7 @@ updated: 2026-05-09
 - **Địa chỉ:** Số 40C, Xa Lộ Hà Nội, Khu Phố Hiệp Thắng, Phường Đông Hòa, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901803238
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Q3DjoabLRndKmNaSA)
+- 📌 Toạ độ: 10.8859413, 106.8173227
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-di-an)
 
 ## Liên kết

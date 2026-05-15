@@ -7,7 +7,7 @@ showroom_count: 4
 brands: [BMW, KIA, MAZDA, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -34,6 +34,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938 905 949
 - **Hotline CSKH:** 0938 508 145
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/y3kWbcuj8Koi1URQ7)
+- 📌 Toạ độ: 10.358297, 107.0903864
 - 🌐 [Website](https://kiavungtau.com.vn)
 
 ### Mazda Vũng Tàu
@@ -61,6 +62,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938905949
 - **Hotline CSKH:** 0938508145
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/gCushEQ89WvEGshR9)
+- 📌 Toạ độ: 10.358156, 107.0902062
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/bmw-vung-tau)
 
 ### PEUGEOT Vũng Tàu
@@ -74,6 +76,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901837738
 - **Hotline dịch vụ & phụ tùng:** 0901893439
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/gCushEQ89WvEGshR9)
+- 📌 Toạ độ: 10.358156, 107.0902062
 - 🌐 [Website](https://thacoautotphcm.vn/)
 
 ## Liên kết

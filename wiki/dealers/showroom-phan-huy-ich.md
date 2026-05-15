@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [KIA, MAZDA, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -34,6 +34,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0901 838 039
 - **Hotline CSKH:** 0283 742 5566
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/evHoVP9gTi8K6sXV9)
+- 📌 Toạ độ: 10.8403971, 106.6375482
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-phan-huy-ich)
 
 ### Kia Phan Huy Ích
@@ -48,6 +49,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0901806552
 - **Hotline CSKH:** 02838952874
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/2YCe2f8CNcyibF4k6)
+- 📌 Toạ độ: 10.842696, 106.6377606
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-phan-huy-ich)
 
 ### Mazda Phan Huy Ích
@@ -62,6 +64,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0901806552
 - **Hotline CSKH:** 02838952874
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/SFn5WFv3wwJbNDMz9)
+- 📌 Toạ độ: 10.8427439, 106.6377728
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-phan-huy-ich)
 
 ## Liên kết

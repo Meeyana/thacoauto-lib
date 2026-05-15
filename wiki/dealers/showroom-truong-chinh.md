@@ -7,7 +7,7 @@ showroom_count: 4
 brands: [BMW, KIA, MAZDA, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938807207
 - **Hotline dịch vụ & phụ tùng:** 0938809058
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/vMsPRoHcQMfgudCp9)
+- 📌 Toạ độ: 10.8142452, 106.6322961
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/Mazda Trường Chinh)
 
 ### Kia Trường Chinh
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0933806366
 - **Hotline dịch vụ & phụ tùng:** 0931149339
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/VtHZm7K2hdWou9Rk9)
+- 📌 Toạ độ: 10.8125086, 106.6299593
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-truong-chinh)
 
 ### Peugeot Trường Chinh
@@ -58,6 +60,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 829 Trường Chinh, Phường Tây Thạnh, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901838039
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/FQ5PgpmdeULmxdsu9)
+- 📌 Toạ độ: 10.8142316, 106.6321909
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-truong-chinh)
 
 ### BMW Trường Chinh
@@ -70,6 +73,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 827A-829 Trường Chinh, Phường Tây Thạnh, Ho Chi Minh City, Vietnam
 - **Hotline bán hàng:** 0938 807 212
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/RYJzNhi83Cz9219B9)
+- 📌 Toạ độ: 10.8137907, 106.632344
 - 🌐 [Website](https://thacoautotphcm.vn/danh-sach-xe/xe-du-lich?brand_id=4)
 
 ## Liên kết

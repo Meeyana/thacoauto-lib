@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Sinotruk, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901806379
 - **Hotline dịch vụ & phụ tùng:** 0938907262
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6)
+- 📌 Toạ độ: 11.0256358, 106.6485342
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-thu-dau-mot)
 
 ### Mazda Thủ Dầu Một
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901806500
 - **Hotline dịch vụ & phụ tùng:** 0901806200
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/v2dkb4Ec6KSJGRDn9)
+- 📌 Toạ độ: 11.0253843, 106.6488865
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-thu-dau-mot)
 
 ### Tải - Bus Thủ Dầu Một
@@ -59,6 +61,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0933805663
 - **Hotline dịch vụ & phụ tùng:** 0938907298
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Z7GSDSfQVxsHTRMr6)
+- 📌 Toạ độ: 11.0256358, 106.6485342
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-thu-dau-mot)
 
 ## Liên kết

@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
 """
-geocode_dealers.py — Bổ sung lat/lon cho từng showroom trong wiki/dealers/catalog.json.
+geocode_dealers.py — Cập nhật lat/lon cho mọi showroom trong
+`wiki/dealers/catalog.json` BẰNG CÁCH PARSE từ field `map_url` (Google Maps).
 
 Quy tắc:
-- Gọi Nominatim với query = address.full (URL-encoded).
-- Lấy kết quả ĐẦU TIÊN trong mảng trả về.
-- Dedupe: nếu nhiều showroom có cùng address.full thì chỉ gọi 1 lần và share lat/lon.
-- Idempotent: showroom đã có lat/lon (và không truyền --force) sẽ bỏ qua.
-- Tuân thủ Nominatim usage policy: User-Agent rõ ràng + sleep ≥ 1s giữa các request mới.
+- LUÔN overwrite (kể cả showroom đã có lat/lon) — đảm bảo dữ liệu khớp với
+  link hiện tại. Nếu link expire/lỗi → giữ nguyên giá trị cũ + log cảnh báo.
+- Short link (maps.app.goo.gl, goo.gl/maps, g.co/kgs/…) → follow redirect lấy
+  URL canonical rồi parse.
+- Sau khi update catalog, ĐỒNG THỜI patch các file `wiki/dealers/showroom-*.md`
+  để chèn dòng `- 📌 Toạ độ: lat, lon` ngay dưới dòng `📍 [Xem Google Maps]`.
+  Idempotent: nếu đã có dòng toạ độ → ghi đè.
 
 Usage:
-    python tools/geocode_dealers.py
-    python tools/geocode_dealers.py --force      # geocode lại toàn bộ
-    python tools/geocode_dealers.py --limit 5    # test 5 showroom đầu
+    python tools/geocode_dealers.py                # chạy cho toàn bộ
+    python tools/geocode_dealers.py --limit 5      # test 5 showroom đầu
+    python tools/geocode_dealers.py --no-md        # chỉ update catalog.json
 """
+from __future__ import annotations
+
 import argparse
 import json
+import re
 import sys
 import time
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import unquote
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
@@ -30,104 +36,138 @@ except Exception:
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG_PATH = ROOT / "wiki" / "dealers" / "catalog.json"
+DEALERS_DIR = ROOT / "wiki" / "dealers"
 
-NOMINATIM_URL = "https://nominatim.openstreetmap.org/search?format=json&q={q}"
-USER_AGENT = "thacoauto-lib-geocoder/1.0 (contact: phogotarot@gmail.com)"
-SLEEP_SECONDS = 1.1  # Nominatim fair-use: tối đa 1 req/s
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+)
+SHORT_HOSTS = ("maps.app.goo.gl", "goo.gl/maps", "g.co/kgs", "g.co/maps")
+SLEEP_SECONDS = 0.4  # nhẹ tay với Google — chỉ HEAD/GET redirect, không gọi API
+
+# Lat/lon hợp lệ cho VN (chặn parse nhầm zoom level v.v.)
+VN_LAT_RANGE = (8.0, 24.0)
+VN_LON_RANGE = (102.0, 110.0)
+
+# Pattern theo thứ tự ưu tiên (!3d!4d = vị trí MARKER thực, chính xác nhất)
+PATTERNS = [
+    ("marker", re.compile(r"!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)")),
+    ("camera", re.compile(r"@(-?\d+\.\d+),(-?\d+\.\d+)")),
+    ("q",      re.compile(r"[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)")),
+    ("ll",     re.compile(r"[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)")),
+    ("daddr",  re.compile(r"[?&]daddr=(-?\d+\.\d+),(-?\d+\.\d+)")),
+]
 
 
-def _query_nominatim(q: str) -> dict | None:
-    if not q:
+def is_short_link(url: str) -> bool:
+    return any(h in url for h in SHORT_HOSTS)
+
+
+def expand_short_link(url: str, max_hops: int = 5) -> str | None:
+    """Follow redirect tới URL canonical."""
+    cur = url
+    for _ in range(max_hops):
+        try:
+            req = Request(cur, headers={"User-Agent": USER_AGENT}, method="GET")
+            with urlopen(req, timeout=15) as resp:
+                final = resp.geturl()
+            if final == cur:
+                return final
+            cur = final
+            if not is_short_link(cur):
+                return cur
+        except (URLError, HTTPError) as e:
+            print(f"    ! redirect lỗi: {e}")
+            return None
+    return cur
+
+
+def parse_coords(url: str) -> tuple[float, float, str] | None:
+    """Trích lat/lon từ URL Google Maps. Trả (lat, lon, source) hoặc None."""
+    if not url:
         return None
-    url = NOMINATIM_URL.format(q=quote(q))
-    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
-    try:
-        with urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except (URLError, HTTPError, json.JSONDecodeError) as e:
-        print(f"    ! lỗi khi gọi Nominatim: {e}")
-        return None
-    if not isinstance(data, list) or not data:
-        return None
-    first = data[0]
-    try:
-        return {
-            "lat": float(first["lat"]),
-            "lon": float(first["lon"]),
-            "display_name": first.get("display_name", ""),
-        }
-    except (KeyError, ValueError, TypeError):
-        return None
-
-
-import re
-
-
-def _simplify_address(full: str, address_obj: dict | None = None) -> list[str]:
-    """Sinh các biến thể địa chỉ đơn giản hơn để retry khi full address fail.
-
-    Chiến lược (theo thứ tự ưu tiên):
-      1. Bỏ tiền tố nhiễu trong street (L1, Tổ XX, Khu phố X, Ấp X, Lô CC3...).
-      2. Lấy đơn giản: "<số nhà + đường>, <ward>, <province>".
-      3. Chỉ "<đường>, <province>".
-    """
-    variants: list[str] = []
-    parts = [p.strip() for p in full.split(",") if p.strip()]
-    if not parts:
-        return variants
-
-    street = parts[0]
-    # Bỏ các prefix kiểu "L1", "Lô CC3", "Số 7" giữ phần còn lại
-    cleaned = re.sub(r"^(L\d+|Lô\s+\S+|Số)\s*[,.]?\s*", "", street, flags=re.IGNORECASE).strip()
-    if cleaned and cleaned != street:
-        variants.append(", ".join([cleaned] + parts[1:]))
-
-    if address_obj:
-        street2 = address_obj.get("street") or street
-        # Bỏ luôn các phần "Tổ X", "Khu phố Y", "Ấp Z" trong street nếu xuất hiện
-        street2 = re.sub(r",?\s*(Tổ|Khu phố|Ấp|KP)\s+\S+", "", street2, flags=re.IGNORECASE).strip()
-        ward = address_obj.get("ward") or ""
-        province = address_obj.get("province") or (parts[-1] if len(parts) > 1 else "")
-        if street2 and province:
-            simple = ", ".join([x for x in [street2, f"Phường {ward}" if ward else "", province] if x])
-            if simple not in variants:
-                variants.append(simple)
-
-        # Variant tối giản: chỉ tên đường (bỏ số nhà) + ward + province
-        m = re.search(r"\b([A-ZĐ][^\d,]+?)$", street2)  # phần chữ ở cuối
-        if m and province:
-            road_only = m.group(1).strip()
-            simple2 = ", ".join([x for x in [road_only, f"Phường {ward}" if ward else "", province] if x])
-            if simple2 and simple2 not in variants:
-                variants.append(simple2)
-
-    return variants
-
-
-def geocode(address: str, address_obj: dict | None = None) -> dict | None:
-    """Gọi Nominatim với address.full; nếu fail, retry với các biến thể đơn giản hoá."""
-    if not address:
-        return None
-
-    res = _query_nominatim(address)
-    if res:
-        return res
-
-    # Retry với các biến thể đơn giản hơn
-    for variant in _simplify_address(address, address_obj):
-        time.sleep(SLEEP_SECONDS)
-        print(f"    ↺ retry với: {variant[:70]}")
-        res = _query_nominatim(variant)
-        if res:
-            res["display_name"] = res["display_name"] + f" [via fallback]"
-            return res
+    decoded = unquote(url)
+    for source, rx in PATTERNS:
+        m = rx.search(decoded)
+        if not m:
+            continue
+        try:
+            lat = float(m.group(1))
+            lon = float(m.group(2))
+        except ValueError:
+            continue
+        if not (VN_LAT_RANGE[0] <= lat <= VN_LAT_RANGE[1]):
+            continue
+        if not (VN_LON_RANGE[0] <= lon <= VN_LON_RANGE[1]):
+            continue
+        return (lat, lon, source)
     return None
 
 
-def main():
+def resolve(map_url: str) -> tuple[float, float, str, str] | None:
+    """Trả (lat, lon, source, final_url) hoặc None."""
+    if not map_url:
+        return None
+    target = map_url
+    if is_short_link(map_url):
+        expanded = expand_short_link(map_url)
+        if not expanded:
+            return None
+        target = expanded
+    coords = parse_coords(target)
+    if not coords:
+        # Nhiều khi short link redirect tới `consent.google.com?continue=…`
+        # → URL gốc nằm trong query `continue=`. Decode + retry.
+        m = re.search(r"continue=([^&]+)", target)
+        if m:
+            inner = unquote(m.group(1))
+            coords = parse_coords(inner)
+            if coords:
+                return (*coords, inner)
+        return None
+    return (*coords, target)
+
+
+# ---------- MD PATCHING ----------
+
+COORD_LINE_RX = re.compile(r"^- 📌 Toạ độ:.*$", re.MULTILINE)
+MAP_LINE_RX = re.compile(r"^(- 📍 \[Xem Google Maps\]\(([^)]+)\))", re.MULTILINE)
+
+
+def patch_md_file(md_path: Path, url_to_coords: dict[str, tuple[float, float]]) -> int:
+    """Insert/replace dòng toạ độ ngay sau dòng Google Maps. Trả số block đã update."""
+    text = md_path.read_text(encoding="utf-8")
+    updated = 0
+
+    def repl(match: re.Match) -> str:
+        nonlocal updated
+        line = match.group(1)
+        url = match.group(2)
+        coords = url_to_coords.get(url)
+        if not coords:
+            return line
+        updated += 1
+        return f"{line}\n- 📌 Toạ độ: {coords[0]}, {coords[1]}"
+
+    # Bước 1: xoá hết dòng toạ độ cũ để tránh trùng lặp
+    text = COORD_LINE_RX.sub("", text)
+    # Dọn dòng trống dư
+    text = re.sub(r"\n{3,}", "\n\n", text)
+
+    # Bước 2: chèn lại dòng toạ độ ngay sau map_url
+    new_text = MAP_LINE_RX.sub(repl, text)
+
+    if new_text != md_path.read_text(encoding="utf-8"):
+        md_path.write_text(new_text, encoding="utf-8")
+    return updated
+
+
+# ---------- MAIN ----------
+
+def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--force", action="store_true", help="Geocode lại toàn bộ kể cả đã có lat/lon")
     ap.add_argument("--limit", type=int, default=0, help="Chỉ xử lý N showroom đầu (test)")
+    ap.add_argument("--no-md", action="store_true", help="Không patch các file markdown")
     args = ap.parse_args()
 
     if not CATALOG_PATH.exists():
@@ -140,78 +180,85 @@ def main():
         print("Catalog rỗng.")
         return
 
-    # Bước 1: gom các địa chỉ duy nhất cần geocode
-    address_to_coords: dict[str, dict] = {}  # cache trong run này
-
-    # Nạp coords sẵn có (để dedupe & tránh gọi lại cùng địa chỉ)
-    if not args.force:
-        for s in showrooms:
-            addr = (s.get("address") or {}).get("full", "").strip()
-            if not addr:
-                continue
-            if s.get("lat") is not None and s.get("lon") is not None and addr not in address_to_coords:
-                address_to_coords[addr] = {
-                    "lat": s["lat"],
-                    "lon": s["lon"],
-                    "display_name": s.get("geocode_display_name", ""),
-                }
-
-    # Tính số showroom phải xử lý
-    pending = []
-    for s in showrooms:
-        addr = (s.get("address") or {}).get("full", "").strip()
-        if not addr:
-            continue
-        if not args.force and s.get("lat") is not None and s.get("lon") is not None:
-            continue
-        pending.append(s)
-
+    pending = [s for s in showrooms if (s.get("map_url") or "").strip()]
     if args.limit > 0:
         pending = pending[: args.limit]
 
-    print(f"Tổng showroom: {len(showrooms)} | cần geocode: {len(pending)}")
-    if not pending:
-        print("Không có gì để làm. Dùng --force nếu muốn geocode lại.")
-        return
+    print(f"Tổng showroom: {len(showrooms)} | có map_url: {len(pending)}")
 
-    # Bước 2: thực hiện geocode (chỉ gọi mạng cho địa chỉ chưa cache)
-    miss_count = 0
+    # Cache kết quả theo map_url để tránh expand cùng short link 2 lần
+    url_cache: dict[str, tuple[float, float, str, str]] = {}
+    url_to_coords: dict[str, tuple[float, float]] = {}  # cho MD patch
+
+    ok, fail, drift = 0, 0, 0
+
     for i, s in enumerate(pending, 1):
-        addr = s["address"]["full"].strip()
-        if addr in address_to_coords:
-            coords = address_to_coords[addr]
-            print(f"[{i}/{len(pending)}] (cache) {s.get('title')} ← {addr[:60]}")
+        url = s["map_url"].strip()
+        title = s.get("title", "?")
+
+        if url in url_cache:
+            res = url_cache[url]
+            print(f"[{i}/{len(pending)}] (cache) {title}")
         else:
-            print(f"[{i}/{len(pending)}] geocode  {s.get('title')} ← {addr[:60]}")
-            coords = geocode(addr, s.get("address"))
+            print(f"[{i}/{len(pending)}] resolve {title} ← {url[:60]}")
+            res = resolve(url)
             time.sleep(SLEEP_SECONDS)
-            if coords is None:
-                miss_count += 1
-                print(f"    ✗ không có kết quả")
-                continue
-            address_to_coords[addr] = coords
+            if res:
+                url_cache[url] = res
 
-        s["lat"] = coords["lat"]
-        s["lon"] = coords["lon"]
-        s["geocode_display_name"] = coords["display_name"]
+        if not res:
+            fail += 1
+            print(f"    ✗ không parse được lat/lon — giữ nguyên giá trị cũ")
+            continue
 
-    # Bước 3: cập nhật stat & ghi file
-    geocoded = sum(1 for s in showrooms if s.get("lat") is not None)
-    catalog["stats"] = catalog.get("stats", {})
+        lat, lon, source, final_url = res
+        old_lat, old_lon = s.get("lat"), s.get("lon")
+
+        # Cảnh báo nếu lệch > ~5km so với lat/lon cũ
+        if isinstance(old_lat, (int, float)) and isinstance(old_lon, (int, float)):
+            # haversine xấp xỉ — đủ để phát hiện drift
+            dy = (lat - old_lat) * 111.0
+            dx = (lon - old_lon) * 111.0 * 0.94  # cos(~20°)
+            dist_km = (dy * dy + dx * dx) ** 0.5
+            if dist_km > 5:
+                drift += 1
+                print(f"    ⚠ drift {dist_km:.1f} km so với cũ (cũ: {old_lat},{old_lon})")
+
+        s["lat"] = lat
+        s["lon"] = lon
+        s["coord_source"] = source
+        ok += 1
+        url_to_coords[url] = (lat, lon)
+
+    # Stats
+    geocoded = sum(1 for s in showrooms if isinstance(s.get("lat"), (int, float)))
+    catalog.setdefault("stats", {})
     catalog["stats"]["geocoded"] = geocoded
-    catalog["stats"]["geocoded_unique_addresses"] = len(
-        {s["address"]["full"] for s in showrooms if s.get("lat") is not None}
-    )
+    catalog["stats"]["geocoded_unique_urls"] = len(url_cache)
 
     CATALOG_PATH.write_text(
         json.dumps(catalog, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+    print(f"\nĐã ghi {CATALOG_PATH}")
+    print(f"  ~ updated: {ok} | failed: {fail} | drift>5km: {drift}")
+    print(f"  ~ tổng có lat/lon: {geocoded}/{len(showrooms)}")
 
-    print(f"\nDone. Đã ghi {CATALOG_PATH}")
-    print(f"  ~ {geocoded}/{len(showrooms)} showroom có lat/lon")
-    print(f"  ~ {len(address_to_coords)} địa chỉ duy nhất đã geocode")
-    if miss_count:
-        print(f"  ! {miss_count} showroom không tìm thấy toạ độ — kiểm tra lại address.full")
+    # Patch MD
+    if args.no_md:
+        return
+    if not url_to_coords:
+        print("Không có URL nào parse được → bỏ qua patch MD.")
+        return
+
+    print(f"\nPatching markdown trong {DEALERS_DIR.relative_to(ROOT)}...")
+    md_files = sorted(DEALERS_DIR.glob("showroom-*.md"))
+    total_blocks = 0
+    for md in md_files:
+        n = patch_md_file(md, url_to_coords)
+        if n:
+            print(f"  • {md.name}: +{n} block")
+            total_blocks += n
+    print(f"Done. Patched {total_blocks} block trên {len(md_files)} file MD.")
 
 
 if __name__ == "__main__":

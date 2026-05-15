@@ -7,7 +7,7 @@ showroom_count: 7
 brands: [BMW, BMW Motorrad, Iveco Daily, KIA, KIA Frontier, MAZDA, MINI, Mercedes-Benz Bus, Mitsubishi Fuso, PEUGEOT, PEUGEOT MOTOCYCLES, Sơ mi rơ móc, Thaco Bus, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938807407
 - **Hotline dịch vụ & phụ tùng:** 0938906639
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/LLjV2kZZ7sZpRRc48)
+- 📌 Toạ độ: 10.9374161, 106.7100968
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-binh-duong)
 
 ### Mazda Bình Dương
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938100400
 - **Hotline dịch vụ & phụ tùng:** 0938807962
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/tWDNcT5Eebw55MHr9)
+- 📌 Toạ độ: 10.9378458, 106.7099648
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-binh-duong)
 
 ### Peugeot Bình Dương
@@ -59,6 +61,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938806772
 - **Hotline dịch vụ & phụ tùng:** 0938984502
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/ztPpLRp6sCcuPxb37)
+- 📌 Toạ độ: 10.938641, 106.7098359
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-binh-duong)
 
 ### BMW Motorrad Bình Dương
@@ -72,6 +75,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901887269
 - **Hotline dịch vụ & phụ tùng:** 0901808469
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/HiVSwMTnqzcWGm6R9)
+- 📌 Toạ độ: 10.9383838, 106.7097879
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/bmw-motorrad-binh-duong)
 
 ### MINI Bình Dương
@@ -85,6 +89,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901887159
 - **Hotline dịch vụ & phụ tùng:** 0901808469
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/H987ju4pBbQ2amBY8)
+- 📌 Toạ độ: 10.9382673, 106.7099392
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mini-binh-duong-1)
 
 ### Tải - Bus Bình Dương
@@ -98,6 +103,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938805177
 - **Hotline dịch vụ & phụ tùng:** 0938907298
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/Cz97s8CsAVagvLP57)
+- 📌 Toạ độ: 10.9180087, 106.7129855
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-binh-duong)
 
 ### BMW Bình Dương
@@ -111,6 +117,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901889798
 - **Hotline dịch vụ & phụ tùng:** 0901808469
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/jwhLJMd2jxawtAmC6)
+- 📌 Toạ độ: 10.9378471, 106.7099654
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/bmw-binh-duong)
 
 ## Liên kết

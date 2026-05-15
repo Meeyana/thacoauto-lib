@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [BMW, KIA, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938807102
 - **Hotline dịch vụ & phụ tùng:** 0938805334
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/8FbThrxqHYfrtr9m6)
+- 📌 Toạ độ: 10.7198514, 106.607977
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-binh-tan)
 
 ### Peugeot Bình Tân
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938901528
 - **Hotline dịch vụ & phụ tùng:** 0938901728
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/c9WDrE152yenE4fT8)
+- 📌 Toạ độ: 10.7194171, 106.6065776
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-binh-tan)
 
 ### BMW Bình Tân
@@ -59,6 +61,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901887378
 - **Hotline dịch vụ & phụ tùng:** 0938907462
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/g4wPR7W6ZeoED2NE6)
+- 📌 Toạ độ: 10.7436129, 106.62172
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/bmw-binh-tan)
 
 ## Liên kết

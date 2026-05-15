@@ -7,7 +7,7 @@ showroom_count: 5
 brands: [BMW, KIA, KIA Frontier, MAZDA, Mitsubishi Fuso, PEUGEOT, PEUGEOT MOTOCYCLES, Sinotruk, Sơ mi rơ móc, Thaco Truck, Xe chuyên dụng]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938807101
 - **Hotline dịch vụ & phụ tùng:** 0938805471
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/7h4xnfWECuj8cGKh6)
+- 📌 Toạ độ: 10.7412856, 106.7212647
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/KIA Phú Mỹ Hưng)
 
 ### Mazda Phú Mỹ Hưng
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0933805990
 - **Hotline dịch vụ & phụ tùng:** 0938809946
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/ubL6MHvUAadoXf6GA)
+- 📌 Toạ độ: 10.7413043, 106.7213288
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/Mazda Phú Mỹ Hưng)
 
 ### BMW Phú Mỹ Hưng
@@ -59,6 +61,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938901800
 - **Hotline dịch vụ & phụ tùng:** 0938901400
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/UoaY3Np9J4NsBWd56)
+- 📌 Toạ độ: 10.741383, 106.721047
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/BMW Phú Mỹ Hưng)
 
 ### Peugeot Phú Mỹ Hưng
@@ -72,6 +75,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938806771
 - **Hotline dịch vụ & phụ tùng:** 0938900504
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/yryqdXgtycvF9cTt5)
+- 📌 Toạ độ: 10.7400553, 106.7212064
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-phu-my-hung)
 
 ### Tải - Bus Phú Mỹ Hưng
@@ -84,6 +88,7 @@ updated: 2026-05-09
 - **Địa chỉ:** 314 Nguyễn Văn Linh, Phường Tân Thuận, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0938806247
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/rrCNujqYgwTXzuzM6)
+- 📌 Toạ độ: 10.7413834, 106.7210472
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/tai-bus-phu-my-hung)
 
 ## Liên kết

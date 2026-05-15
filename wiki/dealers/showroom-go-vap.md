@@ -7,7 +7,7 @@ showroom_count: 2
 brands: [KIA, MAZDA]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -34,6 +34,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938807758
 - **Hotline CSKH:** 02838952874
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/chYhAXzUytrzKpwEA)
+- 📌 Toạ độ: 10.8347549, 106.6755965
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-go-vap)
 
 ### Mazda Gò Vấp
@@ -48,6 +49,7 @@ updated: 2026-05-09
 - **Hotline dịch vụ & phụ tùng:** 0938807785
 - **Hotline CSKH:** 02838952874
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/c5QrttdJatz8nzTz6)
+- 📌 Toạ độ: 10.8344593, 106.6755828
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-go-vap)
 
 ## Liên kết

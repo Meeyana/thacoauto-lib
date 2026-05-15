@@ -7,7 +7,7 @@ showroom_count: 3
 brands: [Iveco Daily, KIA, KIA Frontier, MAZDA, Mercedes-Benz Bus, Mitsubishi Fuso, Sinotruk, Thaco Bus, Thaco Truck]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0909809396
 - **Hotline dịch vụ & phụ tùng:** 0938807422
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8)
+- 📌 Toạ độ: 10.5461485, 106.4006659
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-tan-an)
 
 ### Tải - Bus Tân An
@@ -58,6 +59,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0909809396
 - **Hotline dịch vụ & phụ tùng:** 0938807422
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/q9gfbVNGYeZ7jEZz8)
+- 📌 Toạ độ: 10.5461485, 106.4006659
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-tan-an)
 
 ## Liên kết

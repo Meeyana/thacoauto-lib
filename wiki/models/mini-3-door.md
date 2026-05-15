@@ -12,7 +12,7 @@ version_count: 4
 image: https://thacoautotphcm.vn/storage/hinh-anh-final/mini-3-cua-min.webp
 generated: true
 generated_from: raw/models/mini/mini-3-door.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/models/mini/mini-3-door.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_models.py`.

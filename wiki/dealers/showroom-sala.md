@@ -7,7 +7,7 @@ showroom_count: 6
 brands: [BMW, BMW Motorrad, KIA, MAZDA, MINI, PEUGEOT, PEUGEOT MOTOCYCLES]
 generated: true
 generated_from: raw/hochiminh-listshowroom.json
-updated: 2026-05-09
+updated: 2026-05-15
 ---
 
 > ⚠️ Trang này được **tự động sinh** từ `raw/hochiminh-listshowroom.json`. **KHÔNG sửa tay** — sửa JSON nguồn rồi chạy `python tools/sync_dealers.py`.
@@ -33,6 +33,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0907808880
 - **Hotline dịch vụ & phụ tùng:** 0938889811
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/DhDyud8NQ9BJxM4n7)
+- 📌 Toạ độ: 10.7730533, 106.7235886
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/BMW Sala)
 
 ### MINI Sala
@@ -46,6 +47,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0938869310
 - **Hotline dịch vụ & phụ tùng:** 0938889811
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/SW9KWno1Sah4Xkm1A)
+- 📌 Toạ độ: 10.7726472, 106.7234435
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/MINI Sala)
 
 ### BMW Motorrad Sala
@@ -59,6 +61,7 @@ updated: 2026-05-09
 - **Hotline bán hàng:** 0901188088
 - **Hotline dịch vụ & phụ tùng:** 0938806525
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/gd4EayM1qxXG1udw6)
+- 📌 Toạ độ: 10.7729766, 106.7239588
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/BMW Motorrad Sala)
 
 ### Kia Sala
@@ -71,6 +74,7 @@ updated: 2026-05-09
 - **Địa chỉ:** L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901886297
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/ovi8QJRNWYi9emPF8)
+- 📌 Toạ độ: 10.7715616, 106.7222772
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/kia-sala)
 
 ### Mazda Sala
@@ -83,6 +87,7 @@ updated: 2026-05-09
 - **Địa chỉ:** L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901886297
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/L9K8jRQktRLD5pE36)
+- 📌 Toạ độ: 10.7721095, 106.7221739
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/mazda-sala)
 
 ### Peugeot Sala
@@ -95,6 +100,7 @@ updated: 2026-05-09
 - **Địa chỉ:** L1, 10 Đường Mai Chí Thọ, Phường An Khánh, Thành phố Hồ Chí Minh
 - **Hotline bán hàng:** 0901886297
 - 📍 [Xem Google Maps](https://maps.app.goo.gl/TrdBZxdqHEvg86Ev7)
+- 📌 Toạ độ: 10.7719766, 106.7219927
 - 🌐 [Website](https://thacoautotphcm.vn/showrooms/peugeot-sala)
 
 ## Liên kết
